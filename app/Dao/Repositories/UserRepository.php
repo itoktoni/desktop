@@ -2,10 +2,8 @@
 
 namespace App\Dao\Repositories;
 
-use App\Dao\Builder\DataBuilder;
 use App\Dao\Interfaces\CrudInterface;
 use App\Dao\Models\User;
-use App\Dao\Traits\DataTableTrait;
 use Illuminate\Database\QueryException;
 use Plugins\Notes;
 

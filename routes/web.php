@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\Master\CategoryController;
 use App\Http\Controllers\Master\ProductCategoryController;
 use App\Http\Controllers\Master\UserController;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +27,7 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 Route::prefix('admin')->group(function () {
     Route::group(['prefix' => 'master', 'middleware' => ['auth', 'access']], function () {
         AutoRoute::auto('/user', UserController::class, ['name' => 'user']);
-        AutoRoute::auto('/users', UserController::class, ['name' => 'users']);
+        AutoRoute::auto('/category', CategoryController::class, ['name' => 'category']);
     });
 });
 

@@ -10,12 +10,12 @@
     <style>
     @font-face {
         font-family: 'FontAwesome';
-        src:url('{{ url('') }}/fonts/fontawesome-webfont.eot?v=4.7.0');
-        src:url('{{ url('') }}/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'),
-        url('{{ url('') }}/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
-        url('{{ url('') }}/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'),
-        url('{{ url('') }}/fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'),
-        url('{{ url('') }}/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
+        src:url('{{ url('/') }}/fonts/fontawesome-webfont.eot?v=4.7.0');
+        src:url('{{ url('/') }}/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'),
+        url('{{ url('/') }}/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
+        url('{{ url('/') }}/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'),
+        url('{{ url('/') }}/fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'),
+        url('{{ url('/') }}/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
         font-weight: normal;
         font-style: normal
     }
@@ -67,15 +67,15 @@
     <script src="{{ url('assets/js/app.js') }}"></script>
     <!-- <script src="{{ url('assets/js/proajax.js') }}"></script> -->
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js"></script> 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Pjax-Standalone/0.6.0/pjax-standalone.min.js"></script> -->
 
     <script>
-    // if (Turbolinks.supported) {
-    //     // Turbolinks.start()
-    // } else {
-    //     console.warn("browser kamu tidak mendukung Turbolinks")
-    // }
+    if (Turbolinks.supported) {
+        Turbolinks.start()
+    } else {
+        console.warn("browser kamu tidak mendukung Turbolinks")
+    }
 
     // pjax.connect("pjax");
     </script>

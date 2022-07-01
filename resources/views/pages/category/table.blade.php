@@ -1,7 +1,7 @@
 @extends(Template::master())
 
 @section('header')
-<h4>List Master User</h4>
+<h4>List Master Category</h4>
 <div class="header-action">
     <nav>
         <button href="{{ route($route.'.getCreate') }}" class="btn btn-success button-create">Create</button>
@@ -60,7 +60,7 @@
                     @forelse($data as $table)
                     <tr>
                         <td>{{ $table->field_name }}</td>
-                        <td>{{ $table->field_email }}</td>
+                        <td>{{ $table->field_description }}</td>
                         <td class="col-md-2 text-center">
                             <a class="badge badge-primary button-update"
                                 href="{{ route($route.'.getUpdate', ['code' => $table->field_code]) }}">

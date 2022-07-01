@@ -5,21 +5,36 @@ namespace App\Dao\Repositories;
 use App\Dao\Interfaces\CrudInterface;
 use App\Dao\Models\Category;
 use Illuminate\Database\QueryException;
-use Plugins\Helper;
 use Plugins\Notes;
 
-class CategoryRepository extends Category implements CrudInterface
+class CategoryRepository implements CrudInterface
 {
+    public $model;
+
+    public function __construct()
+    {
+        $this->model = empty($this->model) ? new Category() : $this->model;
+    }
+
     public function dataRepository()
     {
-        $list = Helper::dataColumn($this->datatable);
-        return $this->select($list);
+        try {
+            $query = $this->model
+                ->select($this->model->getSelectedField())
+                ->active()->sortable()->filter();
+
+            $query = env('PAGINATION_SIMPLE') ? $query->simplePaginate(env('PAGINATION_NUMBER')) : $query->Paginate(env('PAGINATION_NUMBER'));
+
+            return $query;
+        } catch (QueryException $ex) {
+            return Notes::error($ex->getMessage());
+        }
     }
 
     public function saveRepository($request)
     {
         try {
-            $activity = $this->create($request);
+            $activity = $this->model->create($request);
             return Notes::create($activity);
         } catch (QueryException $ex) {
             return Notes::error($ex->getMessage());
@@ -29,9 +44,9 @@ class CategoryRepository extends Category implements CrudInterface
     public function updateRepository($request, $code)
     {
         try {
-            $update = $this->findOrFail($code);
+            $update = $this->model->findOrFail($code);
             $update->update($request);
-            return Notes::update($update->toArray());
+            return Notes::update($update);
         } catch (QueryException $ex) {
             return Notes::error($ex->getMessage());
         }
@@ -40,7 +55,7 @@ class CategoryRepository extends Category implements CrudInterface
     public function deleteRepository($request)
     {
         try {
-            is_array($request) ? $this->destroy(array_values($request)) : $this->destroy($request);
+            is_array($request) ? $this->model->destroy(array_values($request)) : $this->model->destroy($request);
             return Notes::delete($request);
         } catch (QueryException $ex) {
             return Notes::error($ex->getMessage());
@@ -49,10 +64,11 @@ class CategoryRepository extends Category implements CrudInterface
 
     public function singleRepository($code, $relation = false)
     {
-        if ($relation) {
-            return $this->with($relation)->findOrFail($code);
+        try {
+            return $relation ? $this->model->with($relation)->findOrFail($code) : $this->model->findOrFail($code);
+        } catch (QueryException $ex) {
+            abort(500, $ex->getMessage());
         }
-        return $this->findOrFail($code);
     }
 
 }

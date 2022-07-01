@@ -2,70 +2,64 @@
 
 namespace App\Dao\Models;
 
-use App\Dao\Enums\CategoryType;
+use App\Dao\Builder\DataBuilder;
+use App\Dao\Entities\CategoryEntity;
+use App\Dao\Enums\UserType;
+use App\Dao\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Model;
-use Wildside\Userstamps\Userstamps;
+use Kyslik\ColumnSortable\Sortable;
+use Mehradsadeghi\FilterQueryString\FilterQueryString as FilterQueryString;
+use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 
 class Category extends Model
 {
+    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, CategoryEntity;
+
     protected $table = 'category';
     protected $primaryKey = 'category_id';
 
     protected $fillable = [
         'category_id',
         'category_name',
-        'category_type',
         'category_description',
+        'category_active',
     ];
 
-    // public $with = ['module'];
+    public $sortable = [
+        'category_name',
+    ];
+
+    protected $filters = [
+        'filter',
+    ];
 
     public $timestamps = false;
     public $incrementing = true;
-    public $rules = [
-        'category_name' => 'required|min:3',
-    ];
 
-    public $searching = 'category_name';
-    public $datatable = [
-        'category_id' => [false => 'Code', 'width' => 50],
-        'category_name' => [true => 'Name'],
-        'category_type' => [false => 'Type'],
-        'category_description' => [true => 'Description'],
-    ];
-
-    public function mask_type()
+    public function filter($query, $value)
     {
-        return 'category_type';
+        $search = request()->get('search');
+        if($search){
+            return $query->where($value ?? $this->fieldSearching(), 'like', "%{$search}%");
+        }
     }
 
-    public function setMaskTypeAttribute($value)
-    {
-        $this->attributes[$this->mask_type()] = $value;
-    }
-
-    public function getMaskTypeAttribute()
-    {
-        return $this->{$this->mask_type()};
-    }
-
-    public function getMaskTypeNameAttribute()
-    {
-        return CategoryType::getDescription($this->{$this->mask_type()});
-    }
-
-    public function mask_name()
-    {
+    public function fieldSearching(){
         return 'category_name';
     }
 
-    public function setMaskNameAttribute($value)
+    public function fieldDatatable(): array
     {
-        $this->attributes[$this->mask_name()] = $value;
+        return [
+            DataBuilder::build('category_id')->name('ID')->show(false),
+            DataBuilder::build('category_name')->name('Name')->sort(),
+            DataBuilder::build('category_description')->name('Description'),
+        ];
     }
 
-    public function getMaskNameAttribute()
+    public function scopeActive($query)
     {
-        return $this->{$this->mask_name()};
+        return $query->where($this->field_active(), UserType::Active);
     }
+ 
 }

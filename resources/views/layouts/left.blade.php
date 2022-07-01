@@ -1,4 +1,4 @@
-<div class="navigation-menu-tab">
+<div class="navigation-menu-tab" data-turbolinks="false">
     <div class="flex-grow-1">
         <ul>
             <li>
@@ -66,7 +66,7 @@
 </div>
 
 <!-- begin::navigation menu -->
-<div class="navigation-menu-body">
+<div class="navigation-menu-body" data-turbolinks="false">
 
     <!-- begin::navigation-logo -->
     <div>
@@ -87,6 +87,12 @@
                     <a @if(request()->segment(2) == 'master' && request()->segment(3) == 'user')
                         class="active" @endif href="{{ route('user.getTable') }}">
                         <span>Master User</span>
+                    </a>
+                </li>
+                <li>
+                    <a @if(request()->segment(2) == 'master' && request()->segment(3) == 'category')
+                        class="active" @endif href="{{ route('category.getTable') }}">
+                        <span>Master Category</span>
                     </a>
                 </li>
             </ul>
