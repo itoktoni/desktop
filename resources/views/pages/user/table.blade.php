@@ -1,91 +1,211 @@
-@extends('layouts.app')
+@extends(Template::master())
 
-@section('content')
+@section('header')
+<h4>List Master User</h4>
+<div class="header-action">
+    <nav>
+        <button href="{{ route($route.'.getCreate') }}" class="btn btn-success button-create">Create</button>
+    </nav>
+</div>
+@endsection
 
-{!! Form::open(['url' => 'test/save', 'class' => 'form-horizontal', 'files' => true]) !!}
+@section('form')
 
-<!-- begin::page-header -->
-<div class="page-header">
-    <div class="header-container container-fluid d-sm-flex justify-content-between">
-        <h4>Form Create Master</h4>
-        <div class="action">
-            <nav>
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="button" class="btn btn-warning"  data-toggle="modal" data-target="#exampleModal">Cancel</button>
-            </nav>
+<div class="card">
+    <div class="card-body">
+
+        {!! Form::open(['url' => route($route.'.getTable'), 'class' => 'form-row', 'method' => 'GET']) !!}
+
+        <div class="form-group col-md-4">
+            <select name="filter" class="form-control">
+                <option value="">- Search Default Data -</option>
+                @foreach($fields as $value)
+                <option {{ request()->get('filter') == $value->code ? 'selected' : '' }} value="{{ $value->code }}">
+                    {{ __($value->name) }}</option>
+                @endforeach
+            </select>
         </div>
 
-    </div>
-</div>
-<!-- end::page-header -->
-
-<div class="container-fluid">
-
-    <div class="row">
-        <div class="col-md-12">
-
-            <div class="card">
-                <div class="card-body">
-
-                    <div class="row">
-
-                        <table class="table table-bordered table-striped table-responsive-stack">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Color</th>
-                                    <th>Taste</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($data as $table)
-                                <tr>
-                                    <td>{{ $table->name }}</td>
-                                    <td>{{ $table->email }}</td>
-                                    <td>{{ $table->active }}</td>
-                                </tr>
-                                @empty
-                                @endforelse
-                            </tbody>
-                        </table>
-
-                    <nav class="pagination text-center">
-                        
-                        {{ $data->onEachSide(1)->links() }}
-                        </nav>
-                    </div>
-
+        <div class="form-group col">
+            <div class="input-group">
+                <input type="text" name="search" value="{{ request()->get('search') }}" class="form-control"
+                    placeholder="Searching Data">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Search</button>
                 </div>
             </div>
-
-
         </div>
+
+        {!! Form::close() !!}
+
+
+        <div class="table-responsive" id="table_data">
+            {!! Form::open(['url' => 'test/save', 'class' => 'form-horizontal', 'files' => true]) !!}
+            <table class="table table-bordered table-striped table-responsive-stack">
+
+                <thead>
+                    <tr>
+                        @foreach($fields as $value)
+                        <th>
+                            @if($value->sort)
+                            @sortablelink($value->code, $value->name)
+                            @else
+                            {{ $value->name }}
+                            @endif
+                        </th>
+                        @endforeach
+                        <th class="col-md-2 text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($data as $table)
+                    <tr>
+                        <td>{{ $table->field_name }}</td>
+                        <td>{{ $table->field_email }}</td>
+                        <td class="col-md-2 text-center">
+                            <a class="badge badge-primary button-update"
+                                href="{{ route($route.'.getUpdate', ['code' => $table->field_code]) }}">
+                                Update
+                            </a>
+                            <a class="badge badge-danger button-delete" data="{{ $table->field_code }}"
+                                href="{{ route($route.'.postDelete', ['code' => $table->field_code]) }}">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                    @empty
+                    @endforelse
+                </tbody>
+            </table>
+            {!! Form::close() !!}
+        </div>
+
+        <nav class="container-pagination">
+            {!! $data->appends(\Request::except('page'))->render() !!}
+        </nav>
+
     </div>
-
 </div>
+@endsection
 
-{!! Form::close() !!}
+@section('script')
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <i class="fa fa-close"></i>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-        </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+<script>
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 
+function showModal(url) {
+
+    $.ajax({
+        url: url,
+        beforeSend: function() {
+            $('#loader').show();
+        },
+        // return the result
+        success: function(response) {
+            $('#modal-body').html(response);
+            $('#modal').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+        },
+        complete: function() {
+            $('#loader').hide();
+        },
+        error: function(jqXHR, testStatus, error) {
+            console.log(error);
+            alert("Page " + href + " cannot open. Error:" + error);
+            $('#loader').hide();
+        },
+        timeout: 8000
+    });
+
+
+}
+
+$('body').on('click', '.button-update', function(event) {
+    event.preventDefault();
+    showModal($(this).attr('href'));
+});
+
+$('body').on('click', '.button-create', function(event) {
+    event.preventDefault();
+    showModal($(this).attr('href'));
+});
+
+$('body').on('click', '.button-delete', function(event) {
+    event.preventDefault();
+
+    var me = $(this),
+        url = me.attr('href'),
+        id = me.attr('data'),
+        csrf_token = $('meta[name="csrf-token"]').attr('content');
+
+    swal({
+        title: 'Are you sure want to delete this data ?',
+        text: 'You won\'t be able to revert this!',
+        icon: "warning",
+        buttons: true,
+    }).then((result) => {
+        if (result) {
+            $.ajax({
+                url: url,
+                type: "POST",
+                dataType: 'json',
+                data: {
+                    'id': id
+                },
+                success: function(response) {
+                    if (response.status) {
+                        swal({
+                            icon: 'success',
+                            title: 'Success!',
+                            text: 'Data has been deleted!',
+                            timer: 3000
+                        }).then(function() {
+                            window.location.reload();
+                        });
+
+                    } else if (response.status == false) {
+                        swal({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: response.data
+                        });
+                    } else {
+                        swal({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: 'Data failed to deleted!'
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+
+                    if (xhr.status == 422) {
+
+                        swal({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Validation Error !'
+                        });
+                    } else {
+                        swal({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong!'
+                        });
+                    }
+                }
+            });
+        } else {
+
+        }
+    });
+});
+</script>
 
 @endsection

@@ -1,5 +1,8 @@
 <?php
 
+use App\Providers\CacheableAuthUserServiceProvider;
+use Plugins\Template;
+
 return [
 
     /*
@@ -175,7 +178,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         BenSampo\Enum\EnumServiceProvider::class,
-
+        Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+        CacheableAuthUserServiceProvider::class,
     ],
 
     /*
@@ -227,6 +232,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Enum' => BenSampo\Enum\EnumServiceProvider::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Template' => Template::class,
         // 'AutoRoute' => Buki\AutoRoute\AutoRouteFacade::class
 
     ],

@@ -357,7 +357,7 @@
 
 @endsection
 
-@section('script')
+@push('script')
     <!-- Select2 -->
     <script src="{{ url('vendors/select2/js/select2.min.js') }}"></script>
     <script src="{{ url('assets/js/examples/select2.js') }}"></script>
@@ -376,4 +376,4 @@
 
     <!-- Prism -->
     <script src="{{ url('vendors/prism/prism.js') }}"></script>
-@endsection
+@endpush

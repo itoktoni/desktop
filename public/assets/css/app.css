@@ -3828,11 +3828,11 @@ textarea {
 }
 
 .custom-range.custom-range-light::-webkit-slider-thumb {
-  background-color: #afb8bd;
+  background-color: #d3d3d3;
 }
 
 .custom-range.custom-range-light::-webkit-slider-thumb:active {
-  background-color: #e1e5e6;
+  background-color: white;
 }
 
 .custom-range.custom-range-dark::-webkit-slider-thumb {
@@ -4347,7 +4347,7 @@ textarea {
 }
 
 .bg-light {
-  background: #afb8bd !important;
+  background: #d3d3d3 !important;
 }
 
 .bg-dark {
@@ -4448,7 +4448,7 @@ textarea {
 }
 
 .text-light {
-  color: #afb8bd !important;
+  color: #d3d3d3 !important;
 }
 
 .text-facebook {
@@ -4712,7 +4712,7 @@ a.link-2:focus,
 a.link-3,
 .header form .input-group .input-group-append button.link-3.btn,
 .chat-block .chat-sidebar .chat-sidebar-content .list-group .link-3.list-group-item.active {
-  color: white;
+  color: white !important;
 }
 
 a.link-3:hover,
@@ -4934,7 +4934,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-gradient-primary {
   background: linear-gradient(20deg, #388be9, #104d92);
   border-color: transparent;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-gradient-primary:not(:disabled):not(.disabled):hover,
@@ -4993,14 +4993,14 @@ a.btn[href="#previous"]:hover,
 .btn.btn-outline-primary:not(:disabled):not(.disabled):hover {
   background: #1565C0;
   border-color: #1565C0;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-primary:not(:disabled):not(.disabled):focus,
 .btn.btn-outline-primary:not(:disabled):not(.disabled):active {
   background: #0f4889;
   border-color: #0f4889;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-primary:not(:disabled):not(.disabled):focus {
@@ -5044,7 +5044,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-gradient-secondary {
   background: linear-gradient(20deg, #ca9fdf, #9540bf);
   border-color: transparent;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-gradient-secondary:not(:disabled):not(.disabled):hover,
@@ -5103,14 +5103,14 @@ a.btn[href="#previous"]:hover,
 .btn.btn-outline-secondary:not(:disabled):not(.disabled):hover {
   background: #aa66cc;
   border-color: #aa66cc;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-secondary:not(:disabled):not(.disabled):focus,
 .btn.btn-outline-secondary:not(:disabled):not(.disabled):active {
   background: #8f3db8;
   border-color: #8f3db8;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-secondary:not(:disabled):not(.disabled):focus {
@@ -5129,6 +5129,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-success {
   background: #00C851;
   border-color: #00C851;
+  color: white !important;
 }
 
 .btn.btn-success:not(:disabled):not(.disabled):hover,
@@ -5151,10 +5152,35 @@ a.btn[href="#previous"]:hover,
   -webkit-animation: none;
 }
 
+.btn.btn-default {
+  background: #d3d3d3;
+  border-color: #d3d3d3;
+}
+
+.btn.btn-default:not(:disabled):not(.disabled):hover,
+.btn.btn-default:not(:disabled):not(.disabled):focus,
+.btn.btn-default:not(:disabled):not(.disabled):active {
+  background: #bababa;
+  border-color: #bababa;
+}
+
+.btn.btn-default:not(:disabled):not(.disabled):focus {
+  box-shadow: 0 0 0 0.2rem rgba(211, 211, 211, 0.4) !important;
+}
+
+.btn.btn-default.btn-pulse:not(:disabled):not(.disabled) {
+  box-shadow: 0 0 0 0 rgba(211, 211, 211, 0.9) !important;
+  -webkit-animation: pulse 1.5s infinite !important;
+}
+
+.btn.btn-default:hover {
+  -webkit-animation: none;
+}
+
 .btn.btn-gradient-success {
   background: linear-gradient(20deg, #16ff74, #00953c);
   border-color: transparent;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-gradient-success:not(:disabled):not(.disabled):hover,
@@ -5213,14 +5239,14 @@ a.btn[href="#previous"]:hover,
 .btn.btn-outline-success:not(:disabled):not(.disabled):hover {
   background: #00C851;
   border-color: #00C851;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-success:not(:disabled):not(.disabled):focus,
 .btn.btn-outline-success:not(:disabled):not(.disabled):active {
   background: #008b38;
   border-color: #008b38;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-success:not(:disabled):not(.disabled):focus {
@@ -5239,6 +5265,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-danger {
   background: #ff4444;
   border-color: #ff4444;
+  color: white !important;
 }
 
 .btn.btn-danger:not(:disabled):not(.disabled):hover,
@@ -5264,7 +5291,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-gradient-danger {
   background: linear-gradient(20deg, #ff9191, #ff1111);
   border-color: transparent;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-gradient-danger:not(:disabled):not(.disabled):hover,
@@ -5323,14 +5350,14 @@ a.btn[href="#previous"]:hover,
 .btn.btn-outline-danger:not(:disabled):not(.disabled):hover {
   background: #ff4444;
   border-color: #ff4444;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-danger:not(:disabled):not(.disabled):focus,
 .btn.btn-outline-danger:not(:disabled):not(.disabled):active {
   background: #ff0707;
   border-color: #ff0707;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-danger:not(:disabled):not(.disabled):focus {
@@ -5349,6 +5376,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-warning {
   background: #ffbb33;
   border-color: #ffbb33;
+  color: white !important;
 }
 
 .btn.btn-warning:not(:disabled):not(.disabled):hover,
@@ -5374,7 +5402,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-gradient-warning {
   background: linear-gradient(20deg, #ffd580, #ffaa00);
   border-color: transparent;
-  color: white;
+  color: white !important;
   color: #212529;
 }
 
@@ -5434,14 +5462,14 @@ a.btn[href="#previous"]:hover,
 .btn.btn-outline-warning:not(:disabled):not(.disabled):hover {
   background: #ffbb33;
   border-color: #ffbb33;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-warning:not(:disabled):not(.disabled):focus,
 .btn.btn-outline-warning:not(:disabled):not(.disabled):active {
   background: #f5a300;
   border-color: #f5a300;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-warning:not(:disabled):not(.disabled):focus {
@@ -5466,6 +5494,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-info {
   background: #33b5e5;
   border-color: #33b5e5;
+  color: white !important;
 }
 
 .btn.btn-info:not(:disabled):not(.disabled):hover,
@@ -5491,7 +5520,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-gradient-info {
   background: linear-gradient(20deg, #77ceee, #1a9bcb);
   border-color: transparent;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-gradient-info:not(:disabled):not(.disabled):hover,
@@ -5550,14 +5579,14 @@ a.btn[href="#previous"]:hover,
 .btn.btn-outline-info:not(:disabled):not(.disabled):hover {
   background: #33b5e5;
   border-color: #33b5e5;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-info:not(:disabled):not(.disabled):focus,
 .btn.btn-outline-info:not(:disabled):not(.disabled):active {
   background: #1994c2;
   border-color: #1994c2;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-info:not(:disabled):not(.disabled):focus {
@@ -5575,8 +5604,8 @@ a.btn[href="#previous"]:hover,
 
 .btn.btn-light,
 .fc .btn.fc-state-default {
-  background: #afb8bd;
-  border-color: #afb8bd;
+  background: #d3d3d3;
+  border-color: #d3d3d3;
 }
 
 .btn.btn-light:not(:disabled):not(.disabled):hover,
@@ -5585,18 +5614,18 @@ a.btn[href="#previous"]:hover,
 .fc .btn.fc-state-default:not(:disabled):not(.disabled):focus,
 .btn.btn-light:not(:disabled):not(.disabled):active,
 .fc .btn.fc-state-default:not(:disabled):not(.disabled):active {
-  background: #939fa6;
-  border-color: #939fa6;
+  background: #bababa;
+  border-color: #bababa;
 }
 
 .btn.btn-light:not(:disabled):not(.disabled):focus,
 .fc .btn.fc-state-default:not(:disabled):not(.disabled):focus {
-  box-shadow: 0 0 0 0.2rem rgba(175, 184, 189, 0.4) !important;
+  box-shadow: 0 0 0 0.2rem rgba(211, 211, 211, 0.4) !important;
 }
 
 .btn.btn-light.btn-pulse:not(:disabled):not(.disabled),
 .fc .btn.btn-pulse.fc-state-default:not(:disabled):not(.disabled) {
-  box-shadow: 0 0 0 0 rgba(175, 184, 189, 0.9) !important;
+  box-shadow: 0 0 0 0 rgba(211, 211, 211, 0.9) !important;
   -webkit-animation: pulse 1.5s infinite !important;
 }
 
@@ -5606,25 +5635,25 @@ a.btn[href="#previous"]:hover,
 }
 
 .btn.btn-gradient-light {
-  background: linear-gradient(20deg, #d9dde0, #939fa6);
+  background: linear-gradient(20deg, #f9f9f9, #bababa);
   border-color: transparent;
-  color: white;
+  color: white !important;
   color: inherit;
 }
 
 .btn.btn-gradient-light:not(:disabled):not(.disabled):hover,
 .btn.btn-gradient-light:not(:disabled):not(.disabled):focus,
 .btn.btn-gradient-light:not(:disabled):not(.disabled):active {
-  background: linear-gradient(20deg, #afb8bd, #939fa6);
+  background: linear-gradient(20deg, #d3d3d3, #bababa);
   border-color: transparent;
 }
 
 .btn.btn-gradient-light:not(:disabled):not(.disabled):focus {
-  box-shadow: 0 0 0 0.2rem rgba(175, 184, 189, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(211, 211, 211, 0.5);
 }
 
 .btn.btn-gradient-light.btn-pulse:not(:disabled):not(.disabled) {
-  box-shadow: 0 0 0 0 rgba(175, 184, 189, 0.9) !important;
+  box-shadow: 0 0 0 0 rgba(211, 211, 211, 0.9) !important;
   -webkit-animation: pulse 1.5s infinite !important;
 }
 
@@ -5634,31 +5663,31 @@ a.btn[href="#previous"]:hover,
 
 .btn.btn-outline-light {
   background: none;
-  border-color: #afb8bd;
-  color: #a1acb1;
+  border-color: #d3d3d3;
+  color: #c6c6c6;
   border-width: 1px;
   color: #212529;
 }
 
 .btn.btn-outline-light:not(:disabled):not(.disabled):hover {
-  background: #afb8bd;
-  border-color: #afb8bd;
-  color: white;
+  background: #d3d3d3;
+  border-color: #d3d3d3;
+  color: white !important;
 }
 
 .btn.btn-outline-light:not(:disabled):not(.disabled):focus,
 .btn.btn-outline-light:not(:disabled):not(.disabled):active {
-  background: #8d9aa1;
-  border-color: #8d9aa1;
-  color: white;
+  background: #b4b4b4;
+  border-color: #b4b4b4;
+  color: white !important;
 }
 
 .btn.btn-outline-light:not(:disabled):not(.disabled):focus {
-  box-shadow: 0 0 0 0.2rem rgba(175, 184, 189, 0.4);
+  box-shadow: 0 0 0 0.2rem rgba(211, 211, 211, 0.4);
 }
 
 .btn.btn-outline-light.btn-pulse:not(:disabled):not(.disabled) {
-  box-shadow: 0 0 0 0 rgba(175, 184, 189, 0.9) !important;
+  box-shadow: 0 0 0 0 rgba(211, 211, 211, 0.9) !important;
   -webkit-animation: pulse 1.5s infinite !important;
 }
 
@@ -5675,6 +5704,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-dark {
   background: #293134;
   border-color: #293134;
+  color: white !important;
 }
 
 .btn.btn-dark:not(:disabled):not(.disabled):hover,
@@ -5700,7 +5730,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-gradient-dark {
   background: linear-gradient(20deg, #4b595f, #131617);
   border-color: transparent;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-gradient-dark:not(:disabled):not(.disabled):hover,
@@ -5759,14 +5789,14 @@ a.btn[href="#previous"]:hover,
 .btn.btn-outline-dark:not(:disabled):not(.disabled):hover {
   background: #293134;
   border-color: #293134;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-dark:not(:disabled):not(.disabled):focus,
 .btn.btn-outline-dark:not(:disabled):not(.disabled):active {
   background: #0e1112;
   border-color: #0e1112;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-dark:not(:disabled):not(.disabled):focus {
@@ -5785,7 +5815,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-facebook {
   background: #3b5998;
   border-color: #3b5998;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-facebook:not(:disabled):not(.disabled):hover,
@@ -5818,14 +5848,14 @@ a.btn[href="#previous"]:hover,
 .btn.btn-outline-facebook:not(:disabled):not(.disabled):hover {
   background: #3b5998;
   border-color: #3b5998;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-facebook:not(:disabled):not(.disabled):focus,
 .btn.btn-outline-facebook:not(:disabled):not(.disabled):active {
   background: #2a3f6c;
   border-color: #2a3f6c;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-facebook:not(:disabled):not(.disabled):focus {
@@ -5844,7 +5874,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-google {
   background: #db4437;
   border-color: #db4437;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-google:not(:disabled):not(.disabled):hover,
@@ -5877,14 +5907,14 @@ a.btn[href="#previous"]:hover,
 .btn.btn-outline-google:not(:disabled):not(.disabled):hover {
   background: #db4437;
   border-color: #db4437;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-google:not(:disabled):not(.disabled):focus,
 .btn.btn-outline-google:not(:disabled):not(.disabled):active {
   background: #b42c20;
   border-color: #b42c20;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-google:not(:disabled):not(.disabled):focus {
@@ -5903,7 +5933,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-twitter {
   background: #55acee;
   border-color: #55acee;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-twitter:not(:disabled):not(.disabled):hover,
@@ -5936,14 +5966,14 @@ a.btn[href="#previous"]:hover,
 .btn.btn-outline-twitter:not(:disabled):not(.disabled):hover {
   background: #55acee;
   border-color: #55acee;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-twitter:not(:disabled):not(.disabled):focus,
 .btn.btn-outline-twitter:not(:disabled):not(.disabled):active {
   background: #1d91e8;
   border-color: #1d91e8;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-twitter:not(:disabled):not(.disabled):focus {
@@ -5962,7 +5992,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-linkedin {
   background: #0077b5;
   border-color: #0077b5;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-linkedin:not(:disabled):not(.disabled):hover,
@@ -5995,14 +6025,14 @@ a.btn[href="#previous"]:hover,
 .btn.btn-outline-linkedin:not(:disabled):not(.disabled):hover {
   background: #0077b5;
   border-color: #0077b5;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-linkedin:not(:disabled):not(.disabled):focus,
 .btn.btn-outline-linkedin:not(:disabled):not(.disabled):active {
   background: #004f78;
   border-color: #004f78;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-linkedin:not(:disabled):not(.disabled):focus {
@@ -6021,7 +6051,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-whatsapp {
   background: #43d854;
   border-color: #43d854;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-whatsapp:not(:disabled):not(.disabled):hover,
@@ -6054,14 +6084,14 @@ a.btn[href="#previous"]:hover,
 .btn.btn-outline-whatsapp:not(:disabled):not(.disabled):hover {
   background: #43d854;
   border-color: #43d854;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-whatsapp:not(:disabled):not(.disabled):focus,
 .btn.btn-outline-whatsapp:not(:disabled):not(.disabled):active {
   background: #26b837;
   border-color: #26b837;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-whatsapp:not(:disabled):not(.disabled):focus {
@@ -6080,7 +6110,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-instagram {
   background: #3f729b;
   border-color: #3f729b;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-instagram:not(:disabled):not(.disabled):hover,
@@ -6113,14 +6143,14 @@ a.btn[href="#previous"]:hover,
 .btn.btn-outline-instagram:not(:disabled):not(.disabled):hover {
   background: #3f729b;
   border-color: #3f729b;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-instagram:not(:disabled):not(.disabled):focus,
 .btn.btn-outline-instagram:not(:disabled):not(.disabled):active {
   background: #2d526f;
   border-color: #2d526f;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-instagram:not(:disabled):not(.disabled):focus {
@@ -6139,7 +6169,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-dribbble {
   background: #ea4c89;
   border-color: #ea4c89;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-dribbble:not(:disabled):not(.disabled):hover,
@@ -6172,14 +6202,14 @@ a.btn[href="#previous"]:hover,
 .btn.btn-outline-dribbble:not(:disabled):not(.disabled):hover {
   background: #ea4c89;
   border-color: #ea4c89;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-dribbble:not(:disabled):not(.disabled):focus,
 .btn.btn-outline-dribbble:not(:disabled):not(.disabled):active {
   background: #df1a66;
   border-color: #df1a66;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-dribbble:not(:disabled):not(.disabled):focus {
@@ -6198,7 +6228,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-youtube {
   background: #cd201f;
   border-color: #cd201f;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-youtube:not(:disabled):not(.disabled):hover,
@@ -6231,14 +6261,14 @@ a.btn[href="#previous"]:hover,
 .btn.btn-outline-youtube:not(:disabled):not(.disabled):hover {
   background: #cd201f;
   border-color: #cd201f;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-youtube:not(:disabled):not(.disabled):focus,
 .btn.btn-outline-youtube:not(:disabled):not(.disabled):active {
   background: #981817;
   border-color: #981817;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-youtube:not(:disabled):not(.disabled):focus {
@@ -6257,7 +6287,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-github {
   background: #00405d;
   border-color: #00405d;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-github:not(:disabled):not(.disabled):hover,
@@ -6290,14 +6320,14 @@ a.btn[href="#previous"]:hover,
 .btn.btn-outline-github:not(:disabled):not(.disabled):hover {
   background: #00405d;
   border-color: #00405d;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-github:not(:disabled):not(.disabled):focus,
 .btn.btn-outline-github:not(:disabled):not(.disabled):active {
   background: #001620;
   border-color: #001620;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-github:not(:disabled):not(.disabled):focus {
@@ -6316,7 +6346,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-behance {
   background: #1769ff;
   border-color: #1769ff;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-behance:not(:disabled):not(.disabled):hover,
@@ -6349,14 +6379,14 @@ a.btn[href="#previous"]:hover,
 .btn.btn-outline-behance:not(:disabled):not(.disabled):hover {
   background: #1769ff;
   border-color: #1769ff;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-behance:not(:disabled):not(.disabled):focus,
 .btn.btn-outline-behance:not(:disabled):not(.disabled):active {
   background: #004dd9;
   border-color: #004dd9;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-behance:not(:disabled):not(.disabled):focus {
@@ -6375,7 +6405,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-skype {
   background: #00aff0;
   border-color: #00aff0;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-skype:not(:disabled):not(.disabled):hover,
@@ -6408,14 +6438,14 @@ a.btn[href="#previous"]:hover,
 .btn.btn-outline-skype:not(:disabled):not(.disabled):hover {
   background: #00aff0;
   border-color: #00aff0;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-skype:not(:disabled):not(.disabled):focus,
 .btn.btn-outline-skype:not(:disabled):not(.disabled):active {
   background: #0082b3;
   border-color: #0082b3;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-skype:not(:disabled):not(.disabled):focus {
@@ -6434,7 +6464,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-yahoo {
   background: #410093;
   border-color: #410093;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-yahoo:not(:disabled):not(.disabled):hover,
@@ -6467,14 +6497,14 @@ a.btn[href="#previous"]:hover,
 .btn.btn-outline-yahoo:not(:disabled):not(.disabled):hover {
   background: #410093;
   border-color: #410093;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-yahoo:not(:disabled):not(.disabled):focus,
 .btn.btn-outline-yahoo:not(:disabled):not(.disabled):active {
   background: #260056;
   border-color: #260056;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-outline-yahoo:not(:disabled):not(.disabled):focus {
@@ -6531,7 +6561,7 @@ a.btn[href="#previous"]:hover,
 .btn.btn-google-play:active,
 .btn.btn-google-play:focus {
   background: #040507;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-apple {
@@ -6541,7 +6571,7 @@ a.btn[href="#previous"]:hover,
 
 .btn.btn-google-play {
   background: #040507;
-  color: white;
+  color: white !important;
 }
 
 .btn.btn-google-play > span span:nth-child(1) {
@@ -6693,7 +6723,7 @@ table .dropdown {
 }
 
 .badge.badge-light {
-  background: #afb8bd;
+  background: #d3d3d3;
 }
 
 .btn {
@@ -6941,7 +6971,7 @@ table .dropdown {
 .header form .input-group .input-group-append .accordion.custom-accordion.accordion-light .accordion-row.open button.accordion-header.btn,
 .accordion.custom-accordion.accordion-light .accordion-row.open .chat-block .chat-sidebar .chat-sidebar-content .list-group .accordion-header.list-group-item.active,
 .chat-block .chat-sidebar .chat-sidebar-content .list-group .accordion.custom-accordion.accordion-light .accordion-row.open .accordion-header.list-group-item.active {
-  background: #afb8bd;
+  background: #d3d3d3;
   color: #293134;
 }
 
@@ -7230,7 +7260,7 @@ body:not(.dark) .nicescroll-cursors {
 }
 
 .swal-modal .swal-button.swal-button--cancel {
-  background: #afb8bd;
+  background: #d3d3d3;
 }
 
 .swal-modal .swal-icon--error {
@@ -7607,7 +7637,7 @@ body.modal-open .modal.show .modal-dialog {
 }
 
 .avatar.avatar-state-light:before {
-  background: #afb8bd;
+  background: #d3d3d3;
 }
 
 .avatar.avatar-state-dark:before {
@@ -8150,7 +8180,7 @@ body.form-membership .form-wrapper hr {
 }
 
 .list-group .list-group-item.list-group-item-light {
-  background: #afb8bd !important;
+  background: #d3d3d3 !important;
 }
 
 .list-group .list-group-item.list-group-item-dark {
@@ -12592,6 +12622,32 @@ body {
   position: absolute;
   right: 25px;
   top: 10px;
+}
+
+.swal-modal .swal-button.swal-button--cancel {
+  background: lightgray;
+}
+
+.help-block {
+  margin-left: 5px;
+  font-size: 12px;
+  color: #ff4444;
+}
+
+.action {
+  width: 5%;
+}
+
+a.badge,
+.chat-block .chat-sidebar .chat-sidebar-content .list-group .badge.list-group-item.active,
+.header form .input-group .input-group-append button.badge.btn {
+  color: #fff !important;
+}
+
+.form-group.has-error .form-control,
+.form-group.has-error .swal-modal input.swal-content__input,
+.swal-modal .form-group.has-error input.swal-content__input {
+  border: 0.5px solid #ff4444;
 }
 
 #nav-icon1 {

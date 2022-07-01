@@ -123,3 +123,35 @@ body{
 		top: 10px;
 	}
 }
+
+.swal-modal{
+	.swal-button{
+		&.swal-button--cancel{
+			background: lightgray;
+		}
+	}
+}
+
+.help-block{
+	margin-left: 5px;
+	font-size: 12px;
+	color: $color-danger;
+}
+
+.action{
+	width: 5%;
+}
+
+a{
+	&.badge{
+		color:#fff !important;
+	}
+}
+
+.form-group{
+	&.has-error{
+		.form-control{
+			border: 0.5px solid $color-danger;
+		}
+	}
+}

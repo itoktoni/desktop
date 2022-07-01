@@ -4,7 +4,7 @@ namespace App\Http\Services;
 
 use Illuminate\Validation\Rule;
 use App\Dao\Interfaces\CrudInterface;
-use App\Plugins\Alert;
+use Plugins\Alert;
 
 class DeleteService
 {

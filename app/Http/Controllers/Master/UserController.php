@@ -2,101 +2,89 @@
 
 namespace App\Http\Controllers\Master;
 
-use App\Dao\Enums\CategoryType;
-use App\Dao\Models\User;
-use App\Dao\Repositories\CategoryRepository;
+use App\Dao\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\DeleteRequest;
-use App\Http\Requests\GeneralRequest;
+use App\Http\Requests\UserRequest;
 use App\Http\Services\CreateService;
-use App\Http\Services\DataService;
 use App\Http\Services\DeleteService;
 use App\Http\Services\SingleService;
 use App\Http\Services\UpdateService;
-use Illuminate\Http\Request;
-use Plugins\Helper;
 use Plugins\Response;
-use Plugins\Views;
+use Plugins\Template;
 
 class UserController extends Controller
 {
     public static $template;
     public static $service;
-    public static $model;
+    public static $repository;
 
-    public function __construct(CategoryRepository $model, SingleService $service)
+    public function __construct(UserRepository $repository, SingleService $service)
     {
-        self::$model = self::$model ?? $model;
+        self::$repository = self::$repository ?? $repository;
         self::$service = self::$service ?? $service;
+        self::$template = 'user';
     }
 
     private function share($data = [])
     {
-        $category = CategoryType::getOptions();
         $view = [
-            'category' => $category,
+            // 'template' => self::$template,
         ];
         return array_merge($view, $data);
+    }
+
+    public function getData()
+    {
+        $query = self::$repository->dataRepository();
+        return $query;
     }
 
     public function getTable()
     {
         $data = $this->getData();
-        return view('pages.user.table')->with($this->share([
-            'data' => $data
+        return view(Template::table(self::$template))->with($this->share([
+            'data' => $data,
+            'fields' => self::$repository->model->getShowField(),
         ]));
     }
 
     public function getCreate()
     {
-        return view('category.form')->with($this->share());
+        return view(Template::form(self::$template))->with($this->share());
     }
 
-    public function postCreate(Request $request, CreateService $service)
+    public function postCreate(UserRequest $request, CreateService $service)
     {
-        $data = $service->save(self::$model, $request);
+        $data = $service->save(self::$repository, $request);
         return Response::redirectBack($data);
     }
 
-    public function getData()
+    public function getUpdate($code)
     {
-        return User::query()->paginate(10);
-    }
-
-    public function edit($code)
-    {
-        return view(Views::update())->with($this->share([
+        return view(Template::form(self::$template))->with($this->share([
             'model' => $this->get($code),
         ]));
     }
 
-    public function update($code, GeneralRequest $request, UpdateService $service)
+    public function postUpdate($code, UserRequest $request, UpdateService $service)
     {
-        $data = $service->update(self::$model, $request, $code);
+        $data = $service->update(self::$repository, $request, $code);
         return Response::redirectBack($data);
-    }
-
-    public function show($code)
-    {
-        return view(Views::show())->with($this->share([
-            'fields' => Helper::listData(self::$model->datatable),
-            'model' => $this->get($code),
-        ]));
     }
 
     public function get($code = null, $relation = null)
     {
         $relation = $relation ?? request()->get('relation');
         if ($relation) {
-            return self::$service->get(self::$model, $code, $relation);
+            return self::$service->get(self::$repository, $code, $relation);
         }
-        return self::$service->get(self::$model, $code);
+        return self::$service->get(self::$repository, $code);
     }
 
-    public function delete(DeleteRequest $request, DeleteService $service)
+    public function postDelete(UserRequest $request, DeleteService $service)
     {
         $code = $request->get('code');
-        $data = $service->delete(self::$model, $code);
+        $data = $service->delete(self::$repository, $code);
         return Response::redirectBack($data);
     }
 }

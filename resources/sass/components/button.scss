@@ -18,7 +18,7 @@
 @mixin btn-gradient($color) {
 	background: linear-gradient(20deg, lighten($color, 15%), darken($color, 10%));
 	border-color: transparent;
-	color: white;
+	color: white !important;
 
 	&:not(:disabled):not(.disabled):hover,
 	&:not(:disabled):not(.disabled):focus,
@@ -42,14 +42,14 @@
 	&:not(:disabled):not(.disabled):hover {
 		background: $color;
 		border-color: $color;
-		color: white;
+		color: white !important;
 	}
 
 	&:not(:disabled):not(.disabled):focus,
 	&:not(:disabled):not(.disabled):active {
 		background: darken($color, 12%);
 		border-color: darken($color, 12%);
-		color: white;
+		color: white !important;
 	}
 	&:not(:disabled):not(.disabled):focus {
 		box-shadow: 0 0 0 0.2rem rgba($color, 0.4);
@@ -112,7 +112,7 @@ a {
 	}
 
 	&.link-3 {
-		color: white;
+		color: white !important;
 
 		&:hover, &:focus {
 			color: $color-primary
@@ -274,6 +274,11 @@ a {
 
 	&.btn-success {
 		@include btn($color-success);
+		color: white !important;
+	}
+
+	&.btn-default {
+		@include btn($color-light);
 	}
 
 	&.btn-gradient-success {
@@ -290,6 +295,7 @@ a {
 
 	&.btn-danger {
 		@include btn($color-danger);
+		color: white !important;
 	}
 
 	&.btn-gradient-danger {
@@ -306,6 +312,7 @@ a {
 
 	&.btn-warning {
 		@include btn($color-warning);
+		color: white !important;
 	}
 
 	&.btn-gradient-warning {
@@ -329,6 +336,7 @@ a {
 
 	&.btn-info {
 		@include btn($color-info);
+		color: white !important;
 	}
 
 	&.btn-gradient-info {
@@ -365,6 +373,7 @@ a {
 
 	&.btn-dark {
 		@include btn($color-dark);
+		color: white !important;
 	}
 
 	&.btn-gradient-dark {
@@ -381,7 +390,7 @@ a {
 
 	&.btn-facebook {
 		@include btn($color-facebook);
-		color: white;
+		color: white !important;
 	}
 
 	&.btn-outline-facebook {
@@ -390,7 +399,7 @@ a {
 
 	&.btn-google {
 		@include btn($color-google);
-		color: white;
+		color: white !important;
 	}
 
 	&.btn-outline-google {
@@ -399,7 +408,7 @@ a {
 
 	&.btn-twitter {
 		@include btn($color-twitter);
-		color: white;
+		color: white !important;
 	}
 
 	&.btn-outline-twitter {
@@ -408,7 +417,7 @@ a {
 
 	&.btn-linkedin {
 		@include btn($color-linkedin);
-		color: white;
+		color: white !important;
 	}
 
 	&.btn-outline-linkedin {
@@ -417,7 +426,7 @@ a {
 
 	&.btn-whatsapp {
 		@include btn($color-whatsapp);
-		color: white;
+		color: white !important;
 	}
 
 	&.btn-outline-whatsapp {
@@ -426,7 +435,7 @@ a {
 
 	&.btn-instagram {
 		@include btn($color-instagram);
-		color: white;
+		color: white !important;
 	}
 
 	&.btn-outline-instagram {
@@ -435,7 +444,7 @@ a {
 
 	&.btn-dribbble {
 		@include btn($color-dribbble);
-		color: white;
+		color: white !important;
 	}
 
 	&.btn-outline-dribbble {
@@ -444,7 +453,7 @@ a {
 
 	&.btn-youtube {
 		@include btn($color-youtube);
-		color: white;
+		color: white !important;
 	}
 
 	&.btn-outline-youtube {
@@ -453,7 +462,7 @@ a {
 
 	&.btn-github {
 		@include btn($color-github);
-		color: white;
+		color: white !important;
 	}
 
 	&.btn-outline-github {
@@ -462,7 +471,7 @@ a {
 
 	&.btn-behance {
 		@include btn($color-behance);
-		color: white;
+		color: white !important;
 	}
 
 	&.btn-outline-behance {
@@ -471,7 +480,7 @@ a {
 
 	&.btn-skype {
 		@include btn($color-skype);
-		color: white;
+		color: white !important;
 	}
 
 	&.btn-outline-skype {
@@ -480,7 +489,7 @@ a {
 
 	&.btn-yahoo {
 		@include btn($color-yahoo);
-		color: white;
+		color: white !important;
 	}
 
 	&.btn-outline-yahoo {
@@ -517,7 +526,7 @@ a {
 		&:active,
 		&:focus {
 			background: #040507;
-			color: white;
+			color: white !important;
 		}
 	}
 
@@ -528,7 +537,7 @@ a {
 
 	&.btn-google-play {
 		background: #040507;
-		color: white;
+		color: white !important;
 
 		& > span {
 			& span:nth-child(1) {

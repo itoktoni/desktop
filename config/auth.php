@@ -68,10 +68,16 @@ return [
     */
 
     'providers' => [
+        // 'users' => [
+        //     'driver' => 'eloquent',
+        //     'model' => User::class,
+        // ],
+
         'users' => [
-            'driver' => 'eloquent',
+            'driver' => 'cacheableEloquent',
             'model' => User::class,
         ],
+
 
         // 'users' => [
         //     'driver' => 'database',
