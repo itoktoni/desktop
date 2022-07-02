@@ -13,6 +13,7 @@ class CategoryRequest extends FormRequest
     {
         return [
             'category_name' => 'required|min:3',
+            'category_active' => 'required',
         ];
     }
 }

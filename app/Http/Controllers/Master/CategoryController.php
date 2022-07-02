@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\Dao\Enums\BooleanType;
 use App\Dao\Repositories\CategoryRepository;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
@@ -27,8 +28,9 @@ class CategoryController extends Controller
 
     private function share($data = [])
     {
+        $status = BooleanType::getOptions();
         $view = [
-            // 'template' => self::$template,
+            'status' => $status,
         ];
         return array_merge($view, $data);
     }

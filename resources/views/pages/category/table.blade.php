@@ -45,7 +45,7 @@
                 <thead>
                     <tr>
                         @foreach($fields as $value)
-                        <th>
+                        <th class="{{ $value->class ?? '' }}">
                             @if($value->sort)
                             @sortablelink($value->code, $value->name)
                             @else
@@ -61,12 +61,13 @@
                     <tr>
                         <td>{{ $table->field_name }}</td>
                         <td>{{ $table->field_description }}</td>
+                        <td class="col-md-1 text-center"><btn class="badge badge-{{ $table->field_active == BooleanType::Yes ? 'success' : 'warning' }}">{{ BooleanType::getDescription($table->field_active) }}</btn></td>
                         <td class="col-md-2 text-center">
-                            <a class="badge badge-primary button-update"
+                            <a class="badge badge-primary button-update mx-1"
                                 href="{{ route($route.'.getUpdate', ['code' => $table->field_code]) }}">
                                 Update
-                            </a>
-                            <a class="badge badge-danger button-delete" data="{{ $table->field_code }}"
+                            </span>
+                            <a class="badge badge-danger button-delete mx-1" data="{{ $table->field_code }}"
                                 href="{{ route($route.'.postDelete', ['code' => $table->field_code]) }}">
                                 Delete
                             </a>

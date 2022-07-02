@@ -54,6 +54,7 @@ class Category extends Model
             DataBuilder::build('category_id')->name('ID')->show(false),
             DataBuilder::build('category_name')->name('Name')->sort(),
             DataBuilder::build('category_description')->name('Description'),
+            DataBuilder::build('category_active')->name('Active')->class('col-md-1'),
         ];
     }
 
