@@ -95,6 +95,12 @@
                         <span>Master Category</span>
                     </a>
                 </li>
+                <li>
+                    <a @if(request()->segment(2) == 'master' && request()->segment(3) == 'building')
+                        class="active" @endif href="{{ route('building.getTable') }}">
+                        <span>Master Gedung</span>
+                    </a>
+                </li>
             </ul>
         </div>
 

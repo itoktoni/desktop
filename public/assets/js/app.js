@@ -435,7 +435,7 @@
 
   /* var path = window.location.pathname;
   var page = path.split("/").pop();
-   var theme_switcher_html = '<div class="theme-switcher open"> \n\
+    var theme_switcher_html = '<div class="theme-switcher open"> \n\
       <div class="theme-switcher-button"> \n\
           <i class="fa fa-cog"></i> \n\
       </div> \n\
@@ -501,8 +501,8 @@
           </div> \n\
       </div> \n\
   </div>';
-   $('body').append(theme_switcher_html);
-   $(document).on('click', '.theme-switcher input[type="checkbox"]', function () {
+    $('body').append(theme_switcher_html);
+    $(document).on('click', '.theme-switcher input[type="checkbox"]', function () {
       var id = $(this).attr('id');
       if (id === 'sticky-navigation') {
           if ($(this).prop('checked')) {
@@ -608,7 +608,7 @@
       }
       $('body').toggleClass(id);
   });
-   $(document).on('click', '.theme-switcher .theme-switcher-button', function () {
+    $(document).on('click', '.theme-switcher .theme-switcher-button', function () {
       $('.theme-switcher').toggleClass('open');
   }); */
 })(jQuery);
@@ -633,8 +633,8 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! F:\laragon\www\phpbox\bordash\www\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! F:\laragon\www\phpbox\bordash\www\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\desktop\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\desktop\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

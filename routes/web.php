@@ -11,8 +11,8 @@
 |
 */
 
+use App\Http\Controllers\Master\BuildingController;
 use App\Http\Controllers\Master\CategoryController;
-use App\Http\Controllers\Master\ProductCategoryController;
 use App\Http\Controllers\Master\UserController;
 use Illuminate\Support\Facades\Route;
 use Buki\AutoRoute\AutoRouteFacade as AutoRoute;
@@ -28,6 +28,7 @@ Route::prefix('admin')->group(function () {
     Route::group(['prefix' => 'master', 'middleware' => ['auth', 'access']], function () {
         AutoRoute::auto('/user', UserController::class, ['name' => 'user']);
         AutoRoute::auto('/category', CategoryController::class, ['name' => 'category']);
+        AutoRoute::auto('/building', BuildingController::class, ['name' => 'building']);
     });
 });
 
