@@ -1,5 +1,6 @@
 <?php
 
+use App\Dao\Enums\BooleanType;
 use App\Providers\CacheableAuthUserServiceProvider;
 use Plugins\Template;
 
@@ -234,6 +235,7 @@ return [
         'Enum' => BenSampo\Enum\EnumServiceProvider::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Template' => Template::class,
+        'BooleanType' => BooleanType::class,
         // 'AutoRoute' => Buki\AutoRoute\AutoRouteFacade::class
 
     ],

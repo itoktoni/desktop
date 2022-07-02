@@ -21,7 +21,7 @@ class CategoryRepository implements CrudInterface
         try {
             $query = $this->model
                 ->select($this->model->getSelectedField())
-                ->active()->sortable()->filter();
+                ->sortable()->filter();
 
             $query = env('PAGINATION_SIMPLE') ? $query->simplePaginate(env('PAGINATION_NUMBER')) : $query->Paginate(env('PAGINATION_NUMBER'));
 

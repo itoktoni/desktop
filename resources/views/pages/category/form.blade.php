@@ -1,7 +1,9 @@
 @if(isset($model))
-{!! Form::model($model, ['route'=>[$route.'.postUpdate', 'code' => $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'files'=>true]) !!}
+{!! Form::model($model, ['route'=>[$route.'.postUpdate', 'code' =>
+$model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'files'=>true]) !!}
 @else
-{!! Form::open(['url' => route($route.'.postCreate'), 'class' => 'form-horizontal needs-validation', 'files' => true]) !!}
+{!! Form::open(['url' => route($route.'.postCreate'), 'class' => 'form-horizontal needs-validation', 'files' => true])
+!!}
 @endif
 
 <div class="modal-header" id="modal-header">
@@ -15,20 +17,24 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="exampleInputEmail1">Name</label>
-                {!! Form::text('category_name', null, ['class' => 'form-control', 'id' => 'name', 'placeholder' => 'Please fill this input', 'required']) !!}
+                <label>Name</label>
+                {!! Form::text('category_name', null, ['class' => 'form-control', 'id' => 'category_name', 'placeholder'
+                => 'Please fill this input', 'required']) !!}
             </div>
-
+            <div class="form-group">
+                <label>Active</label>
+                {{ Form::select('category_active', $status, null, ['class'=> 'form-control', 'id' => 'category_active']) }}
+            </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
-                <label for="exampleInputEmail1">Description</label>
-                {!! Form::textarea('category_description', null, ['class' => 'form-control', 'id' => 'email', 'placeholder' => 'Please fill this input', 'rows' => 5]) !!}
+                <label>Description</label>
+                {!! Form::textarea('category_description', null, ['class' => 'form-control h-auto', 'id' => 'email',
+                'placeholder' => 'Please fill this input', 'rows' => 5]) !!}
             </div>
         </div>
 
-        <input type="hidden" name="category_active" value="1">
     </div>
 
 </div>
@@ -40,7 +46,6 @@
 {!! Form::close() !!}
 
 <script>
-
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -48,7 +53,7 @@ $.ajaxSetup({
 });
 
 
-$('#modal-btn-save').click(function (event) {
+$('#modal-btn-save').click(function(event) {
     event.preventDefault();
 
     var form = $('#modal-body form'),
@@ -58,30 +63,29 @@ $('#modal-btn-save').click(function (event) {
     form.find('.form-group').removeClass('has-error');
 
     $.ajax({
-        url : url,
+        url: url,
         method: 'POST',
-        dataType  : 'json',
-        data : form.serialize(),
-        success: function (response) {
+        dataType: 'json',
+        data: form.serialize(),
+        success: function(response) {
 
-            if(response.status){
+            if (response.status) {
                 form.trigger('reset');
                 $('#modal').modal('hide');
 
                 swal({
-                    icon : 'success',
-                    title : 'Success!',
-                    text : 'Data has been saved!',
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Data has been saved!',
                     timer: 3000
-                }).then(function(){
+                }).then(function() {
                     window.location.reload();
                 });
-            }
-            else{
+            } else {
                 swal({
-                    icon : 'error',
-                    title : 'Error!',
-                    text : response.data,
+                    icon: 'error',
+                    title: 'Error!',
+                    text: response.data,
                 });
             }
 
@@ -89,7 +93,7 @@ $('#modal-btn-save').click(function (event) {
         error: function(xhr, status, error) {
             var res = xhr.responseJSON;
             if ($.isEmptyObject(res) == false) {
-                $.each(res.errors, function (key, value) {
+                $.each(res.errors, function(key, value) {
                     $('#' + key)
                         .closest('.form-group')
                         .addClass('has-error')
@@ -99,5 +103,4 @@ $('#modal-btn-save').click(function (event) {
         }
     })
 });
-
 </script>
