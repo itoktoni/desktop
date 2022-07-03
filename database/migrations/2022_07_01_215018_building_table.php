@@ -19,7 +19,7 @@ class BuildingTable extends Migration
             $table->text('building_description');
             $table->string('building_contact_person');
             $table->string('building_contact_phone');
-            $table->string('building_address');
+            $table->text('building_address');
             $table->tinyInteger('building_active')->default(0);
         });
     }

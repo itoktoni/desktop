@@ -13,38 +13,38 @@
 <div class="modal-body">
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="form-group">
                 <label for="exampleInputEmail1">Name</label>
-                {!! Form::text('building_name', null, ['class' => 'form-control', 'id' => 'name', 'placeholder' => 'Please fill this input', 'required']) !!}
+                {!! Form::text('building_name', null, ['class' => 'form-control', 'id' => 'building_name', 'placeholder' => 'Please fill this input', 'required']) !!}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Building Address</label>
+                {!! Form::text('building_address', null, ['class' => 'form-control', 'id' => 'building_address', 'placeholder' => 'Please fill this input', 'required']) !!}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Contact Person</label>
+                {!! Form::text('building_contact_person', null, ['class' => 'form-control', 'id' => 'building_contact_person', 'placeholder' => 'Please fill this input', 'required']) !!}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Contact Phone</label>
+                {!! Form::text('building_contact_phone', null, ['class' => 'form-control', 'id' => 'building_contact_phone', 'placeholder' => 'Please fill this input', 'required']) !!}
             </div>
         </div>
 
         <div class="col-md-12">
             <div class="form-group">
                 <label for="exampleInputEmail1">Description</label>
-                {!! Form::textarea('building_description', null, ['class' => 'form-control', 'id' => 'email', 'placeholder' => 'Please fill this input', 'rows' => 30]) !!}
-            </div>
-        </div>
-
-        <div class="col-md-12">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Contact Person</label>
-                {!! Form::text('building_contact_person', null, ['class' => 'form-control', 'id' => 'name', 'placeholder' => 'Please fill this input', 'required']) !!}
-            </div>
-        </div>
-
-        <div class="col-md-12">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Contact Phone</label>
-                {!! Form::text('building_contact_phone', null, ['class' => 'form-control', 'id' => 'name', 'placeholder' => 'Please fill this input', 'required']) !!}
-            </div>
-        </div>
-
-        <div class="col-md-12">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Address</label>
-                {!! Form::text('building_address', null, ['class' => 'form-control', 'id' => 'name', 'placeholder' => 'Please fill this input', 'required']) !!}
+                {!! Form::textarea('building_description', null, ['class' => 'form-control', 'id' => 'building_description', 'placeholder' => 'Please fill this input', 'rows' => 5]) !!}
             </div>
         </div>
 

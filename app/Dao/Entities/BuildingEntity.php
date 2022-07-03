@@ -4,7 +4,7 @@ namespace App\Dao\Entities;
 
 trait BuildingEntity
 {
-    public function field_code()
+    public static function field_code()
     {
         return 'building_id';
     }
@@ -14,7 +14,7 @@ trait BuildingEntity
         return $this->{$this->field_code()};
     }
 
-    public function field_name()
+    public static function field_name()
     {
         return 'building_name';
     }
@@ -24,7 +24,7 @@ trait BuildingEntity
         return $this->{$this->field_name()};
     }
 
-    public function field_description()
+    public static function field_description()
     {
         return 'building_description';
     }
@@ -34,7 +34,7 @@ trait BuildingEntity
         return $this->{$this->field_description()};
     }
 
-    public function field_contact_person()
+    public static function field_contact_person()
     {
         return 'building_contact_person';
     }
@@ -44,7 +44,7 @@ trait BuildingEntity
         return $this->{$this->field_contact_person()};
     }
 
-    public function field_contact_phone()
+    public static function field_contact_phone()
     {
         return 'building_contact_phone';
     }
@@ -54,7 +54,7 @@ trait BuildingEntity
         return $this->{$this->field_contact_phone()};
     }
 
-    public function field_address()
+    public static function field_address()
     {
         return 'building_address';
     }
@@ -64,7 +64,7 @@ trait BuildingEntity
         return $this->{$this->field_address()};
     }
 
-    public function field_active()
+    public static function field_active()
     {
         return 'building_active';
     }
