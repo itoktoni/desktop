@@ -10,6 +10,7 @@ class DataBuilder
     public $class;
     public $width;
     public $sort;
+    public $filter;
 
     private static $_instance = null;
 
@@ -25,6 +26,7 @@ class DataBuilder
         $this->name = $this->name ?? str_replace('_', ' ', $code);
         $this->show = $this->show ?? true;
         $this->sort = $this->sort ?? false;
+        $this->filter = $this->filter ?? false;
     }
 
     public function name($name = true)

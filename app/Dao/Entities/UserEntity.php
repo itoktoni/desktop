@@ -4,43 +4,43 @@ namespace App\Dao\Entities;
 
 trait UserEntity
 {
-    public function field_code()
+    public static function field_code()
     {
         return 'id';
     }
 
     public function getFieldCodeAttribute()
     {
-        return $this->{$this->field_code()};
+        return $this->{self::field_code()};
     }
 
-    public function field_name()
+    public static function field_name()
     {
         return 'name';
     }
 
     public function getFieldNameAttribute()
     {
-        return $this->{$this->field_name()};
+        return $this->{self::field_name()};
     }
 
-    public function field_email()
+    public static function field_email()
     {
         return 'email';
     }
 
     public function getFieldEmailAttribute()
     {
-        return $this->{$this->field_email()};
+        return $this->{self::field_email()};
     }
 
-    public function field_active()
+    public static function field_active()
     {
         return 'active';
     }
 
     public function getFieldActiveAttribute()
     {
-        return $this->{$this->field_active()};
+        return $this->{self::field_active()};
     }
 }

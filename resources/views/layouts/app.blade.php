@@ -59,6 +59,8 @@
     </div>
     <!-- end::main -->
 
+    @shared
+
     <!-- Plugin scripts -->
     <script src="{{ url('vendors/bundle.js') }}"></script>
 

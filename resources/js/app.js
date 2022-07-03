@@ -152,16 +152,16 @@
     /*------------- form validation -------------*/
 
     /*------------- responsive html table -------------*/
-    var table_responsive_stack = $(".table-responsive-stack");
+    var table_responsive_stack = $(".table-responsive");
     table_responsive_stack
         .find("th")
         .each(function (i) {
-            $(".table-responsive-stack td:nth-child(" + (i + 1) + ")").prepend(
-                '<span class="table-responsive-stack-thead">' +
+            $(".table-responsive td:nth-child(" + (i + 1) + ")").prepend(
+                '<span class="table-responsive-thead">' +
                 $(this).text() +
                 ":</span> "
             );
-            $(".table-responsive-stack-thead").hide();
+            $(".table-responsive-thead").hide();
         });
 
     table_responsive_stack.each(function () {
@@ -172,9 +172,9 @@
 
     function flexTable() {
         if (wind_.width() < 768) {
-            $(".table-responsive-stack").each(function (i) {
+            $(".table-responsive").each(function (i) {
                 $(this)
-                    .find(".table-responsive-stack-thead")
+                    .find(".table-responsive-thead")
                     .show();
                 $(this)
                     .find("thead")
@@ -183,9 +183,9 @@
 
             // window is less than 768px
         } else {
-            $(".table-responsive-stack").each(function (i) {
+            $(".table-responsive").each(function (i) {
                 $(this)
-                    .find(".table-responsive-stack-thead")
+                    .find(".table-responsive-thead")
                     .hide();
                 $(this)
                     .find("thead")

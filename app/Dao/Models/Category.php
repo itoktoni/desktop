@@ -36,14 +36,6 @@ class Category extends Model
     public $timestamps = false;
     public $incrementing = true;
 
-    public function filter($query, $value)
-    {
-        $search = request()->get('search');
-        if($search){
-            return $query->where($value ?? $this->fieldSearching(), 'like', "%{$search}%");
-        }
-    }
-
     public function fieldSearching(){
         return 'category_name';
     }
@@ -54,7 +46,7 @@ class Category extends Model
             DataBuilder::build('category_id')->name('ID')->show(false),
             DataBuilder::build('category_name')->name('Name')->sort(),
             DataBuilder::build('category_description')->name('Description'),
-            DataBuilder::build('category_active')->name('Active')->class('col-md-1'),
+            DataBuilder::build('category_active')->name('Active')->class('col-md-1')->show(false),
         ];
     }
 

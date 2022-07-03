@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\DatabaseJson\Models\Routes;
 use Closure;
 use Plugins\Helper;
 
@@ -20,7 +21,7 @@ class AccessMiddleware
         $action = $route->getAction();
         $action_code = $action['as'] ?? 'home';
         $action_controller = false;
-        $action_route = $action['name'];
+        $action_route = $action['name'] ?? false;
 
         if (isset($action['controller'])) {
             
@@ -30,14 +31,12 @@ class AccessMiddleware
 
         $data = [
             'action_code' => $action_code,
-            'action_route' => $action_route,
-            'action_controller' => $action_controller,
             'template' => $action_controller,
             'route' => $action_route,
+            'access' => Routes::groupBy(Routes::field_group())->get(),
         ];
 
-        view()->share($data);
-        config()->set('template', $data);
+        share($data);
 
         return $next($request);
     }

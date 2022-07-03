@@ -4,7 +4,8 @@
 <h4>List Master User</h4>
 <div class="header-action">
     <nav>
-        <button href="{{ route($route.'.getCreate') }}" class="btn btn-success button-create">Create</button>
+        <button href="{{ route(SharedData::get('route').'.getCreate') }}"
+            class="btn btn-success button-create">Create</button>
     </nav>
 </div>
 @endsection
@@ -13,7 +14,8 @@
 <div class="card">
     <div class="card-body">
 
-        {!! Form::open(['url' => route($route.'.getTable'), 'class' => 'form-row', 'method' => 'GET']) !!}
+        {!! Form::open(['url' => route(SharedData::get('route').'.getTable'), 'class' => 'form-row', 'method' => 'GET'])
+        !!}
 
         <div class="form-group col-md-4">
             <select name="filter" class="form-control">
@@ -40,7 +42,7 @@
 
         <div class="table-responsive" id="table_data">
             {!! Form::open(['url' => 'test/save', 'class' => 'form-horizontal', 'files' => true]) !!}
-            <table class="table table-bordered table-striped table-responsive-stack">
+            <table class="table table-bordered table-striped">
 
                 <thead>
                     <tr>
@@ -63,11 +65,11 @@
                         <td>{{ $table->field_email }}</td>
                         <td class="col-md-2 text-center">
                             <a class="badge badge-primary button-update"
-                                href="{{ route($route.'.getUpdate', ['code' => $table->field_code]) }}">
+                                href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_code]) }}">
                                 Update
                             </a>
                             <a class="badge badge-danger button-delete" data="{{ $table->field_code }}"
-                                href="{{ route($route.'.postDelete', ['code' => $table->field_code]) }}">
+                                href="{{ route(SharedData::get('route').'.postDelete', ['code' => $table->field_code]) }}">
                                 Delete
                             </a>
                         </td>

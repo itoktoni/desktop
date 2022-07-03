@@ -4,7 +4,7 @@ namespace App\Dao\Entities;
 
 trait CategoryEntity
 {
-    public function field_code()
+    public static function field_code()
     {
         return 'category_id';
     }
@@ -14,7 +14,7 @@ trait CategoryEntity
         return $this->{$this->field_code()};
     }
 
-    public function field_name()
+    public static function field_name()
     {
         return 'category_name';
     }
@@ -24,7 +24,7 @@ trait CategoryEntity
         return $this->{$this->field_name()};
     }
 
-    public function field_description()
+    public static function field_description()
     {
         return 'category_description';
     }
@@ -34,7 +34,7 @@ trait CategoryEntity
         return $this->{$this->field_description()};
     }
 
-    public function field_active()
+    public static function field_active()
     {
         return 'category_active';
     }

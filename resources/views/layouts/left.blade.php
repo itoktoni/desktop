@@ -11,10 +11,18 @@
 
             </li>
             <li>
-                <a class="icon active" href="#" data-nav-target="#master">
+                <a class="icon {{ request()->segment(2) == 'master' ? 'active' : '' }}" href="#" data-nav-target="#master">
                     <i data-feather="database"></i>
                     <h5 class="text-center text-white">
                         Master <br> Data
+                    </h5>
+                </a>
+            </li>
+            <li>
+                <a class="icon {{ request()->segment(2) == 'system' ? 'active' : '' }}" href="#" data-nav-target="#system">
+                    <i data-feather="settings"></i>
+                    <h5 class="text-center text-white">
+                        System
                     </h5>
                 </a>
             </li>
@@ -25,7 +33,6 @@
                         Apps
                     </h5>
                 </a>
-
             </li>
             <li>
                 <a class="icon" href="#" data-nav-target="#elements">
@@ -44,16 +51,9 @@
                 </a>
             </li>
 
+
             <li>
-                <a class="icon" href="#">
-                    <i data-feather="settings"></i>
-                    <h5 class="text-center text-white">
-                        Setting
-                    </h5>
-                </a>
-            </li>
-            <li>
-                <a class="icon" href="login">
+                <a class="icon" href="{{ route('logout') }}">
                     <i data-feather="log-out"></i>
                     <h5 class="text-center text-white">
                         Logout
@@ -81,22 +81,26 @@
 
     <div class="navigation-menu-group">
 
-        <div class="open" id="master">
+        @if($access = SharedData::get('access'))
+        @foreach($access as $acc_key => $acc_data)
+        <div class="{{ $acc_key == request()->segment(2) ? 'open' : '' }}" id="{{ $acc_key }}">
             <ul>
+                @if($acc_data)
+                @foreach($acc_data as $acc)
+                @php
+                $check_access = request()->segment(2) == $acc[Routes::field_group()] && request()->segment(3) == $acc[Routes::field_slug()];
+                @endphp
                 <li>
-                    <a @if(request()->segment(2) == 'master' && request()->segment(3) == 'user')
-                        class="active" @endif href="{{ route('user.getTable') }}">
-                        <span>Master User</span>
+                    <a class="{{ $check_access ? 'active' : '' }}" href="{{ route($acc[Routes::field_slug()].'.getTable') }}">
+                        <span>{{ $acc[Routes::field_name()] }}</span>
                     </a>
                 </li>
-                <li>
-                    <a @if(request()->segment(2) == 'master' && request()->segment(3) == 'category')
-                        class="active" @endif href="{{ route('category.getTable') }}">
-                        <span>Master Category</span>
-                    </a>
-                </li>
+                @endforeach
+                @endif
             </ul>
         </div>
+        @endforeach
+        @endif
 
         <div @if(!request()->segment(1) || request()->segment(1) == 'dashboards') class="open" @endif
             id="dashboards">

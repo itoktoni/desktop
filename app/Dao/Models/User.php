@@ -56,14 +56,6 @@ class User extends Authenticatable
     const UPDATED_BY = 'item_linen_updated_by';
     const DELETED_BY = 'item_linen_deleted_by';
 
-    public function filter($query, $value)
-    {
-        $search = request()->get('search');
-        if($search){
-            return $query->where($value ?? $this->fieldSearching(), 'like', "%{$search}%");
-        }
-    }
-
     public function fieldSearching(){
         return 'name';
     }

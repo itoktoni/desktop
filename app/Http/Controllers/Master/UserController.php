@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Master;
 
 use App\Dao\Repositories\UserRepository;
+use App\DatabaseJson\Models\Action;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Http\Services\CreateService;
 use App\Http\Services\DeleteService;
 use App\Http\Services\SingleService;
 use App\Http\Services\UpdateService;
+use Coderello\SharedData\Facades\SharedData;
 use Plugins\Response;
 use Plugins\Template;
 
@@ -22,14 +24,11 @@ class UserController extends Controller
     {
         self::$repository = self::$repository ?? $repository;
         self::$service = self::$service ?? $service;
-        self::$template = 'user';
     }
 
     private function share($data = [])
     {
-        $view = [
-            // 'template' => self::$template,
-        ];
+        $view = [];
         return array_merge($view, $data);
     }
 
@@ -42,7 +41,7 @@ class UserController extends Controller
     public function getTable()
     {
         $data = $this->getData();
-        return view(Template::table(self::$template))->with($this->share([
+        return view(Template::table(SharedData::get('template')))->with($this->share([
             'data' => $data,
             'fields' => self::$repository->model->getShowField(),
         ]));
@@ -50,7 +49,7 @@ class UserController extends Controller
 
     public function getCreate()
     {
-        return view(Template::form(self::$template))->with($this->share());
+        return view(Template::form(SharedData::get('template')))->with($this->share());
     }
 
     public function postCreate(UserRequest $request, CreateService $service)
@@ -61,7 +60,7 @@ class UserController extends Controller
 
     public function getUpdate($code)
     {
-        return view(Template::form(self::$template))->with($this->share([
+        return view(Template::form(SharedData::get('template')))->with($this->share([
             'model' => $this->get($code),
         ]));
     }

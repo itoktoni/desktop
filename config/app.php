@@ -1,7 +1,9 @@
 <?php
 
 use App\Dao\Enums\BooleanType;
+use App\DatabaseJson\Models\Routes;
 use App\Providers\CacheableAuthUserServiceProvider;
+use Coderello\SharedData\Facades\SharedData;
 use Plugins\Template;
 
 return [
@@ -182,6 +184,7 @@ return [
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         CacheableAuthUserServiceProvider::class,
+        DatabaseJson\DataBaseJsonServiceProvider::class,
     ],
 
     /*
@@ -236,8 +239,9 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Template' => Template::class,
         'BooleanType' => BooleanType::class,
-        // 'AutoRoute' => Buki\AutoRoute\AutoRouteFacade::class
-
+        'SharedData' => SharedData::class,
+        'Routes' => Routes::class,
+        'Browser' => hisorange\BrowserDetect\Parser::class
     ],
 
 ];

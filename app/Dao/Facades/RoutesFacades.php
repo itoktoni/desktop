@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\Item\Dao\Facades;
+namespace App\Dao\Facades;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Facade;
-use App\Plugins\Helper;
+use Plugins\Helper;
 
-class CategoryFacades extends Facade
+class RoutesFacades extends Facade
 {
     protected static function getFacadeAccessor()
     {

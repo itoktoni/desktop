@@ -4,8 +4,60 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d1bd713007c7df40002fc64138472f21",
+    "content-hash": "9e8bc01b52fd4d1abf8c1ee9026e3b8d",
     "packages": [
+        {
+            "name": "alvin0/database-json-laravel",
+            "version": "2.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alvin0/database-json-laravel.git",
+                "reference": "36f39cae6abff1c1a0754e1b3e00a00048526fec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alvin0/database-json-laravel/zipball/36f39cae6abff1c1a0754e1b3e00a00048526fec",
+                "reference": "36f39cae6abff1c1a0754e1b3e00a00048526fec",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2|^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.5.1",
+                "phpunit/phpunit-skeleton-generator": "^2.0.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DatabaseJson\\": "src/"
+                },
+                "classmap": [
+                    "tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Create and manage json databases with Laravel",
+            "homepage": "https://github.com/alvin0/DatabaseJsonLaravel",
+            "keywords": [
+                "DatabaseJson",
+                "Simple",
+                "database",
+                "db",
+                "file",
+                "flat",
+                "json",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/alvin0/database-json-laravel/issues",
+                "source": "https://github.com/alvin0/database-json-laravel/tree/2.1.2"
+            },
+            "time": "2021-05-05T16:43:58+00:00"
+        },
         {
             "name": "appstract/laravel-options",
             "version": "2.2.0",
@@ -258,6 +310,55 @@
                 "source": "https://github.com/chriskonnertz/string-calc/tree/v1.0.12"
             },
             "time": "2019-09-03T14:09:20+00:00"
+        },
+        {
+            "name": "coderello/laravel-shared-data",
+            "version": "3.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/coderello/laravel-shared-data.git",
+                "reference": "bfbdc47ee0ba6b14fa9d722aa540f970fc92398b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/coderello/laravel-shared-data/zipball/bfbdc47ee0ba6b14fa9d722aa540f970fc92398b",
+                "reference": "bfbdc47ee0ba6b14fa9d722aa540f970fc92398b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/support": "^6.0|^7.0|^8.0",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0|^5.0|^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Coderello\\SharedData\\Providers\\SharedDataServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Coderello\\SharedData\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Package for sharing data from Laravel to JavaScript.",
+            "support": {
+                "issues": "https://github.com/coderello/laravel-shared-data/issues",
+                "source": "https://github.com/coderello/laravel-shared-data/tree/3.2.0"
+            },
+            "time": "2021-10-22T12:44:26+00:00"
         },
         {
             "name": "composer/ca-bundle",

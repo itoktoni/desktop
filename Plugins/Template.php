@@ -3,6 +3,7 @@
 namespace Plugins;
 
 use Illuminate\Support\Str;
+use hisorange\BrowserDetect\Parser as Browser;
 
 class Template
 {
@@ -44,5 +45,10 @@ class Template
         }
         
         return 'pages.'.$template.'.'.$name;
+    }
+
+    public static function tableResponsive(){
+
+        return Browser::isMobile() ? 'table-responsive-stack' : 'table-responsive';
     }
 }

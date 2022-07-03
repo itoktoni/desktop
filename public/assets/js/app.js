@@ -249,10 +249,10 @@
 
   /*------------- responsive html table -------------*/
 
-  var table_responsive_stack = $(".table-responsive-stack");
+  var table_responsive_stack = $(".table-responsive");
   table_responsive_stack.find("th").each(function (i) {
-    $(".table-responsive-stack td:nth-child(" + (i + 1) + ")").prepend('<span class="table-responsive-stack-thead">' + $(this).text() + ":</span> ");
-    $(".table-responsive-stack-thead").hide();
+    $(".table-responsive td:nth-child(" + (i + 1) + ")").prepend('<span class="table-responsive-thead">' + $(this).text() + ":</span> ");
+    $(".table-responsive-thead").hide();
   });
   table_responsive_stack.each(function () {
     var thCount = $(this).find("th").length,
@@ -262,13 +262,13 @@
 
   function flexTable() {
     if (wind_.width() < 768) {
-      $(".table-responsive-stack").each(function (i) {
-        $(this).find(".table-responsive-stack-thead").show();
+      $(".table-responsive").each(function (i) {
+        $(this).find(".table-responsive-thead").show();
         $(this).find("thead").hide();
       }); // window is less than 768px
     } else {
-      $(".table-responsive-stack").each(function (i) {
-        $(this).find(".table-responsive-stack-thead").hide();
+      $(".table-responsive").each(function (i) {
+        $(this).find(".table-responsive-thead").hide();
         $(this).find("thead").show();
       });
     }

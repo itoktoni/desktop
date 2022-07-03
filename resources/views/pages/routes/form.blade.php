@@ -8,7 +8,7 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 @endif
 
 <div class="modal-header" id="modal-header">
-    <h4 class="modal-title" id="modal-title">Master Category</h4>
+    <h4 class="modal-title" id="modal-title">Master Routes</h4>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
             aria-hidden="true">&times;</span></button>
 </div>
@@ -18,24 +18,43 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label>Name</label>
-                {!! Form::text('category_name', null, ['class' => 'form-control', 'id' => 'category_name', 'placeholder'
+                <label>Group</label>
+                {!! Form::text('route_group', null, ['class' => 'form-control', 'id' => 'route_group', 'placeholder'
                 => 'Please fill this input', 'required']) !!}
             </div>
+
             <div class="form-group">
-                <label>Active</label>
-                {{ Form::select('category_active', $status, null, ['class'=> 'form-control', 'id' => 'category_active']) }}
+                <label>Code</label>
+                {!! Form::text('route_slug', null, ['class' => 'form-control', 'id' => 'route_slug', 'placeholder'
+                => 'Please fill this input', 'required']) !!}
             </div>
+
+            <div class="form-group">
+                <label>Name</label>
+                {!! Form::text('route_name', null, ['class' => 'form-control', 'id' => 'route_name', 'placeholder'
+                => 'Please fill this input', 'required']) !!}
+            </div>
+
+            <div class="form-group">
+                <label>Controller</label>
+                {!! Form::text('route_controller', null, ['class' => 'form-control', 'id' => 'route_controller', 'placeholder'
+                => 'Please fill this input', 'required']) !!}
+            </div>
+
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
+                <label>Active</label>
+                {{ Form::select('route_active', $status, null, ['class'=> 'form-control', 'id' => 'route_active']) }}
+            </div>
+
+            <div class="form-group">
                 <label>Description</label>
-                {!! Form::textarea('category_description', null, ['class' => 'form-control h-auto', 'id' => 'email',
-                'placeholder' => 'Please fill this input', 'rows' => 5]) !!}
+                {!! Form::textarea('route_description', null, ['class' => 'form-control h-auto', 'id' => 'email',
+                'placeholder' => 'Please fill this input', 'rows' => 9]) !!}
             </div>
         </div>
-
     </div>
 
 </div>
@@ -86,7 +105,7 @@ $('#modal-btn-save').click(function(event) {
                 swal({
                     icon: 'error',
                     title: 'Error!',
-                    text: response.data,
+                    text: response,
                 });
             }
 

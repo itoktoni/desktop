@@ -1,7 +1,7 @@
 @if(isset($model))
-{!! Form::model($model, ['route'=>[$route.'.postUpdate', 'code' => $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'files'=>true]) !!}
+{!! Form::model($model, ['route'=>[SharedData::get('route').'.postUpdate', 'code' => $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'files'=>true]) !!}
 @else
-{!! Form::open(['url' => route($route.'.postCreate'), 'class' => 'form-horizontal needs-validation', 'files' => true]) !!}
+{!! Form::open(['url' => route(SharedData::get('route').'.postCreate'), 'class' => 'form-horizontal needs-validation', 'files' => true]) !!}
 @endif
 
 <div class="modal-header" id="modal-header">

@@ -9,26 +9,43 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
-use App\Http\Controllers\Master\CategoryController;
-use App\Http\Controllers\Master\ProductCategoryController;
-use App\Http\Controllers\Master\UserController;
-use Illuminate\Support\Facades\Route;
+use App\DatabaseJson\Models\Access;
+use App\DatabaseJson\Models\Routes;
 use Buki\AutoRoute\AutoRouteFacade as AutoRoute;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
 })->name('one');
 
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
-Route::prefix('admin')->group(function () {
-    Route::group(['prefix' => 'master', 'middleware' => ['auth', 'access']], function () {
-        AutoRoute::auto('/user', UserController::class, ['name' => 'user']);
-        AutoRoute::auto('/category', CategoryController::class, ['name' => 'category']);
-    });
+// $user = new Routes();
+// $user->route_group = 'master';
+// $user->route_name = 'User';
+// $user->route_slug = 'user';
+// $user->route_controller = 'App\\Http\\Controllers\\System\\UserController';
+// $user->save();
+
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+Route::get('/home', 'HomeController@index')->middleware(['auth', 'access'])->name('home');
+
+$routes = Routes::groupBy(Routes::field_group())->get();
+Route::prefix('admin')->group(function () use ($routes) {
+    if ($routes) {
+        foreach ($routes as $action_key => $action_data) {
+            Route::group(['prefix' => $action_key, 'middleware' => ['auth', 'access']], function () use ($action_data) {
+                if ($action_array = $action_data->toArray()) {
+                    foreach($action_array as $action){
+                        AutoRoute::auto($action[Routes::field_slug()], $action[Routes::field_controller()], ['name' => $action[Routes::field_slug()]]);
+                        
+                    }
+                }
+            });
+        }
+    }
 });
 
 Route::prefix('dashboards')->name('dashboards.')->group(function () {
@@ -380,7 +397,5 @@ Route::prefix('pages')->name('pages.')->group(function () {
     });
 });
 
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');

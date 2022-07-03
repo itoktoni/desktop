@@ -22,4 +22,12 @@ trait DataTableTrait
     {
         return collect($this->fieldDatatable())->where('show', true);
     }
+
+    public function filter($query, $value)
+    {
+        $search = request()->get('search');
+        if($search){
+            return $query->where($value ?? $this->fieldSearching(), 'like', "%{$search}%");
+        }
+    }
 }

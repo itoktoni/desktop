@@ -7942,21 +7942,6 @@ body.form-membership .form-wrapper hr {
   margin-left: auto;
 }
 
-.table-responsive-stack tr {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  flex-direction: row;
-}
-
-.table-responsive-stack td,
-.table-responsive-stack th {
-  display: block;
-  -webkit-box-flex: 1;
-          flex: 1 1 auto;
-}
-
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: rgba(0, 0, 0, 0.03);
 }
@@ -11961,6 +11946,10 @@ body.dark.small-navigation .navigation-menu-body ul li.navigation-divider:after 
     padding-left: 5px;
     padding-right: 0px;
   }
+
+  .page-header h4 {
+    margin-top: 5px;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -12296,6 +12285,22 @@ body.dark.small-navigation .navigation-menu-body ul li.navigation-divider:after 
     margin: 30px auto;
   }
 
+  .header-container h4 {
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    z-index: 999;
+  }
+
+  .header-container .header-action {
+    text-align: right;
+  }
+
+  .page-header {
+    margin-bottom: 18px;
+    height: 55px;
+  }
+
   .header #header-logo {
     width: auto;
   }
@@ -12348,21 +12353,6 @@ body.dark.small-navigation .navigation-menu-body ul li.navigation-divider:after 
     display: none;
   }
 
-  .table-responsive-stack tr {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    flex-direction: column;
-    border-bottom: 3px solid #ccc;
-    display: block;
-  }
-
-  /*  IE9 FIX   */
-
-  .table-responsive-stack td {
-    float: left \9;
-    width: 100%;
-  }
-
   .sidebar > ul.nav {
     display: -webkit-box;
     display: flex;
@@ -12409,6 +12399,40 @@ body.dark.small-navigation .navigation-menu-body ul li.navigation-divider:after 
 
   .fc .fc-toolbar.fc-header-toolbar > div.fc-right {
     margin-bottom: 5px;
+  }
+
+  .table-responsive tr {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+  }
+
+  .table-responsive td,
+  .table-responsive th {
+    display: block;
+    -webkit-box-flex: 1;
+            flex: 1 1 auto;
+  }
+
+  .table-responsive tr {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    border-bottom: 3px solid #ccc;
+    display: block;
+  }
+
+  /*  IE9 FIX   */
+
+  .table-responsive td {
+    float: left \9;
+    width: 100%;
+  }
+
+  .table-responsive td.text-center {
+    text-align: left !important;
   }
 }
 
@@ -12555,11 +12579,11 @@ body {
 .chat-block .chat-sidebar .chat-sidebar-content .list-group .navigation .navigation-menu-tab .navigation-menu-tab-header .list-group-item.active,
 .navigation .navigation-menu-tab .navigation-menu-tab-header .header form .input-group .input-group-append button.btn,
 .header form .input-group .input-group-append .navigation .navigation-menu-tab .navigation-menu-tab-header button.btn {
-  border-bottom: 0.5px solid whitesmoke;
+  border-top: 0.5px solid whitesmoke;
 }
 
 .navigation .navigation-menu-tab ul li {
-  border-bottom: 0.5px solid whitesmoke;
+  border-top: 0.5px solid whitesmoke;
 }
 
 .navigation .navigation-menu-tab ul li a.active:after,
