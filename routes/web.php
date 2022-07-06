@@ -21,12 +21,12 @@ Route::get('/', function () {
     return view('index');
 })->name('one');
 
-
+// NOTE: This is the route for the Routes page.
 // $user = new Routes();
 // $user->route_group = 'master';
-// $user->route_name = 'User';
-// $user->route_slug = 'user';
-// $user->route_controller = 'App\\Http\\Controllers\\System\\UserController';
+// $user->route_name = 'Category';
+// $user->route_slug = 'Category';
+// $user->route_controller = 'App\\Http\\Controllers\\Master\\CategoryController';
 // $user->save();
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
