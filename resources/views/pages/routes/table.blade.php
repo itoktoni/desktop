@@ -1,10 +1,11 @@
 @extends(Template::master())
 
 @section('header')
-<h4>List Master Routes</h4>
+<h4>List Master Category</h4>
 <div class="header-action">
     <nav>
-        <button href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-success button-create">Create</button>
+        <button href="{{ route(SharedData::get('route').'.getCreate') }}"
+            class="btn btn-success button-create">Create</button>
     </nav>
 </div>
 @endsection
@@ -13,7 +14,8 @@
 <div class="card">
     <div class="card-body">
 
-        {!! Form::open(['url' => route(SharedData::get('route').'.getTable'), 'class' => 'form-row', 'method' => 'GET']) !!}
+        {!! Form::open(['url' => route(SharedData::get('route').'.getTable'), 'class' => 'form-row', 'method' => 'GET'])
+        !!}
 
         <div class="form-group col-md-4">
             <select name="filter" class="form-control">
@@ -58,31 +60,31 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if($data)
                     @forelse($data as $table)
                     <tr>
-                        <td>{{ $table->{$model::field_group()} }}</td>
-                        <td>{{ $table->{$model::field_name()} }}</td>
-                        <td>{{ $table->{$model::field_slug()} }}</td>
-                        <td>{{ $table->{$model::field_controller()} }}</td>
-                        <td class="text-center">
+                        <td>{{ $table->field_group }}</td>
+                        <td>{{ $table->field_code }}</td>
+                        <td>{{ $table->field_name }}</td>
+                        <td>{{ $table->field_controller }}</td>
+                        <td class="col-md-1 text-center">
                             <btn
-                                class="badge badge-{{ $table->{$model::field_active()} == BooleanType::Yes ? 'success' : 'warning' }}">
-                                {{ BooleanType::getDescription($table->{$model::field_active()}) }}</btn>
+                                class="badge badge-{{ $table->field_active == BooleanType::Yes ? 'success' : 'warning' }}">
+                                {{ BooleanType::getDescription($table->field_active) }}</btn>
                         </td>
                         <td class="col-md-2 text-center">
                             <a class="badge badge-primary button-update"
-                                href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->{$model::field_code()}]) }}">
+                                href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_code]) }}">
                                 Update
                             </a>
-                            <a class="badge badge-danger button-delete" data="{{ $table->{$model::field_code()} }}"
-                                href="{{ route(SharedData::get('route').'.postDelete', ['code' => $table->{$model::field_code()}]) }}">
+                            <a class="badge badge-danger button-delete" data="{{ $table->field_code }}"
+                                href="{{ route(SharedData::get('route').'.postDelete', ['code' => $table->field_code]) }}">
                                 Delete
                             </a>
                         </td>
-            
                     </tr>
-                    @empty
-                    @endforelse
+                    @endforeach
+                    @endif
                 </tbody>
             </table>
             {!! Form::close() !!}

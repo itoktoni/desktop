@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Dao\Models\Routes;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 
@@ -14,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+         $this->app->bind('routes_facades', function () {
+            return new Routes();
+        });
     }
 
     /**

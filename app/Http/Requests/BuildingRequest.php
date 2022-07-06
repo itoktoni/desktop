@@ -13,10 +13,7 @@ class BuildingRequest extends FormRequest
     {
         return [
             'building_name' => 'required|min:3',
-            'building_address' => 'required|min:3',
-            'building_description'=> 'required|max:255',
-            'building_contact_person'=> 'required|min:3',
-            'building_contact_phone'=> 'required|regex:/[0-9]{12}/',
+            'building_contact_person'=> 'required',
         ];
     }
 }

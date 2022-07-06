@@ -3,7 +3,7 @@
 namespace App\Dao\Repositories;
 
 use App\Dao\Interfaces\CrudInterface;
-use App\DatabaseJson\Models\Routes;
+use App\Dao\Models\Routes;
 use Illuminate\Database\QueryException;
 use Plugins\Notes;
 
@@ -19,11 +19,11 @@ class RoutesRepository implements CrudInterface
     public function dataRepository()
     {
         try {
-            $query = $this->model;
-            if($search = request()->get('search')){
-                $query = $query->where(request()->get('filter') ?? 'route_name', $search);
-            }
-            $query = $query->paginate(env('PAGINATION_NUMBER'));
+            $query = $this->model
+                ->select($this->model->getSelectedField())
+                ->sortable()->filter();
+
+            $query = env('PAGINATION_SIMPLE') ? $query->simplePaginate(env('PAGINATION_NUMBER')) : $query->paginate(env('PAGINATION_NUMBER'));
 
             return $query;
         } catch (QueryException $ex) {
@@ -44,8 +44,9 @@ class RoutesRepository implements CrudInterface
     public function updateRepository($request, $code)
     {
         try {
-            $activity = $this->model->update($request, $code);
-            return Notes::update($activity);
+            $update = $this->model->findOrFail($code);
+            $update->update($request);
+            return Notes::update($update);
         } catch (QueryException $ex) {
             return Notes::error($ex->getMessage());
         }
@@ -54,11 +55,7 @@ class RoutesRepository implements CrudInterface
     public function deleteRepository($request)
     {
         try {
-            if (is_array($request)) {
-                $this->model->find($request)->delete();
-            } else {
-                $this->model->find($request)->delete();
-            }
+            is_array($request) ? $this->model->destroy(array_values($request)) : $this->model->destroy($request);
             return Notes::delete($request);
         } catch (QueryException $ex) {
             return Notes::error($ex->getMessage());
@@ -68,7 +65,7 @@ class RoutesRepository implements CrudInterface
     public function singleRepository($code, $relation = false)
     {
         try {
-            return $relation ? $this->model->with($relation)->find($code) : $this->model->find($code);
+            return $relation ? $this->model->with($relation)->findOrFail($code) : $this->model->findOrFail($code);
         } catch (QueryException $ex) {
             abort(500, $ex->getMessage());
         }

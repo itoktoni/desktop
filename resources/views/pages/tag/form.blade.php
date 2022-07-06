@@ -13,17 +13,10 @@
 <div class="modal-body">
 
     <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Tag Code</label>
-                {!! Form::text('tag_code', null, ['class' => 'form-control', 'id' => 'tag_code', 'readonly' ]) !!}
-            </div>
-
-        </div>
 
         <div class="col-md-6">
             <div class="form-group">
-                <label for="exampleInputEmail1">Tag Name</label>
+                <label>Tag Name</label>
                 {!! Form::text('tag_name', null, ['class' => 'form-control', 'id' => 'tag_name', 'placeholder' => 'Please fill this input' , 'onkeyup' => 'FuctionTagCode()' ,'required']) !!}
             </div>
         </div>

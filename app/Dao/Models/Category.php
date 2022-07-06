@@ -4,7 +4,7 @@ namespace App\Dao\Models;
 
 use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\CategoryEntity;
-use App\Dao\Enums\UserType;
+use App\Dao\Enums\BooleanType;
 use App\Dao\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
@@ -52,7 +52,7 @@ class Category extends Model
 
     public function scopeActive($query)
     {
-        return $query->where($this->field_active(), UserType::Active);
+        return $query->where($this->field_active(), BooleanType::Yes);
     }
- 
+
 }

@@ -59,5 +59,5 @@ class Building extends Model
             DataBuilder::build('building_contact_phone')->name('Contact Phone'),
             DataBuilder::build('building_address')->name('Address'),
         ];
-    } 
+    }
 }

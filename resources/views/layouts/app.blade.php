@@ -69,7 +69,7 @@
     <script src="{{ url('assets/js/app.js') }}"></script>
     <!-- <script src="{{ url('assets/js/proajax.js') }}"></script> -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Pjax-Standalone/0.6.0/pjax-standalone.min.js"></script> -->
 
     <script>

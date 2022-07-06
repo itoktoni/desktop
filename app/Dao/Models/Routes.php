@@ -1,15 +1,15 @@
 <?php
 
-namespace App\DatabaseJson\Models;
+namespace App\Dao\Models;
 
 use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\RoutesEntity;
 use App\Dao\Enums\BooleanType;
 use App\Dao\Traits\DataTableTrait;
-use DatabaseJson\Model;
+use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
-use Mehradsadeghi\FilterQueryString\FilterQueryString;
-use Touhidurabir\ModelSanitize\Sanitizable;
+use Mehradsadeghi\FilterQueryString\FilterQueryString as FilterQueryString;
+use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 
 class Routes extends Model
 {
@@ -17,7 +17,6 @@ class Routes extends Model
 
     protected $table = 'routes';
     protected $primaryKey = 'route_code';
-    protected $connection = 'sqlite';
 
     protected $fillable = [
         'route_code',
@@ -29,7 +28,10 @@ class Routes extends Model
     ];
 
     public $sortable = [
+        'route_code',
         'route_name',
+        'route_group',
+        'route_controller',
     ];
 
     protected $filters = [
@@ -37,23 +39,27 @@ class Routes extends Model
     ];
 
     public $timestamps = false;
-    public $incrementing = true;
+    public $incrementing = false;
 
-    public function fieldSearching()
-    {
+    public function fieldSearching(){
         return 'route_name';
     }
 
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build('id')->name('ID')->show(false),
-            DataBuilder::build('route_group')->name('Group'),
-            DataBuilder::build('route_name')->name('Name'),
-            DataBuilder::build('route_code')->name('Slug'),
-            DataBuilder::build('route_active')->name('Active')->show(false),
+            DataBuilder::build('route_group')->name('Group')->sort(),
+            DataBuilder::build('route_code')->name('Code')->sort(),
+            DataBuilder::build('route_name')->name('Name')->sort(),
+            DataBuilder::build('route_controller')->name('Controller')->sort(),
             DataBuilder::build('route_description')->name('Description')->show(false),
-            DataBuilder::build('route_controller')->name('Controller'),
+            DataBuilder::build('route_active')->name('Active')->class('col-md-1')->show(false),
         ];
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where($this->field_active(), BooleanType::Yes);
+    }
+
 }

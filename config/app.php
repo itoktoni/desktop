@@ -1,7 +1,7 @@
 <?php
 
 use App\Dao\Enums\BooleanType;
-use App\DatabaseJson\Models\Routes;
+use App\Dao\Models\Routes;
 use App\Providers\CacheableAuthUserServiceProvider;
 use Coderello\SharedData\Facades\SharedData;
 use Plugins\Template;

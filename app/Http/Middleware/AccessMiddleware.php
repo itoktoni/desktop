@@ -2,9 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\DatabaseJson\Models\Routes;
+use App\Dao\Models\Routes;
 use Closure;
 use Plugins\Helper;
+use Plugins\Template;
 
 class AccessMiddleware
 {
@@ -15,6 +16,13 @@ class AccessMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
+    private $model;
+
+    public function __construct(Routes $model)
+    {
+        $this->model = $model;
+    }
+
     public function handle($request, Closure $next)
     {
         $route = request()->route() ?? false;
@@ -24,7 +32,7 @@ class AccessMiddleware
         $action_route = $action['name'] ?? false;
 
         if (isset($action['controller'])) {
-            
+
             $array_controller = explode('@', $action['controller']) ?? [];
             $action_controller = Helper::getTemplate($array_controller[0]);
         }
@@ -33,7 +41,7 @@ class AccessMiddleware
             'action_code' => $action_code,
             'template' => $action_controller,
             'route' => $action_route,
-            'access' => Routes::groupBy(Routes::field_group())->get(),
+            'access' => Template::Routes()
         ];
 
         share($data);

@@ -134,6 +134,12 @@ return [
             'database' => env('REDIS_DB', 0),
         ],
 
+        // 'sqlite' => [
+        //     'driver' => 'sqlite',
+        //     'database' => storage_path('database/database.sqlite'),
+        //     'prefix' => '',
+        // ],
+
         'cache' => [
             'url' => env('REDIS_URL'),
             'host' => env('REDIS_HOST', '127.0.0.1'),

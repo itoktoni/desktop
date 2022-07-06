@@ -15,14 +15,14 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="exampleInputEmail1">Name</label>
+                <label>Name</label>
                 {!! Form::text('building_name', null, ['class' => 'form-control', 'id' => 'building_name', 'placeholder' => 'Please fill this input', 'required']) !!}
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
-                <label for="exampleInputEmail1">Building Address</label>
+                <label>Building Address</label>
                 {!! Form::text('building_address', null, ['class' => 'form-control', 'id' => 'building_address', 'placeholder' => 'Please fill this input', 'required']) !!}
             </div>
         </div>

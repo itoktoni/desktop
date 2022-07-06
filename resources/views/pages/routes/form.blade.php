@@ -8,7 +8,7 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 @endif
 
 <div class="modal-header" id="modal-header">
-    <h4 class="modal-title" id="modal-title">Master Routes</h4>
+    <h4 class="modal-title" id="modal-title">Master Category</h4>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
             aria-hidden="true">&times;</span></button>
 </div>
@@ -25,7 +25,7 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 
             <div class="form-group">
                 <label>Code</label>
-                {!! Form::text('route_slug', null, ['class' => 'form-control', 'id' => 'route_slug', 'placeholder'
+                {!! Form::text('route_code', null, ['class' => 'form-control', 'id' => 'route_code', 'placeholder'
                 => 'Please fill this input', 'required']) !!}
             </div>
 
@@ -105,7 +105,7 @@ $('#modal-btn-save').click(function(event) {
                 swal({
                     icon: 'error',
                     title: 'Error!',
-                    text: response,
+                    text: response.data,
                 });
             }
 
