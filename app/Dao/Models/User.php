@@ -66,6 +66,7 @@ class User extends Authenticatable
             DataBuilder::build('id')->name('ID')->show(false),
             DataBuilder::build('name')->name('Name')->sort(),
             DataBuilder::build('email')->name('Email'),
+            DataBuilder::build('active')->name('Active')->show(false),
         ];
     }
 

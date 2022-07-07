@@ -9,6 +9,10 @@
         'stroke-width': 1
     });
 
+    $(".btn-check-m, .btn-check-d").click(function(){
+        $('input:checkbox').not(this).prop('checked', this.checked);
+    });
+
     $(document).on('click', '[data-toggle="fullscreen"]', function () {
         $(this).toggleClass('active-fullscreen');
         if (document.fullscreenEnabled) {

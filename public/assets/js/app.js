@@ -102,6 +102,9 @@
   feather.replace({
     'stroke-width': 1
   });
+  $(".btn-check-m, .btn-check-d").click(function () {
+    $('input:checkbox').not(this).prop('checked', this.checked);
+  });
   $(document).on('click', '[data-toggle="fullscreen"]', function () {
     $(this).toggleClass('active-fullscreen');
 
@@ -257,7 +260,7 @@
   table_responsive_stack.each(function () {
     var thCount = $(this).find("th").length,
         rowGrow = 100 / thCount + "%";
-    // $(this).find("th, td").css("flex-basis", rowGrow);
+    $(this).find("th, td").css("flex-basis", rowGrow);
   });
 
   function flexTable() {

@@ -12280,6 +12280,12 @@ body.dark.small-navigation .navigation-menu-body ul li.navigation-divider:after 
 }
 
 @media (max-width: 768px) {
+  .btn-check-m {
+    position: absolute;
+    left: 20px;
+    margin-top: 10px;
+  }
+
   body.form-membership .form-wrapper {
     width: 90%;
     margin: 30px auto;
@@ -12680,6 +12686,10 @@ a.badge,
 
 .table-active {
   width: 80px;
+}
+
+.column-checkbox {
+  width: 30px;
 }
 
 #nav-icon1 {

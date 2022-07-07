@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Master;
 use App\Dao\Repositories\UserRepository;
 use App\DatabaseJson\Models\Action;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DeleteRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Services\CreateService;
 use App\Http\Services\DeleteService;
@@ -80,7 +81,14 @@ class UserController extends Controller
         return self::$service->get(self::$repository, $code);
     }
 
-    public function postDelete(UserRequest $request, DeleteService $service)
+    public function postDelete(DeleteRequest $request, DeleteService $service)
+    {
+        $code = $request->get('code');
+        $data = $service->delete(self::$repository, $code);
+        return Response::redirectBack($data);
+    }
+
+    public function getDelete(DeleteRequest $request, DeleteService $service)
     {
         $code = $request->get('code');
         $data = $service->delete(self::$repository, $code);
