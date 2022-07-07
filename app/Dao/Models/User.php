@@ -45,16 +45,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public $timestamps = false;
+    public $timestamps = true;
     public $incrementing = true;
-
-    const CREATED_AT = 'item_linen_created_at';
-    const UPDATED_AT = 'item_linen_updated_at';
-    const DELETED_AT = 'item_linen_deleted_at';
-
-    const CREATED_BY = 'item_linen_created_by';
-    const UPDATED_BY = 'item_linen_updated_by';
-    const DELETED_BY = 'item_linen_deleted_by';
 
     public function fieldSearching(){
         return 'name';
