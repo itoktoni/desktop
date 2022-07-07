@@ -50,9 +50,9 @@
                     </h5>
                 </a>
             </li>
-
-
-            <li>
+          
+            @if(request()->session()->get('akun_status') == 'login')
+            <li id="logout_status">
                 <a class="icon" href="{{ route('logout') }}">
                     <i data-feather="log-out"></i>
                     <h5 class="text-center text-white">
@@ -60,7 +60,18 @@
                     </h5>
                 </a>
             </li>
-
+            @else
+            <li id="login_status">
+               <a class="icon" href="{{ route('login') }}">
+                  <i data-feather="log-out"></i>
+                  <h5 class="text-center text-white">
+                     @if (!session('status'))
+                        login
+                     @endif
+                  </h5>
+               </a>
+            </li>
+            @endif
         </ul>
     </div>
 </div>

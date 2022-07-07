@@ -21,11 +21,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         if(auth()->check() && auth()->user()->active == false){
             return redirect()->to('/');
         }
+        $request->session()->put('akun_status','login');
         return view('home');
     }
 }
