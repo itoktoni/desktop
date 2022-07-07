@@ -257,7 +257,7 @@
   table_responsive_stack.each(function () {
     var thCount = $(this).find("th").length,
         rowGrow = 100 / thCount + "%";
-    $(this).find("th, td").css("flex-basis", rowGrow);
+    // $(this).find("th, td").css("flex-basis", rowGrow);
   });
 
   function flexTable() {

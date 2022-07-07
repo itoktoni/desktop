@@ -47,7 +47,7 @@
                 <thead>
                     <tr>
                         @foreach($fields as $value)
-                        <th>
+                        <th {{ Template::extractColumn($value) }}>
                             @if($value->sort)
                             @sortablelink($value->code, $value->name)
                             @else
@@ -55,7 +55,7 @@
                             @endif
                         </th>
                         @endforeach
-                        <th class="col-md-2 text-center">Action</th>
+                        <th class="text-center table-action">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,7 +66,7 @@
                         <td>{{ $table->field_contact_person }}</td>
                         <td>{{ $table->field_contact_phone }}</td>
                         <td>{{ $table->field_address }}</td>
-                        <td class="col-md-2 text-center">
+                        <td class="text-center">
                             <a class="badge badge-primary button-update"
                                 href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_code]) }}">
                                 Update

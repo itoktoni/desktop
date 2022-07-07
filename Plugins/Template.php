@@ -67,4 +67,15 @@ class Template
 
         return $routes;
     }
+
+    public static function extractColumn($value){
+        $string ='';
+        if($value->class){
+            $string = 'class='.$value->class;
+        }
+        if($value->width){
+            $string = $string .'style=width:'.$value->width;
+        }
+        return $string;
+    }
 }

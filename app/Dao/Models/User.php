@@ -73,5 +73,5 @@ class User extends Authenticatable
     {
         return $query->where($this->field_active(), UserType::Active);
     }
- 
+
 }

@@ -50,13 +50,13 @@ body{
 				margin-top: 50px;
 			}
 			a{
-				border-top: 0.5px solid whitesmoke;
+				border-bottom: 0.5px solid whitesmoke;
 			}
 		}
 
 		ul{
 			li{
-				border-top: 0.5px solid whitesmoke;
+				border-bottom: 0.5px solid whitesmoke;
 
 				a{
 					&.active{
@@ -154,4 +154,12 @@ a{
 			border: 0.5px solid $color-danger;
 		}
 	}
+}
+
+.table-action{
+	width: 150px;
+}
+
+.table-active{
+	width: 80px;
 }
