@@ -87,11 +87,4 @@ class UserController extends Controller
         $data = $service->delete(self::$repository, $code);
         return Response::redirectBack($data);
     }
-
-    public function getDelete(DeleteRequest $request, DeleteService $service)
-    {
-        $code = $request->get('code');
-        $data = $service->delete(self::$repository, $code);
-        return Response::redirectBack($data);
-    }
 }
