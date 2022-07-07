@@ -6,7 +6,7 @@ trait RoutesEntity
 {
     public static function field_code()
     {
-        return 'id';
+        return 'route_code';
     }
 
     public function getFieldCodeAttribute()
@@ -42,16 +42,6 @@ trait RoutesEntity
     public function getFieldControllerAttribute()
     {
         return $this->{self::field_controller()};
-    }
-
-    public static function field_slug()
-    {
-        return 'route_slug';
-    }
-
-    public function getFieldslugAttribute()
-    {
-        return $this->{self::field_slug()};
     }
 
     public static function field_active()

@@ -2,8 +2,11 @@
 
 namespace Plugins;
 
+use App\Dao\Facades\RoutesFacades;
+use App\Dao\Models\Routes;
 use Illuminate\Support\Str;
 use hisorange\BrowserDetect\Parser as Browser;
+use Illuminate\Support\Facades\Cache;
 
 class Template
 {
@@ -25,7 +28,7 @@ class Template
 
             return 'pages.'.$template.'.table';
         }
-        
+
         return 'pages.'.self::$template.'.table';
     }
 
@@ -43,12 +46,25 @@ class Template
         if($template){
             return 'pages.'.$template.'.form';
         }
-        
+
         return 'pages.'.$template.'.'.$name;
     }
 
     public static function tableResponsive(){
 
         return Browser::isMobile() ? 'table-responsive-stack' : 'table-responsive';
+    }
+
+    public static function Routes(){
+
+        if(Cache::has('routes')){
+            return Cache::get('routes');
+        }
+
+        $routes = Routes::select(RoutesFacades::getSelectedField())->get()->groupBy(RoutesFacades::field_group());
+
+        Cache::put('routes', $routes, 1200);
+
+        return $routes;
     }
 }

@@ -39,7 +39,6 @@
 
         {!! Form::close() !!}
 
-
         <div class="table-responsive" id="table_data">
             {!! Form::open(['url' => 'test/save', 'class' => 'form-horizontal', 'files' => true]) !!}
             <table class="table table-bordered table-striped">
@@ -61,8 +60,8 @@
                 <tbody>
                     @forelse($data as $table)
                     <tr>
-                        <td>{{ $table->field_name }}</td>
                         <td>{{ $table->field_code }}</td>
+                        <td>{{ $table->field_name }}</td>
                         <td class="col-md-2 text-center">
                             <a class="badge badge-primary button-update"
                                 href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_code]) }}">

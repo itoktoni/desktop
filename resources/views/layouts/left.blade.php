@@ -99,10 +99,10 @@
                 @if($acc_data)
                 @foreach($acc_data as $acc)
                 @php
-                $check_access = request()->segment(2) == $acc[Routes::field_group()] && request()->segment(3) == $acc[Routes::field_slug()];
+                $check_access = request()->segment(2) == $acc[Routes::field_group()] && request()->segment(3) == $acc[Routes::field_code()];
                 @endphp
                 <li>
-                    <a class="{{ $check_access ? 'active' : '' }}" href="{{ route($acc[Routes::field_slug()].'.getTable') }}">
+                    <a class="{{ $check_access ? 'active' : '' }}" href="{{ route($acc[Routes::field_code()].'.getTable') }}">
                         <span>{{ $acc[Routes::field_name()] }}</span>
                     </a>
                 </li>

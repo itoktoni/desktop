@@ -11,11 +11,13 @@
 |
  */
 
-use App\DatabaseJson\Models\Access;
-use App\DatabaseJson\Models\Routes;
+use App\Dao\Facades\RoutesFacades;
+use App\Dao\Models\Routes;
 use Buki\AutoRoute\AutoRouteFacade as AutoRoute;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
+use Plugins\Template;
 
 Route::get('/', function () {
     return view('index');
@@ -31,22 +33,26 @@ Route::get('/', function () {
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 Route::get('/home', 'HomeController@index')->middleware(['auth', 'access'])->name('home');
+// AutoRoute::auto('routes', RoutesController::class, ['name' => 'routes']);
 
-$routes = Routes::groupBy(Routes::field_group())->get();
-Route::prefix('admin')->group(function () use ($routes) {
-    if ($routes) {
-        foreach ($routes as $action_key => $action_data) {
-            Route::group(['prefix' => $action_key, 'middleware' => ['auth', 'access']], function () use ($action_data) {
-                if ($action_array = $action_data->toArray()) {
-                    foreach($action_array as $action){
-                        AutoRoute::auto($action[Routes::field_slug()], $action[Routes::field_controller()], ['name' => $action[Routes::field_slug()]]);
-                        
+$routes = Template::Routes();
+if ($routes) {
+
+    Route::prefix('admin')->group(function () use ($routes) {
+        if ($routes) {
+            foreach ($routes as $action_key => $action_data) {
+                Route::group(['prefix' => $action_key, 'middleware' => ['auth', 'access']], function () use ($action_data) {
+                    if ($action_array = $action_data->toArray()) {
+                        foreach ($action_array as $action) {
+                            AutoRoute::auto($action[Routes::field_code()], $action[Routes::field_controller()], ['name' => $action[Routes::field_code()]]);
+
+                        }
                     }
-                }
-            });
+                });
+            }
         }
-    }
-});
+    });
+}
 
 Route::prefix('dashboards')->name('dashboards.')->group(function () {
 
@@ -398,4 +404,3 @@ Route::prefix('pages')->name('pages.')->group(function () {
 });
 
 Auth::routes();
-
