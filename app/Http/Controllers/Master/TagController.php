@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Master;
 use App\Dao\Enums\BooleanType;
 use App\Dao\Repositories\TagRepository;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DeleteRequest;
 use App\Http\Requests\TagRequest;
 use App\Http\Services\CreateService;
 use App\Http\Services\DeleteService;
@@ -24,7 +25,7 @@ class TagController extends Controller
         self::$repository = self::$repository ?? $repository;
         self::$service = self::$service ?? $service;
     }
-    
+
     private function share($data = [])
     {
         $status = BooleanType::getOptions();
@@ -82,7 +83,7 @@ class TagController extends Controller
         return self::$service->get(self::$repository, $code);
     }
 
-    public function postDelete(TagRequest $request, DeleteService $service)
+    public function postDelete(DeleteRequest $request, DeleteService $service)
     {
         $code = $request->get('code');
         $data = $service->delete(self::$repository, $code);

@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Dao\Traits\ValidationTrait;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserRequest extends FormRequest
 {
@@ -15,5 +16,12 @@ class UserRequest extends FormRequest
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users',
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'password' => Hash::make($this->password),
+        ]);
     }
 }

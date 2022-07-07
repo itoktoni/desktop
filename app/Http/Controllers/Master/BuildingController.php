@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Master;
 use App\Dao\Repositories\BuildingRepository;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BuildingRequest;
+use App\Http\Requests\DeleteRequest;
 use App\Http\Services\CreateService;
 use App\Http\Services\DeleteService;
 use App\Http\Services\SingleService;
@@ -81,7 +82,7 @@ class BuildingController extends Controller
         return self::$service->get(self::$repository, $code);
     }
 
-    public function postDelete(BuildingRequest $request, DeleteService $service)
+    public function postDelete(DeleteRequest $request, DeleteService $service)
     {
         $code = $request->get('code');
         $data = $service->delete(self::$repository, $code);

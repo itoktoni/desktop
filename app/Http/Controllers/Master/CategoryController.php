@@ -6,6 +6,7 @@ use App\Dao\Enums\BooleanType;
 use App\Dao\Repositories\CategoryRepository;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\DeleteRequest;
 use App\Http\Services\CreateService;
 use App\Http\Services\DeleteService;
 use App\Http\Services\SingleService;
@@ -24,7 +25,7 @@ class CategoryController extends Controller
         self::$repository = self::$repository ?? $repository;
         self::$service = self::$service ?? $service;
     }
-    
+
     private function share($data = [])
     {
         $status = BooleanType::getOptions();
@@ -82,7 +83,7 @@ class CategoryController extends Controller
         return self::$service->get(self::$repository, $code);
     }
 
-    public function postDelete(CategoryRequest $request, DeleteService $service)
+    public function postDelete(DeleteRequest $request, DeleteService $service)
     {
         $code = $request->get('code');
         $data = $service->delete(self::$repository, $code);

@@ -29,21 +29,21 @@
 
         <div class="col-md-6">
             <div class="form-group">
-                <label for="exampleInputEmail1">Contact Person</label>
+                <label>Contact Person</label>
                 {!! Form::text('building_contact_person', null, ['class' => 'form-control', 'id' => 'building_contact_person', 'placeholder' => 'Please fill this input', 'required']) !!}
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
-                <label for="exampleInputEmail1">Contact Phone</label>
+                <label>Contact Phone</label>
                 {!! Form::text('building_contact_phone', null, ['class' => 'form-control', 'id' => 'building_contact_phone', 'placeholder' => 'Please fill this input', 'required']) !!}
             </div>
         </div>
 
         <div class="col-md-12">
             <div class="form-group">
-                <label for="exampleInputEmail1">Description</label>
+                <label>Description</label>
                 {!! Form::textarea('building_description', null, ['class' => 'form-control', 'id' => 'building_description', 'placeholder' => 'Please fill this input', 'rows' => 5]) !!}
             </div>
         </div>

@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="exampleInputEmail1">Name</label>
+                <label>Name</label>
                 {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'placeholder' => 'Please fill this input', 'required']) !!}
             </div>
 
@@ -23,7 +23,23 @@
 
         <div class="col-md-6">
             <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
+                <label>Group</label>
+                {!! Form::text('group', null, ['class' => 'form-control', 'id' => 'group', 'placeholder' => 'Please fill this input']) !!}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Password</label>
+                {!! Form::password('password', ['class' => 'form-control', 'id' => 'password', 'placeholder' => 'Please fill this input', 'required']) !!}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Email address</label>
                 {!! Form::text('email', null, ['class' => 'form-control', 'id' => 'email', 'placeholder' => 'Please fill this input']) !!}
             </div>
         </div>
