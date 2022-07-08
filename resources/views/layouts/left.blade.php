@@ -27,14 +27,6 @@
                 </a>
             </li>
             <li>
-                <a class="icon" href="#" data-nav-target="#apps">
-                    <i data-feather="command"></i>
-                    <h5 class="text-center text-white">
-                        Apps
-                    </h5>
-                </a>
-            </li>
-            <li>
                 <a class="icon" href="#" data-nav-target="#elements">
                     <i data-feather="layers"></i>
                     <h5 class="text-center text-white">
@@ -43,22 +35,21 @@
                 </a>
             </li>
             <li>
-                <a class="icon" href="#" data-nav-target="#pages">
-                    <i data-feather="copy"></i>
-                    <h5 class="text-center text-white">
-                        Pages
-                    </h5>
-                </a>
-            </li>
-          
-            @if(request()->session()->get('akun_status') == 'login')
-            <li id="logout_status">
+                @auth
                 <a class="icon" href="{{ route('logout') }}">
                     <i data-feather="log-out"></i>
                     <h5 class="text-center text-white">
                         Logout
                     </h5>
                 </a>
+                @else
+                <a class="icon" href="{{ route('login') }}">
+                    <i data-feather="log-in"></i>
+                    <h5 class="text-center text-white">
+                        Login
+                    </h5>
+                </a>
+                @endauth
             </li>
             @else
             <li id="login_status">
@@ -129,43 +120,6 @@
                 </li>
                 <li><a @if(request()->segment(1) == 'dashboards' && request()->segment(2) == 'five')
                         class="active" @endif href="{{ route('dashboards.five') }}">Helpdesk Management</a>
-                </li>
-            </ul>
-        </div>
-        <div @if(request()->segment(1) == 'apps') class="open" @endif id="apps">
-            <ul>
-                <li class="navigation-divider">Web Apps</li>
-                <li>
-                    <a @if(request()->segment(1) == 'apps' && request()->segment(2) == 'chat')
-                        class="active" @endif href="{{ route('apps.chat') }}">
-                        <span>Chat</span>
-                        <span class="badge badge-danger">5</span>
-                    </a>
-                </li>
-                <li>
-                    <a @if(request()->segment(1) == 'apps' && request()->segment(2) == 'inbox')
-                        class="active" @endif href="{{ route('apps.inbox') }}">
-                        <span>Mail</span>
-                    </a>
-                </li>
-                <li>
-                    <a @if(request()->segment(1) == 'apps' && request()->segment(2) == 'todo')
-                        class="active" @endif href="{{ route('apps.todo') }}">
-                        <span>Todo</span>
-                        <span class="badge badge-warning">2</span>
-                    </a>
-                </li>
-                <li>
-                    <a @if(request()->segment(1) == 'apps' && request()->segment(2) == 'file-manager')
-                        class="active" @endif href="{{ route('apps.file-manager') }}">
-                        <span>File Manager</span>
-                    </a>
-                </li>
-                <li>
-                    <a @if(request()->segment(1) == 'apps' && request()->segment(2) == 'calendar')
-                        class="active" @endif href="{{ route('apps.calendar') }}">
-                        <span>Calendar</span>
-                    </a>
                 </li>
             </ul>
         </div>

@@ -7,7 +7,7 @@
     <div class="header-container container-fluid d-sm-flex justify-content-between">
 
         @yield('header')
-       
+
     </div>
 </div>
 <!-- end::page-header -->

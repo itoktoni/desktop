@@ -295,6 +295,12 @@
 
 @media (max-width: 768px) {
 
+	.btn-check-m{
+		position: absolute;
+		left: 20px;
+		margin-top: 10px;
+	}
+
 	body.form-membership .form-wrapper {
 		width: 90%;
 		margin: 30px auto;
@@ -437,7 +443,7 @@
 		-ms-flex-direction: row;
 		flex-direction: row;
 	}
-	
+
 	.table-responsive td,
 	.table-responsive th {
 		display: block;

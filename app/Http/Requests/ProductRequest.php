@@ -6,22 +6,20 @@ use App\Dao\Traits\ValidationTrait;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Hash;
 
-class UserRequest extends FormRequest
+class ProductRequest extends FormRequest
 {
     use ValidationTrait;
 
     public function validation()
     {
         return [
-            'name' => 'required|min:3',
-            'email' => 'required|email|unique:users',
+            'product_name' => 'required|min:3',
         ];
     }
 
     public function prepareForValidation()
     {
         $this->merge([
-            'password' => Hash::make($this->password),
         ]);
     }
 }

@@ -45,7 +45,6 @@ if ($routes) {
                     if ($action_array = $action_data->toArray()) {
                         foreach ($action_array as $action) {
                             AutoRoute::auto($action[Routes::field_code()], $action[Routes::field_controller()], ['name' => $action[Routes::field_code()]]);
-
                         }
                     }
                 });

@@ -4,6 +4,9 @@
 <h4>List Master Category</h4>
 <div class="header-action">
     <nav>
+        <input class="btn-check-m d-lg-none" type="checkbox">
+        <button href="{{ route(SharedData::get('route').'.postDelete') }}"
+            class="btn btn-danger button-delete-all">Delete</button>
         <button href="{{ route(SharedData::get('route').'.getCreate') }}"
             class="btn btn-success button-create">Create</button>
     </nav>
@@ -41,13 +44,14 @@
 
 
         <div class="table-responsive" id="table_data">
-            {!! Form::open(['url' => 'test/save', 'class' => 'form-horizontal', 'files' => true]) !!}
             <table class="table table-bordered table-striped">
-
                 <thead>
                     <tr>
+                        <th class="column-checkbox">
+                            <input class="btn-check-d" type="checkbox">
+                        </th>
                         @foreach($fields as $value)
-                        <th class="{{ $value->class ?? '' }}">
+                        <th {{ Template::extractColumn($value) }}>
                             @if($value->sort)
                             @sortablelink($value->code, $value->name)
                             @else
@@ -55,24 +59,25 @@
                             @endif
                         </th>
                         @endforeach
-                        <th class="col-md-1 text-center">Active</th>
-                        <th class="col-md-2 text-center">Action</th>
+                        <th class="text-center">Active</th>
+                        <th class="text-center table-action">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @if($data)
                     @forelse($data as $table)
                     <tr>
+                        <td><input type="checkbox" class="checkbox" name="code[]" value="{{ $table->field_code }}"></td>
                         <td>{{ $table->field_group }}</td>
                         <td>{{ $table->field_code }}</td>
                         <td>{{ $table->field_name }}</td>
                         <td>{{ $table->field_controller }}</td>
-                        <td class="col-md-1 text-center">
+                        <td class="text-center">
                             <btn
                                 class="badge badge-{{ $table->field_active == BooleanType::Yes ? 'success' : 'warning' }}">
                                 {{ BooleanType::getDescription($table->field_active) }}</btn>
                         </td>
-                        <td class="col-md-2 text-center">
+                        <td class="text-center">
                             <a class="badge badge-primary button-update"
                                 href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_code]) }}">
                                 Update
@@ -87,7 +92,6 @@
                     @endif
                 </tbody>
             </table>
-            {!! Form::close() !!}
         </div>
 
         <nav class="container-pagination">
@@ -98,124 +102,5 @@
 </div>
 @endsection
 
-@section('script')
-
-<script>
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
-
-function showModal(url) {
-
-    $.ajax({
-        url: url,
-        beforeSend: function() {
-            $('#loader').show();
-        },
-        // return the result
-        success: function(response) {
-            $('#modal-body').html(response);
-            $('#modal').modal({
-                backdrop: 'static',
-                keyboard: false
-            });
-        },
-        complete: function() {
-            $('#loader').hide();
-        },
-        error: function(jqXHR, testStatus, error) {
-            console.log(error);
-            alert("Page " + href + " cannot open. Error:" + error);
-            $('#loader').hide();
-        },
-        timeout: 8000
-    });
-
-
-}
-
-$('body').on('click', '.button-update', function(event) {
-    event.preventDefault();
-    showModal($(this).attr('href'));
-});
-
-$('body').on('click', '.button-create', function(event) {
-    event.preventDefault();
-    showModal($(this).attr('href'));
-});
-
-$('body').on('click', '.button-delete', function(event) {
-    event.preventDefault();
-
-    var me = $(this),
-        url = me.attr('href'),
-        id = me.attr('data'),
-        csrf_token = $('meta[name="csrf-token"]').attr('content');
-
-    swal({
-        title: 'Are you sure want to delete this data ?',
-        text: 'You won\'t be able to revert this!',
-        icon: "warning",
-        buttons: true,
-    }).then((result) => {
-        if (result) {
-            $.ajax({
-                url: url,
-                type: "POST",
-                dataType: 'json',
-                data: {
-                    'id': id
-                },
-                success: function(response) {
-                    if (response.status) {
-                        swal({
-                            icon: 'success',
-                            title: 'Success!',
-                            text: 'Data has been deleted!',
-                            timer: 3000
-                        }).then(function() {
-                            window.location.reload();
-                        });
-
-                    } else if (response.status == false) {
-                        swal({
-                            icon: 'error',
-                            title: 'Error!',
-                            text: response.data
-                        });
-                    } else {
-                        swal({
-                            icon: 'error',
-                            title: 'Error!',
-                            text: 'Data failed to deleted!'
-                        });
-                    }
-                },
-                error: function(xhr, status, error) {
-
-                    if (xhr.status == 422) {
-
-                        swal({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Validation Error !'
-                        });
-                    } else {
-                        swal({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Something went wrong!'
-                        });
-                    }
-                }
-            });
-        } else {
-
-        }
-    });
-});
-</script>
-
-@endsection
+@component('javascript.master')
+@endcomponent

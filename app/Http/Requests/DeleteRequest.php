@@ -13,38 +13,6 @@ class DeleteRequest extends FormRequest
      * @return array
      */
 
-    private $model;
-    private $table;
-    private $primaryKey;
-
-    public function __construct()
-    {
-        $this->model = request()->route()->getController()::$model ?? false;
-        $this->primaryKey = $this->model->getKeyName();
-        $this->table = $this->model->getTable();
-    }
-
-    public function prepareForValidation()
-    {
-        $where = $code = $this->get('code');
-        if ($this->has('target')) {
-
-            $query = $this->model->select($this->primaryKey);
-            $query = is_array($where) ? $query->whereIn($this->get('target'), $where) : $query->where($this->get('target'), $where);
-            $code = $query->get();
-
-            if ($code) {
-                $code = $code->pluck($this->primaryKey)->toArray();
-                $this->except('code');
-            }
-        }
-
-        $this->merge([
-            'data' => $where,
-            'code' => $code,
-        ]);
-    }
-
     public function withValidator($validator)
     {
         // $validator->after(function ($validator) {
@@ -54,26 +22,22 @@ class DeleteRequest extends FormRequest
 
     public function rules()
     {
-        $target = $this->get('target');
-        if ($target) {
+        return [
+            'code' => 'required'
+        ];
+    }
 
-            if (is_array($this->get('code'))) {
-                return [
-                    'code' => 'required|array',
-                    'data.*' => 'exists:' . $this->table . ',' . $target,
-                ];
-            }
+    public function attributes()
+    {
+        return [
+            'code' => 'Data',
+        ];
+    }
 
-            return [
-                'code' => 'required',
-                'data' => 'exists:' . $this->table . ',' . $target,
-            ];
-
-        } else {
-            return [
-                'code.*' => 'exists:' . $this->table . ',' . $this->primaryKey,
-            ];
-        }
-
+    public function messages()
+    {
+        return [
+            'code.required' => 'Checkbox harus dipilih',
+        ];
     }
 }

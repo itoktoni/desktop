@@ -1,7 +1,7 @@
 @extends(Template::master())
 
 @section('header')
-<h4>List Master Building</h4>
+<h4>List Master Ruangan</h4>
 <div class="header-action">
     <nav>
         <input class="btn-check-m d-lg-none" type="checkbox">
@@ -42,7 +42,6 @@
 
         {!! Form::close() !!}
 
-
         <div class="table-responsive" id="table_data">
             <table class="table table-bordered table-striped table-responsive-stack">
                 <thead>
@@ -68,9 +67,6 @@
                         <td><input type="checkbox" class="checkbox" name="code[]" value="{{ $table->field_code }}"></td>
                         <td>{{ $table->field_name }}</td>
                         <td>{{ $table->field_description }}</td>
-                        <td>{{ $table->field_contact_person }}</td>
-                        <td>{{ $table->field_contact_phone }}</td>
-                        <td>{{ $table->field_address }}</td>
                         <td class="text-center">
                             <a class="badge badge-primary button-update"
                                 href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_code]) }}">

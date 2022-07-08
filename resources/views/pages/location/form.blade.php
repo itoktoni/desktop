@@ -5,7 +5,7 @@
 @endif
 
 <div class="modal-header" id="modal-header">
-    <h4 class="modal-title" id="modal-title">Master Building</h4>
+    <h4 class="modal-title" id="modal-title">Master Ruangan</h4>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
             aria-hidden="true">&times;</span></button>
 </div>
@@ -16,37 +16,17 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Name</label>
-                {!! Form::text('building_name', null, ['class' => 'form-control', 'id' => 'building_name', 'placeholder' => 'Please fill this input', 'required']) !!}
+                {!! Form::text('location_name', null, ['class' => 'form-control', 'id' => 'location_name', 'placeholder' => 'Please fill this input', 'required']) !!}
             </div>
         </div>
 
         <div class="col-md-6">
-            <div class="form-group">
-                <label>Building Address</label>
-                {!! Form::text('building_address', null, ['class' => 'form-control', 'id' => 'building_address', 'placeholder' => 'Please fill this input', 'required']) !!}
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>Contact Person</label>
-                {!! Form::text('building_contact_person', null, ['class' => 'form-control', 'id' => 'building_contact_person', 'placeholder' => 'Please fill this input', 'required']) !!}
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>Contact Phone</label>
-                {!! Form::text('building_contact_phone', null, ['class' => 'form-control', 'id' => 'building_contact_phone', 'placeholder' => 'Please fill this input', 'required']) !!}
-            </div>
-        </div>
-
-        <div class="col-md-12">
             <div class="form-group">
                 <label>Description</label>
-                {!! Form::textarea('building_description', null, ['class' => 'form-control', 'id' => 'building_description', 'placeholder' => 'Please fill this input', 'rows' => 5]) !!}
+                {!! Form::text('location_description', null, ['class' => 'form-control', 'id' => 'location_description', 'placeholder' => 'Please fill this input', 'required']) !!}
             </div>
         </div>
+
     </div>
 
 </div>

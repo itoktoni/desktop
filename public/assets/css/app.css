@@ -12280,6 +12280,12 @@ body.dark.small-navigation .navigation-menu-body ul li.navigation-divider:after 
 }
 
 @media (max-width: 768px) {
+  .btn-check-m {
+    position: absolute;
+    left: 20px;
+    margin-top: 10px;
+  }
+
   body.form-membership .form-wrapper {
     width: 90%;
     margin: 30px auto;
@@ -12579,11 +12585,11 @@ body {
 .chat-block .chat-sidebar .chat-sidebar-content .list-group .navigation .navigation-menu-tab .navigation-menu-tab-header .list-group-item.active,
 .navigation .navigation-menu-tab .navigation-menu-tab-header .header form .input-group .input-group-append button.btn,
 .header form .input-group .input-group-append .navigation .navigation-menu-tab .navigation-menu-tab-header button.btn {
-  border-top: 0.5px solid whitesmoke;
+  border-bottom: 0.5px solid whitesmoke;
 }
 
 .navigation .navigation-menu-tab ul li {
-  border-top: 0.5px solid whitesmoke;
+  border-bottom: 0.5px solid whitesmoke;
 }
 
 .navigation .navigation-menu-tab ul li a.active:after,
@@ -12672,6 +12678,18 @@ a.badge,
 .form-group.has-error .swal-modal input.swal-content__input,
 .swal-modal .form-group.has-error input.swal-content__input {
   border: 0.5px solid #ff4444;
+}
+
+.table-action {
+  width: 150px;
+}
+
+.table-active {
+  width: 80px;
+}
+
+.column-checkbox {
+  width: 30px;
 }
 
 #nav-icon1 {

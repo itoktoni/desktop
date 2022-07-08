@@ -26,6 +26,7 @@ class DataBuilder
         $this->name = $this->name ?? str_replace('_', ' ', $code);
         $this->show = $this->show ?? true;
         $this->sort = $this->sort ?? false;
+        $this->width = $this->width ?? false;
         $this->filter = $this->filter ?? false;
     }
 
