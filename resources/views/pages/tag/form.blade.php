@@ -1,6 +1,6 @@
 @extends(Template::ajax())
 
-@section('title') Master User @endsection
+@section('title') Master Tag @endsection
 
 @section('form')
 

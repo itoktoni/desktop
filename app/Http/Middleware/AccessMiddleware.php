@@ -41,7 +41,6 @@ class AccessMiddleware
             'action_code' => $action_code,
             'template' => $action_controller,
             'route' => $action_route,
-            'access' => Template::Routes()
         ];
 
         share($data);
