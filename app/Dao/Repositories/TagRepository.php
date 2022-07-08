@@ -9,8 +9,6 @@ use Plugins\Notes;
 
 class TagRepository implements CrudInterface
 {
-    public $model;
-
     public function __construct()
     {
         $this->model = empty($this->model) ? new Tag() : $this->model;

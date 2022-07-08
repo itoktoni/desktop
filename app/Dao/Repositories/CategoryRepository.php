@@ -9,8 +9,6 @@ use Plugins\Notes;
 
 class CategoryRepository implements CrudInterface
 {
-    public $model;
-
     public function __construct()
     {
         $this->model = empty($this->model) ? new Category() : $this->model;

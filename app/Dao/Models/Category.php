@@ -6,6 +6,7 @@ use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\CategoryEntity;
 use App\Dao\Enums\BooleanType;
 use App\Dao\Traits\DataTableTrait;
+use App\Dao\Traits\OptionTrait;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 use Mehradsadeghi\FilterQueryString\FilterQueryString as FilterQueryString;
@@ -13,7 +14,7 @@ use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 
 class Category extends Model
 {
-    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, CategoryEntity;
+    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, CategoryEntity, OptionTrait;
 
     protected $table = 'category';
     protected $primaryKey = 'category_id';
@@ -36,7 +37,8 @@ class Category extends Model
     public $timestamps = false;
     public $incrementing = true;
 
-    public function fieldSearching(){
+    public function fieldSearching()
+    {
         return 'category_name';
     }
 
@@ -53,6 +55,21 @@ class Category extends Model
     public function scopeActive($query)
     {
         return $query->where($this->field_active(), BooleanType::Yes);
+    }
+
+    public static function optionId()
+    {
+        return '';
+    }
+
+    public static function optionName()
+    {
+        return '';
+    }
+
+    public static function optionData()
+    {
+        return '';
     }
 
 }

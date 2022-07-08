@@ -5,7 +5,6 @@ namespace App\Dao\Models;
 use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\ProductEntity;
 use App\Dao\Enums\BooleanType;
-use App\Dao\Enums\UserType;
 use App\Dao\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
@@ -61,7 +60,8 @@ class Product extends Model
     const UPDATED_BY = 'product_updated_by';
     const DELETED_BY = 'product_deleted_by';
 
-    public function fieldSearching(){
+    public function fieldSearching()
+    {
         return 'product_name';
     }
 
@@ -69,7 +69,8 @@ class Product extends Model
     {
         return [
             DataBuilder::build('product_id')->name('ID')->show(false),
-            DataBuilder::build('product_name')->name('Name')->sort(),
+            DataBuilder::build('category_name')->name('Category')->sort(),
+            DataBuilder::build('product_name')->name('Product Name')->sort(),
             DataBuilder::build('product_description')->name('Description')->sort(),
             DataBuilder::build('product_active')->name('Active')->show(false),
         ];
@@ -79,5 +80,10 @@ class Product extends Model
     {
         return $query->where($this->field_active(), BooleanType::Yes);
     }
+
+    public function has_category(){
+
+		return $this->hasOne(Category::class, Category::field_code(), $this::field_category_id());
+	}
 
 }

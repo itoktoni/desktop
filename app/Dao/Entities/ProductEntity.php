@@ -43,4 +43,24 @@ trait ProductEntity
     {
         return $this->{self::field_active()};
     }
+
+    public static function field_category_id()
+    {
+        return 'product_category_id';
+    }
+
+    public function getFieldCategoryIdAttribute()
+    {
+        return $this->{self::field_category_id()};
+    }
+
+    public static function field_category_name()
+    {
+        return 'category_name';
+    }
+
+    public function getFieldCategoryNameAttribute()
+    {
+        return $this->{self::field_category_name()};
+    }
 }

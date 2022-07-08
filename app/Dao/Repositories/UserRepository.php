@@ -9,8 +9,6 @@ use Plugins\Notes;
 
 class UserRepository implements CrudInterface
 {
-    public $model;
-
     public function __construct()
     {
         $this->model = empty($this->model) ? new User() : $this->model;

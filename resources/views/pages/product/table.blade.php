@@ -65,6 +65,7 @@
                     @forelse($data as $table)
                     <tr>
                         <td><input type="checkbox" class="checkbox" name="code[]" value="{{ $table->field_code }}"></td>
+                        <td>{{ $table->field_category_name ?? '' }}</td>
                         <td>{{ $table->field_name }}</td>
                         <td>{{ $table->field_description }}</td>
                         <td class="text-center">
