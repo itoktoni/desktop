@@ -78,4 +78,12 @@ class Template
         }
         return $string;
     }
+
+    public static function ajax(){
+        return request()->ajax() ? 'pages.master.modal' : 'pages.master.form';
+    }
+
+    public static function javascript($value){
+        return 'javascript.'.$value;
+    }
 }

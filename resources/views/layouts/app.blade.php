@@ -48,13 +48,7 @@
         </div>
         <!-- end::main-content -->
 
-        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                <div class="modal-content" id="modal-body">
-
-                </div>
-            </div>
-        </div>
+        @include('layouts.modal')
 
     </div>
     <!-- end::main -->
@@ -69,22 +63,22 @@
     <script src="{{ url('assets/js/app.js') }}"></script>
     <!-- <script src="{{ url('assets/js/proajax.js') }}"></script> -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js"></script> -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Pjax-Standalone/0.6.0/pjax-standalone.min.js"></script> -->
 
     <script>
-    if (Turbolinks.supported) {
-        Turbolinks.start()
-    } else {
-        console.warn("browser kamu tidak mendukung Turbolinks")
-    }
+    // if (Turbolinks.supported) {
+    //     Turbolinks.start()
+    // } else {
+    //     console.warn("browser kamu tidak mendukung Turbolinks")
+    // }
 
     // pjax.connect("pjax");
     </script>
 
     @yield('script')
-    @stack('script')
 
+    @include('layouts.alert')
 
 </body>
 

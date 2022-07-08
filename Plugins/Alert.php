@@ -5,7 +5,7 @@ namespace Plugins;
 class Alert
 {
     const create = 'Created';
-    const update = 'Succeed';
+    const update = 'Saved';
     const delete = 'Deleted';
     const failed = 'Failed';
     const error = 'Error';

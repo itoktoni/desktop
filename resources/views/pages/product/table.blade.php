@@ -93,5 +93,5 @@
 </div>
 @endsection
 
-@component('javascript.master')
+@component(Template::javascript('table'))
 @endcomponent

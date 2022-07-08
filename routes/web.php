@@ -13,6 +13,7 @@
 
 use App\Dao\Facades\RoutesFacades;
 use App\Dao\Models\Routes;
+use App\Http\Controllers\System\RoutesController;
 use Buki\AutoRoute\AutoRouteFacade as AutoRoute;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -33,7 +34,6 @@ Route::get('/', function () {
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 Route::get('/home', 'HomeController@index')->middleware(['auth', 'access'])->name('home');
-// AutoRoute::auto('routes', RoutesController::class, ['name' => 'routes']);
 
 $routes = Template::Routes();
 if ($routes) {

@@ -2,6 +2,7 @@
 
 namespace Plugins;
 
+use Coderello\SharedData\Facades\SharedData;
 use Illuminate\Support\Facades\Route;
 
 class Response
@@ -17,7 +18,7 @@ class Response
             return self::sentJson($data);
         }
         if(isset($data['name']) && $data['name'] == 'Update'){
-            return redirect()->route(config('module').'_index');
+            return redirect()->route(SharedData::get('template').'.getTable');
         }
 
         return redirect()->back();
