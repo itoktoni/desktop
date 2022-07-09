@@ -58,7 +58,7 @@
                             @endif
                         </th>
                         @endforeach
-                        <th class="text-center table-action">Action</th>
+                        <th class="text-center table-action-sm">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -75,10 +75,6 @@
                             <a class="badge badge-primary button-update"
                                 href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_code]) }}">
                                 Update
-                            </a>
-                            <a class="badge badge-danger button-delete" data="{{ $table->field_code }}"
-                                href="{{ route(SharedData::get('route').'.postDelete', ['code' => $table->field_code]) }}">
-                                Delete
                             </a>
                         </td>
                     </tr>
