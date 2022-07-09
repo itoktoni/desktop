@@ -24,16 +24,18 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
             => 'Please fill this input', 'required']) !!}
         </div>
 
-        <div class="form-group">
+        <div class="form-group {{ $errors->has('route_code') ? 'has-error' : '' }}">
             <label>Code</label>
             {!! Form::text('route_code', null, ['class' => 'form-control', 'id' => 'route_code', 'placeholder'
             => 'Please fill this input', 'required']) !!}
+            {!! $errors->first('route_code', '<p class="help-block">:message</p>') !!}
         </div>
 
-        <div class="form-group">
+        <div class="form-group {{ $errors->has('route_name') ? 'has-error' : '' }}">
             <label>Name</label>
             {!! Form::text('route_name', null, ['class' => 'form-control', 'id' => 'route_name', 'placeholder'
             => 'Please fill this input', 'required']) !!}
+            {!! $errors->first('route_name', '<p class="help-block">:message</p>') !!}
         </div>
 
         <div class="form-group">

@@ -13,7 +13,6 @@ class BuildingRequest extends FormRequest
     {
         return [
             'building_name' => 'required|min:3',
-            'building_contact_person'=> 'required',
         ];
     }
 }

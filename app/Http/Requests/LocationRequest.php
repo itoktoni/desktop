@@ -15,7 +15,6 @@ class LocationRequest extends FormRequest
     {
         return [
             'location_name' => 'required|min:3',
-            'location_description' => 'required|min:3',
         ];
     }
 }

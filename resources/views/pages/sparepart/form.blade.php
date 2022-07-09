@@ -18,10 +18,11 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group">
+        <div class="form-group {{ $errors->has('sparepart_name') ? 'has-error' : '' }}">
             <label>Name</label>
             {!! Form::text('sparepart_name', null, ['class' => 'form-control', 'id' => 'sparepart_name', 'placeholder'
             => 'Please fill this input', 'required']) !!}
+            {!! $errors->first('sparepart_name', '<p class="help-block">:message</p>') !!}
         </div>
 
         <div class="form-group">
