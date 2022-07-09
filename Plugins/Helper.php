@@ -504,12 +504,7 @@ class Helper
 
     public static function getMethod($class, $module = false)
     {
-        $className = 'Modules\\' . $module . '\\Http\\Controllers\\' . ucfirst(Str::camel($class . '_controller'));
-        if ($module) {
-        } else {
-            $className = 'App\\Http\\Controllers\\' . ucfirst(Str::camel($class . '_controller'));
-        }
-        $reflector = new \ReflectionClass($className);
+        $reflector = new \ReflectionClass($class);
         $methodNames = array();
         foreach ($reflector->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
             if(strpos($method->name, 'scope') !== false || strpos($method->name, 'Join') !== false || strpos($method->name, 'Relationship')){

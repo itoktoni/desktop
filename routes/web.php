@@ -25,14 +25,6 @@ Route::get('/', function () {
     return view('index');
 })->name('one');
 
-// NOTE: This is the route for the Routes page.
-// $user = new Routes();
-// $user->route_group = 'master';
-// $user->route_name = 'Category';
-// $user->route_slug = 'Category';
-// $user->route_controller = 'App\\Http\\Controllers\\Master\\CategoryController';
-// $user->save();
-
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 Route::get('/home', 'HomeController@index')->middleware(['auth', 'access'])->name('home');
 Route::get('/clear', function () {
@@ -43,6 +35,7 @@ Route::get('/clear', function () {
     Artisan::call('config:cache');
     dd("Cache is cleared");
 });
+// AutoRoute::auto('category', 'App\Http\Controllers\Master\CategoryController', ['name' => 'category']);
 
 $routes = Template::routes();
 if ($routes) {
@@ -50,7 +43,11 @@ if ($routes) {
     Route::prefix('admin')->group(function () use ($routes) {
         if ($routes) {
             foreach ($routes as $action_key => $action_data) {
-                Route::group(['prefix' => $action_key, 'middleware' => ['auth', 'access']], function () use ($action_data) {
+                Route::group(['prefix' => $action_key, 'middleware' => [
+                    'auth',
+                    'access',
+                    // 'can:isEditor'
+                    ]], function () use ($action_data) {
                     if ($action_array = $action_data->toArray()) {
                         foreach ($action_array as $action) {
                             AutoRoute::auto($action[Routes::field_code()], $action[Routes::field_controller()], ['name' => $action[Routes::field_code()]]);

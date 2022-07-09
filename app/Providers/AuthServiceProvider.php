@@ -30,5 +30,21 @@ class AuthServiceProvider extends ServiceProvider
         Auth::provider('cache-user', function() {
             return resolve(CacheableAuthUserServiceProvider::class);
         });
+
+        // https://devdojo.com/tnylea/laravel-gates
+        // https://medium.com/dotlocal/belajar-laravel-tutorial-menggunakan-authorization-dengan-gates-2130069bb6d2
+
+        // Gate::define('isAdmin', function($user) {
+        //     return $user->group == 'admin';
+        //  });
+        //  Gate::define('isEditor', function($user) {
+        //      return $user->group == 'manager';
+        //  });
+        //  Gate::define('isAuthor', function($user) {
+        //      return $user->group == 'user';
+        //  });
+        //  Gate::define('update-post', function ($user, $post) {
+        //      return $user->id === $post->user_id;
+        //  });
     }
 }
