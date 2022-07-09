@@ -5,6 +5,8 @@
 <div class="header-action">
     <nav>
         <input class="btn-check-m d-lg-none" type="checkbox">
+        <button href="{{ route(SharedData::get('route').'.postSort') }}"
+            class="btn btn-primary button-sort">Sort</button>
         <button href="{{ route(SharedData::get('route').'.postDelete') }}"
             class="btn btn-danger button-delete-all">Delete</button>
         <button href="{{ route(SharedData::get('route').'.getCreate') }}"
@@ -60,7 +62,7 @@
                         </th>
                         @endforeach
                         <th class="text-center">Active</th>
-                        <th class="text-center table-action">Action</th>
+                        <th class="text-center column-action">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,6 +74,9 @@
                         <td>{{ $table->field_code }}</td>
                         <td>{{ $table->field_name }}</td>
                         <td>{{ $table->field_controller }}</td>
+                        <td class="text-center">
+                            <input type="text" class="form-control form-control-sm text-center sort" key="{{ $table->field_code }}" value="{{ $table->field_sort }}">
+                        </td>
                         <td class="text-center">
                             <btn
                                 class="badge badge-{{ $table->field_active == BooleanType::Yes ? 'success' : 'warning' }}">

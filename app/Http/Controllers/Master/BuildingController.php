@@ -8,6 +8,7 @@ use App\Http\Services\CreateService;
 use App\Http\Services\SingleService;
 use App\Http\Services\UpdateService;
 use Plugins\Response;
+use App\Http\Controllers\System\MasterController;
 
 class BuildingController extends MasterController
 {

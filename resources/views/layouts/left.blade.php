@@ -8,24 +8,20 @@
                         Dashboard
                     </h5>
                 </a>
-
             </li>
+            @if($groups = SharedData::get('groups'))
+            @foreach($groups as $group_data)
             <li>
-                <a class="icon {{ request()->segment(2) == 'master' ? 'active' : '' }}" href="#" data-nav-target="#master">
-                    <i data-feather="database"></i>
+                <a class="icon {{ request()->segment(2) == $group_data->field_code ? 'active' : '' }}" href="#"
+                    data-nav-target="#{{ $group_data->field_code }}">
+                    <i data-feather="{{ $group_data->field_icon }}"></i>
                     <h5 class="text-center text-white">
-                        Master <br> Data
+                        {{ $group_data->field_name }}
                     </h5>
                 </a>
             </li>
-            <li>
-                <a class="icon {{ request()->segment(2) == 'system' ? 'active' : '' }}" href="#" data-nav-target="#system">
-                    <i data-feather="settings"></i>
-                    <h5 class="text-center text-white">
-                        System
-                    </h5>
-                </a>
-            </li>
+            @endforeach
+            @endif
             <li>
                 <a class="icon" href="#" data-nav-target="#elements">
                     <i data-feather="layers"></i>
@@ -80,10 +76,12 @@
                 @if($acc_data)
                 @foreach($acc_data as $acc)
                 @php
-                $check_access = request()->segment(2) == $acc[Routes::field_group()] && request()->segment(3) == $acc[Routes::field_code()];
+                $check_access = request()->segment(2) == $acc[Routes::field_group()] && request()->segment(3) ==
+                $acc[Routes::field_code()];
                 @endphp
                 <li>
-                    <a class="{{ $check_access ? 'active' : '' }}" href="{{ route($acc[Routes::field_code()].'.getTable') }}">
+                    <a class="{{ $check_access ? 'active' : '' }}"
+                        href="{{ route($acc[Routes::field_code()].'.getTable') }}">
                         <span>{{ $acc[Routes::field_name()] }}</span>
                     </a>
                 </li>

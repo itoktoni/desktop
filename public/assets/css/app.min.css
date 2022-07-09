@@ -12680,15 +12680,11 @@ a.badge,
   border: 0.5px solid #ff4444;
 }
 
-.table-action {
+.column-action {
   width: 150px;
 }
 
-.table-action-sm {
-  width: 80px;
-}
-
-.table-active {
+.column-active {
   width: 80px;
 }
 

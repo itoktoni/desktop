@@ -1,6 +1,6 @@
 @extends(Template::ajax())
 
-@section('title') Master Category @endsection
+@section('title') Master Roles @endsection
 
 @section('form')
 
@@ -18,22 +18,22 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group {{ $errors->has('category_name') ? 'has-error' : '' }}">
+        <div class="form-group {{ $errors->has('roles_name') ? 'has-error' : '' }}">
             <label>Name</label>
-            {!! Form::text('category_name', null, ['class' => 'form-control', 'id' => 'category_name', 'placeholder'
+            {!! Form::text('roles_name', null, ['class' => 'form-control', 'id' => 'roles_name', 'placeholder'
             => 'Please fill this input', 'required']) !!}
-            {!! $errors->first('category_name', '<p class="help-block">:message</p>') !!}
+            {!! $errors->first('roles_name', '<p class="help-block">:message</p>') !!}
         </div>
         <div class="form-group">
             <label>Active</label>
-            {{ Form::select('category_active', $status, null, ['class'=> 'form-control', 'id' => 'category_active']) }}
+            {{ Form::select('roles_active', $status, null, ['class'=> 'form-control', 'id' => 'roles_active']) }}
         </div>
     </div>
 
     <div class="col-md-6">
         <div class="form-group">
             <label>Description</label>
-            {!! Form::textarea('category_description', null, ['class' => 'form-control h-auto', 'id' => 'category_description',
+            {!! Form::textarea('roles_description', null, ['class' => 'form-control h-auto', 'id' => 'email',
             'placeholder' => 'Please fill this input', 'rows' => 5]) !!}
         </div>
     </div>

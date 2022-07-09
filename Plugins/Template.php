@@ -4,6 +4,7 @@ namespace Plugins;
 
 use App\Dao\Facades\RoutesFacades;
 use App\Dao\Models\Filters;
+use App\Dao\Models\Groups;
 use App\Dao\Models\Routes;
 use Illuminate\Support\Str;
 use hisorange\BrowserDetect\Parser as Browser;
@@ -88,6 +89,23 @@ class Template
         }
 
         return $filter;
+    }
+
+    public static function groups(){
+
+        if(Cache::has('groups')){
+            return Cache::get('groups');
+        }
+
+        $groups = [];
+        try {
+            $groups = Groups::sort(Groups::field_sort())->get();
+            Cache::put('groups', $groups, 12000);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        return $groups;
     }
 
     public static function extractColumn($value){

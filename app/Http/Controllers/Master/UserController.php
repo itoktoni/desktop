@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Master;
 
 use App\Dao\Repositories\UserRepository;
+use App\Http\Controllers\System\MasterController;
 use App\Http\Requests\UserRequest;
 use App\Http\Services\CreateService;
 use App\Http\Services\SingleService;

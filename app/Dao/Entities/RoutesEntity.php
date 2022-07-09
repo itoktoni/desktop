@@ -63,4 +63,14 @@ trait RoutesEntity
     {
         return $this->{self::field_description()};
     }
+
+    public static function field_sort()
+    {
+        return 'route_sort';
+    }
+
+    public function getFieldSortAttribute()
+    {
+        return $this->{self::field_sort()};
+    }
 }

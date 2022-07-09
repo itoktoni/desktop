@@ -18,10 +18,11 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group">
-            <label>Group</label>
-            {!! Form::text('route_group', null, ['class' => 'form-control', 'id' => 'route_group', 'placeholder'
-            => 'Please fill this input', 'required']) !!}
+        <div class="form-group {{ $errors->has('route_group') ? 'has-error' : '' }}">
+            <label>Category</label>
+            {!! Form::select('route_group', $data_groups, null, ['class' => 'form-control', 'id' =>
+            'product_name', 'placeholder' => '- Select Category -', 'required']) !!}
+            {!! $errors->first('route_group', '<p class="help-block">:message</p>') !!}
         </div>
 
         <div class="form-group {{ $errors->has('route_code') ? 'has-error' : '' }}">

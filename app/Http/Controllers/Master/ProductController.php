@@ -12,6 +12,7 @@ use App\Http\Services\UpdateService;
 use Coderello\SharedData\Facades\SharedData;
 use Plugins\Response;
 use Plugins\Template;
+use App\Http\Controllers\System\MasterController;
 
 class ProductController extends MasterController
 {

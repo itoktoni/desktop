@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Master;
+namespace App\Http\Controllers\System;
 
 use App\Dao\Enums\BooleanType;
 use App\Http\Controllers\Controller;

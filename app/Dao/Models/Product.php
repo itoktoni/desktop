@@ -77,7 +77,7 @@ class Product extends Model
             DataBuilder::build($this->field_category_name())->name('Category')->sort(),
             DataBuilder::build($this->field_name())->name('Product Name')->sort(),
             DataBuilder::build($this->field_description())->name('Description'),
-            DataBuilder::build($this->field_active())->name('Active')->class('text-center'),
+            DataBuilder::build($this->field_active())->name('Active')->class('column-active text-center'),
         ];
     }
 

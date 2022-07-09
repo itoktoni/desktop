@@ -58,7 +58,7 @@
                             @endif
                         </th>
                         @endforeach
-                        <th class="text-center table-action-sm">Action</th>
+                        <th class="text-center column-active">Action</th>
                     </tr>
                 </thead>
                 <tbody>

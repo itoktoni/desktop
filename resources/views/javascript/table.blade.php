@@ -114,13 +114,87 @@ $('body').on('click', '.button-delete', function(event) {
     });
 });
 
+$('body').on('click', '.button-sort', function(event) {
+    event.preventDefault();
+
+    var me = $(this),
+        url = me.attr('href'),
+        csrf_token = $('meta[name="csrf-token"]').attr('content');
+
+        var data = [];
+        $('.sort').each(function() {
+            data.push({'key' : $(this).attr('key'), 'value' : $(this).val()});
+        });
+
+    swal({
+        title: 'Are you sure want sort Data ?',
+        text: 'You won\'t be able to revert this!',
+        icon: "info",
+        buttons: true,
+    }).then((result) => {
+        if (result) {
+            $.ajax({
+                url: url,
+                type: "POST",
+                dataType: 'json',
+                data: {
+                    'sort': data
+                },
+                success: function(response) {
+                    if (response.status) {
+                        swal({
+                            icon: 'success',
+                            title: 'Success!',
+                            text: 'Data has been sorted!',
+                            timer: 3000
+                        }).then(function() {
+                            window.location.reload();
+                        });
+
+                    } else if (response.status == false) {
+                        swal({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: response.data
+                        });
+                    } else {
+                        swal({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: 'Data failed to deleted!'
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+
+                    if (xhr.status == 422) {
+
+                        swal({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Validation Error !'
+                        });
+                    } else {
+                        swal({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong!'
+                        });
+                    }
+                }
+            });
+        } else {
+
+        }
+    });
+});
+
 $('body').on('click', '.button-delete-all', function(event) {
     event.preventDefault();
 
     var me = $(this),
         url = me.attr('href'),
         id = me.attr('data'),
-        // data = $('#form-table').serializeArray(),
         csrf_token = $('meta[name="csrf-token"]').attr('content');
 
     var data = [];

@@ -27,11 +27,18 @@ $('#modal-btn-save').click(function (event) {
                 toastr.success('Data has been Saved !');
                 window.location.reload();
             }
-            else{
+            if(response.data){
                 swal({
                     icon : 'error',
                     title : 'Error!',
                     text : response.data,
+                });
+            }
+            else{
+                swal({
+                    icon : 'error',
+                    title : 'Error!',
+                    text : response,
                 });
             }
 

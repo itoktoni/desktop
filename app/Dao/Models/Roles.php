@@ -3,7 +3,7 @@
 namespace App\Dao\Models;
 
 use App\Dao\Builder\DataBuilder;
-use App\Dao\Entities\CategoryEntity;
+use App\Dao\Entities\RolesEntity;
 use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
 use App\Dao\Traits\OptionTrait;
@@ -12,22 +12,22 @@ use Kyslik\ColumnSortable\Sortable;
 use Mehradsadeghi\FilterQueryString\FilterQueryString as FilterQueryString;
 use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 
-class Category extends Model
+class Roles extends Model
 {
-    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, CategoryEntity, OptionTrait, ActiveTrait;
+    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, RolesEntity, ActiveTrait;
 
-    protected $table = 'category';
-    protected $primaryKey = 'category_id';
+    protected $table = 'roles';
+    protected $primaryKey = 'role_id';
 
     protected $fillable = [
-        'category_id',
-        'category_name',
-        'category_description',
-        'category_active',
+        'role_id',
+        'role_name',
+        'role_description',
+        'role_active',
     ];
 
     public $sortable = [
-        'category_name',
+        'role_name',
     ];
 
     protected $filters = [

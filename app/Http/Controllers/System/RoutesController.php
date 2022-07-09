@@ -3,61 +3,47 @@
 namespace App\Http\Controllers\System;
 
 use App\Dao\Enums\BooleanType;
+use App\Dao\Models\Groups;
 use App\Dao\Repositories\RoutesRepository;
-use App\DatabaseJson\Models\Routes;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\RoutesRequest;
+use App\Http\Requests\SortRequest;
 use App\Http\Services\CreateRoutesService;
-use App\Http\Services\DeleteService;
 use App\Http\Services\SingleService;
 use App\Http\Services\UpdateRoutesService;
 use Coderello\SharedData\Facades\SharedData;
-use Plugins\Helper;
+use Illuminate\Http\Request;
 use Plugins\Response;
 use Plugins\Template;
 
-class RoutesController extends Controller
+class RoutesController extends MasterController
 {
-    public static $service;
-    public static $repository;
-    public static $template;
-
     public function __construct(RoutesRepository $repository, SingleService $service)
     {
         self::$repository = self::$repository ?? $repository;
         self::$service = self::$service ?? $service;
-        self::$template = 'routes';
     }
 
     private function share($data = [])
     {
         $status = BooleanType::getOptions();
+        $data_groups = Groups::optionBuild();
         $view = [
             'status' => $status,
-            'template' => self::$template,
+            'data_groups' => $data_groups,
         ];
         return array_merge($view, $data);
     }
 
-    public function getData()
-    {
-        $query = self::$repository->dataRepository();
-        return $query;
-    }
-
-    public function getTable()
-    {
-        $data = $this->getData();
-        return view(Template::table(self::$template))->with($this->share([
-            'data' => $data,
-            'fields' => self::$repository->model->getShowField(),
-            'model' => new Routes()
-        ]));
-    }
-
     public function getCreate()
     {
-        return view(Template::form(self::$template))->with($this->share());
+        return view(Template::form(SharedData::get('template')))->with($this->share());
+    }
+
+    public function getUpdate($code)
+    {
+        return view(Template::form(SharedData::get('template')))->with($this->share([
+            'model' => $this->get($code),
+        ]));
     }
 
     public function postCreate(RoutesRequest $request, CreateRoutesService $service)
@@ -66,32 +52,15 @@ class RoutesController extends Controller
         return Response::redirectBack($data);
     }
 
-    public function getUpdate($code)
-    {
-        return view(Template::form(self::$template))->with($this->share([
-            'model' => $this->get($code),
-        ]));
-    }
-
     public function postUpdate($code, RoutesRequest $request, UpdateRoutesService $service)
     {
         $data = $service->update(self::$repository, $request, $code);
         return Response::redirectBack($data);
     }
 
-    public function get($code = null, $relation = null)
-    {
-        $relation = $relation ?? request()->get('relation');
-        if ($relation) {
-            return self::$service->get(self::$repository, $code, $relation);
-        }
-        return self::$service->get(self::$repository, $code);
-    }
+    public function postSort(SortRequest $request, UpdateRoutesService $service){
 
-    public function postDelete(RoutesRequest $request, DeleteService $service)
-    {
-        $code = $request->get('code');
-        $data = $service->delete(self::$repository, $code);
+        $data = $service->sort($request);
         return Response::redirectBack($data);
     }
 }

@@ -14,7 +14,7 @@ class CreateFiltersTable extends Migration
     public function up()
     {
         Schema::create('filters', function (Blueprint $table) {
-            $table->integer('filter_id', true);
+            $table->bigIncrements('filter_id');
             $table->string('filter_code')->nullable();
             $table->string('filter_table')->nullable();
             $table->string('filter_module')->nullable();

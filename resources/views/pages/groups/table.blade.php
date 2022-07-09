@@ -1,7 +1,7 @@
 @extends(Template::master())
 
 @section('header')
-<h4>List Master Product</h4>
+<h4>List Master Group</h4>
 <div class="header-action">
     <nav>
         <input class="btn-check-m d-lg-none" type="checkbox">
@@ -42,8 +42,8 @@
 
         {!! Form::close() !!}
 
-        <div class="table-responsive" id="table_data">
-            <table class="table table-bordered table-striped table-responsive-stack">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th class="column-checkbox">
@@ -58,6 +58,7 @@
                             @endif
                         </th>
                         @endforeach
+                        <th class="text-center column-active">Active</th>
                         <th class="text-center column-action">Action</th>
                     </tr>
                 </thead>
@@ -65,9 +66,13 @@
                     @forelse($data as $table)
                     <tr>
                         <td><input type="checkbox" class="checkbox" name="code[]" value="{{ $table->field_code }}"></td>
-                        <td>{{ $table->field_category_name ?? '' }}</td>
-                        <td>{{ $table->field_name }}</td>
-                        <td>{{ $table->field_description }}</td>
+                        <td class="">{{ $table->field_code }}</td>
+                        <td class="">{{ $table->field_name }}</td>
+                        <td class="">{{ $table->field_icon }}</td>
+                        <td class="">{{ $table->field_url }}</td>
+                        <td class="text-center">
+                            <input type="text" class="form-control form-control-sm text-center sort" key="{{ $table->field_code }}" value="{{ $table->field_sort }}">
+                        </td>
                         <td class="text-center">
                             <btn
                                 class="badge badge-{{ $table->field_active == BooleanType::Yes ? 'success' : 'warning' }}">

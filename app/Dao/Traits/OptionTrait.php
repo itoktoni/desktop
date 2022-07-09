@@ -13,10 +13,6 @@ trait OptionTrait
     public static $option_name;
     public static $option_id;
 
-    abstract public static function optionId(): string;
-    abstract public static function optionName(): string;
-    abstract public static function optionData();
-
     public static function setId($value = false)
     {
         self::$option_id = self::optionId();

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\System;
 
 use App\Dao\Enums\UserType;
 use App\Dao\Repositories\FiltersRepository;
-use App\Http\Controllers\Master\MasterController;
 use App\Http\Requests\FiltersRequest;
 use App\Http\Services\CreateService;
 use App\Http\Services\SingleService;

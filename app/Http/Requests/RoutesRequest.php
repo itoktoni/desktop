@@ -23,6 +23,7 @@ class RoutesRequest extends FormRequest
     {
         return [
             'route_name' => 'required|min:1',
+            'route_group' => 'required',
             'route_controller' => 'required',
         ];
     }

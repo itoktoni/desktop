@@ -16,6 +16,7 @@ class CreateTableRoutes extends Migration
         Schema::create('routes', function (Blueprint $table) {
             $table->string('route_code')->primary();
             $table->string('route_name');
+            $table->tinyInteger('route_sort')->default(0);
             $table->string('route_group');
             $table->string('route_controller');
             $table->tinyInteger('route_active')->default(1);
