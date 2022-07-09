@@ -13,9 +13,7 @@ class SparepartRequest extends FormRequest
     {
         return [
             'sparepart_name' => 'required|min:3',
-            'sparepart_stock'=> 'required',
-            'sparepart_location_id' => 'required',
-            'sparepart_description'=> 'required',
+            'sparepart_stock'=> 'integer',
         ];
     }
 }
