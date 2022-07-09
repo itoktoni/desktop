@@ -62,9 +62,13 @@ class Template
             return Cache::get('routes');
         }
 
-        $routes = Routes::select(RoutesFacades::getSelectedField())->get()->groupBy(RoutesFacades::field_group());
-
-        Cache::put('routes', $routes, 1200);
+        $routes = [];
+        try {
+            $routes = Routes::select(RoutesFacades::getSelectedField())->get()->groupBy(RoutesFacades::field_group());
+            Cache::put('routes', $routes, 1200);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
 
         return $routes;
     }
@@ -75,9 +79,13 @@ class Template
             return Cache::get('filter');
         }
 
-        $filter = Filters::get();
-
-        Cache::put('filter', $filter, 12000);
+        $filter = [];
+        try {
+            $filter = Filters::get();
+            Cache::put('filter', $filter, 12000);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
 
         return $filter;
     }

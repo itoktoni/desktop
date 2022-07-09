@@ -31,10 +31,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        share([
-            'access' => Template::routes(),
-            'filter' => Template::filter(),
-        ]);
+        try {
+            share([
+                'access' => Template::routes(),
+                'filter' => Template::filter(),
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
         Paginator::defaultView('vendor/pagination/custom');
 
         /**
