@@ -5,6 +5,7 @@ namespace App\Dao\Models;
 use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\RoutesEntity;
 use App\Dao\Enums\BooleanType;
+use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
@@ -13,7 +14,7 @@ use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 
 class Routes extends Model
 {
-    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, RoutesEntity;
+    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, RoutesEntity, ActiveTrait, ActiveTrait;
 
     protected $table = 'routes';
     protected $primaryKey = 'route_code';
@@ -42,24 +43,18 @@ class Routes extends Model
     public $incrementing = false;
 
     public function fieldSearching(){
-        return 'route_name';
+        return $this->field_name();
     }
 
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build('route_group')->name('Group')->sort(),
-            DataBuilder::build('route_code')->name('Code')->sort(),
-            DataBuilder::build('route_name')->name('Name')->sort(),
-            DataBuilder::build('route_controller')->name('Controller')->sort(),
-            DataBuilder::build('route_description')->name('Description')->show(false),
-            DataBuilder::build('route_active')->name('Active')->class('col-md-1')->show(false),
+            DataBuilder::build($this->field_group())->name('Group')->sort(),
+            DataBuilder::build($this->field_code())->name('Code')->sort(),
+            DataBuilder::build($this->field_name())->name('Name')->sort(),
+            DataBuilder::build($this->field_controller())->name('Controller')->sort(),
+            DataBuilder::build($this->field_description())->name('Description')->show(false),
+            DataBuilder::build($this->field_active())->name('Active')->show(false),
         ];
     }
-
-    public function scopeActive($query)
-    {
-        return $query->where($this->field_active(), BooleanType::Yes);
-    }
-
 }

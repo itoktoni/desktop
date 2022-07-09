@@ -5,6 +5,8 @@ namespace App\Dao\Models;
 use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\CategoryEntity;
 use App\Dao\Enums\BooleanType;
+use App\Dao\Scopes\FilterScope;
+use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
 use App\Dao\Traits\OptionTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +16,7 @@ use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 
 class Category extends Model
 {
-    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, CategoryEntity, OptionTrait;
+    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, CategoryEntity, OptionTrait, ActiveTrait;
 
     protected $table = 'category';
     protected $primaryKey = 'category_id';
@@ -39,22 +41,17 @@ class Category extends Model
 
     public function fieldSearching()
     {
-        return 'category_name';
+        return $this->field_name();
     }
 
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build('category_id')->name('ID')->show(false),
-            DataBuilder::build('category_name')->name('Name')->sort(),
-            DataBuilder::build('category_description')->name('Description'),
-            DataBuilder::build('category_active')->name('Active')->show(false),
+            DataBuilder::build($this->field_code())->name('ID')->show(false),
+            DataBuilder::build($this->field_name())->name('Name')->sort(),
+            DataBuilder::build($this->field_description())->name('Description'),
+            DataBuilder::build($this->field_active())->name('Active')->show(false),
         ];
-    }
-
-    public function scopeActive($query)
-    {
-        return $query->where($this->field_active(), BooleanType::Yes);
     }
 
     public static function optionId()

@@ -15,6 +15,7 @@ use App\Dao\Facades\RoutesFacades;
 use App\Dao\Models\Routes;
 use App\Http\Controllers\System\RoutesController;
 use Buki\AutoRoute\AutoRouteFacade as AutoRoute;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
@@ -34,8 +35,16 @@ Route::get('/', function () {
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 Route::get('/home', 'HomeController@index')->middleware(['auth', 'access'])->name('home');
+Route::get('/clear', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+    Artisan::call('clear-compiled');
+    Artisan::call('config:cache');
+    dd("Cache is cleared");
+});
 
-$routes = Template::Routes();
+$routes = Template::routes();
 if ($routes) {
 
     Route::prefix('admin')->group(function () use ($routes) {

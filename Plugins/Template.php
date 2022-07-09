@@ -3,6 +3,7 @@
 namespace Plugins;
 
 use App\Dao\Facades\RoutesFacades;
+use App\Dao\Models\Filters;
 use App\Dao\Models\Routes;
 use Illuminate\Support\Str;
 use hisorange\BrowserDetect\Parser as Browser;
@@ -55,7 +56,7 @@ class Template
         return Browser::isMobile() ? 'table-responsive-stack' : 'table-responsive';
     }
 
-    public static function Routes(){
+    public static function routes(){
 
         if(Cache::has('routes')){
             return Cache::get('routes');
@@ -66,6 +67,19 @@ class Template
         Cache::put('routes', $routes, 1200);
 
         return $routes;
+    }
+
+    public static function filter(){
+
+        if(Cache::has('filter')){
+            return Cache::get('filter');
+        }
+
+        $filter = Filters::get();
+
+        Cache::put('filter', $filter, 12000);
+
+        return $filter;
     }
 
     public static function extractColumn($value){

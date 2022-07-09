@@ -12,17 +12,13 @@ class MasterRepository implements CrudInterface
 
     public function dataRepository()
     {
-        try {
-            $query = $this->model
-                ->select($this->model->getSelectedField())
-                ->active()->sortable()->filter();
+        $query = $this->model
+            ->select($this->model->getSelectedField())
+            ->active()->sortable()->filter();
 
-            $query = env('PAGINATION_SIMPLE') ? $query->simplePaginate(env('PAGINATION_NUMBER')) : $query->paginate(env('PAGINATION_NUMBER'));
+        $query = env('PAGINATION_SIMPLE') ? $query->simplePaginate(env('PAGINATION_NUMBER')) : $query->paginate(env('PAGINATION_NUMBER'));
 
-            return $query;
-        } catch (QueryException $ex) {
-            return Notes::error($ex->getMessage());
-        }
+        return $query;
     }
 
     public function saveRepository($request)

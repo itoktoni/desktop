@@ -10,16 +10,16 @@ class UserType extends Enum implements LocalizedEnum
 {
     use StatusTrait;
 
-    const Type                  =  null;
-    const Active               =  1;
-    const NonActive            =  2;
+    const Type                 =  null;
+    const FromUser               =  1;
+    const CustomField            =  2;
 
     public static function colors()
     {
         return [
             self::Type => ColorType::Primary,
-            self::Active => ColorType::Danger,
-            self::NonActive => ColorType::Danger,
+            self::FromUser => ColorType::Danger,
+            self::CustomField => ColorType::Danger,
         ];
     }
 

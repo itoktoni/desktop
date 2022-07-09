@@ -2,6 +2,8 @@
 
 namespace App\Dao\Traits;
 
+use App\Dao\Enums\BooleanType;
+use App\Dao\Scopes\FilterScope;
 use Facades\App\Models\User;
 use Illuminate\Support\Facades\Cache;
 use Facades\Modules\System\Dao\Models\Filter;
@@ -11,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 trait DataTableTrait
 {
     abstract public function fieldDatatable(): array;
-    abstract public function fieldSearching(): string;
 
     public function getSelectedField(): array
     {
@@ -25,9 +26,22 @@ trait DataTableTrait
 
     public function filter($query, $value)
     {
+        return $this->queryFilter($query);
+    }
+
+    public function queryFilter($query){
         $search = request()->get('search');
+        $value = request()->get('filter') ?? $this->fieldSearching();
+
         if($search){
-            return $query->where($value ?? $this->fieldSearching(), 'like', "%{$search}%");
+            $query = $query->where($value, 'like', "%{$search}%");
         }
+
+        return $query;
+    }
+
+    public function fieldSearching(){
+
+        return $this->getKeyName();
     }
 }

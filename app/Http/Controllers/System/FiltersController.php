@@ -1,0 +1,56 @@
+<?php
+
+namespace App\Http\Controllers\System;
+
+use App\Dao\Enums\UserType;
+use App\Dao\Repositories\FiltersRepository;
+use App\Http\Controllers\Master\MasterController;
+use App\Http\Requests\FiltersRequest;
+use App\Http\Services\CreateService;
+use App\Http\Services\SingleService;
+use App\Http\Services\UpdateService;
+use Coderello\SharedData\Facades\SharedData;
+use Plugins\Response;
+use Plugins\Template;
+
+class FiltersController extends MasterController
+{
+    public function __construct(FiltersRepository $repository, SingleService $service)
+    {
+        self::$repository = self::$repository ?? $repository;
+        self::$service = self::$service ?? $service;
+    }
+
+    private function share($data = [])
+    {
+        $status = UserType::getOptions();
+        $view = [
+            'status' => $status,
+        ];
+        return array_merge($view, $data);
+    }
+
+    public function getCreate()
+    {
+        return view(Template::form(SharedData::get('template')))->with($this->share());
+    }
+
+    public function getUpdate($code)
+    {
+        return view(Template::form(SharedData::get('template')))->with($this->share([
+            'model' => $this->get($code),
+        ]));
+    }
+
+    public function postCreate(FiltersRequest $request, CreateService $service)
+    {
+        $data = $service->save(self::$repository, $request);
+        return Response::redirectBack($data);
+    }
+
+    public function postUpdate($code, FiltersRequest $request, UpdateService $service)
+    {
+        $data = $service->update(self::$repository, $request, $code);
+        return Response::redirectBack($data);
+    }
+}

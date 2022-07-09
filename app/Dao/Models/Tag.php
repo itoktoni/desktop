@@ -5,6 +5,7 @@ namespace App\Dao\Models;
 use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\TagEntity;
 use App\Dao\Enums\UserType;
+use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
@@ -13,7 +14,7 @@ use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 
 class Tag extends Model
 {
-    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, TagEntity;
+    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, TagEntity, ActiveTrait;
 
     protected $table = 'tag';
     protected $primaryKey = 'tag_code';
@@ -35,14 +36,14 @@ class Tag extends Model
     public $incrementing = false;
 
     public function fieldSearching(){
-        return 'tag_name';
+        return $this->field_name();
     }
 
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build('tag_code')->name('Tag Code'),
-            DataBuilder::build('tag_name')->name('Tag Name')->sort(),
+            DataBuilder::build($this->field_code())->name('Tag Code'),
+            DataBuilder::build($this->field_name())->name('Tag Name')->sort(),
         ];
     }
 }

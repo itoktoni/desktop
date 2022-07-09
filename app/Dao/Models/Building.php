@@ -5,6 +5,7 @@ namespace App\Dao\Models;
 use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\BuildingEntity;
 use App\Dao\Enums\UserType;
+use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
@@ -12,7 +13,7 @@ use Mehradsadeghi\FilterQueryString\FilterQueryString as FilterQueryString;
 
 class Building extends Model
 {
-    use Sortable, FilterQueryString, DataTableTrait, BuildingEntity;
+    use Sortable, FilterQueryString, DataTableTrait, BuildingEntity, ActiveTrait;
 
     protected $table = 'building';
     protected $primaryKey = 'building_id';
@@ -46,18 +47,18 @@ class Building extends Model
     }
 
     public function fieldSearching(){
-        return 'building_name';
+        return $this->field_name();
     }
 
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build('building_id')->name('ID')->show(false),
-            DataBuilder::build('building_name')->name('Name')->sort(),
-            DataBuilder::build('building_description')->name('Description'),
-            DataBuilder::build('building_contact_person')->name('Contact Person'),
-            DataBuilder::build('building_contact_phone')->name('Contact Phone'),
-            DataBuilder::build('building_address')->name('Address'),
+            DataBuilder::build($this->field_code())->name('ID')->show(false),
+            DataBuilder::build($this->field_name())->name('Name')->sort(),
+            DataBuilder::build($this->field_description())->name('Description'),
+            DataBuilder::build($this->field_contact_person())->name('Contact Person'),
+            DataBuilder::build($this->field_contact_phone())->name('Contact Phone'),
+            DataBuilder::build($this->field_address())->name('Address'),
         ];
     }
 }

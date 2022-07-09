@@ -1,7 +1,7 @@
 @extends(Template::master())
 
 @section('header')
-<h4>List Master Product</h4>
+<h4>List Master Filter</h4>
 <div class="header-action">
     <nav>
         <input class="btn-check-m d-lg-none" type="checkbox">
@@ -43,7 +43,7 @@
         {!! Form::close() !!}
 
         <div class="table-responsive" id="table_data">
-            <table class="table table-bordered table-striped table-responsive-stack">
+            <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th class="column-checkbox">
@@ -65,14 +65,12 @@
                     @forelse($data as $table)
                     <tr>
                         <td><input type="checkbox" class="checkbox" name="code[]" value="{{ $table->field_code }}"></td>
-                        <td>{{ $table->field_category_name ?? '' }}</td>
                         <td>{{ $table->field_name }}</td>
-                        <td>{{ $table->field_description }}</td>
-                        <td class="text-center">
-                            <btn
-                                class="badge badge-{{ $table->field_active == BooleanType::Yes ? 'success' : 'warning' }}">
-                                {{ BooleanType::getDescription($table->field_active) }}</btn>
-                        </td>
+                        <td>{{ $table->field_table }}</td>
+                        <td>{{ $table->field_field }}</td>
+                        <td>{{ $table->field_function }}</td>
+                        <td>{{ $table->field_operator }}</td>
+                        <td>{{ $table->field_value }}</td>
                         <td class="text-center">
                             <a class="badge badge-primary button-update"
                                 href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_code]) }}">

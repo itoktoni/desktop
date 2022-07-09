@@ -5,6 +5,7 @@ namespace App\Dao\Models;
 use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\LocationEntity;
 use App\Dao\Enums\UserType;
+use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
@@ -13,7 +14,7 @@ use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 
 class Location extends Model
 {
-    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, LocationEntity;
+    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, LocationEntity, ActiveTrait;
 
     protected $table = 'location';
     protected $primaryKey = 'location_id';
@@ -36,15 +37,15 @@ class Location extends Model
     public $incrementing = false;
 
     public function fieldSearching(){
-        return 'location_name';
+        return $this->field_name();
     }
 
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build('location_id')->show(false),
-            DataBuilder::build('location_name')->name('Name')->sort(),
-            DataBuilder::build('location_description')->name('Description'),
+            DataBuilder::build($this->field_code())->name('Code')->show(false),
+            DataBuilder::build($this->field_name())->name('Name')->sort(),
+            DataBuilder::build($this->field_description())->name('Description'),
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace App\Dao\Models;
 
 use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\UserEntity;
-use App\Dao\Enums\UserType;
+use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -14,7 +14,7 @@ use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 
 class User extends Authenticatable
 {
-    use Notifiable, Sortable, FilterQueryString, Sanitizable, DataTableTrait, UserEntity;
+    use Notifiable, Sortable, FilterQueryString, Sanitizable, DataTableTrait, UserEntity, ActiveTrait;
 
     protected $table = 'users';
     protected $primaryKey = 'id';
@@ -49,22 +49,16 @@ class User extends Authenticatable
     public $incrementing = true;
 
     public function fieldSearching(){
-        return 'name';
+        return $this->field_name();
     }
 
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build('id')->name('ID')->show(false),
-            DataBuilder::build('name')->name('Name')->sort(),
-            DataBuilder::build('email')->name('Email'),
-            DataBuilder::build('active')->name('Active')->show(false),
+            DataBuilder::build($this->field_code())->name('ID')->show(false),
+            DataBuilder::build($this->field_name())->name('Name')->sort(),
+            DataBuilder::build($this->field_email())->name('Email'),
+            DataBuilder::build($this->field_active())->name('Active')->show(false),
         ];
     }
-
-    public function scopeActive($query)
-    {
-        return $query->where($this->field_active(), UserType::Active);
-    }
-
 }
