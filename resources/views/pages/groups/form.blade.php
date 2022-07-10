@@ -68,5 +68,5 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 @endsection
 
 @section('javascript')
-@include(Template::javascript('form'))
+@include(Template::components('form'))
 @endsection

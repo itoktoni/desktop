@@ -4,6 +4,7 @@ namespace App\Http\Controllers\System;
 
 use App\Dao\Enums\BooleanType;
 use App\Dao\Models\Groups;
+use App\Dao\Models\Menus;
 use App\Dao\Repositories\RoutesRepository;
 use App\Http\Requests\RoutesRequest;
 use App\Http\Requests\SortRequest;
@@ -12,6 +13,7 @@ use App\Http\Services\SingleService;
 use App\Http\Services\UpdateRoutesService;
 use Coderello\SharedData\Facades\SharedData;
 use Illuminate\Http\Request;
+use Plugins\Helper;
 use Plugins\Response;
 use Plugins\Template;
 
@@ -41,8 +43,12 @@ class RoutesController extends MasterController
 
     public function getUpdate($code)
     {
+        $data = $this->get($code);
+        $method = Helper::getMethod($data->field_controller, $code);
         return view(Template::form(SharedData::get('template')))->with($this->share([
-            'model' => $this->get($code),
+            'model' => $data,
+            'method' => $method,
+            'menu' => new Menus(),
         ]));
     }
 

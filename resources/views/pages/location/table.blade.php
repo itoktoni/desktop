@@ -84,13 +84,12 @@
             </table>
         </div>
 
-        <nav class="container-pagination">
-            {!! $data->appends(\Request::except('page'))->render() !!}
-        </nav>
+        @component(Template::components('pagination'), ['data' => $data])
+        @endcomponent
 
     </div>
 </div>
 @endsection
 
-@component(Template::javascript('table'))
+@component(Template::components('table'))
 @endcomponent

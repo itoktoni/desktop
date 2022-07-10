@@ -2,6 +2,7 @@
 
 namespace Plugins;
 
+use App\Dao\Models\Menus;
 use ChrisKonnertz\StringCalc\StringCalc;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -344,6 +345,10 @@ class Helper
         return Str::of($value)->snake('_')->replace('_', ' ')->title();
     }
 
+    public static function convertArrayToJson($array){
+        return json_decode (json_encode ($array), FALSE);
+    }
+
     public static function createTag($data, $implode = false)
     {
         $string = '';
@@ -504,20 +509,41 @@ class Helper
 
     public static function getMethod($class, $module = false)
     {
-        $reflector = new \ReflectionClass($class);
-        $methodNames = array();
-        foreach ($reflector->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
-            if(strpos($method->name, 'scope') !== false || strpos($method->name, 'Join') !== false || strpos($method->name, 'Relationship')){
+        // $reflector = new \ReflectionClass($class);
+        $function = get_class_methods($class);
+        // dd(get_class_methods($class));
+        $methodNames = [];
+        $unset = [
+            '__construct',
+            'getData',
+            'get',
+            'middleware',
+            'getMiddleware',
+            'callAction',
+            '__call',
+            'authorize',
+            'authorizeForUser',
+            'authorizeResource',
+            'dispatchNow',
+            'validateWith',
+            'validate',
+            'validateWithBag',
+        ];
+        foreach ($function as $method) {
+            if((!in_array($method, $unset) && str_contains($method, 'get')) || str_contains($method, 'Delete')){
+                $function_name = str_replace('_', ' ', Str::snake($method));
+                $name = ucfirst(str_replace('get ','', $function_name));
+                $name = ucfirst(str_replace('Post ','', $name));
 
-            }
-            else{
-
-                if (($method->class == $reflector->getName() && $method->name != '__construct')) {
-                    $methodNames[] = $method->name;
-                }
+                $methodNames[] = [
+                    Menus::field_code() => $method,
+                    Menus::field_name() => $name,
+                    Menus::field_module() => $module,
+                    Menus::field_reset() => 1,
+                    Menus::field_show() => str_contains($method, 'Create') ? 1 : 0,
+                ];
             }
         }
-
         return $methodNames;
     }
 

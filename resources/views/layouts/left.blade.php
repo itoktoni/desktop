@@ -78,12 +78,29 @@
                 @php
                 $check_access = request()->segment(2) == $acc[Routes::field_group()] && request()->segment(3) ==
                 $acc[Routes::field_code()];
+                $sub_menu = $acc->has_menu->where('menu_show', 1);
+                $check_sub_menu = $sub_menu->count() ?? 0;
+                $highlight_module = request()->segment(3) == $acc[Routes::field_code()];
                 @endphp
-                <li>
+                <li class="{{ $highlight_module ? 'open' : '' }}">
                     <a class="{{ $check_access ? 'active' : '' }}"
                         href="{{ route($acc[Routes::field_code()].'.getTable') }}">
                         <span>{{ $acc[Routes::field_name()] }}</span>
                     </a>
+                    @if($check_sub_menu)
+                    <ul>
+                        @foreach($sub_menu as $menu)
+                        @php
+                        $menu_code = str_replace('get_','', Str::snake($menu->field_code));
+                        @endphp
+                        <li>
+                            <a class="{{ $check_access && request()->segment(4) == $menu_code ? 'active' : '' }}"
+                                href="{{ route($acc[Routes::field_code()].'.'.$menu->field_code) }}">{{ $menu->field_name }}
+                            </a>
+                        </li>
+                        @endforeach
+                    </ul>
+                    @endif
                 </li>
                 @endforeach
                 @endif

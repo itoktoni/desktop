@@ -9,6 +9,7 @@ use App\Dao\Models\Routes;
 use Illuminate\Support\Str;
 use hisorange\BrowserDetect\Parser as Browser;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Session;
 
 class Template
 {
@@ -65,7 +66,8 @@ class Template
 
         $routes = [];
         try {
-            $routes = Routes::select(RoutesFacades::getSelectedField())->get()->groupBy(RoutesFacades::field_group());
+            $routes = Routes::select(RoutesFacades::getSelectedField())
+            ->with('has_menu')->get()->groupBy(RoutesFacades::field_group());
             Cache::put('routes', $routes, 1200);
         } catch (\Throwable $th) {
             //throw $th;
@@ -92,19 +94,17 @@ class Template
     }
 
     public static function groups(){
-
         if(Cache::has('groups')){
             return Cache::get('groups');
         }
 
         $groups = [];
         try {
-            $groups = Groups::sort(Groups::field_sort())->get();
+            $groups = Groups::orderBy(Groups::field_sort(), 'ASC')->get();
             Cache::put('groups', $groups, 12000);
         } catch (\Throwable $th) {
             //throw $th;
         }
-
         return $groups;
     }
 
@@ -123,7 +123,7 @@ class Template
         return request()->ajax() ? 'pages.master.modal' : 'pages.master.form';
     }
 
-    public static function javascript($value){
-        return 'javascript.'.$value;
+    public static function components($value){
+        return 'components.'.$value;
     }
 }

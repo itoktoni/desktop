@@ -5,8 +5,10 @@
 <div class="header-action">
     <nav>
         <input class="btn-check-m d-lg-none" type="checkbox">
-        <button href="{{ route(SharedData::get('route').'.postDelete') }}" class="btn btn-danger button-delete-all">Delete</button>
-        <button href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-success button-create">Create</button>
+        <button href="{{ route(SharedData::get('route').'.postDelete') }}"
+            class="btn btn-danger button-delete-all">Delete</button>
+        <button href="{{ route(SharedData::get('route').'.getCreate') }}"
+            class="btn btn-success button-create">Create</button>
     </nav>
 </div>
 @endsection
@@ -30,7 +32,8 @@
 
         <div class="form-group col">
             <div class="input-group">
-                <input type="text" name="search" value="{{ request()->get('search') }}" class="form-control" placeholder="Searching Data">
+                <input type="text" name="search" value="{{ request()->get('search') }}" class="form-control"
+                    placeholder="Searching Data">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">Search</button>
                 </div>
@@ -68,10 +71,12 @@
                         <td>{{ $table->field_description }}</td>
                         <td>{{ $table->field_stock }}</td>
                         <td class="text-center">
-                            <a class="badge badge-primary button-update" href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_code]) }}">
+                            <a class="badge badge-primary button-update"
+                                href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_code]) }}">
                                 Update
                             </a>
-                            <a class="badge badge-danger button-delete" data="{{ $table->field_code }}" href="{{ route(SharedData::get('route').'.postDelete', ['code' => $table->field_code]) }}">
+                            <a class="badge badge-danger button-delete" data="{{ $table->field_code }}"
+                                href="{{ route(SharedData::get('route').'.postDelete', ['code' => $table->field_code]) }}">
                                 Delete
                             </a>
                         </td>
@@ -82,13 +87,12 @@
             </table>
         </div>
 
-        <nav class="container-pagination">
-            {!! $data->appends(\Request::except('page'))->render() !!}
-        </nav>
+        @component(Template::components('pagination'), ['data' => $data])
+        @endcomponent
 
     </div>
 </div>
 @endsection
 
-@component(Template::javascript('table'))
+@component(Template::components('table'))
 @endcomponent

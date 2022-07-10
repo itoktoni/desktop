@@ -60,4 +60,8 @@ class Routes extends Model
             DataBuilder::build($this->field_active())->name('Active')->show(false),
         ];
     }
+
+    public function has_menu(){
+		return $this->hasMany(Menus::class, Menus::field_module(), $this::field_code());
+	}
 }

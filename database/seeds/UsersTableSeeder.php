@@ -1,9 +1,8 @@
 <?php
 
 use App\Dao\Models\User;
-use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
-use Illuminate\Support\Str;
+use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
 {
@@ -14,15 +13,18 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker  = Faker::create('id_ID');
-        User::create([
-            'name' => $faker->name,
-            'email' => $faker->email,
-            'active' => 1,
-            'group' => 'admin',
-            'email_verified_at' => now(),
-            'password' => bcrypt('secret'),
-            'remember_token' => null,
-        ]);
+        foreach (range(1, 100) as $item) {
+
+            $faker = Faker::create('id_ID');
+            User::create([
+                'name' => $faker->name,
+                'email' => $faker->email,
+                'active' => 1,
+                'group' => 'admin',
+                'email_verified_at' => now(),
+                'password' => bcrypt('secret'),
+                'remember_token' => null,
+            ]);
+        }
     }
 }

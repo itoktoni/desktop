@@ -66,7 +66,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if($data)
                     @forelse($data as $table)
                     <tr>
                         <td><input type="checkbox" class="checkbox" name="code[]" value="{{ $table->field_code }}"></td>
@@ -75,7 +74,8 @@
                         <td>{{ $table->field_name }}</td>
                         <td>{{ $table->field_controller }}</td>
                         <td class="text-center">
-                            <input type="text" class="form-control form-control-sm text-center sort" key="{{ $table->field_code }}" value="{{ $table->field_sort }}">
+                            <input type="text" class="form-control form-control-sm text-center sort"
+                                key="{{ $table->field_code }}" value="{{ $table->field_sort }}">
                         </td>
                         <td class="text-center">
                             <btn
@@ -83,7 +83,7 @@
                                 {{ BooleanType::getDescription($table->field_active) }}</btn>
                         </td>
                         <td class="text-center">
-                            <a class="badge badge-primary button-update"
+                            <a class="badge badge-primary"
                                 href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_code]) }}">
                                 Update
                             </a>
@@ -93,19 +93,18 @@
                             </a>
                         </td>
                     </tr>
-                    @endforeach
-                    @endif
+                    @empty
+                    @endforelse
                 </tbody>
             </table>
         </div>
 
-        <nav class="container-pagination">
-            {!! $data->appends(\Request::except('page'))->render() !!}
-        </nav>
+        @component(Template::components('pagination'), ['data' => $data])
+        @endcomponent
 
     </div>
 </div>
 @endsection
 
-@component(Template::javascript('table'))
+@component(Template::components('table'))
 @endcomponent

@@ -59,7 +59,7 @@ if ($routes) {
     });
 }
 
-Route::prefix('dashboards')->name('dashboards.')->group(function () {
+Route::prefix('dashboards')->name('dashboards.')->middleware('access')->group(function () {
 
     Route::get('one', function () {
         return view('index');
@@ -85,7 +85,7 @@ Route::prefix('dashboards')->name('dashboards.')->group(function () {
 
 // Apps
 
-Route::prefix('apps')->name('apps.')->group(function () {
+Route::prefix('apps')->name('apps.')->middleware('access')->group(function () {
 
     Route::get('chat', function () {
         return view('chat');
@@ -111,7 +111,7 @@ Route::prefix('apps')->name('apps.')->group(function () {
 
 // Elements
 
-Route::prefix('elements')->name('elements.')->group(function () {
+Route::prefix('elements')->name('elements.')->middleware('access')->group(function () {
 
     // Basic
 
@@ -332,7 +332,7 @@ Route::prefix('elements')->name('elements.')->group(function () {
 
 // Pages
 
-Route::prefix('pages')->name('pages.')->group(function () {
+Route::prefix('pages')->name('pages.')->middleware('access')->group(function () {
     Route::get('login', function () {
         return view('login');
     })->name('login');

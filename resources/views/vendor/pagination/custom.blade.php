@@ -1,6 +1,6 @@
 <?php
 // config
-$link_limit = 7; // maximum number of links (a little bit inaccurate, but will be ok for now)
+$link_limit = env('PAGINATION_NUMBER', 7); // maximum number of links (a little bit inaccurate, but will be ok for now)
 ?>
 
 @if ($paginator->lastPage() > 1)

@@ -45,6 +45,16 @@ class AccessMiddleware
 
         share($data);
 
+        try {
+            share([
+                'access' => Template::routes(),
+                'filter' => Template::filter(),
+                'groups' => Template::groups(),
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
         return $next($request);
     }
 }

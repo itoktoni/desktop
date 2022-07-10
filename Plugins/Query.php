@@ -1,15 +1,16 @@
 <?php
 
-namespace Modules\System\Plugins;
-
-use Modules\Item\Dao\Enums\CategoryType;
-use Modules\Item\Dao\Facades\CategoryFacades;
+namespace Plugins;
 
 class Query
 {
-    public static function getCategoryType($id)
+    public static function upsert($model, $where, $data)
     {
-        $category = CategoryFacades::find($id);
-        return $category && $category->category_type == CategoryType::Accesories ? true : false;
+        $batch = $model->where($where)->first();
+        if ($batch) {
+            $batch->update($data);
+        } else {
+            $model->create($data);
+        }
     }
 }

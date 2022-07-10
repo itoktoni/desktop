@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Dao\Models\Menus;
 use App\Dao\Models\Routes;
 use App\Dao\Traits\ValidationTrait;
 use Illuminate\Foundation\Http\FormRequest;
@@ -13,9 +14,21 @@ class RoutesRequest extends FormRequest
     public function prepareForValidation()
     {
         $this->offsetUnset('_token');
+
+        $map = collect($this->detail)->map(function ($item){
+            $data[Menus::field_code()] = $item['temp_id'];
+            $data[Menus::field_module()] = $item['temp_module'];
+            $data[Menus::field_name()] = $item['temp_name'];
+            $data[Menus::field_reset()] = $item['temp_reset'];
+            $data[Menus::field_show()] = $item['temp_show'];
+            $data[Menus::field_active()] = $item['temp_active'];
+            return $data;
+        });
+
         $this->merge([
             Routes::field_active() => $this->{Routes::field_active()} == "1" ? 1 : 0,
             Routes::field_controller() => addcslashes($this->{Routes::field_controller()},''),
+            'items' => $map->toArray()
         ]);
     }
 

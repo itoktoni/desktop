@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -18,7 +18,7 @@ class LoginController extends Controller
     | redirecting them to your home screen. The controller uses a trait
     | to conveniently provide its functionality to your applications.
     |
-    */
+     */
 
     use AuthenticatesUsers;
 
@@ -81,15 +81,14 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
+        if (Session::has('routes')) {
+            Session::forget(['routes', 'groups', 'filter']);
+            Session::flush();
+        }
         $this->guard()->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
-        if(Cache::has('routes')){
-            Cache::forget('routes');
-        }
 
         return $this->loggedOut($request) ?: redirect('/');
     }

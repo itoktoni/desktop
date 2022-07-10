@@ -33,5 +33,5 @@
 @endsection
 
 @section('javascript')
-@include(Template::javascript('form'))
+@include(Template::components('form'))
 @endsection
