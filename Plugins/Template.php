@@ -60,15 +60,15 @@ class Template
 
     public static function routes(){
 
-        if(Cache::has('routes')){
-            return Cache::get('routes');
+        if(Session::has('routes')){
+            return Session::get('routes');
         }
 
         $routes = [];
         try {
             $routes = Routes::select(RoutesFacades::getSelectedField())
             ->with('has_menu')->get()->groupBy(RoutesFacades::field_group());
-            Cache::put('routes', $routes, 1200);
+            Session::put('routes', $routes, 1200);
         } catch (\Throwable $th) {
             //throw $th;
         }
@@ -78,14 +78,14 @@ class Template
 
     public static function filter(){
 
-        if(Cache::has('filter')){
-            return Cache::get('filter');
+        if(Session::has('filter')){
+            return Session::get('filter');
         }
 
         $filter = [];
         try {
             $filter = Filters::get();
-            Cache::put('filter', $filter, 12000);
+            Session::put('filter', $filter, 12000);
         } catch (\Throwable $th) {
             //throw $th;
         }
@@ -94,14 +94,14 @@ class Template
     }
 
     public static function groups(){
-        if(Cache::has('groups')){
-            return Cache::get('groups');
+        if(Session::has('groups')){
+            return Session::get('groups');
         }
 
         $groups = [];
         try {
             $groups = Groups::orderBy(Groups::field_sort(), 'ASC')->get();
-            Cache::put('groups', $groups, 12000);
+            Session::put('groups', $groups, 12000);
         } catch (\Throwable $th) {
             //throw $th;
         }
