@@ -134,6 +134,16 @@ class DatabaseSeeder extends Seeder
                 'route_description' => NULL,
                 'route_sort' => 0,
             ),
+            11 =>
+            array (
+                'route_code' => 'unit',
+                'route_name' => 'Unit',
+                'route_group' => 'master',
+                'route_controller' => 'App\\Http\\Controllers\\Master\\UnitController',
+                'route_active' => 1,
+                'route_description' => NULL,
+                'route_sort' => 0,
+            ),
         ));
 
         DB::table('groups')->delete();
