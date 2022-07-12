@@ -13,13 +13,11 @@ class LocationTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach (range(1, 20) as $item) {
 
             $faker = Faker::create('id_ID');
             Location::create([
                'location_name'=>$faker->word,
                'location_description'=>$faker->text($maxNbChars = 200),
             ]);
-        }
     }
 }

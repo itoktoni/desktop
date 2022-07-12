@@ -17,14 +17,11 @@ class SparepartTableSeeder extends Seeder
 
             $faker = Faker::create('id_ID');
             Sparepart::create([
-               'sparepart_name'=>$faker->word,
-               'sparepart_location_id'=>$faker->numberBetween($min = 1, $max = 600),
-               'sparepart_description'=>$faker->text($maxNbChars = 200),
-               'sparepart_stock'=>$faker->randomDigit,
+                'sparepart_name' => $faker->word,
+                'sparepart_location_id' => $faker->numberBetween($min = 1, $max = 10),
+                'sparepart_description' => $faker->text($maxNbChars = 200),
+                'sparepart_stock' => $faker->randomDigit,
             ]);
         }
     }
 }
-
-
-

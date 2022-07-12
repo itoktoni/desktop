@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             $this->call(LocationTableSeeder::class);
             $this->call(TagTableSeeder::class);
             $this->call(SparepartTableSeeder::class);
+            $this->call(CategoryTableSeeder::class);
         }
 
         DB::table('routes')->delete();

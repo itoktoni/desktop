@@ -15,7 +15,7 @@ class TagTable extends Migration
     {
         Schema::create('tag', function (Blueprint $table) {
             $table->string('tag_name');
-            $table->string('tag_code');
+            $table->string('tag_code')->primary();
         });
     }
 
