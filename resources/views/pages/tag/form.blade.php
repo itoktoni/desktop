@@ -15,6 +15,13 @@
 @section('container')
 
 <div class="row">
+   <div class="col-md-6">
+        <div class="form-group  {{ $errors->has('tag_code') ? 'has-error' : '' }}">
+            <label>Tag Name</label>
+            {!! Form::text('tag_code', null, ['class' => 'form-control', 'id' => 'tag_code', 'readonly' ]) !!}
+            {!! $errors->first('tag_code', '<p class="help-block">:message</p>') !!}
+        </div>
+    </div>
     <div class="col-md-6">
         <div class="form-group  {{ $errors->has('tag_name') ? 'has-error' : '' }}">
             <label>Tag Name</label>
@@ -34,4 +41,13 @@
 
 @section('javascript')
 @include(Template::components('form'))
+
+<script>
+   function FuctionTagCode() {
+  var tag_name = document.getElementById("tag_name");
+  var tag_code = document.getElementById("tag_code");
+  tag_code.value = tag_name.value.toUpperCase().replaceAll(" ", "_");
+  //   console.log(tag_code.value);
+}
+</script>
 @endsection
