@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach (range(1, 100) as $item) {
+        foreach (range(1, 20) as $item) {
 
             $faker = Faker::create('id_ID');
             User::create([
