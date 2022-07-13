@@ -13,7 +13,6 @@ class BuildingTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach (range(1, 20) as $item) {
 
             $faker = Faker::create('id_ID');
             Building::create([
@@ -23,6 +22,5 @@ class BuildingTableSeeder extends Seeder
                'building_contact_phone' => $faker->phoneNumber,
                'building_address' => $faker->address,
             ]);
-        }
     }
 }
