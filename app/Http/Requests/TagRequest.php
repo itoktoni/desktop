@@ -14,7 +14,7 @@ class TagRequest extends FormRequest
     public function prepareForValidation()
     {
         $this->merge([
-            Tag::field_code() => Str::snake($this->{Tag::field_name()})
+            Tag::field_code() => strtoupper(Str::snake($this->{Tag::field_name()})),
         ]);
     }
 

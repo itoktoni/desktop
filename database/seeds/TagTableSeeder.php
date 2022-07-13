@@ -13,14 +13,11 @@ class TagTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach (range(1, 20) as $item) {
-
-            $faker = Faker::create();
-            $fakers = str_replace(".","",$faker->sentence(2)); 
-            Tag::create([
-               'tag_code'=>$fakers,
-               'tag_name'=>strtoupper(str_replace(" ","_",$fakers)),
-            ]);
-        }
+        $faker = Faker::create();
+        $fakers = str_replace(".", "", $faker->sentence(2));
+        Tag::create([
+            'tag_name' => $fakers,
+            'tag_code' => strtoupper(str_replace(" ", "_", $fakers)),
+        ]);
     }
 }
