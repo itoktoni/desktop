@@ -18,7 +18,7 @@ class ProductTableSeeder extends Seeder
             'product_name' => $faker->name,
             'product_code' => $faker->randomDigit(),
             'product_category_id' => $faker->numberBetween($min = 1, $max = 10),
-            'product_brand_id' => 1,
+            'product_brand_id' => $faker->numberBetween($min = 1, $max = 10),
             'product_unit_id' => 1,
             'product_description' => $faker->text($maxNbChars = 100),
             'product_created_at' => date('Y-m-d H:i:s'),
