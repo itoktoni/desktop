@@ -47,9 +47,9 @@ class Sparepart extends Model
         return [
             DataBuilder::build($this->field_code())->name('ID')->show(false),
             DataBuilder::build($this->field_name())->name('Name')->sort(),
-            DataBuilder::build($this->field_location_id())->name('Location ID'),
+            DataBuilder::build($this->field_location_id())->name('Location ID')->show(false),
             DataBuilder::build($this->field_description())->name('Description'),
-            DataBuilder::build($this->field_stock())->name('Stock')->sort(),
+            DataBuilder::build($this->field_stock())->name('Stock')->class('column-active')->sort(),
         ];
     }
 }

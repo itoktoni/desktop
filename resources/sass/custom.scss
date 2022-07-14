@@ -175,3 +175,15 @@ a{
 .header{
 	border-top: 0.5px solid whitesmoke;
 }
+
+.table{
+	thead{
+		th {
+			vertical-align: middle;
+		}
+	}
+
+	th, td {
+		vertical-align: middle;
+	}
+}

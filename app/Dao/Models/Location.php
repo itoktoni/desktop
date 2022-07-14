@@ -7,6 +7,7 @@ use App\Dao\Entities\LocationEntity;
 use App\Dao\Enums\UserType;
 use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
+use App\Dao\Traits\OptionTrait;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 use Mehradsadeghi\FilterQueryString\FilterQueryString as FilterQueryString;
@@ -14,7 +15,7 @@ use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 
 class Location extends Model
 {
-    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, LocationEntity, ActiveTrait;
+    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, LocationEntity, ActiveTrait, OptionTrait;
 
     protected $table = 'location';
     protected $primaryKey = 'location_id';

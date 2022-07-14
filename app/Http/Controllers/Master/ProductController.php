@@ -22,15 +22,14 @@ class ProductController extends MasterController
         self::$service = self::$service ?? $service;
     }
 
-    private function share($data = [])
+    protected function beforeForm()
     {
         $status = BooleanType::getOptions();
         $category = Category::optionBuild();
-        $view = [
+        self::$share = [
             'status' => $status,
             'category' => $category,
         ];
-        return array_merge($view, $data);
     }
 
     public function postCreate(ProductRequest $request, CreateService $service)
@@ -43,17 +42,5 @@ class ProductController extends MasterController
     {
         $data = $service->update(self::$repository, $request, $code);
         return Response::redirectBack($data);
-    }
-
-    public function getCreate()
-    {
-        return view(Template::form(SharedData::get('template')))->with($this->share());
-    }
-
-    public function getUpdate($code)
-    {
-        return view(Template::form(SharedData::get('template')))->with($this->share([
-            'model' => $this->get($code),
-        ]));
     }
 }

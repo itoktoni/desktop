@@ -12700,6 +12700,15 @@ a.badge,
   border-top: 0.5px solid whitesmoke;
 }
 
+.table thead th {
+  vertical-align: middle;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+}
+
 #nav-icon1 {
   width: 60px;
   height: 45px;
