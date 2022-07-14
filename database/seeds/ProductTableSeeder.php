@@ -1,8 +1,8 @@
 <?php
 
 use App\Dao\Models\Product;
-use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use Illuminate\Database\Seeder;
 
 class ProductTableSeeder extends Seeder
 {
@@ -13,14 +13,14 @@ class ProductTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker  = Faker::create('id_ID');
+        $faker = Faker::create('id_ID');
         Product::create([
             'product_name' => $faker->name,
             'product_code' => $faker->randomDigit(),
-            'product_category_id' => 1,
+            'product_category_id' => $faker->numberBetween($min = 1, $max = 10),
             'product_brand_id' => 1,
             'product_unit_id' => 1,
-            'product_description' => $faker->word(3),
+            'product_description' => $faker->text($maxNbChars = 100),
             'product_created_at' => date('Y-m-d H:i:s'),
             'product_active' => 1,
         ]);

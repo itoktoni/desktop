@@ -12,13 +12,20 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
+
+    // https://github.com/fzaninotto/Faker#formatters
     public function run()
     {
         factory(User::class, 1)->create();
         $faker = Faker::create('id_ID');
-        foreach (range(0, 5) as $integer) {
+        foreach (range(0, 9) as $integer) {
             $this->call(UsersTableSeeder::class);
             $this->call(ProductTableSeeder::class);
+            $this->call(BuildingTableSeeder::class);
+            $this->call(LocationTableSeeder::class);
+            $this->call(TagTableSeeder::class);
+            $this->call(SparepartTableSeeder::class);
+            $this->call(CategoryTableSeeder::class);
         }
 
         DB::table('routes')->delete();
