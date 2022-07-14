@@ -25,7 +25,7 @@ class Brand extends Model
     ];
 
     public $sortable = [
-        'Brand_name',
+        'brand_name',
     ];
 
     protected $filters = [
