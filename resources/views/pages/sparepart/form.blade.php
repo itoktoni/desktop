@@ -26,9 +26,9 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
         </div>
 
         <div class="form-group">
-            <label>Location ID</label>
-            {!! Form::text('sparepart_location_id', null, ['class' => 'form-control', 'id' => 'sparepart_location_id',
-            'placeholder' => 'Please fill this input']) !!}
+            <label>Location</label>
+            {!! Form::select('sparepart_location_id', $location, null, ['class' => 'form-control', 'id' =>
+            'sparepart_location_id', 'placeholder' => '- Select Location -', 'required']) !!}
         </div>
 
         <div class="form-group">

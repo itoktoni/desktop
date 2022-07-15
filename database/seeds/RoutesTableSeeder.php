@@ -1,42 +1,28 @@
 <?php
 
-use App\Dao\Models\User;
-use Faker\Factory as Faker;
+use App\Dao\Models\Routes;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class DatabaseSeeder extends Seeder
+class RoutesTableSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
+    public $model;
 
-    // https://github.com/fzaninotto/Faker#formatters
+    public function __construct(Routes $model)
+    {
+        $this->model = $model;
+    }
+
     public function run()
     {
-        factory(User::class, 1)->create();
-        $faker = Faker::create('id_ID');
+        $this->model->delete();
 
-        $this->call(GroupsTableSeeder::class);
-        $this->call(RoutesTableSeeder::class);
-
-        foreach (range(0, 9) as $integer) {
-            $this->call(UsersTableSeeder::class);
-            $this->call(ProductTableSeeder::class);
-            $this->call(BuildingTableSeeder::class);
-            $this->call(LocationTableSeeder::class);
-            $this->call(TagTableSeeder::class);
-            $this->call(SparepartTableSeeder::class);
-            $this->call(CategoryTableSeeder::class);
-            $this->call(BrandTableSeeder::class);
-        }
-
-        DB::table('routes')->delete();
-
-        DB::table('routes')->insert(array(
-            0 => array(
+        $this->model->insert(array(
+            [
                 'route_code' => 'building',
                 'route_name' => 'Building',
                 'route_group' => 'master',
@@ -44,7 +30,7 @@ class DatabaseSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 1,
-            ),
+            ],
             1 => array(
                 'route_code' => 'category',
                 'route_name' => 'Category',
@@ -153,7 +139,7 @@ class DatabaseSeeder extends Seeder
                 'route_description' => null,
                 'route_sort' => 0,
             ),
-            13 => array(
+            12 => array(
                 'route_code' => 'supplier',
                 'route_name' => 'Supplier',
                 'route_group' => 'master',
@@ -164,33 +150,5 @@ class DatabaseSeeder extends Seeder
             ),
         ));
 
-        DB::table('groups')->delete();
-
-        DB::table('groups')->insert(array(
-            0 => array(
-                'group_code' => 'app',
-                'group_name' => 'App',
-                'group_icon' => 'package',
-                'group_url' => null,
-                'group_sort' => 2,
-                'group_active' => 1,
-            ),
-            1 => array(
-                'group_code' => 'master',
-                'group_name' => 'Master Data',
-                'group_icon' => 'database',
-                'group_url' => null,
-                'group_sort' => 1,
-                'group_active' => 1,
-            ),
-            2 => array(
-                'group_code' => 'system',
-                'group_name' => 'System',
-                'group_icon' => 'settings',
-                'group_url' => null,
-                'group_sort' => 3,
-                'group_active' => 1,
-            ),
-        ));
     }
 }

@@ -15,14 +15,19 @@ class MasterController extends Controller
     public static $service;
     public static $repository;
     public static $template;
+    public static $share = [];
 
-    private function share($data = [])
+    protected function beforeForm(){}
+    protected function beforeCreate(){}
+    protected function beforeUpdate($code){}
+
+    protected function share($data = [])
     {
         $status = BooleanType::getOptions();
         $view = [
             'status' => $status,
         ];
-        return array_merge($view, $data);
+        return self::$share = array_merge($view, $data, self::$share);
     }
 
     public function getData()
@@ -42,11 +47,15 @@ class MasterController extends Controller
 
     public function getCreate()
     {
+        $this->beforeForm();
+        $this->beforeCreate();
         return view(Template::form(SharedData::get('template')))->with($this->share());
     }
 
     public function getUpdate($code)
     {
+        $this->beforeForm();
+        $this->beforeUpdate($code);
         return view(Template::form(SharedData::get('template')))->with($this->share([
             'model' => $this->get($code),
         ]));

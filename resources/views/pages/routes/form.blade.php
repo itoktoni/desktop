@@ -61,6 +61,7 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
         </div>
     </div>
 </div>
+@if(isset($model))
 
 <hr>
 
@@ -116,6 +117,8 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
         </div>
     </div>
 </div>
+
+@endif
 
 @endsection
 

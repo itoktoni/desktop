@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\Dao\Models\Location;
 use App\Dao\Repositories\SparepartRepository;
 use App\Http\Requests\SparepartRequest;
 use App\Http\Services\CreateService;
@@ -16,6 +17,14 @@ class SparepartController extends MasterController
     {
         self::$repository = self::$repository ?? $repository;
         self::$service = self::$service ?? $service;
+    }
+
+    protected function beforeForm()
+    {
+        $location = Location::optionBuild();
+        self::$share = [
+            'location' => $location,
+        ];
     }
 
     public function postCreate(SparepartRequest $request, CreateService $service)

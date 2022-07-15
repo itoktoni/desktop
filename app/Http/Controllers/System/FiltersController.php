@@ -20,27 +20,6 @@ class FiltersController extends MasterController
         self::$service = self::$service ?? $service;
     }
 
-    private function share($data = [])
-    {
-        $status = UserType::getOptions();
-        $view = [
-            'status' => $status,
-        ];
-        return array_merge($view, $data);
-    }
-
-    public function getCreate()
-    {
-        return view(Template::form(SharedData::get('template')))->with($this->share());
-    }
-
-    public function getUpdate($code)
-    {
-        return view(Template::form(SharedData::get('template')))->with($this->share([
-            'model' => $this->get($code),
-        ]));
-    }
-
     public function postCreate(FiltersRequest $request, CreateService $service)
     {
         $data = $service->save(self::$repository, $request);

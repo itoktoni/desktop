@@ -11,11 +11,8 @@ use App\Http\Requests\SortRequest;
 use App\Http\Services\CreateRoutesService;
 use App\Http\Services\SingleService;
 use App\Http\Services\UpdateRoutesService;
-use Coderello\SharedData\Facades\SharedData;
-use Illuminate\Http\Request;
 use Plugins\Helper;
 use Plugins\Response;
-use Plugins\Template;
 
 class RoutesController extends MasterController
 {
@@ -25,31 +22,26 @@ class RoutesController extends MasterController
         self::$service = self::$service ?? $service;
     }
 
-    private function share($data = [])
+    protected function beforeForm()
     {
         $status = BooleanType::getOptions();
         $data_groups = Groups::optionBuild();
-        $view = [
+        self::$share = [
             'status' => $status,
             'data_groups' => $data_groups,
         ];
-        return array_merge($view, $data);
     }
 
-    public function getCreate()
-    {
-        return view(Template::form(SharedData::get('template')))->with($this->share());
-    }
-
-    public function getUpdate($code)
+    protected function beforeUpdate($code)
     {
         $data = $this->get($code);
         $method = Helper::getMethod($data->field_controller, $code);
-        return view(Template::form(SharedData::get('template')))->with($this->share([
+
+        self::$share = array_merge([
             'model' => $data,
             'method' => $method,
             'menu' => new Menus(),
-        ]));
+        ], self::$share);
     }
 
     public function postCreate(RoutesRequest $request, CreateRoutesService $service)
@@ -64,7 +56,8 @@ class RoutesController extends MasterController
         return Response::redirectBack($data);
     }
 
-    public function postSort(SortRequest $request, UpdateRoutesService $service){
+    public function postSort(SortRequest $request, UpdateRoutesService $service)
+    {
 
         $data = $service->sort($request);
         return Response::redirectBack($data);
