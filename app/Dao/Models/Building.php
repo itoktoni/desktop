@@ -4,27 +4,27 @@ namespace App\Dao\Models;
 
 use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\BuildingEntity;
-use App\Dao\Enums\UserType;
 use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
+use App\Dao\Traits\OptionTrait;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 use Mehradsadeghi\FilterQueryString\FilterQueryString as FilterQueryString;
 
 class Building extends Model
 {
-    use Sortable, FilterQueryString, DataTableTrait, BuildingEntity, ActiveTrait;
+    use Sortable, FilterQueryString, DataTableTrait, BuildingEntity, ActiveTrait, OptionTrait;
 
     protected $table = 'building';
     protected $primaryKey = 'building_id';
 
     protected $fillable = [
-      'building_id',
-      'building_name',
-      'building_description',
-      'building_contact_person',
-      'building_contact_phone',
-      'building_address',
+        'building_id',
+        'building_name',
+        'building_description',
+        'building_contact_person',
+        'building_contact_phone',
+        'building_address',
     ];
 
     public $sortable = [
@@ -41,12 +41,13 @@ class Building extends Model
     public function filter($query, $value)
     {
         $search = request()->get('search');
-        if($search){
+        if ($search) {
             return $query->where($value ?? $this->fieldSearching(), 'like', "%{$search}%");
         }
     }
 
-    public function fieldSearching(){
+    public function fieldSearching()
+    {
         return $this->field_name();
     }
 

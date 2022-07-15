@@ -140,24 +140,22 @@ class DatabaseSeeder extends Seeder
                 'route_description' => null,
                 'route_sort' => 0,
             ),
-            11 =>
-            array (
+            11 => array(
                 'route_code' => 'unit',
                 'route_name' => 'Unit',
                 'route_group' => 'master',
                 'route_controller' => 'App\\Http\\Controllers\\Master\\UnitController',
                 'route_active' => 1,
-                'route_description' => NULL,
+                'route_description' => null,
                 'route_sort' => 0,
             ),
-            12 =>
-            array (
+            13 => array(
                 'route_code' => 'supplier',
                 'route_name' => 'Supplier',
                 'route_group' => 'master',
                 'route_controller' => 'App\\Http\\Controllers\\Master\\SupplierController',
                 'route_active' => 1,
-                'route_description' => NULL,
+                'route_description' => null,
                 'route_sort' => 0,
             ),
         ));
