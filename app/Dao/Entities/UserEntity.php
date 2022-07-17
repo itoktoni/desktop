@@ -43,4 +43,24 @@ trait UserEntity
     {
         return $this->{self::field_active()};
     }
+
+    public static function field_role_id()
+    {
+        return 'role';
+    }
+
+    public function getFieldRoleIdAttribute()
+    {
+        return $this->{self::field_role_id()};
+    }
+
+    public static function field_role_name()
+    {
+        return 'role_name';
+    }
+
+    public function getFieldRoleNameAttribute()
+    {
+        return $this->{self::field_role_name()};
+    }
 }

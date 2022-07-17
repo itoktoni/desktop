@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\Dao\Models\Roles;
 use App\Dao\Repositories\UserRepository;
 use App\Http\Controllers\System\MasterController;
 use App\Http\Requests\UserRequest;
 use App\Http\Services\CreateService;
 use App\Http\Services\SingleService;
 use App\Http\Services\UpdateService;
+use Coderello\SharedData\Facades\SharedData;
 use Plugins\Response;
+use Plugins\Template;
 
 class UserController extends MasterController
 {
@@ -16,6 +19,16 @@ class UserController extends MasterController
     {
         self::$repository = self::$repository ?? $repository;
         self::$service = self::$service ?? $service;
+    }
+
+    public function share($data = [])
+    {
+        $roles = Roles::optionBuild();
+        $view = [
+            'roles' => $roles,
+        ];
+        //   dd($roles);
+        return array_merge($view, $data);
     }
 
     public function postCreate(UserRequest $request, CreateService $service)
@@ -28,5 +41,17 @@ class UserController extends MasterController
     {
         $data = $service->update(self::$repository, $request, $code);
         return Response::redirectBack($data);
+    }
+
+    public function getCreate()
+    {
+        return view(Template::form(SharedData::get('template')))->with($this->share());
+    }
+
+    public function getUpdate($code)
+    {
+        return view(Template::form(SharedData::get('template')))->with($this->share([
+            'model' => $this->get($code),
+        ]));
     }
 }
