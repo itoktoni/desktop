@@ -18,12 +18,6 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group {{ $errors->has('supplier_id') ? 'has-error' : '' }}">
-            <label>Supplier ID</label>
-            {!! Form::text('supplier_id', null, ['class' => 'form-control', 'id' => 'supplier_id', 'placeholder'
-            => 'Please fill this input', 'required']) !!}
-            {!! $errors->first('supplier_id', '<p class="help-block">:message</p>') !!}
-        </div>
         <div class="form-group {{ $errors->has('supplier_name') ? 'has-error' : '' }}">
             <label>Supplier Name</label>
             {!! Form::text('supplier_name', null, ['class' => 'form-control', 'id' => 'supplier_name', 'placeholder'
@@ -37,11 +31,6 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
         </div>
     </div>
     <div class="col-md-6">
-        <div class="form-group">
-            <label>Supplier Address</label>
-            {!! Form::text('supplier_address', null, ['class' => 'form-control', 'id' => 'supplier_address',
-            'placeholder' => 'Please fill this input', 'required']) !!}
-        </div>
         <div class="form-group {{ $errors->has('supplier_email') ? 'has-error' : '' }}">
             <label>Supplier Email</label>
             {!! Form::text('supplier_email', null, ['class' => 'form-control', 'id' => 'supplier_email', 'placeholder' => 'Please fill this input']) !!}
@@ -50,6 +39,13 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
         <div class="form-group">
             <label>Supplier Phone</label>
             {!! Form::text('supplier_phone', null, ['class' => 'form-control', 'id' => 'supplier_phone',
+            'placeholder' => 'Please fill this input', 'required']) !!}
+        </div>
+    </div>
+    <div class="col-md-12">
+      <div class="form-group">
+            <label>Supplier Address</label>
+            {!! Form::text('supplier_address', null, ['class' => 'form-control', 'id' => 'supplier_address',
             'placeholder' => 'Please fill this input', 'required']) !!}
         </div>
     </div>

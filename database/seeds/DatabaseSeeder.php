@@ -32,6 +32,8 @@ class DatabaseSeeder extends Seeder
             $this->call(SparepartTableSeeder::class);
             $this->call(CategoryTableSeeder::class);
             $this->call(BrandTableSeeder::class);
+            $this->call(UnitTableSeeder::class);
+            $this->call(SupplierTableSeeder::class);
         }
 
         DB::table('routes')->delete();
