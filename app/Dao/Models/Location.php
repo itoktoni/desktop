@@ -4,6 +4,7 @@ namespace App\Dao\Models;
 
 use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\LocationEntity;
+use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
 use App\Dao\Traits\OptionTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +15,7 @@ use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 
 class Location extends Model
 {
-    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, LocationEntity, PowerJoins;
+    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, LocationEntity, OptionTrait, PowerJoins, ActiveTrait;
 
     protected $table = 'location';
     protected $primaryKey = 'location_id';
