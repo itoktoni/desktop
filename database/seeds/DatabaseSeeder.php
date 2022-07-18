@@ -135,7 +135,7 @@ class DatabaseSeeder extends Seeder
                 'route_description' => null,
                 'route_sort' => 0,
             ),
-            12 => array(
+            11 => array(
                 'route_code' => 'brand',
                 'route_name' => 'Brand',
                 'route_group' => 'master',
@@ -144,7 +144,7 @@ class DatabaseSeeder extends Seeder
                 'route_description' => null,
                 'route_sort' => 0,
             ),
-            11 => array(
+            12 => array(
                 'route_code' => 'unit',
                 'route_name' => 'Unit',
                 'route_group' => 'master',
