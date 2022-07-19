@@ -49,12 +49,12 @@ class Sparepart extends Model
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build($this->field_code())->name('ID')->show(false),
-            DataBuilder::build($this->field_name())->name('Name')->sort(),
-            DataBuilder::build($this->field_location_id())->name('Location ID')->show(false),
-            DataBuilder::build($this->field_product_name())->name('Product'),
-            DataBuilder::build($this->field_description())->name('Description'),
-            DataBuilder::build($this->field_stock())->name('Stock')->class('column-active')->sort(),
+            DataBuilder::build(self::field_code())->name('ID')->show(false),
+            DataBuilder::build(self::field_name())->name('Name')->sort(),
+            DataBuilder::build(self::field_location_id())->name('Location ID')->show(false),
+            DataBuilder::build(self::field_product_name())->name('Product')->sort(),
+            DataBuilder::build(self::field_description())->name('Description'),
+            DataBuilder::build(self::field_stock())->name('Stock')->class('column-active')->sort(),
         ];
     }
 
