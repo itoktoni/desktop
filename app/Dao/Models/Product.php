@@ -7,6 +7,7 @@ use App\Dao\Entities\ProductEntity;
 use App\Dao\Enums\BooleanType;
 use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
+use App\Dao\Traits\OptionTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kirschbaum\PowerJoins\PowerJoins;
@@ -17,7 +18,7 @@ use Wildside\Userstamps\Userstamps;
 
 class Product extends Model
 {
-    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, ProductEntity, Userstamps, SoftDeletes, ActiveTrait, PowerJoins;
+    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, ProductEntity, Userstamps, SoftDeletes, ActiveTrait, PowerJoins, OptionTrait;
 
     protected $table = 'product';
     protected $primaryKey = 'product_id';

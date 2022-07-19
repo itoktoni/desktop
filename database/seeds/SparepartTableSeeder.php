@@ -21,6 +21,7 @@ class SparepartTableSeeder extends Seeder
                 'sparepart_location_id' => $faker->numberBetween($min = 1, $max = 10),
                 'sparepart_description' => $faker->text($maxNbChars = 200),
                 'sparepart_stock' => $faker->randomDigit,
+                'sparepart_product_id' => $faker->numberBetween($min = 1, $max = 10),
             ]);
         }
     }
