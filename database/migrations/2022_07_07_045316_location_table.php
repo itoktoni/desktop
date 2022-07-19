@@ -17,6 +17,10 @@ class LocationTable extends Migration
             $table->bigIncrements('location_id');
             $table->string('location_name');
             $table->string('location_description')->nullable();
+            $table->integer('location_building_id')->default(0);
+            // $table->string('updated_by')->nullable();
+            // $table->string('created_by')->nullable();
+            // $table->string('deleted_at')->nullable();
         });
     }
 

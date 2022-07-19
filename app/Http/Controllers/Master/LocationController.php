@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\Dao\Enums\BooleanType;
+use App\Dao\Models\Building;
 use App\Dao\Repositories\LocationRepository;
+use App\Http\Controllers\System\MasterController;
 use App\Http\Requests\LocationRequest;
 use App\Http\Services\CreateService;
 use App\Http\Services\SingleService;
 use App\Http\Services\UpdateService;
 use Plugins\Response;
-use App\Http\Controllers\System\MasterController;
 
 class LocationController extends MasterController
 {
@@ -16,6 +18,16 @@ class LocationController extends MasterController
     {
         self::$repository = self::$repository ?? $repository;
         self::$service = self::$service ?? $service;
+    }
+
+    protected function beforeForm()
+    {
+        $status = BooleanType::getOptions();
+        $building = Building::optionBuild();
+        self::$share = [
+            'status' => $status,
+            'building' => $building,
+        ];
     }
 
     public function postCreate(LocationRequest $request, CreateService $service)

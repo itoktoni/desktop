@@ -33,4 +33,24 @@ trait LocationEntity
     {
         return $this->{$this->field_description()};
     }
+
+    public static function field_building_id()
+    {
+        return 'location_building_id';
+    }
+
+    public function getFieldBuildingIdAttribute()
+    {
+        return $this->{self::field_building_id()};
+    }
+
+    public static function field_building_name()
+    {
+        return 'building_name';
+    }
+
+    public function getFieldBuildingNameAttribute()
+    {
+        return $this->{self::field_building_name()};
+    }
 }

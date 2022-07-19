@@ -4,18 +4,18 @@ namespace App\Dao\Models;
 
 use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\LocationEntity;
-use App\Dao\Enums\UserType;
 use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
 use App\Dao\Traits\OptionTrait;
 use Illuminate\Database\Eloquent\Model;
+use Kirschbaum\PowerJoins\PowerJoins;
 use Kyslik\ColumnSortable\Sortable;
 use Mehradsadeghi\FilterQueryString\FilterQueryString as FilterQueryString;
 use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 
 class Location extends Model
 {
-    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, LocationEntity, ActiveTrait, OptionTrait;
+    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, LocationEntity, OptionTrait, PowerJoins, ActiveTrait;
 
     protected $table = 'location';
     protected $primaryKey = 'location_id';
@@ -24,10 +24,12 @@ class Location extends Model
         'location_id',
         'location_name',
         'location_description',
+        'location_building_id',
     ];
 
     public $sortable = [
         'location_name',
+        'building.building_name',
     ];
 
     protected $filters = [
@@ -35,9 +37,10 @@ class Location extends Model
     ];
 
     public $timestamps = false;
-    public $incrementing = false;
+    public $incrementing = true;
 
-    public function fieldSearching(){
+    public function fieldSearching()
+    {
         return $this->field_name();
     }
 
@@ -45,8 +48,21 @@ class Location extends Model
     {
         return [
             DataBuilder::build($this->field_code())->name('Code')->show(false),
+            DataBuilder::build($this->field_building_name())->name('Building')->sort(),
             DataBuilder::build($this->field_name())->name('Name')->sort(),
             DataBuilder::build($this->field_description())->name('Description'),
         ];
+    }
+
+    public function has_building()
+    {
+        return $this->hasOne(Building::class, Building::field_code(), $this::field_building_id());
+    }
+
+    public function buildingNameSortable($query, $direction)
+    {
+        $query = $this->queryFilter($query);
+        $query = $query->orderBy($this->field_building_name(), $direction);
+        return $query;
     }
 }
