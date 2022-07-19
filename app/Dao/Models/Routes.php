@@ -62,6 +62,6 @@ class Routes extends Model
     }
 
     public function has_menu(){
-		return $this->hasMany(Menus::class, Menus::field_module(), $this::field_code());
+		return $this->hasMany(Menus::class, Menus::field_module(), self::field_code());
 	}
 }

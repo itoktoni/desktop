@@ -88,17 +88,17 @@ class Product extends Model
 
     public function has_category(){
 
-		return $this->hasOne(Category::class, Category::field_code(), $this::field_category_id());
+		return $this->hasOne(Category::class, Category::field_code(), self::field_category_id());
 	}
 
     public function has_brand()
     {
-		return $this->hasOne(Brand::class, Brand::field_code(), $this::field_brand_id());
+		return $this->hasOne(Brand::class, Brand::field_code(), self::field_brand_id());
 	}
 
     public function has_unit()
     {
-		return $this->hasOne(Unit::class, Unit::field_code(), $this::field_unit_id());
+		return $this->hasOne(Unit::class, Unit::field_code(), self::field_unit_id());
 	}
 
     public function categoryNameSortable($query, $direction)

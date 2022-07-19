@@ -68,7 +68,7 @@ class User extends Authenticatable
 
     public function has_role()
     {
-        return $this->hasOne(Roles::class, Roles::field_code(), $this::field_role_id());
+        return $this->hasOne(Roles::class, Roles::field_code(), self::field_role_id());
     }
 
     public function roleNameSortable($query, $direction)

@@ -56,7 +56,7 @@ class Location extends Model
 
     public function has_building()
     {
-        return $this->hasOne(Building::class, Building::field_code(), $this::field_building_id());
+        return $this->hasOne(Building::class, Building::field_code(), self::field_building_id());
     }
 
     public function buildingNameSortable($query, $direction)

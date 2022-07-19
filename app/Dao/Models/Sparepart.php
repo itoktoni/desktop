@@ -60,7 +60,7 @@ class Sparepart extends Model
 
     public function has_product()
     {
-        return $this->hasOne(Product::class, Product::field_code(), $this::field_product_id());
+        return $this->hasOne(Product::class, Product::field_code(), self::field_product_id());
     }
 
     public function productNameSortable($query, $direction)
