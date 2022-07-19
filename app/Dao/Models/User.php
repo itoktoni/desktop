@@ -8,13 +8,14 @@ use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Kirschbaum\PowerJoins\PowerJoins;
 use Kyslik\ColumnSortable\Sortable;
 use Mehradsadeghi\FilterQueryString\FilterQueryString as FilterQueryString;
 use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 
 class User extends Authenticatable
 {
-    use Notifiable, Sortable, FilterQueryString, Sanitizable, DataTableTrait, UserEntity, ActiveTrait;
+    use Notifiable, Sortable, FilterQueryString, Sanitizable, DataTableTrait, UserEntity, ActiveTrait, PowerJoins;
 
     protected $table = 'users';
     protected $primaryKey = 'id';
@@ -24,13 +25,14 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'group',
+        'role',
         'active',
     ];
 
     public $sortable = [
         'name',
         'email',
+        'roles.role_name',
     ];
 
     protected $filters = [
@@ -48,7 +50,8 @@ class User extends Authenticatable
     public $timestamps = true;
     public $incrementing = true;
 
-    public function fieldSearching(){
+    public function fieldSearching()
+    {
         return $this->field_name();
     }
 
@@ -57,8 +60,21 @@ class User extends Authenticatable
         return [
             DataBuilder::build($this->field_code())->name('ID')->show(false),
             DataBuilder::build($this->field_name())->name('Name')->sort(),
+            DataBuilder::build($this->field_role_name())->name('Role'),
             DataBuilder::build($this->field_email())->name('Email'),
             DataBuilder::build($this->field_active())->name('Active')->show(false),
         ];
+    }
+
+    public function has_role()
+    {
+        return $this->hasOne(Roles::class, Roles::field_code(), $this::field_role_id());
+    }
+
+    public function roleNameSortable($query, $direction)
+    {
+        $query = $this->queryFilter($query);
+        $query = $query->orderBy($this->field_role_name(), $direction);
+        return $query;
     }
 }

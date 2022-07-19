@@ -19,6 +19,7 @@ class SparepartTable extends Migration
             $table->integer('sparepart_location_id');
             $table->text('sparepart_description');
             $table->integer('sparepart_stock');
+            $table->integer('sparepart_product_id');
         });
     }
 

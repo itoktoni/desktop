@@ -53,4 +53,24 @@ trait SparepartEntity
     {
         return $this->{$this->field_stock()};
     }
+
+    public static function field_product_id()
+    {
+        return 'sparepart_product_id';
+    }
+
+    public function getFieldproductIdAttribute()
+    {
+        return $this->{self::field_product_id()};
+    }
+
+    public static function field_product_name()
+    {
+        return 'product_name';
+    }
+
+    public function getFieldproductNameAttribute()
+    {
+        return $this->{self::field_product_name()};
+    }
 }

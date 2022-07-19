@@ -24,6 +24,9 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
             => 'Please fill this input', 'required']) !!}
             {!! $errors->first('unit_code', '<p class="help-block">:message</p>') !!}
        </div>
+    </div>
+
+    <div class="col-md-6">
         <div class="form-group {{ $errors->has('unit_name') ? 'has-error' : '' }}">
         <label>Name</label>
             {!! Form::text('unit_name', null, ['class' => 'form-control', 'id' => 'unit_name', 'placeholder'

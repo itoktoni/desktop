@@ -24,20 +24,10 @@
     </div>
 
     <div class="col-md-6">
-        <div class="form-group {{ $errors->has('group') ? 'has-error' : '' }}">
-            <label>Group</label>
-            {!! Form::text('group', null, ['class' => 'form-control', 'id' => 'group']) !!}
-            {!! $errors->first('group', '<p class="help-block">:message</p>') !!}
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-6">
-        <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
-            <label>Password</label>
-            {!! Form::password('password', ['class' => 'form-control', 'id' => 'password']) !!}
-            {!! $errors->first('password', '<p class="help-block">:message</p>') !!}
+        <div class="form-group">
+            <label>Role</label>
+            {!! Form::select('role', $roles, null, ['class' => 'form-control', 'id' =>
+            'user_name', 'placeholder' => '- Select role -', 'required']) !!}
         </div>
     </div>
 
@@ -46,6 +36,14 @@
             <label>Email address</label>
             {!! Form::text('email', null, ['class' => 'form-control', 'id' => 'email']) !!}
             {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
+            <label>Password</label>
+            {!! Form::password('password', ['class' => 'form-control', 'id' => 'password']) !!}
+            {!! $errors->first('password', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
 </div>

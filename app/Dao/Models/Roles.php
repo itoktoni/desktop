@@ -14,13 +14,13 @@ use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 
 class Roles extends Model
 {
-    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, RolesEntity, ActiveTrait;
+    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, RolesEntity, ActiveTrait, OptionTrait;
 
     protected $table = 'roles';
-    protected $primaryKey = 'role_id';
+    protected $primaryKey = 'role_code';
 
     protected $fillable = [
-        'role_id',
+        'role_code',
         'role_name',
         'role_description',
         'role_active',
