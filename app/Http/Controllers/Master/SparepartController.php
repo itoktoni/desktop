@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\Dao\Models\Product;
 use App\Dao\Models\Location;
 use App\Dao\Repositories\SparepartRepository;
 use App\Http\Requests\SparepartRequest;
@@ -22,8 +23,10 @@ class SparepartController extends MasterController
     protected function beforeForm()
     {
         $location = Location::optionBuild();
+        $product = Product::optionBuild();
         self::$share = [
             'location' => $location,
+            'product' => $product,
         ];
     }
 

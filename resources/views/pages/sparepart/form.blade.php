@@ -1,6 +1,6 @@
 @extends(Template::ajax())
 
-@section('title') Master Tag @endsection
+@section('title') Master Sparepart @endsection
 
 @section('form')
 
@@ -32,9 +32,9 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
         </div>
 
         <div class="form-group">
-            <label>Stock</label>
-            {!! Form::text('sparepart_stock', null, ['class' => 'form-control', 'id' => 'sparepart_stock', 'placeholder'
-            => 'Please fill this input']) !!}
+            <label>Product</label>
+            {!! Form::select('sparepart_product_id', $product, null, ['class' => 'form-control', 'id' =>
+            'sparepart_product_id', 'placeholder' => '- Select Location -', 'required']) !!}
         </div>
     </div>
 
@@ -42,7 +42,13 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
         <div class="form-group">
             <label>Description</label>
             {!! Form::textarea('sparepart_description', null, ['class' => 'form-control h-auto', 'id' =>
-            'sparepart_description', 'placeholder' => 'Please fill this input', 'rows' => 9]) !!}
+            'sparepart_description', 'placeholder' => 'Please fill this input', 'rows' => 5]) !!}
+        </div>
+
+        <div class="form-group">
+            <label>Stock</label>
+            {!! Form::text('sparepart_stock', null, ['class' => 'form-control', 'id' => 'sparepart_stock', 'placeholder'
+            => 'Please fill this input']) !!}
         </div>
     </div>
 </div>
