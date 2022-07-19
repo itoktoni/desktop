@@ -20,13 +20,15 @@ use Faker\Generator as Faker;
 $factory->define(Product::class, function (Faker $faker) {
     return [
         'product_name' => $faker->name,
-        'product_code' => $faker->randomDigit(),
-        'product_image' => $faker->image(),
-        'product_category_id' => 1,
-        'product_brand_id' => 1,
-        'product_unit_id' => 1,
-        'product_description' => $faker->word(3),
+        'product_sn' => $faker->randomDigit(),
+        'product_category_id' => $faker->numberBetween($min = 1, $max = 10),
+        'product_brand_id' => $faker->numberBetween($min = 1, $max = 10),
+        'product_unit_id' => $faker->numberBetween($min = 1, $max =3),
+        'product_location_id' => $faker->numberBetween($min = 1, $max =10),
+        'product_description' => $faker->text($maxNbChars = 100),
         'product_created_at' => date('Y-m-d H:i:s'),
-        'product_active' => 1,
+        'product_prod_year' => $faker->year(),
+        'product_buy_date' => $faker->date(),
+        'product_status' => 1,
     ];
 });

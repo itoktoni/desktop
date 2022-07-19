@@ -26,19 +26,25 @@ class Product extends Model
     protected $fillable = [
         'product_id',
         'product_name',
-        'product_code',
+        'product_sn',
         'product_image',
         'product_category_id',
         'product_brand_id',
         'product_unit_id',
         'product_description',
+        'product_location_id',
+        'product_department_id',
+        'product_is_asset',
+        'product_price',
+        'product_buy_date',
+        'product_prod_year',
         'product_created_at',
         'product_updated_at',
         'product_deleted_at',
         'product_deleted_by',
         'product_updated_by',
         'product_created_by',
-        'product_active',
+        'product_status',
     ];
 
     public $sortable = [
@@ -79,10 +85,13 @@ class Product extends Model
             DataBuilder::build($this->field_code())->name('ID')->show(false),
             DataBuilder::build($this->field_category_name())->name('Category')->sort(),
             DataBuilder::build($this->field_brand_name())->name('Brand')->sort(),
-            DataBuilder::build($this->field_unit_name())->name('Unit')->sort(),
+            DataBuilder::build($this->field_location_name())->name('Location')->sort(),
+            DataBuilder::build($this->field_unit_name())->name('Unit')->show(false),
             DataBuilder::build($this->field_name())->name('Product Name')->sort(),
-            DataBuilder::build($this->field_description())->name('Description'),
-            DataBuilder::build($this->field_active())->name('Active')->class('column-active text-center'),
+            DataBuilder::build($this->field_prod_year())->name('Year')->sort(),
+            DataBuilder::build($this->field_buy_date())->name('Buy')->sort(),
+            DataBuilder::build($this->field_description())->name('Description')->show(false),
+            DataBuilder::build($this->field_status())->name('Status')->class('column-active text-center'),
         ];
     }
 
@@ -101,6 +110,11 @@ class Product extends Model
 		return $this->hasOne(Unit::class, Unit::field_code(), self::field_unit_id());
 	}
 
+    public function has_location()
+    {
+		return $this->hasOne(Location::class, Location::field_code(), self::field_location_id());
+	}
+
     public function categoryNameSortable($query, $direction)
     {
         $query = $this->queryFilter($query);
@@ -115,10 +129,10 @@ class Product extends Model
         return $query;
     }
 
-    public function unitNameSortable($query, $direction)
+    public function locationNameSortable($query, $direction)
     {
         $query = $this->queryFilter($query);
-        $query = $query->orderBy($this->field_unit_name(), $direction);
+        $query = $query->orderBy($this->field_location_name(), $direction);
         return $query;
     }
 

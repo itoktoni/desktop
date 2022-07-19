@@ -9,3 +9,5 @@
 
 <!-- Plugin styles -->
 <link rel="stylesheet" href="{{ url('vendors/bundle.css') }}" type="text/css">
+
+@yield('css')

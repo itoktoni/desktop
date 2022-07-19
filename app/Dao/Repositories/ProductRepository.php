@@ -18,6 +18,7 @@ class ProductRepository extends MasterRepository implements CrudInterface
             ->leftJoinRelationship('has_category')
             ->leftJoinRelationship('has_brand')
             ->leftJoinRelationship('has_unit')
+            ->leftJoinRelationship('has_location')
             ->active()->sortable()->filter();
 
         $query = env('PAGINATION_SIMPLE') ? $query->simplePaginate(env('PAGINATION_NUMBER')) : $query->paginate(env('PAGINATION_NUMBER'));

@@ -1,6 +1,7 @@
 <?php
 
 use App\Dao\Enums\BooleanType;
+use App\Dao\Enums\ProductStatus;
 use App\Dao\Models\Routes;
 use App\Providers\CacheableAuthUserServiceProvider;
 use Coderello\SharedData\Facades\SharedData;
@@ -239,6 +240,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Template' => Template::class,
         'BooleanType' => BooleanType::class,
+        'ProductStatus' => ProductStatus::class,
         'SharedData' => SharedData::class,
         'Routes' => Routes::class,
         'Browser' => hisorange\BrowserDetect\Parser::class

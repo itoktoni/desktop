@@ -21,4 +21,5 @@
 
 {!! Form::close() !!}
 
+@yield('footer')
 @yield('javascript')

@@ -34,14 +34,14 @@ trait ProductEntity
         return $this->{self::field_description()};
     }
 
-    public static function field_active()
+    public static function field_status()
     {
-        return 'product_active';
+        return 'product_status';
     }
 
-    public function getFieldActiveAttribute()
+    public function getFieldStatusAttribute()
     {
-        return $this->{self::field_active()};
+        return $this->{self::field_status()};
     }
 
     public static function field_category_id()
@@ -102,6 +102,96 @@ trait ProductEntity
     public function getFieldUnitNameAttribute()
     {
         return $this->{self::field_unit_name()};
+    }
+
+    public static function field_sn()
+    {
+        return 'product_sn';
+    }
+
+    public function getFieldSnAttribute()
+    {
+        return $this->{self::field_sn()};
+    }
+
+    public static function field_price()
+    {
+        return 'product_price';
+    }
+
+    public function getFieldPriceAttribute()
+    {
+        return $this->{self::field_price()};
+    }
+
+    public static function field_buy_date()
+    {
+        return 'product_buy_date';
+    }
+
+    public function getFieldBuyDateAttribute()
+    {
+        return $this->{self::field_buy_date()};
+    }
+
+    public static function field_prod_year()
+    {
+        return 'product_prod_year';
+    }
+
+    public function getFieldProdYearAttribute()
+    {
+        return $this->{self::field_prod_year()};
+    }
+
+    public static function field_is_asset()
+    {
+        return 'product_is_asset';
+    }
+
+    public function getFieldIsAssetAttribute()
+    {
+        return $this->{self::field_is_asset()};
+    }
+
+    public static function field_location_id()
+    {
+        return 'product_location_id';
+    }
+
+    public function getFieldLocationIdAttribute()
+    {
+        return $this->{self::field_location_id()};
+    }
+
+    public static function field_location_name()
+    {
+        return 'location_name';
+    }
+
+    public function getFieldLocationNameAttribute()
+    {
+        return $this->{self::field_location_name()};
+    }
+
+    public static function field_department_id()
+    {
+        return 'product_department_id';
+    }
+
+    public function getFieldDepartmentIdAttribute()
+    {
+        return $this->{self::field_department_id()};
+    }
+
+    public static function field_department_name()
+    {
+        return 'department_name';
+    }
+
+    public function getFieldDepartmentNameAttribute()
+    {
+        return $this->{self::field_department_name()};
     }
 
 }
