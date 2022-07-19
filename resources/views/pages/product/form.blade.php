@@ -25,6 +25,18 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
             'product_name', 'placeholder' => '- Select Category -', 'required']) !!}
         </div>
 
+        <div class="form-group">
+            <label>Brand</label>
+            {!! Form::select('product_brand_id', $brand, null, ['class' => 'form-control', 'id' =>
+            'product_name', 'placeholder' => '- Select brand -', 'required']) !!}
+        </div>
+
+        <div class="form-group">
+            <label>Unit</label>
+            {!! Form::select('product_unit_id', $unit, null, ['class' => 'form-control', 'id' =>
+            'product_name', 'placeholder' => '- Select Unit -', 'required']) !!}
+        </div>
+
         <div class="form-group {{ $errors->has('product_name') ? 'has-error' : '' }}">
             <label>Name</label>
             {!! Form::text('product_name', null, ['class' => 'form-control', 'id' => 'product_name', 'placeholder'

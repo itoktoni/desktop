@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Master;
 
 use App\Dao\Enums\BooleanType;
 use App\Dao\Models\Category;
+use App\Dao\Models\Brand;
+use App\Dao\Models\Unit;
 use App\Dao\Repositories\ProductRepository;
 use App\Http\Requests\ProductRequest;
 use App\Http\Services\CreateService;
@@ -26,9 +28,13 @@ class ProductController extends MasterController
     {
         $status = BooleanType::getOptions();
         $category = Category::optionBuild();
+        $brand = Brand::optionBuild();
+        $unit = Unit::optionBuild();
         self::$share = [
             'status' => $status,
             'category' => $category,
+            'brand' => $brand,
+            'unit' => $unit,
         ];
     }
 
