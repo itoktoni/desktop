@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(GroupsTableSeeder::class);
         $this->call(RoutesTableSeeder::class);
+        $this->call(UnitTableSeeder::class);
 
         foreach (range(0, 9) as $integer) {
             $this->call(UsersTableSeeder::class);

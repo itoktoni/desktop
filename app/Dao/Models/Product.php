@@ -45,6 +45,8 @@ class Product extends Model
         'product_name',
         'category.category_name',
         'search',
+        'brand.brand_name',
+        'unit.unit_name',
     ];
 
     protected $filters = [
@@ -76,6 +78,8 @@ class Product extends Model
         return [
             DataBuilder::build($this->field_code())->name('ID')->show(false),
             DataBuilder::build($this->field_category_name())->name('Category')->sort(),
+            DataBuilder::build($this->field_brand_name())->name('Brand')->sort(),
+            DataBuilder::build($this->field_unit_name())->name('Unit')->sort(),
             DataBuilder::build($this->field_name())->name('Product Name')->sort(),
             DataBuilder::build($this->field_description())->name('Description'),
             DataBuilder::build($this->field_active())->name('Active')->class('column-active text-center'),
@@ -87,10 +91,35 @@ class Product extends Model
 		return $this->hasOne(Category::class, Category::field_code(), $this::field_category_id());
 	}
 
+    public function has_brand()
+    {
+		return $this->hasOne(Brand::class, Brand::field_code(), $this::field_brand_id());
+	}
+
+    public function has_unit()
+    {
+		return $this->hasOne(Unit::class, Unit::field_code(), $this::field_unit_id());
+	}
+
     public function categoryNameSortable($query, $direction)
     {
         $query = $this->queryFilter($query);
         $query = $query->orderBy($this->field_category_name(), $direction);
         return $query;
     }
+
+    public function brandNameSortable($query, $direction)
+    {
+        $query = $this->queryFilter($query);
+        $query = $query->orderBy($this->field_brand_name(), $direction);
+        return $query;
+    }
+
+    public function unitNameSortable($query, $direction)
+    {
+        $query = $this->queryFilter($query);
+        $query = $query->orderBy($this->field_unit_name(), $direction);
+        return $query;
+    }
+
 }

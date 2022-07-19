@@ -14,7 +14,7 @@ use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 
 class Unit extends Model
 {
-    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, UnitEntity, ActiveTrait;
+    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, UnitEntity, ActiveTrait,OptionTrait;
 
     protected $table = 'unit';
     protected $primaryKey = 'unit_code';

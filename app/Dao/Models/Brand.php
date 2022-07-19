@@ -6,6 +6,7 @@ use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\BrandEntity;
 use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
+use App\Dao\Traits\OptionTrait;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 use Mehradsadeghi\FilterQueryString\FilterQueryString as FilterQueryString;
@@ -13,7 +14,7 @@ use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 
 class Brand extends Model
 {
-    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, BrandEntity, ActiveTrait;
+    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, BrandEntity, ActiveTrait, OptionTrait;
 
     protected $table = 'brand';
     protected $primaryKey = 'brand_id';

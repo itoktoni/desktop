@@ -63,4 +63,45 @@ trait ProductEntity
     {
         return $this->{self::field_category_name()};
     }
+
+    public static function field_brand_id()
+    {
+        return 'product_brand_id';
+    }
+
+    public function getFieldBrandIdAttribute()
+    {
+        return $this->{self::field_brand_id()};
+    }
+
+    public static function field_brand_name()
+    {
+        return 'brand_name';
+    }
+
+    public function getFieldBrandNameAttribute()
+    {
+        return $this->{self::field_brand_name()};
+    }
+
+    public static function field_unit_id()
+    {
+        return 'product_unit_id';
+    }
+
+    public function getFieldUnitIdAttribute()
+    {
+        return $this->{self::field_unit_id()};
+    }
+
+    public static function field_unit_name()
+    {
+        return 'unit_name';
+    }
+
+    public function getFieldUnitNameAttribute()
+    {
+        return $this->{self::field_unit_name()};
+    }
+
 }
