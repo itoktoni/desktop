@@ -1,6 +1,7 @@
 <?php
 
 use App\Dao\Models\Unit;
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
 class UnitTableSeeder extends Seeder
@@ -10,31 +11,12 @@ class UnitTableSeeder extends Seeder
      *
      * @return void
      */
-    public $model;
-
-    public function __construct(Unit $model)
-    {
-        $this->model = $model;
-    }
-
     public function run()
     {
-        $this->model->delete();
-
-        $this->model->insert(array(
-            [
-                'unit_code' => '1',
-                'unit_name' => 'unit test 1',
-            ],
-            [
-                'unit_code' => '2',
-                'unit_name' => 'unit test 2',
-            ],
-            [
-                'unit_code' => '3',
-                'unit_name' => 'unit test 3',
-            ],
-        ));
-
+        $faker = Faker::create();
+        Unit::create([
+            'unit_code' => $faker->unique()->numberBetween(1, 1000),
+            'unit_name' => $faker->word,
+        ]);
     }
 }

@@ -31,7 +31,7 @@ class RoutesTableSeeder extends Seeder
                 'route_description' => null,
                 'route_sort' => 1,
             ],
-            1 => array(
+            [
                 'route_code' => 'category',
                 'route_name' => 'Category',
                 'route_group' => 'master',
@@ -39,8 +39,8 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
-            ),
-            2 => array(
+            ],
+            [
                 'route_code' => 'filters',
                 'route_name' => 'Filters',
                 'route_group' => 'system',
@@ -48,8 +48,8 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
-            ),
-            3 => array(
+            ],
+            [
                 'route_code' => 'groups',
                 'route_name' => 'Groups',
                 'route_group' => 'system',
@@ -57,8 +57,8 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
-            ),
-            4 => array(
+            ],
+            [
                 'route_code' => 'location',
                 'route_name' => 'Location',
                 'route_group' => 'master',
@@ -66,8 +66,8 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
-            ),
-            5 => array(
+            ],
+            [
                 'route_code' => 'product',
                 'route_name' => 'Product',
                 'route_group' => 'app',
@@ -75,8 +75,8 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
-            ),
-            6 => array(
+            ],
+            [
                 'route_code' => 'roles',
                 'route_name' => 'Roles',
                 'route_group' => 'system',
@@ -84,8 +84,8 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
-            ),
-            7 => array(
+            ],
+            [
                 'route_code' => 'routes',
                 'route_name' => 'Routes',
                 'route_group' => 'system',
@@ -93,8 +93,8 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
-            ),
-            8 => array(
+            ],
+            [
                 'route_code' => 'sparepart',
                 'route_name' => 'Sparepart',
                 'route_group' => 'master',
@@ -102,8 +102,8 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
-            ),
-            9 => array(
+            ],
+            [
                 'route_code' => 'tag',
                 'route_name' => 'Tag',
                 'route_group' => 'master',
@@ -111,8 +111,8 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
-            ),
-            10 => array(
+            ],
+            [
                 'route_code' => 'user',
                 'route_name' => 'User',
                 'route_group' => 'master',
@@ -120,8 +120,8 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
-            ),
-            12 => array(
+            ],
+            [
                 'route_code' => 'brand',
                 'route_name' => 'Brand',
                 'route_group' => 'master',
@@ -129,8 +129,8 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
-            ),
-            11 => array(
+            ],
+            [
                 'route_code' => 'unit',
                 'route_name' => 'Unit',
                 'route_group' => 'master',
@@ -138,8 +138,8 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
-            ),
-            12 => array(
+            ],
+            [
                 'route_code' => 'supplier',
                 'route_name' => 'Supplier',
                 'route_group' => 'master',
@@ -147,7 +147,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
-            ),
+            ],
         ));
 
     }
