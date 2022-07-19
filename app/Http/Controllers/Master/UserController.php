@@ -21,14 +21,12 @@ class UserController extends MasterController
         self::$service = self::$service ?? $service;
     }
 
-    public function share($data = [])
+    protected function beforeForm()
     {
         $roles = Roles::optionBuild();
-        $view = [
+        self::$share = [
             'roles' => $roles,
         ];
-        //   dd($roles);
-        return array_merge($view, $data);
     }
 
     public function postCreate(UserRequest $request, CreateService $service)
@@ -41,17 +39,5 @@ class UserController extends MasterController
     {
         $data = $service->update(self::$repository, $request, $code);
         return Response::redirectBack($data);
-    }
-
-    public function getCreate()
-    {
-        return view(Template::form(SharedData::get('template')))->with($this->share());
-    }
-
-    public function getUpdate($code)
-    {
-        return view(Template::form(SharedData::get('template')))->with($this->share([
-            'model' => $this->get($code),
-        ]));
     }
 }
