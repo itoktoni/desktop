@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RoutesTableSeeder::class);
         $this->call(RolesTableSeeder::class);
         $this->call(UnitTableSeeder::class);
+        $this->call(WorkTypeTableSeeder::class);
+      //   $this->call(WorkSheetTableSeeder::class);
 
         foreach (range(0, 9) as $integer) {
             $this->call(UsersTableSeeder::class);
