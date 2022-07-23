@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
             $this->call(UnitTableSeeder::class);
             $this->call(SupplierTableSeeder::class);
             $this->call(MenusTableSeeder::class);
+            $this->call(DepartmentTableSeeder::class);
     }
     }
 }

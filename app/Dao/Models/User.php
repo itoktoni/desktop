@@ -6,6 +6,7 @@ use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\UserEntity;
 use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
+use App\Dao\Traits\OptionTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Kirschbaum\PowerJoins\PowerJoins;
@@ -15,7 +16,7 @@ use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 
 class User extends Authenticatable
 {
-    use Notifiable, Sortable, FilterQueryString, Sanitizable, DataTableTrait, UserEntity, ActiveTrait, PowerJoins;
+    use Notifiable, Sortable, FilterQueryString, Sanitizable, DataTableTrait, UserEntity, ActiveTrait, PowerJoins, OptionTrait;
 
     protected $table = 'users';
     protected $primaryKey = 'id';
