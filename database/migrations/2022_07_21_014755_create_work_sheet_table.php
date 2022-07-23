@@ -14,7 +14,7 @@ class CreateWorkSheetTable extends Migration
     public function up()
     {
         Schema::create('work_sheet', function (Blueprint $table) {
-            $table->bigIncrements('work_sheet_code');
+            $table->string('work_sheet_code')->primary();
             $table->integer('work_sheet_type_id')->nullable(); //(relation work_type)
             $table->string('work_sheet_name');
             $table->text('work_sheet_description');
