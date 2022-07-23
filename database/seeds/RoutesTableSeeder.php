@@ -157,6 +157,16 @@ class RoutesTableSeeder extends Seeder
                 'route_description' => null,
                 'route_sort' => 0,
             ],
+            
+            [
+                'route_code' => 'work_sheet',
+                'route_name' => 'Work Sheet',
+                'route_group' => 'transaction',
+                'route_controller' => 'App\\Http\\Controllers\\Transaction\\WorkSheetController',
+                'route_active' => 1,
+                'route_description' => null,
+                'route_sort' => 0,
+            ],
         ));
 
     }

@@ -6,6 +6,7 @@ use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\WorkTypeEntity;
 use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
+use App\Dao\Traits\OptionTrait;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 use Mehradsadeghi\FilterQueryString\FilterQueryString as FilterQueryString;
@@ -13,7 +14,7 @@ use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 
 class WorkType extends Model
 {
-    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, WorkTypeEntity, ActiveTrait;
+    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, WorkTypeEntity, ActiveTrait, OptionTrait;
 
     protected $table = 'work_type';
     protected $primaryKey = 'work_type_id';
