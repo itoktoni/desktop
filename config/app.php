@@ -186,6 +186,7 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         CacheableAuthUserServiceProvider::class,
         DatabaseJson\DataBaseJsonServiceProvider::class,
+        Nikazooz\Simplesheet\SimplesheetServiceProvider::class,
     ],
 
     /*
@@ -243,7 +244,9 @@ return [
         'ProductStatus' => ProductStatus::class,
         'SharedData' => SharedData::class,
         'Routes' => Routes::class,
-        'Browser' => hisorange\BrowserDetect\Parser::class
+        'Browser' => hisorange\BrowserDetect\Parser::class,
+        'FastExcel' => Rap2hpoutre\FastExcel\Facades\FastExcel::class,
+        'Simplesheet' => Nikazooz\Simplesheet\Facades\Simplesheet::class,
     ],
 
 ];

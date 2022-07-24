@@ -11,6 +11,7 @@ class DataBuilder
     public $width;
     public $sort;
     public $filter;
+    public $excel;
 
     private static $_instance = null;
 
@@ -28,6 +29,13 @@ class DataBuilder
         $this->sort = $this->sort ?? false;
         $this->width = $this->width ?? false;
         $this->filter = $this->filter ?? false;
+        $this->excel = $this->excel ?? false;
+    }
+
+    public function excel($excel = true)
+    {
+        $this->excel = $excel;
+        return $this;
     }
 
     public function name($name = true)

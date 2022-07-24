@@ -24,6 +24,11 @@ trait DataTableTrait
         return collect($this->fieldDatatable())->where('show', true);
     }
 
+    public function getExcelField()
+    {
+        return collect($this->fieldDatatable())->where('excel', true)->pluck( 'code', 'name')->toArray();
+    }
+
     public function filter($query, $value)
     {
         return $this->queryFilter($query);

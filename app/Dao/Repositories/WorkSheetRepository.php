@@ -14,12 +14,12 @@ class WorkSheetRepository extends MasterRepository implements CrudInterface
 
     public function dataRepository()
     {
-        $query = $this->model->select($this->model->getSelectedField())
+        $query = $this->model->select(self::$excel ? $this->model->getExcelField() : $this->model->getSelectedField())
             ->leftJoinRelationship('has_work_type')
             ->leftJoinRelationship('has_product')
             ->sortable()->filter();
 
-        if(self::$paginate){
+        if(!self::$excel){
             $query = env('PAGINATION_SIMPLE') ? $query->simplePaginate(env('PAGINATION_NUMBER')) : $query->paginate(env('PAGINATION_NUMBER'));
         }
 
@@ -28,7 +28,8 @@ class WorkSheetRepository extends MasterRepository implements CrudInterface
 
     public function excel($name)
     {
-        $data = $this->setDisablePaginate()->dataRepository()->get();
+        $this->model->selected_field = 'excel';
+        $data = $this->setExcel()->dataRepository();
         return $this->model->export($data, $name);
     }
 }

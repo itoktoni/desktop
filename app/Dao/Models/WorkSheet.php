@@ -76,13 +76,11 @@ class WorkSheet extends Model
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build($this->field_primary())->name('Code')->sort(),
-            DataBuilder::build(WorkType::field_primary())->name('Type ID')->show(false),
-            DataBuilder::build(WorkType::field_name())->name('Type')->sort(),
-            DataBuilder::build($this->field_name())->name('Name')->show(false),
-            DataBuilder::build(Product::field_primary())->name('Product ID')->show(false),
-            DataBuilder::build(Product::field_name())->name('Product Name')->sort(),
-            DataBuilder::build($this->field_description())->name('Description'),
+            DataBuilder::build($this->field_primary())->name('Code')->sort()->excel(),
+            DataBuilder::build(WorkType::field_name())->name('Type')->sort()->excel(),
+            DataBuilder::build($this->field_name())->name('Name')->show(false)->excel(),
+            DataBuilder::build(Product::field_name())->name('Product Name')->sort()->excel(),
+            DataBuilder::build($this->field_description())->name('Description')->excel(),
             DataBuilder::build($this->field_check())->name('Check')->show(false),
             DataBuilder::build($this->field_result())->name('Result')->show(false),
             DataBuilder::build($this->field_ticket_code())->name('Ticket ID')->sort()->show(false),

@@ -9,10 +9,10 @@ use Plugins\Notes;
 class MasterRepository implements CrudInterface
 {
     public $model;
-    public static $paginate = true;
+    public static $excel = false;
 
-    public function setDisablePaginate(){
-        self::$paginate = false;
+    public function setExcel(){
+        self::$excel = true;
         return $this;
     }
 

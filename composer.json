@@ -29,7 +29,6 @@
         "orangehill/iseed": "^3.0",
         "pelmered/fake-car": "^1.7",
         "spatie/laravel-backup": "^6.16",
-        "spatie/simple-excel": "^1.13",
         "touhidurabir/laravel-model-sanitize": "^1.1",
         "wildside/userstamps": "^2.2"
     },
