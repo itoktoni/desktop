@@ -71,7 +71,7 @@
                         <td>{{ $table->field_address }}</td>
                         <td>{{ $table->field_email }}</td>
                         <td>{{ $table->field_phone }}</td>
-                        <td class="col-md-2 text-center table-action">
+                        <td class="col-md-2 text-center column-action">
                             <a class="badge badge-primary button-update" href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_primary]) }}">
                                 Update
                             </a>

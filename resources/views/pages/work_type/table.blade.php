@@ -64,7 +64,7 @@
                         <td><input type="checkbox" class="checkbox" name="code[]" value="{{ $table->field_primary }}"></td>
                         <td class="">{{ $table->field_primary }}</td>
                         <td class="">{{ $table->field_name }}</td>
-                        <td class="col-md-2 text-center table-action">
+                        <td class="col-md-2 text-center column-action">
                             <a class="badge badge-primary button-update" href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_primary]) }}">
                                 Update
                             </a>

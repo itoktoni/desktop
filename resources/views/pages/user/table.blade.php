@@ -78,7 +78,7 @@
                                 class="badge badge-{{ $table->field_active == BooleanType::Yes ? 'success' : 'warning' }}">
                                 {{ BooleanType::getDescription($table->field_active) }}</btn>
                         </td>
-                        <td class="col-md-2 text-center table-action">
+                        <td class="col-md-2 text-center column-action">
                             <a class="badge badge-primary button-update"
                                 href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_primary]) }}">
                                 Update
