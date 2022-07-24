@@ -44,6 +44,7 @@ class WorkSheet extends Model
     ];
 
     public $sortable = [
+        'work_sheet_code',
         'work_sheet_name',
         'work_sheet_type_id',
         'work_sheet_product_id',
@@ -73,7 +74,7 @@ class WorkSheet extends Model
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build($this->field_code())->name('ID')->show(false),
+            DataBuilder::build($this->field_code())->name('Code')->sort(),
             DataBuilder::build($this->field_name())->name('Name')->sort(),
             DataBuilder::build($this->field_description())->name('Description'),
             DataBuilder::build($this->field_check())->name('Check'),
