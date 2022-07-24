@@ -52,7 +52,7 @@ class Routes extends Model
     {
         return [
             DataBuilder::build($this->field_group())->name('Group')->sort(),
-            DataBuilder::build($this->field_code())->name('Code')->sort(),
+            DataBuilder::build($this->field_primary())->name('Code')->sort(),
             DataBuilder::build($this->field_name())->name('Name')->sort(),
             DataBuilder::build($this->field_controller())->name('Controller')->sort(),
             DataBuilder::build($this->field_description())->name('Description')->show(false),
@@ -62,6 +62,6 @@ class Routes extends Model
     }
 
     public function has_menu(){
-		return $this->hasMany(Menus::class, Menus::field_module(), self::field_code());
+		return $this->hasMany(Menus::class, Menus::field_module(), self::field_primary());
 	}
 }

@@ -47,7 +47,7 @@ class Location extends Model
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build($this->field_code())->name('Code')->show(false),
+            DataBuilder::build($this->field_primary())->name('Code')->show(false),
             DataBuilder::build($this->field_building_name())->name('Building')->sort(),
             DataBuilder::build($this->field_name())->name('Name')->sort(),
             DataBuilder::build($this->field_description())->name('Description'),
@@ -56,7 +56,7 @@ class Location extends Model
 
     public function has_building()
     {
-        return $this->hasOne(Building::class, Building::field_code(), self::field_building_id());
+        return $this->hasOne(Building::class, Building::field_primary(), self::field_building_id());
     }
 
     public function buildingNameSortable($query, $direction)

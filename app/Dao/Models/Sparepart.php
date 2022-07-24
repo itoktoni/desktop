@@ -49,7 +49,7 @@ class Sparepart extends Model
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build(self::field_code())->name('ID')->show(false),
+            DataBuilder::build(self::field_primary())->name('ID')->show(false),
             DataBuilder::build(self::field_name())->name('Name')->sort(),
             DataBuilder::build(self::field_location_id())->name('Location ID')->show(false),
             DataBuilder::build(self::field_product_name())->name('Product')->sort(),
@@ -60,7 +60,7 @@ class Sparepart extends Model
 
     public function has_product()
     {
-        return $this->hasOne(Product::class, Product::field_code(), self::field_product_id());
+        return $this->hasOne(Product::class, Product::field_primary(), self::field_product_id());
     }
 
     public function productNameSortable($query, $direction)

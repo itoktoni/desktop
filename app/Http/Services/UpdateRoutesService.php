@@ -17,7 +17,7 @@ class UpdateRoutesService
         $check = $repository->updateRepository($data->all(), $code);
         foreach ($data->get('items') as $item) {
             Query::upsert(new Menus(), [
-                Menus::field_code() => $item[Menus::field_code()],
+                Menus::field_pimary() => $item[Menus::field_pimary()],
                 Menus::field_module() => $item[Menus::field_module()]
             ], $item);
         }

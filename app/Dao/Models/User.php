@@ -59,7 +59,7 @@ class User extends Authenticatable
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build($this->field_code())->name('ID')->show(false),
+            DataBuilder::build($this->field_primary())->name('ID')->show(false),
             DataBuilder::build($this->field_name())->name('Name')->sort(),
             DataBuilder::build($this->field_role_name())->name('Role'),
             DataBuilder::build($this->field_email())->name('Email'),
@@ -69,7 +69,7 @@ class User extends Authenticatable
 
     public function has_role()
     {
-        return $this->hasOne(Roles::class, Roles::field_code(), self::field_role_id());
+        return $this->hasOne(Roles::class, Roles::field_primary(), self::field_role_id());
     }
 
     public function roleNameSortable($query, $direction)

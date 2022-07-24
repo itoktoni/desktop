@@ -45,13 +45,13 @@ class Filters extends Model
     public $incrementing = false;
 
     public function fieldSearching(){
-        return $this->field_code();
+        return $this->field_primary();
     }
 
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build($this->field_code())->name('Code')->show(false),
+            DataBuilder::build($this->field_primary())->name('Code')->show(false),
             DataBuilder::build($this->field_name())->name('Code')->sort(),
             DataBuilder::build($this->field_table())->name('Table')->sort(),
             DataBuilder::build($this->field_field())->name('Field')->sort(),

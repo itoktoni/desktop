@@ -4,14 +4,14 @@ namespace App\Dao\Entities;
 
 trait RolesEntity
 {
-    public static function field_code()
+    public static function field_primary()
     {
         return 'role_code';
     }
 
-    public function getFieldCodeAttribute()
+    public function getFieldPrimaryAttribute()
     {
-        return $this->{$this->field_code()};
+        return $this->{$this->field_primary()};
     }
 
     public static function field_name()

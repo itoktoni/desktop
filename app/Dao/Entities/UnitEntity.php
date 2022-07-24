@@ -4,14 +4,14 @@ namespace App\Dao\Entities;
 
 trait UnitEntity
 {
-    public static function field_code()
+    public static function field_primary()
     {
         return 'unit_code';
     }
 
-    public function getFieldCodeAttribute()
+    public function getFieldPrimaryAttribute()
     {
-        return $this->{$this->field_code()};
+        return $this->{$this->field_primary()};
     }
 
     public static function field_name()

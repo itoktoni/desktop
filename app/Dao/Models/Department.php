@@ -48,7 +48,7 @@ class Department extends Model
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build($this->field_code())->name('ID')->show(false),
+            DataBuilder::build($this->field_primary())->name('ID')->show(false),
             DataBuilder::build($this->field_user_name())->name('User')->sort(),
             DataBuilder::build($this->field_name())->name('Department Name')->sort(),
             DataBuilder::build($this->field_description())->name('Description'),
@@ -57,7 +57,7 @@ class Department extends Model
 
     public function has_user(){
 
-		return $this->hasOne(User::class, User::field_code(), self::field_user_id());
+		return $this->hasOne(User::class, User::field_primary(), self::field_user_id());
 	}
 
 

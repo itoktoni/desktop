@@ -47,7 +47,7 @@ class Supplier extends Model
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build($this->field_code())->name('ID')->show(false),
+            DataBuilder::build($this->field_primary())->name('ID')->show(false),
             DataBuilder::build($this->field_name())->name('Name')->sort(),
             DataBuilder::build($this->field_contact())->name('Contact'),
             DataBuilder::build($this->field_address())->name('Address'),

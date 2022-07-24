@@ -43,7 +43,7 @@ class Unit extends Model
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build($this->field_code())->name('Code'),
+            DataBuilder::build($this->field_primary())->name('Code'),
             DataBuilder::build($this->field_name())->name('Name')->sort(),
         ];
     }

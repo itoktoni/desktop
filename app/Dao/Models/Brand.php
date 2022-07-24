@@ -44,7 +44,7 @@ class Brand extends Model
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build($this->field_code())->name('Code')->show(false),
+            DataBuilder::build($this->field_primary())->name('Code')->show(false),
             DataBuilder::build($this->field_name())->name('Name')->sort(),
             DataBuilder::build($this->field_description())->name('Description'),
         ];

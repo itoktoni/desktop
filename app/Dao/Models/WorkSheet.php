@@ -68,17 +68,17 @@ class WorkSheet extends Model
 
     public function fieldSearching()
     {
-        return $this->field_code();
+        return $this->field_primary();
     }
 
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build($this->field_code())->name('Code')->sort(),
-            DataBuilder::build(WorkType::field_code())->name('Type ID')->show(false),
+            DataBuilder::build($this->field_primary())->name('Code')->sort(),
+            DataBuilder::build(WorkType::field_primary())->name('Type ID')->show(false),
             DataBuilder::build(WorkType::field_name())->name('Type'),
             DataBuilder::build($this->field_name())->name('Name')->show(false),
-            DataBuilder::build(Product::field_code())->name('Product ID')->show(false),
+            DataBuilder::build(Product::field_primary())->name('Product ID')->show(false),
             DataBuilder::build(Product::field_name())->name('Product Name')->sort(),
             DataBuilder::build($this->field_description())->name('Description'),
             DataBuilder::build($this->field_check())->name('Check')->show(false),
@@ -89,12 +89,12 @@ class WorkSheet extends Model
 
     public function has_work_type()
     {
-        return $this->hasOne(WorkType::class, WorkType::field_code(), self::field_type_id());
+        return $this->hasOne(WorkType::class, WorkType::field_primary(), self::field_type_id());
     }
 
     public function has_product()
     {
-        return $this->hasOne(Product::class, Product::field_code(), self::field_product_id());
+        return $this->hasOne(Product::class, Product::field_primary(), self::field_product_id());
     }
 
     public function workTypeIdSortable($query, $direction)

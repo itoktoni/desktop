@@ -4,14 +4,14 @@ namespace App\Dao\Entities;
 
 trait LocationEntity
 {
-    public static function field_code()
+    public static function field_primary()
     {
         return 'location_id';
     }
 
-    public function getFieldCodeAttribute()
+    public function getFieldPrimaryAttribute()
     {
-        return $this->{$this->field_code()};
+        return $this->{$this->field_primary()};
     }
 
     public static function field_name()

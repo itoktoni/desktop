@@ -82,7 +82,7 @@ class Product extends Model
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build($this->field_code())->name('ID')->show(false),
+            DataBuilder::build($this->field_primary())->name('ID')->show(false),
             DataBuilder::build($this->field_category_name())->name('Category')->sort(),
             DataBuilder::build($this->field_brand_name())->name('Brand')->sort(),
             DataBuilder::build($this->field_location_name())->name('Location')->sort(),
@@ -97,22 +97,22 @@ class Product extends Model
 
     public function has_category(){
 
-		return $this->hasOne(Category::class, Category::field_code(), self::field_category_id());
+		return $this->hasOne(Category::class, Category::field_primary(), self::field_category_id());
 	}
 
     public function has_brand()
     {
-		return $this->hasOne(Brand::class, Brand::field_code(), self::field_brand_id());
+		return $this->hasOne(Brand::class, Brand::field_primary(), self::field_brand_id());
 	}
 
     public function has_unit()
     {
-		return $this->hasOne(Unit::class, Unit::field_code(), self::field_unit_id());
+		return $this->hasOne(Unit::class, Unit::field_primary(), self::field_unit_id());
 	}
 
     public function has_location()
     {
-		return $this->hasOne(Location::class, Location::field_code(), self::field_location_id());
+		return $this->hasOne(Location::class, Location::field_primary(), self::field_location_id());
 	}
 
     public function categoryNameSortable($query, $direction)

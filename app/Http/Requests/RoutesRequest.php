@@ -16,7 +16,7 @@ class RoutesRequest extends FormRequest
         $this->offsetUnset('_token');
 
         $map = collect($this->detail)->map(function ($item){
-            $data[Menus::field_code()] = $item['temp_id'];
+            $data[Menus::field_pimary()] = $item['temp_id'];
             $data[Menus::field_module()] = $item['temp_module'];
             $data[Menus::field_name()] = $item['temp_name'];
             $data[Menus::field_reset()] = $item['temp_reset'];
@@ -45,9 +45,9 @@ class RoutesRequest extends FormRequest
     {
         $validator->after(function ($validator) {
 
-            $check = Routes::where(Routes::field_code(), $this->route_slug)->get()->count();
+            $check = Routes::where(Routes::field_pimary(), $this->route_slug)->get()->count();
             if($check){
-                $validator->errors()->add(Routes::field_code(), 'Code must unique!');
+                $validator->errors()->add(Routes::field_pimary(), 'Code must unique!');
             }
 
             $path = str_replace('app', '', app_path());

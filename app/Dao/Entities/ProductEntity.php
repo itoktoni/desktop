@@ -4,14 +4,14 @@ namespace App\Dao\Entities;
 
 trait ProductEntity
 {
-    public static function field_code()
+    public static function field_primary()
     {
         return 'product_id';
     }
 
-    public function getFieldCodeAttribute()
+    public function getFieldPrimaryAttribute()
     {
-        return $this->{self::field_code()};
+        return $this->{self::field_primary()};
     }
 
     public static function field_name()

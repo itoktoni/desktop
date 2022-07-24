@@ -8,14 +8,14 @@ use App\Dao\Models\WorkType;
 
 trait WorkSheetEntity
 {
-    public static function field_code()
+    public static function field_primary()
     {
         return 'work_sheet_code';
     }
 
-    public function getFieldCodeAttribute()
+    public function getFieldPrimaryAttribute()
     {
-        return $this->{$this->field_code()};
+        return $this->{$this->field_primary()};
     }
 
     public static function field_name()

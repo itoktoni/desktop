@@ -92,10 +92,10 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
                     <tr>
                         <td class="text-center">
                             <input type="text" name="{{ $temp_id }}" class="form-control form-control-sm"
-                                readonly value="{{ old('temp_id') ?? $table[$menu->field_code()] }}">
+                                readonly value="{{ old('temp_id') ?? $table[$menu->field_primary()] }}">
                         </td>
                         <td class="text-center">
-                            <input type="hidden" value="{{ old('temp_module') ?? $model->field_code }}"
+                            <input type="hidden" value="{{ old('temp_module') ?? $model->field_primary }}"
                                 name="{{ $temp_module }}">
                             <input type="text" name="{{ $temp_name }}" class="form-control form-control-sm"
                                 value="{{ old('temp_name') ?? $table[$menu->field_name()] }}">

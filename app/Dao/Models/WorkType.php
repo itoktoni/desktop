@@ -43,7 +43,7 @@ class WorkType extends Model
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build($this->field_code())->name('ID'),
+            DataBuilder::build($this->field_primary())->name('ID'),
             DataBuilder::build($this->field_name())->name('Name')->sort(),
         ];
     }

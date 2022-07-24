@@ -12,8 +12,8 @@
             @if($groups = SharedData::get('groups'))
             @foreach($groups as $group_data)
             <li>
-                <a class="icon {{ request()->segment(2) == $group_data->field_code ? 'active' : '' }}" href="#"
-                    data-nav-target="#{{ $group_data->field_code }}">
+                <a class="icon {{ request()->segment(2) == $group_data->field_primary ? 'active' : '' }}" href="#"
+                    data-nav-target="#{{ $group_data->field_primary }}">
                     <i data-feather="{{ $group_data->field_icon }}"></i>
                     <h5 class="text-center text-white">
                         {{ $group_data->field_name }}
@@ -77,25 +77,25 @@
                 @foreach($acc_data as $acc)
                 @php
                 $check_access = request()->segment(2) == $acc[Routes::field_group()] && request()->segment(3) ==
-                $acc[Routes::field_code()];
+                $acc[Routes::field_primary()];
                 $sub_menu = $acc->has_menu->where('menu_show', 1);
                 $check_sub_menu = $sub_menu->count() ?? 0;
-                $highlight_module = request()->segment(3) == $acc[Routes::field_code()];
+                $highlight_module = request()->segment(3) == $acc[Routes::field_primary()];
                 @endphp
                 <li class="{{ $highlight_module ? 'open' : '' }}">
                     <a class="{{ $check_access ? 'active' : '' }}"
-                        href="{{ route($acc[Routes::field_code()].'.getTable') }}">
+                        href="{{ route($acc[Routes::field_primary()].'.getTable') }}">
                         <span>{{ $acc[Routes::field_name()] }}</span>
                     </a>
                     @if($check_sub_menu)
                     <ul>
                         @foreach($sub_menu as $menu)
                         @php
-                        $menu_code = str_replace('get_','', Str::snake($menu->field_code));
+                        $menu_code = str_replace('get_','', Str::snake($menu->field_primary));
                         @endphp
                         <li>
                             <a class="{{ $check_access && request()->segment(4) == $menu_code ? 'active' : '' }}"
-                                href="{{ route($acc[Routes::field_code()].'.'.$menu->field_code) }}">{{ $menu->field_name }}
+                                href="{{ route($acc[Routes::field_primary()].'.'.$menu->field_primary) }}">{{ $menu->field_name }}
                             </a>
                         </li>
                         @endforeach

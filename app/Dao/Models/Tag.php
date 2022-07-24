@@ -42,7 +42,7 @@ class Tag extends Model
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build($this->field_code())->name('Tag Code'),
+            DataBuilder::build($this->field_primary())->name('Tag Code'),
             DataBuilder::build($this->field_name())->name('Tag Name')->sort(),
         ];
     }

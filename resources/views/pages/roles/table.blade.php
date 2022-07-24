@@ -65,7 +65,7 @@
                 <tbody>
                     @forelse($data as $table)
                     <tr>
-                        <td><input type="checkbox" class="checkbox" name="code[]" value="{{ $table->field_code }}"></td>
+                        <td><input type="checkbox" class="checkbox" name="code[]" value="{{ $table->field_primary }}"></td>
                         <td class="">{{ $table->field_name }}</td>
                         <td class="">{{ $table->field_description }}</td>
                         <td class="text-center">
@@ -75,11 +75,11 @@
                         </td>
                         <td class="text-center">
                             <a class="badge badge-primary button-update"
-                                href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_code]) }}">
+                                href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_primary]) }}">
                                 Update
                             </a>
-                            <a class="badge badge-danger button-delete" data="{{ $table->field_code }}"
-                                href="{{ route(SharedData::get('route').'.postDelete', ['code' => $table->field_code]) }}">
+                            <a class="badge badge-danger button-delete" data="{{ $table->field_primary }}"
+                                href="{{ route(SharedData::get('route').'.postDelete', ['code' => $table->field_primary]) }}">
                                 Delete
                             </a>
                         </td>

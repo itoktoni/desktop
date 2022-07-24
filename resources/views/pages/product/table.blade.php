@@ -64,7 +64,7 @@
                 <tbody>
                     @forelse($data as $table)
                     <tr>
-                        <td><input type="checkbox" class="checkbox" name="code[]" value="{{ $table->field_code }}"></td>
+                        <td><input type="checkbox" class="checkbox" name="code[]" value="{{ $table->field_primary }}"></td>
                         <td>{{ $table->field_category_name ?? '' }}</td>
                         <td>{{ $table->field_brand_name ?? '' }}</td>
                         <td>{{ $table->field_location_name ?? '' }}</td>
@@ -82,9 +82,9 @@
                                     <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item button-update" href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_code]) }}">Update</a>
+                                    <a class="dropdown-item button-update" href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_primary]) }}">Update</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item text-danger button-delete" data="{{ $table->field_code }}" href="{{ route(SharedData::get('route').'.postDelete', ['code' => $table->field_code]) }}">Delete</a>
+                                    <a class="dropdown-item text-danger button-delete" data="{{ $table->field_primary }}" href="{{ route(SharedData::get('route').'.postDelete', ['code' => $table->field_primary]) }}">Delete</a>
                                 </div>
                             </div>
                         </td>
