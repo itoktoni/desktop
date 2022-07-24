@@ -55,8 +55,4 @@ class WorkSheetController extends MasterController
     public function getExcel(){
         self::$repository->excel('Work_sheet.'.date('Ymd').'.xlsx');
     }
-
-    public function getImport(){
-        self::$repository->excel('Work_sheet.'.date('Ymd').'.xlsx');
-    }
 }
