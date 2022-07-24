@@ -20,7 +20,7 @@ class CreateWorkSheetTable extends Migration
             $table->text('work_sheet_description');
             $table->text('work_sheet_check');
             $table->text('work_sheet_result');
-            $table->integer('work_sheet_ticket_code')->nullable(); //(relation ticket)(Feature)
+            $table->string('work_sheet_ticket_code')->nullable(); //(relation ticket)(Feature)
             $table->integer('work_sheet_product_id')->nullable(); //(relation product)
             $table->dateTime('work_sheet_reported_at')->nullable();
             $table->string('work_sheet_reported_by')->nullable();

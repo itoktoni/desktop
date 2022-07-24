@@ -18,13 +18,13 @@ use Faker\Generator as Faker;
 
 $factory->define(WorkSheet::class, function (Faker $faker) {
     return [
-        'work_sheet_code' => $faker->unique()->numberBetween(1, 100),
-        'work_sheet_type_id' => $faker->numberBetween(1, 5), //(relation work_type)
+        'work_sheet_code' => $faker->uuid,
+        'work_sheet_type_id' => $faker->numberBetween(1, 2), //(relation work_type)
         'work_sheet_name' => $faker->word,
         'work_sheet_description' => $faker->text($maxNbChars = 50),
         'work_sheet_check' => $faker->text($maxNbChars = 50),
         'work_sheet_result' => $faker->text($maxNbChars = 50),
-        'work_sheet_ticket_code' => 0,
+        'work_sheet_ticket_code' => null,
         'work_sheet_product_id' => $faker->numberBetween($min = 1, $max = 50), //(relation product)
         'work_sheet_reported_at' => date('Y-m-d H:i:s'),
         'work_sheet_reported_by' => '1',

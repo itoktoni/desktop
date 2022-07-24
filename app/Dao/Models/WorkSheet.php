@@ -75,19 +75,20 @@ class WorkSheet extends Model
     {
         return [
             DataBuilder::build($this->field_code())->name('Code')->sort(),
-            DataBuilder::build($this->field_name())->name('Name')->sort(),
+            DataBuilder::build(WorkType::field_code())->name('Type ID')->show(false),
+            DataBuilder::build(WorkType::field_name())->name('Type'),
+            DataBuilder::build($this->field_name())->name('Name')->show(false),
+            DataBuilder::build(Product::field_code())->name('Product ID')->show(false),
+            DataBuilder::build(Product::field_name())->name('Product Name')->sort(),
             DataBuilder::build($this->field_description())->name('Description'),
-            DataBuilder::build($this->field_check())->name('Check'),
-            DataBuilder::build($this->field_result())->name('Result'),
+            DataBuilder::build($this->field_check())->name('Check')->show(false),
+            DataBuilder::build($this->field_result())->name('Result')->show(false),
             DataBuilder::build($this->field_ticket_code())->name('Ticket ID')->sort()->show(false),
-            DataBuilder::build($this->field_type_id())->name('Type ID')->sort(),
-            DataBuilder::build($this->field_product_id())->name('Product ID')->sort(),
         ];
     }
 
     public function has_work_type()
     {
-
         return $this->hasOne(WorkType::class, WorkType::field_code(), self::field_type_id());
     }
 

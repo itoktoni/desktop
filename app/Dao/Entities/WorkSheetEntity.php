@@ -2,6 +2,10 @@
 
 namespace App\Dao\Entities;
 
+use App\Dao\Models\Location;
+use App\Dao\Models\Product;
+use App\Dao\Models\WorkType;
+
 trait WorkSheetEntity
 {
     public static function field_code()
@@ -109,9 +113,9 @@ trait WorkSheetEntity
         return 'work_sheet_type_id';
     }
 
-    public function getFieldTypeIdAttribute()
+    public function getFieldTypeNameAttribute()
     {
-        return $this->{$this->field_type_id()};
+        return $this->{WorkType::field_name()};
     }
 
     public static function field_product_id()
@@ -119,8 +123,8 @@ trait WorkSheetEntity
         return 'work_sheet_product_id';
     }
 
-    public function getFieldProductIdAttribute()
+    public function getFieldProductNameAttribute()
     {
-        return $this->{$this->field_product_id()};
+        return $this->{Product::field_name()};
     }
 }

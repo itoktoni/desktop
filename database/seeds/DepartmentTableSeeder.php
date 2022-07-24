@@ -17,7 +17,7 @@ class DepartmentTableSeeder extends Seeder
             $faker = Faker::create('id_ID');
             Department::create([
                 'department_user_id' => $faker->numberBetween($min = 1, $max = 10),
-                'department_name' => $faker->word,
+                'department_name' => $faker->company,
                 'department_description' => $faker->text($maxNbChars = 50),
             ]);
     }

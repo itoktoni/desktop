@@ -92,7 +92,7 @@ class RoutesTableSeeder extends Seeder
                 'route_controller' => 'App\\Http\\Controllers\\System\\RoutesController',
                 'route_active' => 1,
                 'route_description' => null,
-                'route_sort' => 0,
+                'route_sort' => 1,
             ],
             [
                 'route_code' => 'sparepart',
@@ -164,9 +164,8 @@ class RoutesTableSeeder extends Seeder
                 'route_controller' => 'App\\Http\\Controllers\\Transaction\\WorkTypeController',
                 'route_active' => 1,
                 'route_description' => null,
-                'route_sort' => 0,
+                'route_sort' => 1,
             ],
-            
             [
                 'route_code' => 'work_sheet',
                 'route_name' => 'Work Sheet',
@@ -174,7 +173,7 @@ class RoutesTableSeeder extends Seeder
                 'route_controller' => 'App\\Http\\Controllers\\Transaction\\WorkSheetController',
                 'route_active' => 1,
                 'route_description' => null,
-                'route_sort' => 0,
+                'route_sort' => 2,
             ],
         ));
 

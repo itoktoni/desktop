@@ -13,10 +13,10 @@ class SupplierTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
+        $faker = Faker::create('id_ID');
         Supplier::create([
-            'supplier_name' => $faker->name,
-            'supplier_contact' => $faker->tollFreePhoneNumber,
+            'supplier_name' => $faker->company,
+            'supplier_contact' => $faker->name,
             'supplier_address' => $faker->streetAddress,
             'supplier_email' => $faker->email,
             'supplier_phone' => $faker->phoneNumber,

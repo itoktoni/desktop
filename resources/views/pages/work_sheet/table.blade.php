@@ -63,13 +63,10 @@
                     <tr>
                         <td><input type="checkbox" class="checkbox" name="code[]" value="{{ $table->field_code }}"></td>
                         <td class="">{{ $table->field_code }}</td>
-                        <td class="">{{ $table->field_name }}</td>
-                        <td class="">{{ $table->field_description }}</td>
-                        <td class="">{{ $table->field_check }}</td>
-                        <td class="">{{ $table->field_result }}</td>
+                        <td class="">{{ $table->field_type_name }}</td>
+                        <td class="">{{ $table->field_product_name }}</td>
                         <!-- <td class="">{{ $table->field_ticket_code }}</td> -->
-                        <td class="">{{ $table->field_type_id }}</td>
-                        <td class="">{{ $table->field_product_id }}</td>
+                        <td class="">{{ $table->field_description }}</td>
                         <td class="col-md-2 text-center table-action">
                             <a class="badge badge-primary button-update" href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_code]) }}">
                                 Update

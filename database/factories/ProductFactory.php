@@ -5,6 +5,7 @@
 use App\Dao\Models\Product;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
+use Faker\Provider\Fakecar;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,11 +17,11 @@ use Faker\Generator as Faker;
 | model instances for testing / seeding your application's database.
 |
 */
-
 $factory->define(Product::class, function (Faker $faker) {
+    $faker->addProvider(new Fakecar($faker));
     return [
-        'product_name' => $faker->name,
-        'product_sn' => $faker->randomDigit(),
+        'product_name' => $faker->vehicle,
+        'product_sn' => $faker->vin,
         'product_category_id' => $faker->numberBetween($min = 1, $max = 10),
         'product_brand_id' => $faker->numberBetween($min = 1, $max = 10),
         'product_unit_id' => $faker->numberBetween($min = 1, $max =3),

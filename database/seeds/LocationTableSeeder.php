@@ -17,7 +17,7 @@ class LocationTableSeeder extends Seeder
         foreach (range(1, 5) as $item) {
             $faker = Faker::create('id_ID');
             Location::create([
-                'location_name' => $faker->word,
+                'location_name' => $faker->colorName, //nama lokasi nama2 warna
                 'location_description' => $faker->text($maxNbChars = 200),
                 'location_building_id' => $faker->numberBetween($min = 1, $max = 10),
             ]);

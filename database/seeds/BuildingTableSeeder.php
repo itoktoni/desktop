@@ -16,7 +16,7 @@ class BuildingTableSeeder extends Seeder
 
             $faker = Faker::create('id_ID');
             Building::create([
-               'building_name' => $faker->company,
+               'building_name' => $faker->state,
                'building_description' => $faker->text($maxNbChars = 200),
                'building_contact_person' => $faker->name,
                'building_contact_phone' => $faker->phoneNumber,
