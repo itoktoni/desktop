@@ -4,9 +4,12 @@ namespace App\Dao\Repositories;
 
 use App\Dao\Interfaces\CrudInterface;
 use App\Dao\Models\WorkSheet;
+use App\Dao\Traits\ExcelTrait;
 
 class WorkSheetRepository extends MasterRepository implements CrudInterface
 {
+    use ExcelTrait;
+
     public function __construct()
     {
         $this->model = empty($this->model) ? new WorkSheet() : $this->model;
@@ -24,5 +27,11 @@ class WorkSheetRepository extends MasterRepository implements CrudInterface
         }
 
         return $query;
+    }
+
+    public function excel($name)
+    {
+        $data = $this->setDisablePaginate()->dataRepository()->get();
+        return $this->export($data, $name);
     }
 }

@@ -51,4 +51,8 @@ class WorkSheetController extends MasterController
             'fields' => self::$repository->model->getShowField(),
         ]));
     }
+
+    public function getExcel(){
+        self::$repository->excel('Work_sheet.'.date('Ymd').'.xlsx');
+    }
 }

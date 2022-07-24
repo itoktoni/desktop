@@ -258,6 +258,7 @@ a {
 	}
 
 	&.btn-secondary {
+		color: white !important;
 		@include btn($color-secondary);
 	}
 

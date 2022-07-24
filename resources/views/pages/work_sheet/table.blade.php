@@ -6,8 +6,9 @@
     <nav>
         <input class="btn-check-m d-lg-none" type="checkbox">
         <button href="{{ route(SharedData::get('route').'.postDelete') }}" class="btn btn-danger button-delete-all">Delete</button>
-        <button href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-success button-create">Create</button>
-        <a target="_blank" href="{{ route(SharedData::get('route').'.getPrint') }}" class="btn btn-primary">Print</a>
+        <button href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-primary button-create">Create</button>
+        <a target="_blank" href="{{ route(SharedData::get('route').'.getPrint') }}" class="btn btn-secondary">Print</a>
+        <a href="{{ route(SharedData::get('route').'.getExcel') }}" class="btn btn-success">Excel</a>
     </nav>
 </div>
 @endsection

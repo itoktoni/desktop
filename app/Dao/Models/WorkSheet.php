@@ -6,6 +6,7 @@ use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\WorkSheetEntity;
 use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
+use App\Dao\Traits\ExcelTrait;
 use App\Dao\Traits\OptionTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -17,7 +18,7 @@ use Wildside\Userstamps\Userstamps;
 
 class WorkSheet extends Model
 {
-    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, WorkSheetEntity, Userstamps, ActiveTrait, PowerJoins, OptionTrait, SoftDeletes;
+    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, WorkSheetEntity, Userstamps, ActiveTrait, PowerJoins, OptionTrait, SoftDeletes, ExcelTrait;
 
     protected $table = 'work_sheet';
     protected $primaryKey = 'work_sheet_code';
@@ -53,6 +54,7 @@ class WorkSheet extends Model
 
     protected $filters = [
         'filter',
+        'work_sheet_product_id'
     ];
 
     public $timestamps = true;
