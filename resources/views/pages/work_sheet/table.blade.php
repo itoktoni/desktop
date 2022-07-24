@@ -7,6 +7,7 @@
         <input class="btn-check-m d-lg-none" type="checkbox">
         <button href="{{ route(SharedData::get('route').'.postDelete') }}" class="btn btn-danger button-delete-all">Delete</button>
         <button href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-success button-create">Create</button>
+        <a target="_blank" href="{{ route(SharedData::get('route').'.getPrint') }}" class="btn btn-primary">Print</a>
     </nav>
 </div>
 @endsection
@@ -38,49 +39,7 @@
         </div>
 
         {!! Form::close() !!}
-
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th class="column-checkbox">
-                            <input class="btn-check-d" type="checkbox">
-                        </th>
-                        @foreach($fields as $value)
-                        <th {{ Template::extractColumn($value) }}>
-                            @if($value->sort)
-                            @sortablelink($value->code, $value->name)
-                            @else
-                            {{ $value->name }}
-                            @endif
-                        </th>
-                        @endforeach
-                        <th class="text-center column-action">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($data as $table)
-                    <tr>
-                        <td><input type="checkbox" class="checkbox" name="code[]" value="{{ $table->field_primary }}"></td>
-                        <td class="">{{ $table->field_primary }}</td>
-                        <td class="">{{ $table->field_type_name }}</td>
-                        <td class="">{{ $table->field_product_name }}</td>
-                        <!-- <td class="">{{ $table->field_ticket_code }}</td> -->
-                        <td class="">{{ $table->field_description }}</td>
-                        <td class="col-md-2 text-center table-action">
-                            <a class="badge badge-primary button-update" href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_primary]) }}">
-                                Update
-                            </a>
-                            <a class="badge badge-danger button-delete" data="{{ $table->field_primary }}" href="{{ route(SharedData::get('route').'.postDelete', ['code' => $table->field_primary]) }}">
-                                Delete
-                            </a>
-                        </td>
-                    </tr>
-                    @empty
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
+        @includeIf(Template::form(SharedData::get('template'),'data'))
 
         @component(Template::components('pagination'), ['data' => $data])
         @endcomponent

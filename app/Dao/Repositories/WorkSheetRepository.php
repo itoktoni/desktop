@@ -19,7 +19,9 @@ class WorkSheetRepository extends MasterRepository implements CrudInterface
             ->leftJoinRelationship('has_product')
             ->sortable()->filter();
 
-        $query = env('PAGINATION_SIMPLE') ? $query->simplePaginate(env('PAGINATION_NUMBER')) : $query->paginate(env('PAGINATION_NUMBER'));
+        if(self::$paginate){
+            $query = env('PAGINATION_SIMPLE') ? $query->simplePaginate(env('PAGINATION_NUMBER')) : $query->paginate(env('PAGINATION_NUMBER'));
+        }
 
         return $query;
     }

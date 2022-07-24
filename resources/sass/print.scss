@@ -1,0 +1,79 @@
+.column-checkbox, .checkbox, .column-action{
+	display: none;
+}
+
+h4{
+	font-size: 25px;
+	text-align: center;
+	margin: 10px 0px;
+}
+
+.header-action{
+	position: fixed;
+	right: 20px;
+	top:15px;
+	text-align: right;
+	background-color: #fff;
+
+	a{
+		padding: 5px 15px;
+		border-radius: 10px;
+		border: 0.5px solid lightgray;
+		background-color: #fff;
+	}
+}
+
+a:link, a:visited, a {
+	color: #000;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+table{
+	border-spacing: 0 !important;
+	width :  100% !important;
+
+	thead{
+		th{
+			text-align: left;
+			border: 1px solid #000;
+			padding: 5px 7px;
+			background-color: whitesmoke;
+		}
+	}
+
+	td{
+		margin: 0px;
+		border: 1px solid #000;
+		padding: 5px 7px;
+	}
+}
+
+@media print{
+
+	@page {
+		margin: 0;
+		margin-top: 10px;
+	}
+	body  {
+		margin: 10px;
+	}
+
+	h4{
+		margin-top: 30px;
+	}
+
+	.column-checkbox, .checkbox, .column-action{
+		display: none;
+		visibility: hidden;
+	}
+
+	table{
+		border-spacing: 0 !important;
+	}
+
+	.header-action{
+		display: none;
+		visibility: hidden;
+	}
+}

@@ -9,6 +9,12 @@ use Plugins\Notes;
 class MasterRepository implements CrudInterface
 {
     public $model;
+    public static $paginate = true;
+
+    public function setDisablePaginate(){
+        self::$paginate = false;
+        return $this;
+    }
 
     public function dataRepository()
     {

@@ -2,6 +2,7 @@
 
 namespace Plugins;
 
+use App\Dao\Enums\ReportType;
 use App\Dao\Facades\RoutesFacades;
 use App\Dao\Models\Filters;
 use App\Dao\Models\Groups;
@@ -35,10 +36,19 @@ class Template
         return 'pages.'.self::$template.'.table';
     }
 
+    public static function print($template = false, $type = ReportType::Html)
+    {
+        if($template){
+
+            return 'pages.'.$template.'.print';
+        }
+
+        return 'pages.'.self::$template.'.print';
+    }
+
     public static function form($template = false, $name = false)
     {
         if($template && $name){
-
             return 'pages.'.$template.'.'.$name;
         }
 

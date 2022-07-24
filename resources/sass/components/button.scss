@@ -148,7 +148,7 @@ a {
 	font-size: $default-font-size;
 	width: auto;
 	display: inline-flex;
-	font-weight: 600;
+	font-weight: 500;
 	align-items: center;
 	padding: 10px 15px;
 	line-height: $default-font-size;
@@ -195,7 +195,7 @@ a {
 			padding: 20px 30px;
 			font-size: $default-font-size + 3;
 		}
-	} 
+	}
 
 	&.btn-floating {
 		height: 35px;
@@ -241,6 +241,7 @@ a {
 	}
 
 	&.btn-primary {
+		color: white !important;
 		@include btn($color-primary);
 	}
 

@@ -10,7 +10,9 @@ use App\Http\Requests\WorkSheetRequest;
 use App\Http\Services\CreateService;
 use App\Http\Services\SingleService;
 use App\Http\Services\UpdateService;
+use Coderello\SharedData\Facades\SharedData;
 use Plugins\Response;
+use Plugins\Template;
 
 class WorkSheetController extends MasterController
 {
@@ -40,5 +42,13 @@ class WorkSheetController extends MasterController
     {
         $data = $service->update(self::$repository, $request, $code);
         return Response::redirectBack($data);
+    }
+
+    public function getPrint(){
+        $query = self::$repository->setDisablePaginate()->dataRepository();
+        return view(Template::print(SharedData::get('template')))->with($this->share([
+            'data' => $query->get(),
+            'fields' => self::$repository->model->getShowField(),
+        ]));
     }
 }
