@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UnitTableSeeder::class);
         $this->call(WorkTypeTableSeeder::class);
         $this->call(WorkSheetTableSeeder::class);
+        $this->call(TicketTopicTableSeeder::class);
 
         foreach (range(0, 9) as $integer) {
             $this->call(UsersTableSeeder::class);

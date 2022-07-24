@@ -175,6 +175,15 @@ class RoutesTableSeeder extends Seeder
                 'route_description' => null,
                 'route_sort' => 2,
             ],
+            [
+                'route_code' => 'ticket_topic',
+                'route_name' => 'Ticket Topic',
+                'route_group' => 'transaction',
+                'route_controller' => 'App\\Http\\Controllers\\Transaction\\TicketTopicController',
+                'route_active' => 1,
+                'route_description' => null,
+                'route_sort' => 1,
+            ],
         ));
 
     }
