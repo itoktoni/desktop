@@ -24,14 +24,6 @@ class GroupsTableSeeder extends Seeder
 
         $this->model->insert(array(
             [
-                'group_code' => 'app',
-                'group_name' => 'App',
-                'group_icon' => 'package',
-                'group_url' => null,
-                'group_sort' => 2,
-                'group_active' => 1,
-            ],
-            [
                 'group_code' => 'master',
                 'group_name' => 'Master Data',
                 'group_icon' => 'database',
@@ -40,19 +32,19 @@ class GroupsTableSeeder extends Seeder
                 'group_active' => 1,
             ],
             [
+                'group_code' => 'transaction',
+                'group_name' => 'Transaction',
+                'group_icon' => 'package',
+                'group_url' => null,
+                'group_sort' => 2,
+                'group_active' => 1,
+            ],
+            [
                 'group_code' => 'system',
                 'group_name' => 'System',
                 'group_icon' => 'settings',
                 'group_url' => null,
                 'group_sort' => 3,
-                'group_active' => 1,
-            ],
-            [
-                'group_code' => 'transaction',
-                'group_name' => 'Transaction',
-                'group_icon' => 'dollar-sign',
-                'group_url' => null,
-                'group_sort' => 4,
                 'group_active' => 1,
             ],
         ));

@@ -2,6 +2,8 @@
 
 namespace App\Dao\Entities;
 
+use App\Dao\Models\Roles;
+
 trait UserEntity
 {
     public static function field_primary()
@@ -49,18 +51,8 @@ trait UserEntity
         return 'role';
     }
 
-    public function getFieldRoleIdAttribute()
-    {
-        return $this->{self::field_role_id()};
-    }
-
-    public static function field_role_name()
-    {
-        return 'role_name';
-    }
-
     public function getFieldRoleNameAttribute()
     {
-        return $this->{self::field_role_name()};
+        return $this->{Roles::field_name()};
     }
 }

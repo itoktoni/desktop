@@ -65,7 +65,7 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 
         <div class="form-group">
             <label>Unit</label>
-            {!! Form::select('product_unit_id', $unit, null, ['class' => 'form-control', 'id' =>
+            {!! Form::select('product_unit_code', $unit, null, ['class' => 'form-control', 'id' =>
             'product_name', 'placeholder' => '- Select Unit -', 'required']) !!}
         </div>
 

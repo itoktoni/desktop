@@ -26,19 +26,16 @@ class DatabaseSeeder extends Seeder
         $this->call(WorkSheetTableSeeder::class);
         $this->call(TicketTopicTableSeeder::class);
 
-        foreach (range(0, 9) as $integer) {
-            $this->call(UsersTableSeeder::class);
-            $this->call(ProductTableSeeder::class);
-            $this->call(BuildingTableSeeder::class);
-            $this->call(LocationTableSeeder::class);
-            $this->call(TagTableSeeder::class);
-            $this->call(SparepartTableSeeder::class);
-            $this->call(CategoryTableSeeder::class);
-            $this->call(BrandTableSeeder::class);
-            $this->call(UnitTableSeeder::class);
-            $this->call(SupplierTableSeeder::class);
-            $this->call(MenusTableSeeder::class);
-            $this->call(DepartmentTableSeeder::class);
-    }
+        $this->call(UsersTableSeeder::class);
+        $this->call(ProductTableSeeder::class);
+        $this->call(BuildingTableSeeder::class);
+        $this->call(LocationTableSeeder::class);
+        $this->call(TagTableSeeder::class);
+        $this->call(SparepartTableSeeder::class);
+        $this->call(CategoryTableSeeder::class);
+        $this->call(BrandTableSeeder::class);
+        $this->call(SupplierTableSeeder::class);
+        $this->call(MenusTableSeeder::class);
+        $this->call(DepartmentTableSeeder::class);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Dao\Entities;
 
+use App\Dao\Models\Product;
+
 trait SparepartEntity
 {
     public static function field_primary()
@@ -59,18 +61,8 @@ trait SparepartEntity
         return 'sparepart_product_id';
     }
 
-    public function getFieldproductIdAttribute()
-    {
-        return $this->{self::field_product_id()};
-    }
-
-    public static function field_product_name()
-    {
-        return 'product_name';
-    }
-
     public function getFieldproductNameAttribute()
     {
-        return $this->{self::field_product_name()};
+        return $this->{Product::field_name()};
     }
 }

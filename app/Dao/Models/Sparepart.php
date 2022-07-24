@@ -52,7 +52,7 @@ class Sparepart extends Model
             DataBuilder::build(self::field_primary())->name('ID')->show(false),
             DataBuilder::build(self::field_name())->name('Name')->sort(),
             DataBuilder::build(self::field_location_id())->name('Location ID')->show(false),
-            DataBuilder::build(self::field_product_name())->name('Product')->sort(),
+            DataBuilder::build(Product::field_name())->name('Product')->sort(),
             DataBuilder::build(self::field_description())->name('Description'),
             DataBuilder::build(self::field_stock())->name('Stock')->class('column-active')->sort(),
         ];
@@ -66,7 +66,7 @@ class Sparepart extends Model
     public function productNameSortable($query, $direction)
     {
         $query = $this->queryFilter($query);
-        $query = $query->orderBy($this->field_product_name(), $direction);
+        $query = $query->orderBy(Product::field_name(), $direction);
         return $query;
     }
 

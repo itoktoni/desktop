@@ -27,6 +27,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        try {
+            Template::routes();
+        } catch (\Throwable $th) {
+            abort('500', $th->getMessage());
+        }
+
         Auth::provider('cache-user', function() {
             return resolve(CacheableAuthUserServiceProvider::class);
         });

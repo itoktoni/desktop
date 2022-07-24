@@ -1,5 +1,13 @@
 @extends(Template::master())
 
+@section('style')
+<style>
+#table_data{
+    font-size: 12px;
+}
+</style>
+@endsection
+
 @section('header')
 <h4>List Master Product</h4>
 <div class="header-action">
@@ -69,6 +77,7 @@
                         <td>{{ $table->field_brand_name ?? '' }}</td>
                         <td>{{ $table->field_location_name ?? '' }}</td>
                         <td>{{ $table->field_name }}</td>
+                        <td>{{ $table->field_unit_name }}</td>
                         <td>{{ $table->field_prod_year }}</td>
                         <td>{{ $table->field_buy_date }}</td>
                         <td class="text-center">

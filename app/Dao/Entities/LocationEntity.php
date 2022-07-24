@@ -2,6 +2,8 @@
 
 namespace App\Dao\Entities;
 
+use App\Dao\Models\Building;
+
 trait LocationEntity
 {
     public static function field_primary()
@@ -39,18 +41,8 @@ trait LocationEntity
         return 'location_building_id';
     }
 
-    public function getFieldBuildingIdAttribute()
-    {
-        return $this->{self::field_building_id()};
-    }
-
-    public static function field_building_name()
-    {
-        return 'building_name';
-    }
-
     public function getFieldBuildingNameAttribute()
     {
-        return $this->{self::field_building_name()};
+        return $this->{Building::field_name()};
     }
 }

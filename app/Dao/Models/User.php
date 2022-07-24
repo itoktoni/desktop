@@ -61,7 +61,7 @@ class User extends Authenticatable
         return [
             DataBuilder::build($this->field_primary())->name('ID')->show(false),
             DataBuilder::build($this->field_name())->name('Name')->sort(),
-            DataBuilder::build($this->field_role_name())->name('Role'),
+            DataBuilder::build(Roles::field_name())->name('Role'),
             DataBuilder::build($this->field_email())->name('Email'),
             DataBuilder::build($this->field_active())->name('Active')->show(false),
         ];
@@ -75,7 +75,7 @@ class User extends Authenticatable
     public function roleNameSortable($query, $direction)
     {
         $query = $this->queryFilter($query);
-        $query = $query->orderBy($this->field_role_name(), $direction);
+        $query = $query->orderBy(Roles::field_name(), $direction);
         return $query;
     }
 }

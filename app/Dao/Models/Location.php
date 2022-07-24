@@ -48,7 +48,7 @@ class Location extends Model
     {
         return [
             DataBuilder::build($this->field_primary())->name('Code')->show(false),
-            DataBuilder::build($this->field_building_name())->name('Building')->sort(),
+            DataBuilder::build(Building::field_name())->name('Building')->sort(),
             DataBuilder::build($this->field_name())->name('Name')->sort(),
             DataBuilder::build($this->field_description())->name('Description'),
         ];
@@ -62,7 +62,7 @@ class Location extends Model
     public function buildingNameSortable($query, $direction)
     {
         $query = $this->queryFilter($query);
-        $query = $query->orderBy($this->field_building_name(), $direction);
+        $query = $query->orderBy(Building::field_name(), $direction);
         return $query;
     }
 }

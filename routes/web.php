@@ -35,6 +35,8 @@ Route::get('/clear', function () {
     Artisan::call('config:cache');
     dd("Cache is cleared");
 });
+Auth::routes();
+
 // AutoRoute::auto('category', 'App\Http\Controllers\Master\CategoryController', ['name' => 'category']);
 
 $routes = Template::routes();
@@ -50,7 +52,11 @@ if ($routes) {
                     ]], function () use ($action_data) {
                     if ($action_array = $action_data->toArray()) {
                         foreach ($action_array as $action) {
-                            AutoRoute::auto($action[Routes::field_primary()], $action[Routes::field_controller()], ['name' => $action[Routes::field_primary()]]);
+                            try {
+                                AutoRoute::auto($action[Routes::field_primary()], $action[Routes::field_controller()], ['name' => $action[Routes::field_primary()]]);
+                            } catch (\Throwable $th) {
+                                //throw $th;
+                            }
                         }
                     }
                 });
@@ -408,4 +414,3 @@ Route::prefix('pages')->name('pages.')->middleware('access')->group(function () 
     });
 });
 
-Auth::routes();

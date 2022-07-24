@@ -12,6 +12,7 @@ class TicketTopicTableSeeder extends Seeder
      */
     public function run()
     {
+        TicketTopic::truncate();
         factory(TicketTopic::class, 5)->create();
     }
 }

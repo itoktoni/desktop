@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Transaction;
+namespace App\Http\Controllers\Master;
 
 use App\Dao\Repositories\TicketTopicRepository;
 use App\Http\Controllers\System\MasterController;

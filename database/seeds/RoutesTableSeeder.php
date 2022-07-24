@@ -70,7 +70,7 @@ class RoutesTableSeeder extends Seeder
             [
                 'route_code' => 'product',
                 'route_name' => 'Product',
-                'route_group' => 'app',
+                'route_group' => 'master',
                 'route_controller' => 'App\\Http\\Controllers\\Master\\ProductController',
                 'route_active' => 1,
                 'route_description' => null,
@@ -160,8 +160,8 @@ class RoutesTableSeeder extends Seeder
             [
                 'route_code' => 'work_type',
                 'route_name' => 'Work Type',
-                'route_group' => 'transaction',
-                'route_controller' => 'App\\Http\\Controllers\\Transaction\\WorkTypeController',
+                'route_group' => 'master',
+                'route_controller' => 'App\\Http\\Controllers\\Master\\WorkTypeController',
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 1,
@@ -178,8 +178,8 @@ class RoutesTableSeeder extends Seeder
             [
                 'route_code' => 'ticket_topic',
                 'route_name' => 'Ticket Topic',
-                'route_group' => 'transaction',
-                'route_controller' => 'App\\Http\\Controllers\\Transaction\\TicketTopicController',
+                'route_group' => 'master',
+                'route_controller' => 'App\\Http\\Controllers\\Master\\TicketTopicController',
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 1,

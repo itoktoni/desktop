@@ -2,6 +2,12 @@
 
 namespace App\Dao\Entities;
 
+use App\Dao\Models\Brand;
+use App\Dao\Models\Category;
+use App\Dao\Models\Department;
+use App\Dao\Models\Location;
+use App\Dao\Models\Unit;
+
 trait ProductEntity
 {
     public static function field_primary()
@@ -42,66 +48,6 @@ trait ProductEntity
     public function getFieldStatusAttribute()
     {
         return $this->{self::field_status()};
-    }
-
-    public static function field_category_id()
-    {
-        return 'product_category_id';
-    }
-
-    public function getFieldCategoryIdAttribute()
-    {
-        return $this->{self::field_category_id()};
-    }
-
-    public static function field_category_name()
-    {
-        return 'category_name';
-    }
-
-    public function getFieldCategoryNameAttribute()
-    {
-        return $this->{self::field_category_name()};
-    }
-
-    public static function field_brand_id()
-    {
-        return 'product_brand_id';
-    }
-
-    public function getFieldBrandIdAttribute()
-    {
-        return $this->{self::field_brand_id()};
-    }
-
-    public static function field_brand_name()
-    {
-        return 'brand_name';
-    }
-
-    public function getFieldBrandNameAttribute()
-    {
-        return $this->{self::field_brand_name()};
-    }
-
-    public static function field_unit_id()
-    {
-        return 'product_unit_id';
-    }
-
-    public function getFieldUnitIdAttribute()
-    {
-        return $this->{self::field_unit_id()};
-    }
-
-    public static function field_unit_name()
-    {
-        return 'unit_name';
-    }
-
-    public function getFieldUnitNameAttribute()
-    {
-        return $this->{self::field_unit_name()};
     }
 
     public static function field_sn()
@@ -159,19 +105,9 @@ trait ProductEntity
         return 'product_location_id';
     }
 
-    public function getFieldLocationIdAttribute()
-    {
-        return $this->{self::field_location_id()};
-    }
-
-    public static function field_location_name()
-    {
-        return 'location_name';
-    }
-
     public function getFieldLocationNameAttribute()
     {
-        return $this->{self::field_location_name()};
+        return $this->{Location::field_name()};
     }
 
     public static function field_department_id()
@@ -179,19 +115,39 @@ trait ProductEntity
         return 'product_department_id';
     }
 
-    public function getFieldDepartmentIdAttribute()
-    {
-        return $this->{self::field_department_id()};
-    }
-
-    public static function field_department_name()
-    {
-        return 'department_name';
-    }
-
     public function getFieldDepartmentNameAttribute()
     {
-        return $this->{self::field_department_name()};
+        return $this->{Department::field_name()};
+    }
+
+    public static function field_brand_id()
+    {
+        return 'product_brand_id';
+    }
+
+    public function getFieldBrandNameAttribute()
+    {
+        return $this->{Brand::field_name()};
+    }
+
+    public static function field_unit_code()
+    {
+        return 'product_unit_code';
+    }
+
+    public function getFieldUnitNameAttribute()
+    {
+        return $this->{Unit::field_name()};
+    }
+
+    public static function field_category_id()
+    {
+        return 'product_category_id';
+    }
+
+    public function getFieldCategoryNameAttribute()
+    {
+        return $this->{Category::field_name()};
     }
 
 }
