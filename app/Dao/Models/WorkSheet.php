@@ -78,7 +78,7 @@ class WorkSheet extends Model
         return [
             DataBuilder::build($this->field_primary())->name('Code')->sort(),
             DataBuilder::build(WorkType::field_primary())->name('Type ID')->show(false),
-            DataBuilder::build(WorkType::field_name())->name('Type'),
+            DataBuilder::build(WorkType::field_name())->name('Type')->sort(),
             DataBuilder::build($this->field_name())->name('Name')->show(false),
             DataBuilder::build(Product::field_primary())->name('Product ID')->show(false),
             DataBuilder::build(Product::field_name())->name('Product Name')->sort(),
@@ -99,17 +99,17 @@ class WorkSheet extends Model
         return $this->hasOne(Product::class, Product::field_primary(), self::field_product_id());
     }
 
-    public function workTypeIdSortable($query, $direction)
+    public function workTypeNameSortable($query, $direction)
     {
         $query = $this->queryFilter($query);
-        $query = $query->orderBy($this->field_type_id(), $direction);
+        $query = $query->orderBy(WorkType::field_name(), $direction);
         return $query;
     }
 
-    public function productIdSortable($query, $direction)
+    public function productNameSortable($query, $direction)
     {
         $query = $this->queryFilter($query);
-        $query = $query->orderBy($this->field_product_id(), $direction);
+        $query = $query->orderBy(Product::field_name(), $direction);
         return $query;
     }
 
