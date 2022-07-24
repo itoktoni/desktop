@@ -68,7 +68,7 @@ class WorkSheet extends Model
 
     public function fieldSearching()
     {
-        return $this->field_name();
+        return $this->field_code();
     }
 
     public function fieldDatatable(): array
