@@ -13,6 +13,7 @@ use App\Http\Requests\WorkSheetRequest;
 use App\Http\Services\CreateService;
 use App\Http\Services\SingleService;
 use App\Http\Services\UpdateService;
+use Barryvdh\DomPDF\Facade as PDF;
 use Coderello\SharedData\Facades\SharedData;
 use Plugins\Response;
 use Plugins\Template;
@@ -64,5 +65,16 @@ class WorkSheetController extends MasterController
     public function getCsv()
     {
         return self::$repository->excel('Work_sheet.'.date('Ymd'));
+    }
+
+    public function getPdf()
+    {
+        // $dompdf=PDF::getDomPDF();
+        // $dompdf->loadHTML('<h1>Test</h1>');
+        // $dompdf->render();
+        // $dompdf->get_canvas()->get_cpdf()->setEncryption("userpass", "adminpass");
+        // return $dompdf->stream();
+
+       return PDF::loadHTML('<h1>Test</h1>')->stream();
     }
 }
