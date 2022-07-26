@@ -9,10 +9,10 @@ use Plugins\Notes;
 class MasterRepository implements CrudInterface
 {
     public $model;
-    public static $excel = false;
+    public static $paginate = true;
 
-    public function setExcel(){
-        self::$excel = true;
+    public function setDisablePaginate(){
+        self::$paginate = false;
         return $this;
     }
 
@@ -21,8 +21,6 @@ class MasterRepository implements CrudInterface
         $query = $this->model
             ->select($this->model->getSelectedField())
             ->active()->sortable()->filter();
-
-        $query = env('PAGINATION_SIMPLE') ? $query->simplePaginate(env('PAGINATION_NUMBER')) : $query->paginate(env('PAGINATION_NUMBER'));
 
         return $query;
     }

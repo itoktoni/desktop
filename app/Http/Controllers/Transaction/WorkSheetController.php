@@ -7,20 +7,16 @@ use App\Dao\Models\User;
 use App\Dao\Models\WorkSheet;
 use App\Dao\Models\WorkType;
 use App\Dao\Repositories\WorkSheetRepository;
+use App\Exports\UsersExport;
 use App\Http\Controllers\System\MasterController;
 use App\Http\Requests\WorkSheetRequest;
 use App\Http\Services\CreateService;
 use App\Http\Services\SingleService;
 use App\Http\Services\UpdateService;
 use Coderello\SharedData\Facades\SharedData;
-use Illuminate\Support\Facades\Storage;
 use Plugins\Response;
 use Plugins\Template;
-use Rap2hpoutre\FastExcel\FastExcel;
-use Spatie\SimpleExcel\SimpleExcelWriter;
-use Nikazooz\Simplesheet\Facades\Simplesheet;
-use OpenSpout\Common\Entity\Cell;
-use OpenSpout\Common\Entity\Row;
+use Maatwebsite\Excel\Facades\Excel;
 
 class WorkSheetController extends MasterController
 {
@@ -61,6 +57,11 @@ class WorkSheetController extends MasterController
     }
 
     public function getExcel()
+    {
+        return Excel::download(new WorkSheetRepository, 'Work_sheet.'.date('Ymd').'.xlsx');
+    }
+
+    public function getCsv()
     {
         return self::$repository->excel('Work_sheet.'.date('Ymd'));
     }

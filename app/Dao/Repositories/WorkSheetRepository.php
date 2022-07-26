@@ -4,8 +4,9 @@ namespace App\Dao\Repositories;
 
 use App\Dao\Interfaces\CrudInterface;
 use App\Dao\Models\WorkSheet;
+use Maatwebsite\Excel\Concerns\FromCollection;
 
-class WorkSheetRepository extends MasterRepository implements CrudInterface
+class WorkSheetRepository extends MasterRepository implements CrudInterface, FromCollection
 {
     public function __construct()
     {
@@ -14,12 +15,12 @@ class WorkSheetRepository extends MasterRepository implements CrudInterface
 
     public function dataRepository()
     {
-        $query = $this->model->select(self::$excel ? $this->model->getExcelField() : $this->model->getSelectedField())
+        $query = $this->model->select(self::$paginate ? $this->model->getExcelField() : $this->model->getSelectedField())
             ->leftJoinRelationship('has_work_type')
             ->leftJoinRelationship('has_product')
             ->sortable()->filter();
 
-        if(!self::$excel){
+        if(self::$paginate){
             $query = env('PAGINATION_SIMPLE') ? $query->simplePaginate(env('PAGINATION_NUMBER')) : $query->paginate(env('PAGINATION_NUMBER'));
         }
 
@@ -29,7 +30,12 @@ class WorkSheetRepository extends MasterRepository implements CrudInterface
     public function excel($name)
     {
         $this->model->selected_field = 'excel';
-        $data = $this->setExcel()->dataRepository();
+        $data = $this->setDisablePaginate()->dataRepository();
         return $this->model->export($data, $name);
+    }
+
+    public function collection()
+    {
+        return $this->setDisablePaginate()->dataRepository()->get();
     }
 }

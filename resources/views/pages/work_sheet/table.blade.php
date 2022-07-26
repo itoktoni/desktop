@@ -9,6 +9,7 @@
         <button href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-primary button-create">Create</button>
         <a target="_blank" href="{{ route(SharedData::get('route').'.getPrint', request()->query()) }}" class="btn btn-secondary">Print</a>
         <a href="{{ route(SharedData::get('route').'.getExcel', request()->query()) }}" class="btn btn-success">Excel</a>
+        <a href="{{ route(SharedData::get('route').'.getCsv', request()->query()) }}" class="btn btn-info">Csv</a>
     </nav>
 </div>
 @endsection
