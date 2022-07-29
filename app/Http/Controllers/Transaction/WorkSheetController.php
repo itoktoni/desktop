@@ -51,7 +51,6 @@ class WorkSheetController extends MasterController
 
     public function postUpdate($code, WorkSheetRequest $request, UpdateService $service)
     {
-        // dd($request->all());
         $data = $service->update(self::$repository, $request, $code);
         return Response::redirectBack($data);
     }

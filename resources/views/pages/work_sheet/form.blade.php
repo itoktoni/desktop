@@ -31,6 +31,13 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
             'work_sheet_product_id', 'placeholder' => '- Select Product -', 'required']) !!}
         </div>
 
+        <div class="form-group {{ $errors->has('work_sheet_reported_at') ? 'has-error' : '' }}">
+            <label>Report Date</label>
+            {!! Form::text('work_sheet_reported_at', null, ['class' => 'form-control date', 'id' => 'work_sheet_reported_at', 'placeholder'
+            => 'Please fill this input', 'required']) !!}
+            {!! $errors->first('work_sheet_reported_at', '<p class="help-block">:message</p>') !!}
+        </div>
+
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group {{ $errors->has('work_sheet_type_id') ? 'has-error' : '' }}">
@@ -62,7 +69,7 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
             <label>Description</label>
             {!! Form::textarea('work_sheet_description', null, ['class' => 'form-control h-auto', 'id' =>
             'work_sheet_description',
-            'placeholder' => 'Please fill this input', 'rows' => 5]) !!}
+            'placeholder' => 'Please fill this input', 'rows' => 9]) !!}
         </div>
 
     </div>
