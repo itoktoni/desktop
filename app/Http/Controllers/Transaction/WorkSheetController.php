@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Transaction;
 
+use App\Dao\Enums\WorkStatus;
 use App\Dao\Models\Product;
 use App\Dao\Models\User;
 use App\Dao\Models\WorkSheet;
@@ -31,9 +32,14 @@ class WorkSheetController extends MasterController
     {
         $work_type = WorkType::optionBuild();
         $product = Product::optionBuild();
+        $user = User::optionBuild();
+        $status = WorkStatus::getOptions();
+
         self::$share = [
             'work_type' => $work_type,
             'product' => $product,
+            'user' => $user,
+            'status' => $status,
         ];
     }
 
@@ -45,6 +51,7 @@ class WorkSheetController extends MasterController
 
     public function postUpdate($code, WorkSheetRequest $request, UpdateService $service)
     {
+        // dd($request->all());
         $data = $service->update(self::$repository, $request, $code);
         return Response::redirectBack($data);
     }

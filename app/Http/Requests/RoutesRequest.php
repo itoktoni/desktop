@@ -32,7 +32,7 @@ class RoutesRequest extends FormRequest
         ]);
     }
 
-    public function validation()
+    public function validation() : array
     {
         return [
             'route_name' => 'required|min:1',

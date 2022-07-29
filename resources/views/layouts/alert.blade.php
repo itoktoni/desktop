@@ -28,3 +28,14 @@ $(function() {
 session()->forget('success');
 @endphp
 @endif
+
+@if(session()->has('Error') && !request()->ajax())
+<script type="text/javascript">
+$(function() {
+    toastr.error("{{ session()->get('Error') }}");
+});
+</script>
+@php
+session()->forget('Error');
+@endphp
+@endif

@@ -11,7 +11,7 @@ class LocationRequest extends FormRequest
 {
     use ValidationTrait;
 
-    public function validation()
+    public function validation() : array
     {
         return [
             'location_name' => 'required|min:3',

@@ -28,6 +28,16 @@ trait WorkSheetEntity
         return $this->{$this->field_name()};
     }
 
+    public static function field_status()
+    {
+        return 'work_sheet_status';
+    }
+
+    public function getFieldStatusAttribute()
+    {
+        return $this->{$this->field_status()};
+    }
+
     public static function field_description()
     {
         return 'work_sheet_description';

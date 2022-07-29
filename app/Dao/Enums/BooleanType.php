@@ -10,30 +10,6 @@ class BooleanType extends Enum implements LocalizedEnum
 {
     use StatusTrait;
 
-    const Type                  =  null;
-    const Yes               =  1;
-    const No            =  2;
-
-    public static function colors()
-    {
-        return [
-            self::Type => ColorType::Primary,
-            self::Yes => ColorType::Danger,
-            self::No => ColorType::Danger,
-        ];
-    }
-
-    public static function getDescription($value): string
-    {
-        if ($value === self::Type) {
-            return '- Pilih Type -';
-        }
-
-        return parent::getDescription($value);
-    }
-
-    public static function name()
-    {
-        return 'Status Type';
-    }
+    const Yes                   =  1;
+    const No                    =  2;
 }

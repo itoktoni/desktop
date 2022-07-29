@@ -18,7 +18,7 @@ class TagRequest extends FormRequest
         ]);
     }
 
-    public function validation()
+    public function validation() : array
     {
         return [
             'tag_name' => 'required|min:3',

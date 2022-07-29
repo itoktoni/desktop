@@ -10,7 +10,7 @@ class ProductRequest extends FormRequest
 {
     use ValidationTrait;
 
-    public function validation()
+    public function validation() : array
     {
         return [
             'product_name' => 'required|min:3',

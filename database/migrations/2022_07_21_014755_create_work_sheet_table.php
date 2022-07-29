@@ -16,13 +16,14 @@ class CreateWorkSheetTable extends Migration
         Schema::create('work_sheet', function (Blueprint $table) {
             $table->string('work_sheet_code')->primary();
             $table->integer('work_sheet_type_id')->nullable(); //(relation work_type)
-            $table->string('work_sheet_name');
-            $table->text('work_sheet_description');
-            $table->text('work_sheet_check');
-            $table->text('work_sheet_result');
+            $table->string('work_sheet_name')->nullable();
+            $table->text('work_sheet_description')->nullable();
+            $table->text('work_sheet_check')->nullable();
+            $table->text('work_sheet_result')->nullable();
+            $table->tinyInteger('work_sheet_status');
             $table->string('work_sheet_ticket_code')->nullable(); //(relation ticket)(Feature)
             $table->integer('work_sheet_product_id')->nullable(); //(relation product)
-            $table->dateTime('work_sheet_reported_at')->nullable();
+            $table->date('work_sheet_reported_at')->nullable();
             $table->string('work_sheet_reported_by')->nullable();
             $table->dateTime('work_sheet_created_at')->nullable();
             $table->string('work_sheet_created_by')->nullable();

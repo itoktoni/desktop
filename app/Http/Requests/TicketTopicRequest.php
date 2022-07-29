@@ -9,7 +9,7 @@ class TicketTopicRequest extends FormRequest
 {
     use ValidationTrait;
 
-    public function validation()
+    public function validation() : array
     {
         return [
             'ticket_topic_name' => 'required|unique:ticket_topic',

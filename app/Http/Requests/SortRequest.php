@@ -14,7 +14,7 @@ class SortRequest extends FormRequest
         $this->offsetUnset('_token');
     }
 
-    public function validation()
+    public function validation() : array
     {
         return [
             'sort' => 'required',

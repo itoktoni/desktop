@@ -19,12 +19,9 @@ Trait StatusTrait
 
         $data = [];
         foreach($collect as $item){
-            $data[$item->value] = strtoupper($item->description);
+            $data[$item->value] = $item->description;
         }
 
         return $data;
     }
-
-    abstract public static function colors();
-    abstract public static function name();
 }

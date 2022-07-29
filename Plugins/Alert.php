@@ -31,6 +31,6 @@ class Alert
 
     public static function error($data = null)
     {
-        session()->put(self::danger, env('APP_ENV', 'local') == 'production' ? 'Data got error !' : $data . ' !');
+        session()->put(self::error, env('APP_ENV', 'local') == 'production' ? 'Data got error !' : $data . ' !');
     }
 }

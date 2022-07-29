@@ -10,7 +10,7 @@ class UserRequest extends FormRequest
 {
     use ValidationTrait;
 
-    public function validation()
+    public function validation() : array
     {
         return [
             'name' => 'required|min:3',

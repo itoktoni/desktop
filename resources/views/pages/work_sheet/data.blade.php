@@ -27,7 +27,7 @@
                 <!-- <td class="">{{ $table->field_ticket_code }}</td> -->
                 <td class="">{{ $table->field_description }}</td>
                 <td class="col-md-2 text-center column-action">
-                    <a class="badge badge-primary button-update"
+                    <a class="badge badge-primary"
                         href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_primary]) }}">
                         Update
                     </a>

@@ -22,6 +22,8 @@ class MasterRepository implements CrudInterface
             ->select($this->model->getSelectedField())
             ->active()->sortable()->filter();
 
+        $query = env('PAGINATION_SIMPLE') ? $query->simplePaginate(env('PAGINATION_NUMBER')) : $query->paginate(env('PAGINATION_NUMBER'));
+
         return $query;
     }
 

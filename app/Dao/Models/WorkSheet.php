@@ -4,6 +4,7 @@ namespace App\Dao\Models;
 
 use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\WorkSheetEntity;
+use App\Dao\Enums\WorkStatus;
 use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
 use App\Dao\Traits\ExcelTrait;
@@ -13,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Kirschbaum\PowerJoins\PowerJoins;
 use Kyslik\ColumnSortable\Sortable;
 use Mehradsadeghi\FilterQueryString\FilterQueryString as FilterQueryString;
+use Ramsey\Uuid\Uuid;
 use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 use Wildside\Userstamps\Userstamps;
 
@@ -42,6 +44,7 @@ class WorkSheet extends Model
         'work_sheet_deleted_by',
         'work_sheet_finished_at',
         'work_sheet_finished_by',
+        'work_sheet_status',
     ];
 
     public $sortable = [
@@ -54,7 +57,7 @@ class WorkSheet extends Model
 
     protected $filters = [
         'filter',
-        'work_sheet_product_id'
+        'work_sheet_product_id',
     ];
 
     public $timestamps = true;
@@ -109,6 +112,31 @@ class WorkSheet extends Model
         $query = $this->queryFilter($query);
         $query = $query->orderBy(Product::field_name(), $direction);
         return $query;
+    }
+
+    /*
+    using model event
+    https://coderflex.com/blog/how-to-use-model-observers-in-laravel
+     */
+
+    public static function boot()
+    {
+        parent::creating(function ($model) {
+            if (empty($model->{self::field_status()})) {
+                $model->{self::field_status()} = WorkStatus::Open;
+            }
+
+            $model->{self::field_primary()} = Uuid::uuid1()->toString();
+        });
+
+        parent::saving(function ($model) {
+            if ($model->{self::field_status()} == WorkStatus::Close) {
+                $model->{self::field_finished_by()} = auth()->user()->id;
+                $model->{self::field_finished_at()} = date('Y-m-d h:i:s');
+            }
+        });
+
+        parent::boot();
     }
 
 }

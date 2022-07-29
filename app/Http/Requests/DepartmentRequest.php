@@ -9,7 +9,7 @@ class DepartmentRequest extends FormRequest
 {
     use ValidationTrait;
 
-    public function validation()
+    public function validation() : array
     {
         return [
             'department_name' => 'required',

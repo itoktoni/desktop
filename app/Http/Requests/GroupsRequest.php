@@ -10,7 +10,7 @@ class GroupsRequest extends FormRequest
 {
     use ValidationTrait;
 
-    public function validation()
+    public function validation() : array
     {
         return [
             'group_name' => 'required|min:3|unique:groups',

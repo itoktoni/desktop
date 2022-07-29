@@ -11,7 +11,7 @@ class BrandRequest extends FormRequest
 {
     use ValidationTrait;
 
-    public function validation()
+    public function validation() : array
     {
         return [
             'brand_name' => 'required|min:3',
