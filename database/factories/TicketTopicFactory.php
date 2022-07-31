@@ -18,7 +18,7 @@ use Faker\Generator as Faker;
 
 $factory->define(TicketTopic::class, function (Faker $faker) {
     return [
-        'ticket_topic_id' => $faker->unique()->numberBetween(1, 100),
+        'ticket_topic_id' => $faker->unique()->numberBetween(1, 5),
         'ticket_topic_name' => $faker->word,
         'ticket_topic_active' => 1,
     ];
