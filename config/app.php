@@ -6,6 +6,7 @@ use App\Dao\Models\Routes;
 use App\Providers\CacheableAuthUserServiceProvider;
 use Coderello\SharedData\Facades\SharedData;
 use Plugins\Template;
+use Plugins\Views;
 
 return [
 
@@ -240,6 +241,7 @@ return [
         'Enum' => BenSampo\Enum\EnumServiceProvider::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Template' => Template::class,
+        'Views' => Views::class,
         'BooleanType' => BooleanType::class,
         'ProductStatus' => ProductStatus::class,
         'SharedData' => SharedData::class,

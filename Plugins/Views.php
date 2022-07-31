@@ -99,4 +99,9 @@ class Views
         $color = $option[$value][1] ?? $color;
         return '<span class="btn btn-xs btn-block btn-' . $color . '">' . $label . '</span>';
     }
+
+    public static function uiiShort($value)
+    {
+        return strtoupper(substr($value, 0, 8));
+    }
 }

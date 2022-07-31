@@ -1,4 +1,4 @@
-@section('script')
+@push('script')
 <script>
 $.ajaxSetup({
     headers: {
@@ -277,4 +277,4 @@ $('body').on('click', '.button-delete-all', function(event) {
     });
 });
 </script>
-@endsection
+@endpush

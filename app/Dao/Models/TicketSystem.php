@@ -29,7 +29,7 @@ class TicketSystem extends Model
     protected $fillable = [
         'ticket_system_code',
         'ticket_system_topic_id',
-        'ticket_system_subject',
+        'ticket_system_name',
         'ticket_system_description',
         'ticket_system_priority',
         'ticket_system_result',
@@ -49,7 +49,8 @@ class TicketSystem extends Model
 
     public $sortable = [
         'ticket_system_code',
-        'ticket_system_subject',
+        'ticket_system_name',
+        'ticket_system_priority',
         'ticket_system_topic_id',
         'ticket_system_department_id',
     ];
@@ -80,10 +81,10 @@ class TicketSystem extends Model
         return [
             DataBuilder::build($this->field_primary())->name('Code')->sort()->excel(),
             DataBuilder::build(TicketTopic::field_name())->name('Topic')->sort()->excel(),
-            DataBuilder::build($this->field_subject())->name('Subject')->sort()->excel(),
+            DataBuilder::build($this->field_name())->name('Subject')->sort()->excel(),
             DataBuilder::build(Department::field_name())->name('Department Name')->sort()->excel(),
-            DataBuilder::build($this->field_description())->name('Description')->excel(),
-            DataBuilder::build($this->field_priority())->name('Priority'),
+            DataBuilder::build($this->field_description())->name('Description')->show(false)->excel(),
+            DataBuilder::build($this->field_priority())->name('Priority')->excel(),
         ];
     }
 
@@ -125,9 +126,9 @@ class TicketSystem extends Model
                 $model->{self::field_reported_by()} = auth()->user()->id;
                 $model->{self::field_reported_at()} = date('Y-m-d h:i:s');
             }
-            
+
             $model->{self::field_primary()} = Uuid::uuid1()->toString();
-            
+
         });
 
         parent::saving(function ($model) {

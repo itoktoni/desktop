@@ -76,8 +76,8 @@
     // pjax.connect("pjax");
     </script>
 
-    @yield('footer')
-    @yield('script')
+    @stack('footer')
+    @stack('script')
 
     @include('layouts.alert')
 

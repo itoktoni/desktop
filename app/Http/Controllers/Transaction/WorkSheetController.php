@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Transaction;
 
+use App\Dao\Enums\TicketStatus;
 use App\Dao\Enums\WorkStatus;
 use App\Dao\Models\Product;
+use App\Dao\Models\TicketSystem;
 use App\Dao\Models\User;
 use App\Dao\Models\WorkSheet;
 use App\Dao\Models\WorkType;
+use App\Dao\Repositories\TicketSystemRepository;
 use App\Dao\Repositories\WorkSheetRepository;
 use App\Exports\UsersExport;
 use App\Http\Controllers\System\MasterController;
@@ -34,10 +37,23 @@ class WorkSheetController extends MasterController
         $product = Product::optionBuild();
         $user = User::optionBuild();
         $status = WorkStatus::getOptions();
+        $ticket = TicketSystem::optionBuild(true)
+        ->where(TicketSystem::field_status(),'!=', TicketStatus::Close)
+        ->pluck(TicketSystem::field_primary(), TicketSystem::field_primary());
+
+        $data_ticket = false;
+        if(request()->has('ticket_id'))
+        {
+            $data_ticket = (new TicketSystemRepository())
+            ->getTicketByCode(request()
+            ->get('ticket_id'));
+        }
 
         self::$share = [
             'work_type' => $work_type,
             'product' => $product,
+            'data_ticket' => $data_ticket,
+            'ticket' => $ticket,
             'user' => $user,
             'status' => $status,
         ];

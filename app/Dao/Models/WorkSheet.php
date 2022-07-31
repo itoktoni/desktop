@@ -81,9 +81,9 @@ class WorkSheet extends Model
         return [
             DataBuilder::build($this->field_primary())->name('Code')->sort()->excel(),
             DataBuilder::build(WorkType::field_name())->name('Type')->sort()->excel(),
-            DataBuilder::build($this->field_name())->name('Name')->show(false)->excel(),
+            DataBuilder::build($this->field_name())->name('Subject')->sort()->excel(),
             DataBuilder::build(Product::field_name())->name('Product Name')->sort()->excel(),
-            DataBuilder::build($this->field_description())->name('Description')->excel(),
+            DataBuilder::build($this->field_description())->name('Description')->show(false)->excel(),
             DataBuilder::build($this->field_check())->name('Check')->show(false),
             DataBuilder::build($this->field_result())->name('Result')->show(false),
             DataBuilder::build($this->field_ticket_code())->name('Ticket ID')->sort()->show(false),
@@ -98,6 +98,11 @@ class WorkSheet extends Model
     public function has_product()
     {
         return $this->hasOne(Product::class, Product::field_primary(), self::field_product_id());
+    }
+
+    public function has_ticket()
+    {
+        return $this->hasOne(TicketSystem::class, TicketSystem::field_primary(), self::field_ticket_code());
     }
 
     public function workTypeNameSortable($query, $direction)

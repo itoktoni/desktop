@@ -21,9 +21,9 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
     <div class="col-md-6">
         <div class="form-group {{ $errors->has('work_sheet_name') ? 'has-error' : '' }}">
             <label>Subject</label>
-            {!! Form::text('ticket_system_subject', null, ['class' => 'form-control', 'id' => 'ticket_system_subject', 'placeholder'
+            {!! Form::text('ticket_system_name', null, ['class' => 'form-control', 'id' => 'ticket_system_name', 'placeholder'
             => 'Please fill this input', 'required']) !!}
-            {!! $errors->first('ticket_system_subject', '<p class="help-block">:message</p>') !!}
+            {!! $errors->first('ticket_system_name', '<p class="help-block">:message</p>') !!}
         </div>
         <div class="form-group {{ $errors->has('work_sheet_product_id') ? 'has-error' : '' }}">
             <label>Department</label>

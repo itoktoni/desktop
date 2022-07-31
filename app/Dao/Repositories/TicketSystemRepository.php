@@ -38,4 +38,9 @@ class TicketSystemRepository extends MasterRepository implements CrudInterface, 
     {
         return $this->setDisablePaginate()->dataRepository()->get();
     }
+
+    public function getTicketByCode($id)
+    {
+        return $this->model->find($id);
+    }
 }

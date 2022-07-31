@@ -2,6 +2,7 @@
 
 namespace App\Dao\Entities;
 
+use App\Dao\Enums\TicketPriority;
 use App\Dao\Models\TicketTopic;
 use App\Dao\Models\Department;
 
@@ -17,14 +18,14 @@ trait TicketSystemEntity
         return $this->{$this->field_primary()};
     }
 
-    public static function field_subject()
+    public static function field_name()
     {
-        return 'ticket_system_subject';
+        return 'ticket_system_name';
     }
 
-    public function getFieldSubjectAttribute()
+    public function getFieldNameAttribute()
     {
-        return $this->{$this->field_subject()};
+        return $this->{$this->field_name()};
     }
 
     public static function field_status()
@@ -54,7 +55,7 @@ trait TicketSystemEntity
 
     public function getFieldPriorityAttribute()
     {
-        return $this->{$this->field_priority()};
+        return TicketPriority::getDescription($this->{$this->field_priority()});
     }
 
     public static function field_reported_at()
