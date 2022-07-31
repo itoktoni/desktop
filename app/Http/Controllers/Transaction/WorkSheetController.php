@@ -38,8 +38,9 @@ class WorkSheetController extends MasterController
         $user = User::optionBuild();
         $status = WorkStatus::getOptions();
         $ticket = TicketSystem::optionBuild(true)
-        ->where(TicketSystem::field_status(),'!=', TicketStatus::Close)
-        ->pluck(TicketSystem::field_primary(), TicketSystem::field_primary());
+        ->where(TicketSystem::field_status(),'!=', TicketStatus::Close)->map(function($item){
+            return $item->{TicketSystem::field_primary()} = $item->{TicketSystem::field_primary()}.' - '.$item->{TicketSystem::field_name()};
+        });
 
         $data_ticket = false;
         if(request()->has('ticket_id'))
