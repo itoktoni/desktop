@@ -28,7 +28,7 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 
         <div class="form-group {{ $errors->has('work_sheet_product_id') ? 'has-error' : '' }}">
             <label>Product</label>
-            {!! Form::select('work_sheet_product_id', $product, null, ['class' => 'form-control', 'id' =>
+            {!! Form::select('work_sheet_product_id', $product, null, ['class' => 'form-control select2', 'id' =>
             'work_sheet_product_id', 'placeholder' => '- Select Product -', 'required']) !!}
         </div>
 
@@ -70,7 +70,7 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 
         <div class="form-group">
             <label>Reported By</label>
-            {!! Form::select('work_sheet_reported_by', $user, $data_ticket->field_reported_By ?? null, ['class' => 'form-control', 'placeholder' => '-
+            {!! Form::select('work_sheet_reported_by', $user, $data_ticket->field_reported_By ?? null, ['class' => 'form-control select2', 'placeholder' => '-
             Select User -']) !!}
         </div>
 
