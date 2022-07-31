@@ -37,5 +37,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SupplierTableSeeder::class);
         $this->call(MenusTableSeeder::class);
         $this->call(DepartmentTableSeeder::class);
+
+        $this->call(TicketSystemTableSeeder::class);
     }
 }

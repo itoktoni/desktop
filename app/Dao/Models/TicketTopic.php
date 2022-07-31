@@ -5,6 +5,7 @@ namespace App\Dao\Models;
 use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\TicketTopicEntity;
 use App\Dao\Traits\ActiveTrait;
+use App\Dao\Traits\OptionTrait;
 use App\Dao\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
@@ -13,7 +14,7 @@ use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 
 class TicketTopic extends Model
 {
-    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, TicketTopicEntity, ActiveTrait;
+    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, TicketTopicEntity, ActiveTrait, OptionTrait;
 
     protected $table = 'ticket_topic';
     protected $primaryKey = 'ticket_topic_id';
