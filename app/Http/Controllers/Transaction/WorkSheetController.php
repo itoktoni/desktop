@@ -22,6 +22,7 @@ use Coderello\SharedData\Facades\SharedData;
 use Plugins\Response;
 use Plugins\Template;
 use Maatwebsite\Excel\Facades\Excel;
+use Plugins\Views;
 
 class WorkSheetController extends MasterController
 {
@@ -38,8 +39,8 @@ class WorkSheetController extends MasterController
         $user = User::optionBuild();
         $status = WorkStatus::getOptions();
         $ticket = TicketSystem::optionBuild(true)
-        ->where(TicketSystem::field_status(),'!=', TicketStatus::Close)->map(function($item){
-            return $item->{TicketSystem::field_primary()} = $item->{TicketSystem::field_primary()}.' - '.$item->{TicketSystem::field_name()};
+        ->where(TicketSystem::field_status(),'!=', TicketStatus::Close)->mapWithKeys(function($item){
+            return [$item->{TicketSystem::field_primary()} => Views::uiiShort($item->{TicketSystem::field_primary()}).' - '.$item->{TicketSystem::field_name()}];
         });
 
         $data_ticket = false;

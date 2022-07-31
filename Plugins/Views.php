@@ -102,6 +102,6 @@ class Views
 
     public static function uiiShort($value)
     {
-        return strtoupper(substr($value, 0, 8));
+        return strtoupper(substr($value, 0, 8)) ?? '';
     }
 }

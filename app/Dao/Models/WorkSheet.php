@@ -79,6 +79,7 @@ class WorkSheet extends Model
     public function fieldDatatable(): array
     {
         return [
+            DataBuilder::build($this->field_ticket_code())->name('Ticket')->sort()->excel(),
             DataBuilder::build($this->field_primary())->name('Code')->sort()->excel(),
             DataBuilder::build(WorkType::field_name())->name('Type')->sort()->excel(),
             DataBuilder::build($this->field_name())->name('Subject')->sort()->excel(),
