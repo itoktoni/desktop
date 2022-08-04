@@ -17,11 +17,6 @@
 </head>
 <body class="form-membership">
 
-<!-- begin::preloader-->
-<div class="preloader">
-    <div class="preloader-icon"></div>
-</div>
-<!-- end::preloader -->
 
 <div class="form-wrapper">
 

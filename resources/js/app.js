@@ -53,29 +53,6 @@
         $(this).css("background", 'url(' + $(this).data('backround-image') + ')');
     });
 
-    /*------------- page loader -------------*/
-    wind_.on('load', function () {
-        $('.preloader').fadeOut(400, function () {
-            setTimeout(function () {
-                toastr.options = {
-                    timeOut: 2000,
-                    progressBar: true,
-                    showMethod: "slideDown",
-                    hideMethod: "slideUp",
-                    showDuration: 200,
-                    hideDuration: 200,
-                    positionClass: "toast-top-center",
-                };
-                toastr.success('Welcome Roxana Roussell.');
-
-                $('.theme-switcher').removeClass('open');
-            }, 500);
-
-            // $('.theme-switcher').css('opacity', 1);
-        });
-    });
-    /*------------- page loader -------------*/
-
     /*------------- side menu (sub menü arrow) -------------*/
     wind_.on('load', function () {
         setTimeout(function () {

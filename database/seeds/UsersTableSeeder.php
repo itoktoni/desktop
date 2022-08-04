@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
             $faker = Faker::create('id_ID');
             User::create([
                 'name' => $faker->name,
+                'username' => $faker->userName(),
                 'email' => $faker->email,
                 'active' => 1,
                 'role' => 2,

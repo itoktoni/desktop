@@ -20,10 +20,11 @@ use Faker\Generator as Faker;
 $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => 'Admin',
+        'username' => 'admin',
         'email' => 'admin@demo.com',
         'active' => 1,
         'role' => 1,
         'email_verified_at' => now(),
-        'password' =>  bcrypt('secret'), // password
+        'password' =>  bcrypt('admin'), // password
     ];
 });

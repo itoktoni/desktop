@@ -196,3 +196,16 @@ a{
 
 	line-height: 35px !important;
 }
+
+body
+{
+	&.form-membership{
+		padding: 1rem 0px !important;
+		.form-wrapper{
+			#logo{
+				margin: 0px;
+				margin-bottom: 20px;
+			}
+		}
+	}
+}
