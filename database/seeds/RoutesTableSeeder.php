@@ -193,6 +193,16 @@ class RoutesTableSeeder extends Seeder
                 'route_description' => null,
                 'route_sort' => 2,
             ],
+            [
+                'route_code' => 'report_ticket',
+                'route_name' => 'Report Ticket',
+                'route_group' => 'report',
+                'route_controller' => 'App\\Http\\Controllers\\Report\\ReportTicketController',
+                'route_active' => 1,
+                'route_description' => null,
+                'route_sort' => 2,
+                'route_report' => 1,
+            ],
         ));
 
     }

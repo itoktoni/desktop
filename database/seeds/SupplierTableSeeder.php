@@ -14,12 +14,15 @@ class SupplierTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('id_ID');
-        Supplier::create([
-            'supplier_name' => $faker->company,
-            'supplier_contact' => $faker->name,
-            'supplier_address' => $faker->streetAddress,
-            'supplier_email' => $faker->email,
-            'supplier_phone' => $faker->phoneNumber,
-        ]);
+        (new Supplier())->delete();
+        foreach (range(1, 5) as $item) {
+            Supplier::create([
+                'supplier_name' => $faker->company,
+                'supplier_contact' => $faker->name,
+                'supplier_address' => $faker->streetAddress,
+                'supplier_email' => $faker->email,
+                'supplier_phone' => $faker->phoneNumber,
+            ]);
+        }
     }
 }

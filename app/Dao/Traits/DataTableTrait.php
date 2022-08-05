@@ -45,6 +45,25 @@ trait DataTableTrait
         return $query;
     }
 
+    public function start_date($query){
+        $date = request()->get('start_date');
+        if($date){
+            $query = $query->whereDate($this->field_reported_at(), '>=', $date);
+        }
+
+        return $query;
+    }
+
+    public function end_date($query){
+        $date = request()->get('end_date');
+
+        if($date){
+            $query = $query->whereDate($this->field_reported_at(), '<=', $date);
+        }
+
+        return $query;
+    }
+
     public function fieldSearching(){
 
         return $this->getKeyName();

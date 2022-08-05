@@ -58,6 +58,9 @@ class TicketSystem extends Model
     protected $filters = [
         'filter',
         'ticket_system_department_id',
+        'ticket_system_ticket_id',
+        'start_date',
+        'end_date',
     ];
 
     public $timestamps = true;

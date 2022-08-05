@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Transaction;
+namespace App\Http\Controllers\Report;
 
 use App\Dao\Enums\TicketStatus;
 use App\Dao\Models\Department;
@@ -19,12 +19,11 @@ use Plugins\Response;
 use Plugins\Template;
 use Maatwebsite\Excel\Facades\Excel;
 
-class TicketSystemController extends MasterController
+class ReportTicketController extends MasterController
 {
-    public function __construct(TicketSystemRepository $repository, SingleService $service)
+    public function __construct(TicketSystemRepository $repository)
     {
         self::$repository = self::$repository ?? $repository;
-        self::$service = self::$service ?? $service;
     }
 
     protected function beforeForm()
@@ -44,24 +43,21 @@ class TicketSystemController extends MasterController
         ];
     }
 
-    public function postCreate(TicketSystemRequest $request, CreateTicketService $service)
-    {
-        $data = $service->save(self::$repository, $request);
-        return Response::redirectBack($data);
+    public function getPrint(){
+        $query = self::$repository->setDisablePaginate()->dataRepository();
+        return view(Template::print(SharedData::get('template')))->with($this->share([
+            'data' => $query->get(),
+            'fields' => self::$repository->model->getShowField(),
+        ]));
     }
 
-    public function postUpdate($code, TicketSystemRequest $request, UpdateService $service)
+    public function getExcel()
     {
-        $data = $service->update(self::$repository, $request, $code);
-        return Response::redirectBack($data);
+        return Excel::download(new TicketSystemRepository, 'ticket_system.'.date('Ymd').'.xlsx');
     }
 
-    public function getPdf()
+    public function getCsv()
     {
-        $data = [
-            'master' => null,
-        ];
-        $pdf = PDF::loadView(Template::print(SharedData::get('template')), $data);
-        return $pdf->stream();
+        return self::$repository->excel('ticket_system.'.date('Ymd'));
     }
 }

@@ -84,8 +84,10 @@
                 @endphp
                 <li class="{{ $highlight_module ? 'open' : '' }}">
                     <a class="{{ $check_access ? 'active' : '' }}"
-                        href="{{ route($acc[Routes::field_primary()].'.getTable') }}">
-                        <span>{{ $acc[Routes::field_name()] }}</span>
+                        href="{{ $acc[Routes::field_report()] == 1 ? route($acc[Routes::field_primary()].'.getCreate') : route($acc[Routes::field_primary()].'.getTable') }}">
+                        <span>
+                                {{ $acc[Routes::field_name()] }}
+                        </span>
                     </a>
                     @if($check_sub_menu)
                     <ul>

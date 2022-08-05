@@ -236,12 +236,12 @@
             var sub_menu_arrow = $this.find('.sub-menu-arrow');
             sub_menu_arrow.toggleClass('rotate-in');
             $this.next('ul').toggle(200);
-            $this.parent('li').siblings().find('ul').not($this.parent('li').find('ul')).slideUp(200);
+            // $this.parent('li').siblings().find('ul').not($this.parent('li').find('ul')).slideUp(200);
             $this.next('ul').find('li ul').slideUp(200);
             $this.next('ul').find('li>a').find('.sub-menu-arrow').removeClass('fa-minus').addClass('fa-chevron-down');
             $this.next('ul').find('li>a').find('.sub-menu-arrow').removeClass('rotate-in');
-            $this.parent('li').siblings().not($this.parent('li').find('ul')).find('>a').find('.sub-menu-arrow').removeClass('fa-minus').addClass('fa-chevron-down');
-            $this.parent('li').siblings().not($this.parent('li').find('ul')).find('>a').find('.sub-menu-arrow').removeClass('rotate-in');
+            // $this.parent('li').siblings().not($this.parent('li').find('ul')).find('>a').find('.sub-menu-arrow').removeClass('fa-minus').addClass('fa-chevron-down');
+            // $this.parent('li').siblings().not($this.parent('li').find('ul')).find('>a').find('.sub-menu-arrow').removeClass('rotate-in');
             if (sub_menu_arrow.hasClass('rotate-in')) {
                 setTimeout(function () {
                     sub_menu_arrow.removeClass('fa-chevron-down').addClass('fa-minus');

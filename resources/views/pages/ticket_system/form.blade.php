@@ -88,6 +88,9 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 <div class="button">
     <a href="{{ URL::previous() }}" class="btn btn-warning">Back</a>
     <button type="submit" class="btn btn-primary" id="modal-btn-save">Save changes</button>
+    @if(isset($model))
+    <a target="_blank" href="{{ route(SharedData::get('route').'.getPdf', ['code' => $model->field_primary]) }}" class="btn btn-danger">Print PDF</a>
+    @endif
 </div>
 @endsection
 

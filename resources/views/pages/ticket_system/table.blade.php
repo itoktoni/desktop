@@ -7,10 +7,6 @@
         <input class="btn-check-m d-lg-none" type="checkbox">
         <button href="{{ route(SharedData::get('route').'.postDelete') }}" class="btn btn-danger button-delete-all">Delete</button>
         <a href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-primary">Create</a>
-        <a target="_blank" href="{{ route(SharedData::get('route').'.getPrint', request()->query()) }}" class="btn btn-secondary">Print</a>
-        <a target="_blank" href="{{ route(SharedData::get('route').'.getPdf', request()->query()) }}" class="btn btn-google">PDF</a>
-        <a href="{{ route(SharedData::get('route').'.getExcel', request()->query()) }}" class="btn btn-success">Excel</a>
-        <a href="{{ route(SharedData::get('route').'.getCsv', request()->query()) }}" class="btn btn-info">Csv</a>
     </nav>
 </div>
 @endsection

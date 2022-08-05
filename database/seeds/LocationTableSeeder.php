@@ -13,7 +13,7 @@ class LocationTableSeeder extends Seeder
      */
     public function run()
     {
-
+        (new Location())->delete();
         foreach (range(1, 5) as $item) {
             $faker = Faker::create('id_ID');
             Location::create([

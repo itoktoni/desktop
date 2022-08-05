@@ -20,6 +20,7 @@ class CreateTableRoutes extends Migration
             $table->string('route_group');
             $table->string('route_controller');
             $table->tinyInteger('route_active')->default(1);
+            $table->tinyInteger('route_report')->default(0);
             $table->string('route_description')->nullable();
         });
     }

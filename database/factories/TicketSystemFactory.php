@@ -19,7 +19,7 @@ use Faker\Generator as Faker;
 $factory->define(TicketSystem::class, function (Faker $faker) {
     return [
         'ticket_system_code' => $faker->uuid,
-        'ticket_system_topic_id' => $faker->numberBetween(1, 5), //(relation ticket_topic)
+        'ticket_system_topic_id' => $faker->numberBetween(1, 3), //(relation ticket_topic)
         'ticket_system_name' => $faker->word,
         'ticket_system_description' => $faker->text($maxNbChars = 50),
         'ticket_system_priority' => $faker->numberBetween(1, 3),

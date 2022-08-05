@@ -16,10 +16,13 @@ class BrandTableSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
         $faker->addProvider(new Fakecar($faker));
-        Brand::create([
-            'brand_name' => $faker->vehicleBrand,
-            'brand_description' => $faker->text($maxNbChars = 200),
-        ]);
-
+        (new Brand())->delete();
+        foreach (range(1, 10) as $item) {
+            Brand::create([
+                'brand_id' => $item,
+                'brand_name' => $faker->vehicleBrand,
+                'brand_description' => $faker->text($maxNbChars = 200),
+            ]);
+        }
     }
 }

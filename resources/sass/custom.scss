@@ -40,6 +40,13 @@ body{
 }
 
 .navigation{
+	.navigation-menu-body{
+		ul{
+			li > a.active:after{
+				background-color: unset !important;
+			}
+		}
+	}
 
 	.navigation-menu-tab{
 		overflow-y: auto;
@@ -101,6 +108,8 @@ body{
 			li{
 				> a.active{
 					margin-right: 3px;
+					background-color: whitesmoke;
+					margin-left: 3px;
 				}
 			}
 		}

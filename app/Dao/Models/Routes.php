@@ -27,6 +27,7 @@ class Routes extends Model
         'route_controller',
         'route_description',
         'route_sort',
+        'route_report',
     ];
 
     public $sortable = [
@@ -35,6 +36,10 @@ class Routes extends Model
         'route_group',
         'route_controller',
         'route_sort',
+    ];
+
+    protected $casts = [
+        'route_report' => 'integer'
     ];
 
     protected $filters = [
@@ -57,6 +62,7 @@ class Routes extends Model
             DataBuilder::build($this->field_controller())->name('Controller')->sort(),
             DataBuilder::build($this->field_description())->name('Description')->show(false),
             DataBuilder::build($this->field_sort())->name('Sort')->sort()->class('column-active'),
+            DataBuilder::build($this->field_report())->name('Report')->sort()->class('column-active')->show(false),
             DataBuilder::build($this->field_active())->name('Active')->show(false),
         ];
     }

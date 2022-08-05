@@ -536,7 +536,7 @@ class Helper
                 $name = ucfirst(str_replace('Post ','', $name));
 
                 $methodNames[] = [
-                    Menus::field_code() => $method,
+                    Menus::field_primary() => $method,
                     Menus::field_name() => $name,
                     Menus::field_module() => $module,
                     Menus::field_reset() => 1,

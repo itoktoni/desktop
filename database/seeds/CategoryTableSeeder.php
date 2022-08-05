@@ -16,10 +16,14 @@ class CategoryTableSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
         $faker->addProvider(new Fakecar($faker));
-        Category::create([
-            'category_name' => $faker->vehicleType,
-            'category_description' => $faker->text($maxNbChars = 200),
-            'category_active' => 1,
-        ]);
+        (new Category())->delete();
+        foreach (range(1, 10) as $item) {
+            Category::create([
+                'category_id' => $item,
+                'category_name' => $faker->vehicleType,
+                'category_description' => $faker->text($maxNbChars = 200),
+                'category_active' => 1,
+            ]);
+        }
     }
 }
