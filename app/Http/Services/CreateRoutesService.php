@@ -6,7 +6,7 @@ use App\Dao\Interfaces\CrudInterface;
 use Illuminate\Support\Facades\Cache;
 use Plugins\Alert;
 
-class CreateRoutesService
+class CreateRoutesService extends CreateService
 {
     public function save(CrudInterface $repository, $data)
     {

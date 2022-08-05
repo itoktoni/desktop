@@ -3,26 +3,21 @@
 namespace App\Http\Services;
 
 use App\Dao\Interfaces\CrudInterface;
+use App\Events\CreateTicketEvent;
+use Illuminate\Support\Facades\Cache;
 use Plugins\Alert;
 
-class CreateModuleService extends CreateService
+class CreateTicketService extends CreateService
 {
     public function save(CrudInterface $repository, $data)
     {
         $check = false;
         try {
-            $insert = $data->all();
-
-            $pathSave = '\Modules\\' . ucfirst($data->get('system_module_folder')) . '\Http\Controllers\\' . $data->get('system_module_controller') . 'Controller';
-            $insert['system_module_link'] = strtolower($data->get('system_module_folder')).'/'.$data->get('system_module_code');
-            $insert['system_module_show'] = 1;
-            $insert['system_module_api'] = 1;
-            $insert['system_module_path'] = $pathSave;
-
-            $check = $repository->saveRepository($insert);
+            $check = $repository->saveRepository($data->all());
             if(isset($check['status']) && $check['status']){
 
                 Alert::create();
+                event(new CreateTicketEvent($check['data']));
             }
             else{
                 $message = env('APP_DEBUG') ? $check['data'] : $check['message'];

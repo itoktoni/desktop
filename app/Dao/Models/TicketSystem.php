@@ -98,6 +98,11 @@ class TicketSystem extends Model
         return $this->hasOne(Department::class, Department::field_primary(), self::field_department_id());
     }
 
+    public function has_reported()
+    {
+        return $this->hasOne(User::class, User::field_primary(), self::field_reported_by());
+    }
+
     public function ticketTopicNameSortable($query, $direction)
     {
         $query = $this->queryFilter($query);

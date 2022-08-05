@@ -5,14 +5,12 @@ namespace App\Http\Controllers\Transaction;
 use App\Dao\Enums\TicketStatus;
 use App\Dao\Models\Department;
 use App\Dao\Models\User;
-use App\Dao\Models\TicketSystem;
 use App\Dao\Enums\TicketPriority;
 use App\Dao\Models\TicketTopic;
 use App\Dao\Repositories\TicketSystemRepository;
-use App\Exports\UsersExport;
 use App\Http\Controllers\System\MasterController;
 use App\Http\Requests\TicketSystemRequest;
-use App\Http\Services\CreateService;
+use App\Http\Services\CreateTicketService;
 use App\Http\Services\SingleService;
 use App\Http\Services\UpdateService;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -46,7 +44,7 @@ class TicketSystemController extends MasterController
         ];
     }
 
-    public function postCreate(TicketSystemRequest $request, CreateService $service)
+    public function postCreate(TicketSystemRequest $request, CreateTicketService $service)
     {
         $data = $service->save(self::$repository, $request);
         return Response::redirectBack($data);

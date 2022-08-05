@@ -14,7 +14,7 @@ class TicketSystemRequest extends FormRequest
     public function validation() : array
     {
         return [
-            'ticket_system_subject' => 'required',
+            'ticket_system_name' => 'required',
             'ticket_system_description' => 'required',
             'ticket_system_topic_id' => 'required',
             'ticket_system_department_id' => 'required',
