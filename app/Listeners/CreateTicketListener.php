@@ -33,7 +33,7 @@ class CreateTicketListener
         $report_to = $event->data->has_department->has_user->field_email ?? false;
 
         if($report_to){
-            Mail::to([$report_from, $report_to])->send(new CreateTicketEmail($event));
+            Mail::to([$report_from, $report_to])->send(new CreateTicketEmail($event->data));
         }
     }
 }

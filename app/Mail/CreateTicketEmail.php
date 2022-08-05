@@ -17,9 +17,12 @@ class CreateTicketEmail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+
+    public $data;
+
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -29,6 +32,6 @@ class CreateTicketEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.test');
+        return $this->view('emails.create_ticket', ['data' => $this->data]);
     }
 }
