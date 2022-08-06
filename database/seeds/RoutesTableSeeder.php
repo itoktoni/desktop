@@ -201,7 +201,15 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 2,
-                'route_report' => 1,
+            ],
+            [
+                'route_code' => 'movement',
+                'route_name' => 'Movement',
+                'route_group' => 'transaction',
+                'route_controller' => 'App\\Http\\Controllers\\Transaction\\MovementController',
+                'route_active' => 1,
+                'route_description' => null,
+                'route_sort' => 2,
             ],
         ));
 

@@ -25,7 +25,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'product_category_id' => $faker->numberBetween($min = 1, $max = 10),
         'product_brand_id' => $faker->numberBetween($min = 1, $max = 10),
         'product_unit_code' => 'PCS',
-        'product_location_id' => $faker->numberBetween($min = 1, $max =10),
+        'product_location_id' => $faker->numberBetween($min = 1, $max =5),
         'product_description' => $faker->text($maxNbChars = 100),
         'product_created_at' => date('Y-m-d H:i:s'),
         'product_prod_year' => $faker->year(),

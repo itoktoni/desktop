@@ -40,6 +40,7 @@ class DatabaseSeeder extends Seeder
             // transaction
             TicketSystemTableSeeder::class,
             WorkSheetTableSeeder::class,
+            MovementTableSeeder::class,
         ]);
     }
 }
