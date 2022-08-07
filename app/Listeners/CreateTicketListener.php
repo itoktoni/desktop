@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Dao\Models\TicketSystem;
 use App\Events\CreateTicketEvent;
 use App\Mail\CreateTicketEmail;
 use App\Mail\TicketCreatedEmail;

@@ -43,7 +43,7 @@
 
     <div class="col-md-6">
         <div class="form-group {{ $errors->has('ticket_system_department_id') ? 'has-error' : '' }}">
-            <label>Topik Ticket</label>
+            <label>Department</label>
             {!! Form::select('ticket_system_department_id', $department, null, ['class' => 'form-control', 'id' =>
             'ticket_system_department_id', 'placeholder' => '- Select Status -']) !!}
         </div>

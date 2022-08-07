@@ -4,6 +4,9 @@
 <script>
 $('.date').daterangepicker({
   singleDatePicker: true,
+  showDropdowns: true,
+  minYear: 1901,
+  maxYear: 2030,
   locale: {
         format: 'YYYY-MM-DD'
     },

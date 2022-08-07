@@ -68,8 +68,7 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 
         <div class="form-group">
             <label>Reported By</label>
-            {!! Form::select('ticket_system_reported_by', $user, null, ['class' => 'form-control', 'placeholder' => '-
-            Select User -']) !!}
+            {!! Form::select('ticket_system_reported_by', $user, null, ['class' => 'form-control', 'placeholder' => '- Select User -']) !!}
         </div>
 
         <div class="form-group {{ $errors->has('ticket_system_description') ? 'has-error' : '' }}">

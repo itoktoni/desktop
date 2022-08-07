@@ -1,3 +1,4 @@
+@push('javascript')
 <script>
 
 $.ajaxSetup({
@@ -58,3 +59,4 @@ $('#modal-btn-save').click(function (event) {
 });
 
 </script>
+@endpush

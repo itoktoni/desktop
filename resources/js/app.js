@@ -9,6 +9,10 @@
         'stroke-width': 1
     });
 
+    $("select").selectize({
+        plugins: ["remove_button"],
+    });
+
     $(".btn-check-m, .btn-check-d").click(function(){
         $('input:checkbox').not(this).prop('checked', this.checked);
     });

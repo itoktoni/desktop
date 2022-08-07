@@ -5,6 +5,7 @@ namespace App\Http\Services;
 use App\Dao\Interfaces\CrudInterface;
 use App\Events\CreateTicketEvent;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 use Plugins\Alert;
 
 class CreateTicketService extends CreateService

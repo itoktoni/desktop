@@ -22,21 +22,21 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 
         <div class="form-group">
             <label>Ticket</label>
-            {!! Form::select('work_sheet_ticket_code', $ticket, request()->get('ticket_id') ?? null, ['class' => 'form-control select2 ticket', 'placeholder' => '-
-            Select Ticket -']) !!}
+            {!! Form::select('work_sheet_ticket_code', $ticket, request()->get('ticket_id') ?? null, ['placeholder' =>
+            '- Select Ticket -', 'class' => 'form-control ticket', ]) !!}
         </div>
 
         <div class="form-group {{ $errors->has('work_sheet_product_id') ? 'has-error' : '' }}">
             <label>Product</label>
-            {!! Form::select('work_sheet_product_id', $product, null, ['class' => 'form-control select2', 'id' =>
+            {!! Form::select('work_sheet_product_id', $product, null, ['class' => 'form-control', 'id' =>
             'work_sheet_product_id', 'placeholder' => '- Select Product -', 'required']) !!}
         </div>
 
         <div class="form-group {{ $errors->has('work_sheet_reported_at') ? 'has-error' : '' }}">
             <label>Report Date</label>
-            {!! Form::text('work_sheet_reported_at', null, ['class' => 'form-control date', 'id' =>
-            'work_sheet_reported_at', 'placeholder'
-            => 'Please fill this input', 'required']) !!}
+            {!! Form::text('work_sheet_reported_at', null, ['placeholder' => 'Please fill this input', 'class' =>
+            'form-control date', 'id' =>
+            'work_sheet_reported_at', 'required']) !!}
             {!! $errors->first('work_sheet_reported_at', '<p class="help-block">:message</p>') !!}
         </div>
 
@@ -63,15 +63,16 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 
         <div class="form-group {{ $errors->has('work_sheet_name') ? 'has-error' : '' }}">
             <label>Name</label>
-            {!! Form::text('work_sheet_name', $data_ticket ? 'Follow up : '.$data_ticket->field_name : null, ['class' => 'form-control', 'id' => 'work_sheet_name', 'placeholder'
+            {!! Form::text('work_sheet_name', $data_ticket ? 'Follow up : '.$data_ticket->field_name : null, ['class' =>
+            'form-control', 'id' => 'work_sheet_name', 'placeholder'
             => 'Please fill this input', 'required']) !!}
             {!! $errors->first('work_sheet_name', '<p class="help-block">:message</p>') !!}
         </div>
 
         <div class="form-group">
             <label>Reported By</label>
-            {!! Form::select('work_sheet_reported_by', $user, $data_ticket->field_reported_By ?? null, ['class' => 'form-control select2', 'placeholder' => '-
-            Select User -']) !!}
+            {!! Form::select('work_sheet_reported_by', $user, $data_ticket->field_reported_By ?? null, ['placeholder' =>
+            '- Select User -', 'class' => 'form-control']) !!}
         </div>
 
         <div class="form-group {{ $errors->has('work_sheet_description') ? 'has-error' : '' }}">
@@ -117,12 +118,12 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 @component(Template::components('date'))
 @endcomponent
 
-@component(Template::components('select2'))
+@component(Template::components('selectize'))
 @endcomponent
 
 @push('footer')
 <script>
-    $('.ticket').change(function() {
+$('.ticket').change(function() {
     var id = $(".ticket option:selected").val();
     var uri = window.location.toString();
     var clean_uri = window.location.toString();

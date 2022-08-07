@@ -21,5 +21,5 @@
 
 {!! Form::close() !!}
 
-@yield('footer')
-@yield('javascript')
+@stack('footer')
+@stack('javascript')

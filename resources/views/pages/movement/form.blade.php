@@ -82,14 +82,6 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 
 @section('javascript')
 @include(Template::components('form'))
-<link rel="stylesheet" href="{{ url('vendors/datepicker/daterangepicker.css') }}" type="text/css">
-<script src="{{ url('vendors/datepicker/daterangepicker.js') }}"></script>
-<script>
-$('.date').daterangepicker({
-  singleDatePicker: true,
-  locale: {
-        format: 'YYYY-MM-DD'
-    },
-});
-</script>
+@include(Template::components('date'))
+@include(Template::components('selectize'))
 @endsection

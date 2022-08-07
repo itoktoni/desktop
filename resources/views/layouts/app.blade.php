@@ -60,6 +60,7 @@
 
 
     <!-- App scripts -->
+    <script src="{{ url('assets/js/selectize.min.js') }}"></script>
     <script src="{{ url('assets/js/app.min.js') }}"></script>
     <!-- <script src="{{ url('assets/js/proajax.js') }}"></script> -->
 
@@ -74,6 +75,7 @@
     // }
 
     // pjax.connect("pjax");
+
     </script>
 
     @stack('footer')

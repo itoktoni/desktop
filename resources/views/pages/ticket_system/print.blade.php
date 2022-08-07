@@ -545,7 +545,7 @@
                 </tr>
                 <tr class="destination">
                     <td colspan='8'>
-                        <strong>Code Ticket : 532532325325325352</strong>
+                        <strong>Code Ticket : {{ $master->field_primary ?? '' }}</strong>
                     </td>
                 </tr>
                 <tr class="contact">
