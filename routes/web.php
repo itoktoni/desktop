@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 use Plugins\Template;
 
 Route::get('/', function () {
-    return view('index');
+    return redirect('home');
 })->name('one');
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
