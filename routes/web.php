@@ -11,13 +11,10 @@
 |
  */
 
-use App\Dao\Facades\RoutesFacades;
 use App\Dao\Models\Routes;
-use App\Http\Controllers\System\RoutesController;
 use Buki\AutoRoute\AutoRouteFacade as AutoRoute;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use Plugins\Template;
 
@@ -40,30 +37,28 @@ Auth::routes();
 // AutoRoute::auto('category', 'App\Http\Controllers\Master\CategoryController', ['name' => 'category']);
 
 $routes = Template::routes();
-if ($routes) {
 
-    Route::prefix('admin')->group(function () use ($routes) {
-        if ($routes) {
-            foreach ($routes as $action_key => $action_data) {
-                Route::group(['prefix' => $action_key, 'middleware' => [
-                    'auth',
-                    'access',
-                    // 'can:isEditor'
-                    ]], function () use ($action_data) {
-                    if ($action_array = $action_data->toArray()) {
-                        foreach ($action_array as $action) {
-                            try {
-                                AutoRoute::auto($action[Routes::field_primary()], $action[Routes::field_controller()], ['name' => $action[Routes::field_primary()]]);
-                            } catch (\Throwable $th) {
-                                //throw $th;
-                            }
+Route::prefix('admin')->group(function () use ($routes) {
+    if ($routes) {
+        foreach ($routes as $action_key => $action_data) {
+            Route::group(['prefix' => $action_key, 'middleware' => [
+                'auth',
+                'access',
+                // 'can:isEditor'
+            ]], function () use ($action_data) {
+                if ($action_array = $action_data->toArray()) {
+                    foreach ($action_array as $action) {
+                        try {
+                            AutoRoute::auto($action[Routes::field_primary()], $action[Routes::field_controller()], ['name' => $action[Routes::field_primary()]]);
+                        } catch (\Throwable $th) {
+                            //throw $th;
                         }
                     }
-                });
-            }
+                }
+            });
         }
-    });
-}
+    }
+});
 
 Route::prefix('dashboards')->name('dashboards.')->middleware('access')->group(function () {
 
@@ -413,4 +408,3 @@ Route::prefix('pages')->name('pages.')->middleware('access')->group(function () 
         })->name('mean-at-work');
     });
 });
-

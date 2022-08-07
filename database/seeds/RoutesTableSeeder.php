@@ -30,6 +30,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 1,
+                'route_report' => 0,
             ],
             [
                 'route_code' => 'category',
@@ -39,6 +40,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
+                'route_report' => 0,
             ],
             [
                 'route_code' => 'filters',
@@ -48,6 +50,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
+                'route_report' => 0,
             ],
             [
                 'route_code' => 'groups',
@@ -57,6 +60,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
+                'route_report' => 0,
             ],
             [
                 'route_code' => 'location',
@@ -66,6 +70,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
+                'route_report' => 0,
             ],
             [
                 'route_code' => 'product',
@@ -75,6 +80,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
+                'route_report' => 0,
             ],
             [
                 'route_code' => 'roles',
@@ -84,6 +90,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
+                'route_report' => 0,
             ],
             [
                 'route_code' => 'routes',
@@ -93,6 +100,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 1,
+                'route_report' => 0,
             ],
             [
                 'route_code' => 'sparepart',
@@ -102,6 +110,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
+                'route_report' => 0,
             ],
             [
                 'route_code' => 'tag',
@@ -111,6 +120,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
+                'route_report' => 0,
             ],
             [
                 'route_code' => 'user',
@@ -120,6 +130,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
+                'route_report' => 0,
             ],
             [
                 'route_code' => 'brand',
@@ -129,6 +140,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
+                'route_report' => 0,
             ],
             [
                 'route_code' => 'unit',
@@ -138,6 +150,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
+                'route_report' => 0,
             ],
             [
                 'route_code' => 'supplier',
@@ -147,6 +160,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
+                'route_report' => 0,
             ],
             [
                 'route_code' => 'department',
@@ -156,6 +170,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
+                'route_report' => 0,
             ],
             [
                 'route_code' => 'work_type',
@@ -165,6 +180,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 1,
+                'route_report' => 0,
             ],
             [
                 'route_code' => 'work_sheet',
@@ -174,6 +190,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 2,
+                'route_report' => 0,
             ],
             [
                 'route_code' => 'ticket_topic',
@@ -183,6 +200,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 1,
+                'route_report' => 0,
             ],
             [
                 'route_code' => 'ticket_system',
@@ -192,6 +210,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 2,
+                'route_report' => 0,
             ],
             [
                 'route_code' => 'report_ticket',
@@ -201,6 +220,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 2,
+                'route_report' => 1,
             ],
             [
                 'route_code' => 'movement',
@@ -210,6 +230,7 @@ class RoutesTableSeeder extends Seeder
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 2,
+                'route_report' => 0,
             ],
         ));
 
