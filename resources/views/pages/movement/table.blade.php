@@ -22,7 +22,7 @@
         {!! Form::open(['url' => route(SharedData::get('route').'.getTable'), 'class' => 'form-row', 'method' => 'GET'])
         !!}
 
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-4 mr-3">
             <select name="filter" class="form-control">
                 <option value="">- Search Default Data -</option>
                 @foreach($fields as $value)
