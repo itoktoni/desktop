@@ -16,11 +16,12 @@ class CreateWorkSheetEmail extends Mailable
      * @return void
      */
 
-    public $data;
+    public $data, $type;
 
-    public function __construct($data)
+    public function __construct($data, $type)
     {
         $this->data = $data;
+        $this->type = $type;
     }
 
     /**
@@ -30,6 +31,6 @@ class CreateWorkSheetEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.create_work_sheet', ['data' => $this->data]);
+        return $this->view('emails.create_work_sheet', ['data' => $this->data, 'type' => $this->type]);
     }
 }
