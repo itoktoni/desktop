@@ -106,6 +106,11 @@ class WorkSheet extends Model
         return $this->hasOne(TicketSystem::class, TicketSystem::field_primary(), self::field_ticket_code());
     }
 
+      public function has_reported_by()
+      {
+         return $this->hasOne(User::class, User::field_primary(), self::field_reported_by());
+      }
+
     public function workTypeNameSortable($query, $direction)
     {
         $query = $this->queryFilter($query);
