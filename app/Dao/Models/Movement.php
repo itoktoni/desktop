@@ -94,6 +94,11 @@ class Movement extends Model
     {
         return $this->hasOne(Location::class, Location::field_primary(), self::field_location_new());
     }
+    
+    public function has_location_old()
+    {
+        return $this->hasOne(Location::class, Location::field_primary(), self::field_location_old());
+    }
 
     public function nameSortable($query, $direction)
     {

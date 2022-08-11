@@ -38,7 +38,7 @@
                      </a>
                      <div class="dropdown-menu dropdown-menu-right">
                            @if($table->field_status == 2)
-                           <a class="dropdown-item button-update" href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_primary]) }}">Update</a>
+                           <a class="dropdown-item" href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_primary]) }}">Update</a>
                            @endif
                            <div class="dropdown-divider"></div>
                            <a class="dropdown-item text-danger button-delete" data="{{ $table->field_primary }}" href="{{ route(SharedData::get('route').'.postDelete', ['code' => $table->field_primary]) }}">Delete</a>
