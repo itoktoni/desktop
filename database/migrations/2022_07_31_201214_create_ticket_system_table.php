@@ -16,6 +16,7 @@ class CreateTicketSystemTable extends Migration
         Schema::create('ticket_system', function (Blueprint $table) {
             $table->string('ticket_system_code')->primary();
             $table->integer('ticket_system_topic_id')->nullable(); //(relation ticket_topic)
+            $table->integer('ticket_system_location_id')->nullable(); //(relation ticket_topic)
             $table->string('ticket_system_name')->nullable();
             $table->text('ticket_system_description')->nullable();
             $table->tinyInteger('ticket_system_priority');
