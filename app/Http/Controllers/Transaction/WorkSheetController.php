@@ -14,7 +14,7 @@ use App\Http\Controllers\System\MasterController;
 use App\Http\Requests\WorkSheetRequest;
 use App\Http\Services\CreateWorkSheetService;
 use App\Http\Services\SingleService;
-use App\Http\Services\UpdateService;
+use App\Http\Services\UpdateWorkSheetService;
 use Barryvdh\DomPDF\Facade as PDF;
 use Coderello\SharedData\Facades\SharedData;
 use Maatwebsite\Excel\Facades\Excel;
@@ -64,7 +64,7 @@ class WorkSheetController extends MasterController
         return Response::redirectBack($data);
     }
 
-    public function postUpdate($code, WorkSheetRequest $request, UpdateService $service)
+    public function postUpdate($code, WorkSheetRequest $request, UpdateWorkSheetService $service)
     {
         $data = $service->update(self::$repository, $request, $code);
         return Response::redirectBack($data);
