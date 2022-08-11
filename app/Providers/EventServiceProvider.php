@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Events\CreateTicketEvent;
 use App\Events\CreateWorkSheetEvent;
 use App\Listeners\CreateTicketListener;
+use App\Listeners\CreateWorkSheetListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
