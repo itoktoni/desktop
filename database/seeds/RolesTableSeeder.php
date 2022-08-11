@@ -24,14 +24,26 @@ class RolesTableSeeder extends Seeder
 
         $this->model->insert(array(
             [
-                'role_code' => '1',
-                'role_name' => 'admin',
+                'role_code' => 'admin',
+                'role_name' => 'Administrator',
                 'role_description' => 'Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.',
                 'role_active' => 1,
             ],
             [
-                'role_code' => '2',
-                'role_name' => 'user',
+                'role_code' => 'user',
+                'role_name' => 'Pengguna',
+                'role_description' => 'Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.',
+                'role_active' => 1,
+            ],
+            [
+                'role_code' => 'pengawas',
+                'role_name' => 'Pengawas',
+                'role_description' => 'Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.',
+                'role_active' => 1,
+            ],
+            [
+                'role_code' => 'pelaksana',
+                'role_name' => 'Pelaksana',
                 'role_description' => 'Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.',
                 'role_active' => 1,
             ],

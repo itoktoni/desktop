@@ -28,7 +28,7 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 
         <div class="form-group {{ $errors->has('work_sheet_product_id') ? 'has-error' : '' }}">
             <label>Product</label>
-            {!! Form::select('work_sheet_product_id', $product, null, ['class' => 'form-control', 'id' =>
+            {!! Form::select('work_sheet_product_id', $product, null, ['class' => 'form-control selectize', 'id' =>
             'work_sheet_product_id', 'placeholder' => '- Select Product -', 'required']) !!}
         </div>
 
@@ -107,7 +107,7 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 @section('action')
 <div class="button">
     <a href="{{ URL::previous() }}" class="btn btn-warning">Back</a>
-    <button type="submit" class="btn btn-primary" id="modal-btn-save">Save changes</button>
+    <button type="submit" class="btn btn-primary" id="modal-btn-save">{{ __('Save') }}</button>
 </div>
 @endsection
 
@@ -116,9 +116,6 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 @endsection
 
 @component(Template::components('date'))
-@endcomponent
-
-@component(Template::components('selectize'))
 @endcomponent
 
 @push('footer')

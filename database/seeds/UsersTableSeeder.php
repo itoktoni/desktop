@@ -13,15 +13,64 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach (range(1, 10) as $item) {
+        $faker = Faker::create('id_ID');
 
-            $faker = Faker::create('id_ID');
+        (new User())->delete();
+
+        foreach (range(11, 20) as $item) {
+
             User::create([
+                'id' => $item,
                 'name' => $faker->name,
                 'username' => $faker->userName(),
-                'email' => $faker->email,
+                'email' => $faker->unique()->email,
                 'active' => 1,
-                'role' => 2,
+                'role' => 'pengawas',
+                'email_verified_at' => now(),
+                'password' => bcrypt('secret'),
+                'remember_token' => null,
+            ]);
+        }
+
+        foreach (range(21, 30) as $item) {
+
+            User::create([
+                'id' => $item,
+                'name' => $faker->name,
+                'username' => $faker->userName(),
+                'email' => $faker->unique()->email,
+                'active' => 1,
+                'role' => 'admin',
+                'email_verified_at' => now(),
+                'password' => bcrypt('secret'),
+                'remember_token' => null,
+            ]);
+        }
+
+        foreach (range(31, 40) as $item) {
+
+            User::create([
+                'id' => $item,
+                'name' => $faker->name,
+                'username' => $faker->userName(),
+                'email' => $faker->unique()->email,
+                'active' => 1,
+                'role' => 'pelaksana',
+                'email_verified_at' => now(),
+                'password' => bcrypt('secret'),
+                'remember_token' => null,
+            ]);
+        }
+
+        foreach (range(41, 50) as $item) {
+
+            User::create([
+                'id' => $item,
+                'name' => $faker->name,
+                'username' => $faker->userName(),
+                'email' => $faker->unique()->email,
+                'active' => 1,
+                'role' => 'user',
                 'email_verified_at' => now(),
                 'password' => bcrypt('secret'),
                 'remember_token' => null,

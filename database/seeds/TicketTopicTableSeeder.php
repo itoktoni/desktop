@@ -25,18 +25,23 @@ class TicketTopicTableSeeder extends Seeder
         $this->model->delete();
         $this->model->insert(array (
             [
-                'ticket_topic_id' => 1,
                 'ticket_topic_name' => 'Alat Rusak',
                 'ticket_topic_active' => 1,
             ],
             [
-                'ticket_topic_id' => 2,
                 'ticket_topic_name' => 'Training Alat',
                 'ticket_topic_active' => 1,
             ],
             [
-                'ticket_topic_id' => 3,
                 'ticket_topic_name' => 'Penggantian Alat',
+                'ticket_topic_active' => 1,
+            ],
+            [
+                'ticket_topic_name' => 'Lampu Rusak',
+                'ticket_topic_active' => 1,
+            ],
+            [
+                'ticket_topic_name' => 'Kerusakan Umum',
                 'ticket_topic_active' => 1,
             ],
         ));

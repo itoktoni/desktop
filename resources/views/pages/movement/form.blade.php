@@ -76,12 +76,10 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 @section('action')
 <div class="button">
     <a href="{{ URL::previous() }}" class="btn btn-warning">Back</a>
-    <button type="submit" class="btn btn-primary" id="modal-btn-save">Save changes</button>
+    <button type="submit" class="btn btn-primary" id="modal-btn-save">{{ __('Save') }}</button>
 </div>
 @endsection
 
 @section('javascript')
 @include(Template::components('form'))
 @include(Template::components('date'))
-@include(Template::components('selectize'))
-@endsection

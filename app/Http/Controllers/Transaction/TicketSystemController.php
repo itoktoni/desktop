@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Transaction;
 
+use App\Dao\Enums\RoleType;
+use App\Dao\Enums\TicketPriority;
 use App\Dao\Enums\TicketStatus;
 use App\Dao\Models\Department;
-use App\Dao\Models\User;
-use App\Dao\Enums\TicketPriority;
+use App\Dao\Models\Location;
 use App\Dao\Models\TicketTopic;
+use App\Dao\Models\User;
 use App\Dao\Repositories\TicketSystemRepository;
 use App\Http\Controllers\System\MasterController;
 use App\Http\Requests\TicketSystemRequest;
@@ -17,7 +19,6 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Coderello\SharedData\Facades\SharedData;
 use Plugins\Response;
 use Plugins\Template;
-use Maatwebsite\Excel\Facades\Excel;
 
 class TicketSystemController extends MasterController
 {
@@ -27,21 +28,70 @@ class TicketSystemController extends MasterController
         self::$service = self::$service ?? $service;
     }
 
-    protected function beforeForm()
+    private function getImplementor($model)
+    {
+        $implementor = $model
+            ->where(User::field_role(), RoleType::Pelaksana)
+            ->pluck(User::field_name(), User::field_primary());
+        return $implementor;
+    }
+
+    private function getUser($user)
+    {
+        if (auth()->user()->{User::field_role()} == RoleType::User) {
+            $user = $user->where(User::field_primary(), auth()->user()
+                    ->{User::field_primary()});
+        }
+
+        return $user->pluck(User::field_name(), User::field_primary());
+    }
+
+    private function getLocation()
+    {
+        $location = Location::with(['has_building'])->get()
+            ->mapWithKeys(function ($item) {
+                $name = $item->has_building->field_name . ' - ' . $item->field_name;
+                $id = $item->field_primary . '';
+                return [$id => $name];
+            });
+
+        return $location;
+    }
+
+    protected function share($data = [])
     {
         $ticket_topic = TicketTopic::optionBuild();
         $department = Department::optionBuild();
-        $user = User::optionBuild();
+        $user = User::optionBuild(true);
+
         $status = TicketStatus::getOptions();
         $priority = TicketPriority::getOptions();
 
-        self::$share = [
+        $view = [
             'ticket_topic' => $ticket_topic,
             'department' => $department,
-            'user' => $user,
+            'location' => $this->getLocation(),
+            'implementor' => $this->getImplementor($user),
+            'user' => $this->getUser($user),
             'status' => $status,
             'priority' => $priority,
         ];
+
+        return self::$share = array_merge($view, $data, self::$share);
+    }
+
+    public function getCreate()
+    {
+        return view(Template::form(SharedData::get('template')))->with($this->share([
+            'status' => TicketStatus::getOptions([TicketStatus::Open]),
+        ]));
+    }
+
+    public function getUpdate($code)
+    {
+        return view(Template::form(SharedData::get('template')))->with($this->share([
+            'model' => $this->get($code),
+        ]));
     }
 
     public function postCreate(TicketSystemRequest $request, CreateTicketService $service)
@@ -58,10 +108,24 @@ class TicketSystemController extends MasterController
 
     public function getPdf()
     {
-        $data = [
-            'master' => null,
+        $implementor = false;
+        $data = $this->get(request()->get('code'), [
+            'has_ticket_topic',
+            'has_department',
+            'has_location',
+            'has_reported',
+        ])->first();
+
+        if ($person = $data->field_implementor) {
+            $implementor = User::whereIn(User::field_primary(), $person)->get();
+        }
+
+        $share = [
+            'master' => $data,
+            'implementor' => $implementor,
         ];
-        $pdf = PDF::loadView(Template::print(SharedData::get('template')), $data);
+
+        $pdf = PDF::loadView(Template::print(SharedData::get('template')), $share);
         return $pdf->stream();
     }
 }

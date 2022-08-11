@@ -61,6 +61,7 @@
 
     <!-- App scripts -->
     <script src="{{ url('assets/js/selectize.min.js') }}"></script>
+    <script src="{{ url('assets/js/chosen.jquery.min.js') }}"></script>
     <script src="{{ url('assets/js/app.min.js') }}"></script>
     <!-- <script src="{{ url('assets/js/proajax.js') }}"></script> -->
 
@@ -75,6 +76,8 @@
     // }
 
     // pjax.connect("pjax");
+
+    // $('select').chosen({});
 
     </script>
 

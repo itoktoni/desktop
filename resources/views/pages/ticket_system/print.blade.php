@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Print Sales Order SO2022060000001</title>
+    <title>Tiket Pengaduan {{ $master->field_primary ?? '' }}</title>
 
     <style>
     body {
@@ -539,38 +539,29 @@
                 <tr>
                     <td align='left' colspan='8' valign='middle'>
                         <h1 id="headline">
-                            SALES ORDER
+                            TIKET PENGADUAN
                         </h1>
                     </td>
                 </tr>
                 <tr class="destination">
                     <td colspan='8'>
-                        <strong>Code Ticket : {{ $master->field_primary ?? '' }}</strong>
+                        <strong>Nama Pelapor : {{ strtoupper($master->has_reported->field_name ?? '' ) ?? '' }}</strong>
                     </td>
                 </tr>
                 <tr class="contact">
                     <td colspan='8'>
                         <strong>
-                            Itok Toni Laksono (PT. MULTI PRATAMA EKSPRES)
+                            No. Tiket ({{ strtoupper($master->field_primary) ?? '' }})
                         </strong>
                         <p>
-                            JL. Penerangan No. 1-EE, Wijaya Kusuma, Grogol Petamburan RT.6, RT.1/RW.3, Jelambar, Kec.
-                            Grogol petamburan, Kota Jakarta Barat, DKI Jakarta 11460
+                            Perihal : {{ $master->field_name ?? '' }}
                         </p>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="8">
                         <p>
-
-                            <strong style="font-size: 12px;">
-                                Down Payment 50% sebesar : Rp 17.325 ( <span style="font-style: italic;">Tujuh belas
-                                    ribu tiga ratus dua puluh lima rupiah. </span>)
-                            </strong>
-
-                        <p>
-                            <i>For Traking BL Number Please Visit Link : yangming.com</i>
-                        </p>
+                            {{ $master->field_description ?? '' }}
                         </p>
                     </td>
                 </tr>
@@ -580,123 +571,48 @@
                         <strong>No.</strong>
                     </td>
                     <td class="product" colspan="4">
-                        <strong>Product Name</strong>
+                        <strong>Pelaksana</strong>
                     </td>
-                    <td class="price">
-                        <strong>Price</strong>
-                    </td>
-                    <td class="qty">
-                        <strong>Qty</strong>
-                    </td>
-                    <td class="total">
-                        <strong>Total</strong>
+                    <td class="price" colspan="3">
+                        <strong>Tanda Tangan</strong>
                     </td>
                 </tr>
+                @if($implementor)
+                @foreach($implementor as $item)
                 <tr class="item">
                     <td class="no">
-                        1
+                        {{ $loop->iteration }}
                     </td>
                     <td class="product" colspan="4">
-                        <h1>
-                            Gantungan kunci
-                        </h1>
-                        <p>
-                            <strong>Desc : </strong>gantungan kunci wana merah
-                        </p>
+                        {{ $item->field_name ?? '' }}
                     </td>
-                    <td class="price">
-                        11.000
-                    </td>
-                    <td class="qty">
-                        1
-                    </td>
-                    <td class="total">
-                        11.000
-                    </td>
-                </tr>
-                <tr class="item">
-                    <td class="no">
-                        2
-                    </td>
-                    <td class="product" colspan="4">
-                        <h1>
-                            Patung Brawijaya
-                        </h1>
-                        <p>
-                            <strong>Desc : </strong>patung brawijaya untuk pajangan kamar
-                        </p>
-                    </td>
-                    <td class="price">
-                        27.500
-                    </td>
-                    <td class="qty">
-                        1
-                    </td>
-                    <td class="total">
-                        27.500
-                    </td>
-                </tr>
+                    <td class="price" colspan="3" style="padding: 50px 0;">
 
-                <tr class="total_product">
-                    <td class="product" colspan="6">
-                        Total Product
-                    </td>
-                    <td class="qty">
-                        2
-                    </td>
-                    <td class="total">
-                        38.500
                     </td>
                 </tr>
-
-                <tr class="total_discount">
-                    <td class="product" colspan="6">
-
-                        Total Discount
-                    </td>
-                    <td class="qty">
-                        10%
-                    </td>
-                    <td class="total">
-                        -3.850
-                    </td>
-                </tr>
-                <tr class="total_sumary">
-                    <td class="product" colspan="7">
-                        Total
-                    </td>
-                    <td class="total">
-                        34.650
-                    </td>
-                </tr>
-                <tr class="total_discount">
-                    <td class="product" colspan="7">
-                        Total Payment
-                    </td>
-                    <td class="total">
-                        0
-                    </td>
-                </tr>
-                <tr class="total_sumary">
-                    <td class="product" colspan="7">
-                        UnPaid
-                    </td>
-                    <td class="total">
-                        34.650
-                    </td>
-                </tr>
+                @endforeach
+                @endif
 
             </table>
         </div>
         <br>
-        <strong>The payment should be done to our bank account : </strong>
+        <strong>Dokumen ini akan diserahkan sebagai bukti pemeriksaan dengan status : {{ TicketStatus::getDescription($master->field_status) }}</strong>
         <br>
-        <ul>
-            <li>Mandiri - 1832109809321</li>
-        </ul>
-        <ul>
-            <li>BCA - 980932432y603923</li>
-        </ul>
+
+        <div id="container" style="margin-top: 20px;width: 60%;">
+            <h1 class="row-table" style="text-align:center">
+                <table style="text-align: center;">
+                    <tr>
+                        <td>Pelapor</td>
+                        <td>Pengawas</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:50px 0px"></td>
+                        <td style="padding:50px 0px"></td>
+                    </tr>
+                </table>
+            </h1>
+        </div>
 
 
 </body>

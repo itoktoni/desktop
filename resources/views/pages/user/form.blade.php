@@ -52,7 +52,7 @@
 
 @section('action')
 <div class="button">
-    <button type="submit" class="btn btn-primary" id="modal-btn-save">Save changes</button>
+    <button type="submit" class="btn btn-primary" id="modal-btn-save">{{ __('Save') }}</button>
 </div>
 @endsection
 

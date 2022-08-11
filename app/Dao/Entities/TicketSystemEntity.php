@@ -5,6 +5,7 @@ namespace App\Dao\Entities;
 use App\Dao\Enums\TicketPriority;
 use App\Dao\Models\TicketTopic;
 use App\Dao\Models\Department;
+use App\Dao\Models\Location;
 
 trait TicketSystemEntity
 {
@@ -116,5 +117,25 @@ trait TicketSystemEntity
     public function getFieldDepartmentNameAttribute()
     {
         return $this->{Department::field_name()};
+    }
+
+    public static function field_location_id()
+    {
+        return 'ticket_system_location_id';
+    }
+
+    public function getFieldLocationNameAttribute()
+    {
+        return $this->{Location::field_name()};
+    }
+
+    public static function field_implementor()
+    {
+        return 'ticket_system_implementor';
+    }
+
+    public function getFieldImplementorAttribute()
+    {
+        return json_decode($this->{self::field_implementor()});
     }
 }

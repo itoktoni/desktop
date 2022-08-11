@@ -6,22 +6,58 @@ use Illuminate\Database\Seeder;
 
 class DepartmentTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+    public function __construct(Department $model)
+    {
+        $this->model = $model;
+    }
+
     public function run()
     {
-        $faker = Faker::create('id_ID');
-        (new Department())->delete();
-        foreach (range(1, 10) as $item) {
-            Department::create([
-                'department_id' => $item,
-                'department_user_id' => $faker->numberBetween($min = 1, $max = 10),
-                'department_name' => $faker->company,
-                'department_description' => $faker->text($maxNbChars = 50),
-            ]);
-        }
+        $this->model->delete();
+
+        $this->model->insert(array(
+            [
+                'department_id' => '1',
+                'department_user_id' => random_int(11, 20),
+                'department_name' => 'Bagian Umum',
+                'department_pic' => 'Pak Joni',
+            ],
+        ));
+
+        $this->model->insert(array(
+            [
+                'department_id' => '2',
+                'department_user_id' => random_int(11, 20),
+                'department_name' => 'Departemen Medis',
+                'department_pic' => 'Pak Badu',
+            ],
+        ));
+
+        $this->model->insert(array(
+            [
+                'department_id' => '3',
+                'department_user_id' => random_int(11, 20),
+                'department_name' => 'Departemen Konstruksi',
+                'department_pic' => 'Pak Paijo',
+            ],
+        ));
+
+        $this->model->insert(array(
+            [
+                'department_id' => '4',
+                'department_user_id' => random_int(11, 20),
+                'department_name' => 'Departemen Pantry',
+                'department_pic' => 'Pak Romli',
+            ],
+        ));
+
+        $this->model->insert(array(
+            [
+                'department_id' => '5',
+                'department_user_id' => random_int(11, 20),
+                'department_name' => 'Departemen IT',
+                'department_pic' => 'Pak Seto',
+            ],
+        ));
     }
 }

@@ -30,10 +30,12 @@ class TicketSystem extends Model
         'ticket_system_code',
         'ticket_system_topic_id',
         'ticket_system_name',
+        'ticket_system_implementor',
         'ticket_system_description',
         'ticket_system_priority',
         'ticket_system_result',
         'ticket_system_department_id',
+        'ticket_system_location_id',
         'ticket_system_reported_at',
         'ticket_system_reported_by',
         'ticket_system_created_at',
@@ -101,6 +103,11 @@ class TicketSystem extends Model
         return $this->hasOne(Department::class, Department::field_primary(), self::field_department_id());
     }
 
+    public function has_location()
+    {
+        return $this->hasOne(Location::class, Location::field_primary(), self::field_department_id());
+    }
+
     public function has_reported()
     {
         return $this->hasOne(User::class, User::field_primary(), self::field_reported_by());
@@ -143,6 +150,13 @@ class TicketSystem extends Model
             if ($model->{self::field_status()} == TicketStatus::Close) {
                 $model->{self::field_finished_by()} = auth()->user()->id;
                 $model->{self::field_finished_at()} = date('Y-m-d h:i:s');
+            }
+
+            if(empty($model->{self::field_reported_by()})){
+                $model->{self::field_reported_by()} = null;
+            }
+            else{
+                $model->{self::field_implementor()} = json_encode(request()->get(self::field_implementor()));
             }
         });
 

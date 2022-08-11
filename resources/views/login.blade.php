@@ -85,7 +85,6 @@
         </ul>
         <hr>
         <p class="text-muted">Don't have an account?</p>
-        <a href="{{ route('pages.register') }}" class="btn btn-outline-light btn-sm">Register now!</a>
     </form>
     <!-- ./ form -->
 

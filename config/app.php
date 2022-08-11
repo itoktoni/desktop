@@ -3,6 +3,7 @@
 use App\Dao\Enums\BooleanType;
 use App\Dao\Enums\MovementStatus;
 use App\Dao\Enums\ProductStatus;
+use App\Dao\Enums\TicketStatus;
 use App\Dao\Models\Routes;
 use App\Providers\CacheableAuthUserServiceProvider;
 use Coderello\SharedData\Facades\SharedData;
@@ -245,6 +246,7 @@ return [
         'Views' => Views::class,
         'BooleanType' => BooleanType::class,
         'ProductStatus' => ProductStatus::class,
+        'TicketStatus' => TicketStatus::class,
         'MovementStatus' => MovementStatus::class,
         'SharedData' => SharedData::class,
         'Routes' => Routes::class,

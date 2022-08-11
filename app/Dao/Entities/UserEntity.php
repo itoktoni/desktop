@@ -46,7 +46,7 @@ trait UserEntity
         return $this->{self::field_active()};
     }
 
-    public static function field_role_id()
+    public static function field_role()
     {
         return 'role';
     }
