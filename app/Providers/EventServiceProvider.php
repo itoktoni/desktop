@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Events\CreateTicketEvent;
+use App\Events\CreateWorkSheetEvent;
 use App\Listeners\CreateTicketListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
