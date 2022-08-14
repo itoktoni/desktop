@@ -16,8 +16,8 @@ class CreateMovementTable extends Migration
     {
         Schema::create('movement', function (Blueprint $table) {
             $table->string('movement_code')->primary();
-            $table->string('movement_description')->nullable();
-            $table->string('movement_reason');
+            $table->text('movement_description')->nullable();
+            $table->text('movement_reason');
             $table->date('movement_date')->nullable();
             $table->integer('movement_product_id')->nullable(); // (update location di table product jika movement di approve)
             $table->string('movement_location_old')->nullable();

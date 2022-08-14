@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Events\CreateTicketEvent;
+use App\Events\CreateMovementEvent;
 use App\Events\CreateWorkSheetEvent;
 use App\Listeners\CreateTicketListener;
 use App\Listeners\CreateWorkSheetListener;
+use App\Listeners\CreateMovementListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -27,6 +29,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         CreateWorkSheetEvent::class => [
             CreateWorkSheetListener::class,
+        ],
+        CreateMovementEvent::class => [
+            CreateMovementListener::class,
         ],
     ];
 
