@@ -232,6 +232,16 @@ class RoutesTableSeeder extends Seeder
                 'route_sort' => 2,
                 'route_report' => 0,
             ],
+            [
+                'route_code' => 'product_type',
+                'route_name' => 'Product Type',
+                'route_group' => 'master',
+                'route_controller' => 'App\\Http\\Controllers\\Master\\ProductTypeController',
+                'route_active' => 1,
+                'route_description' => null,
+                'route_sort' => 2,
+                'route_report' => 0,
+            ],
         ));
 
     }
