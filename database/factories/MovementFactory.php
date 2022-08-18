@@ -30,6 +30,6 @@ $factory->define(Movement::class, function (Faker $faker) {
         'movement_updated_at' => date('Y-m-d H:i:s'),
         'movement_updated_by' => '1',
         'movement_requested_at' => date('Y-m-d H:i:s'),
-        'movement_requested_by' => $faker->numberBetween(1, 11),
+        'movement_requested_by' => $faker->numberBetween(11, 21),
     ];
 });

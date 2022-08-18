@@ -19,6 +19,7 @@ class CreateTableProduct extends Migration
             $table->string('product_sn')->nullable();
             $table->string('product_image')->nullable();
             $table->integer('product_category_id')->nullable();
+            $table->integer('product_type_id')->nullable();
             $table->integer('product_brand_id')->nullable();
             $table->string('product_unit_code')->nullable();
             $table->integer('product_location_id')->nullable();

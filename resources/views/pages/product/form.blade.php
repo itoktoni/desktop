@@ -58,6 +58,12 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
         </div>
 
         <div class="form-group">
+            <label>Type</label>
+            {!! Form::select('product_type_id', $product_type, null, ['class' => 'form-control', 'id' =>
+            'product_type_id', 'placeholder' => '- Select Unit -', 'required']) !!}
+        </div>
+
+        <div class="form-group">
             <label>Brand</label>
             {!! Form::select('product_brand_id', $brand, null, ['class' => 'form-control', 'id' =>
             'product_name', 'placeholder' => '- Select brand -', 'required']) !!}
@@ -67,6 +73,13 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
             <label>Unit</label>
             {!! Form::select('product_unit_code', $unit, null, ['class' => 'form-control', 'id' =>
             'product_name', 'placeholder' => '- Select Unit -', 'required']) !!}
+        </div>
+
+        <div class="form-group {{ $errors->has('product_sn') ? 'has-error' : '' }}">
+            <label>Serial Number</label>
+            {!! Form::text('product_sn', null, ['class' => 'form-control', 'id' => 'product_sn', 'placeholder'
+            => 'Please fill this input', 'required']) !!}
+            {!! $errors->first('product_sn', '<p class="help-block">:message</p>') !!}
         </div>
 
     </div>

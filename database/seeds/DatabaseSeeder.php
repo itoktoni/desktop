@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
             DepartmentTableSeeder::class,
             BrandTableSeeder::class,
             CategoryTableSeeder::class,
+            ProductTypeTableSeeder::class,
             ProductTableSeeder::class,
             // transaction
             TicketSystemTableSeeder::class,

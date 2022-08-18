@@ -20,9 +20,10 @@ use Faker\Provider\Fakecar;
 $factory->define(Product::class, function (Faker $faker) {
     $faker->addProvider(new Fakecar($faker));
     return [
-        'product_name' => $faker->vehicle,
-        'product_sn' => $faker->vin,
-        'product_category_id' => $faker->numberBetween($min = 1, $max = 10),
+        'product_name' => $faker->unique()->vehicle,
+        'product_sn' => strtoupper($faker->unique()->vin),
+        'product_category_id' => $faker->numberBetween($min = 1, $max = 5),
+        'product_type_id' => $faker->numberBetween($min = 1, $max = 3),
         'product_brand_id' => $faker->numberBetween($min = 1, $max = 10),
         'product_unit_code' => 'PCS',
         'product_location_id' => $faker->numberBetween($min = 1, $max =5),

@@ -8,9 +8,9 @@ use App\Dao\Models\Product;
 use App\Dao\Repositories\MovementRepository;
 use App\Http\Controllers\System\MasterController;
 use App\Http\Requests\MovementRequest;
-use App\Http\Services\CreateService;
+use App\Http\Services\CreateMovementService;
 use App\Http\Services\SingleService;
-use App\Http\Services\UpdateService;
+use App\Http\Services\UpdateMovementService;
 use Barryvdh\DomPDF\Facade as PDF;
 use Coderello\SharedData\Facades\SharedData;
 use Maatwebsite\Excel\Facades\Excel;
@@ -45,13 +45,13 @@ class MovementController extends MasterController
         return $text;
     }
 
-    public function postCreate(MovementRequest $request, CreateService $service)
+    public function postCreate(MovementRequest $request, CreateMovementService $service)
     {
         $data = $service->save(self::$repository, $request);
         return Response::redirectBack($data);
     }
 
-    public function postUpdate($code, MovementRequest $request, UpdateService $service)
+    public function postUpdate($code, MovementRequest $request, UpdateMovementService $service)
     {
         $data = $service->update(self::$repository, $request, $code);
         return Response::redirectBack($data);
