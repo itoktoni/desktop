@@ -6,10 +6,10 @@
 
 @if(isset($model))
 {!! Form::model($model, ['route'=>[SharedData::get('route').'.postUpdate', 'code' =>
-$model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'files'=>true]) !!}
+$model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'files'=>true, 'novalidate']) !!}
 @else
 {!! Form::open(['url' => route(SharedData::get('route').'.postCreate'), 'class' => 'form-horizontal needs-validation',
-'files' => true]) !!}
+'files' => true, 'novalidate']) !!}
 @endif
 
 @endsection
@@ -108,6 +108,9 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 <div class="button">
     <a href="{{ URL::previous() }}" class="btn btn-warning">Back</a>
     <button type="submit" class="btn btn-primary" id="modal-btn-save">{{ __('Save') }}</button>
+    @if(isset($model))
+    <a target="_blank" href="{{ route(SharedData::get('route').'.getPdf', ['code' => $model->field_primary]) }}" class="btn btn-danger">Print PDF</a>
+    @endif
 </div>
 @endsection
 
