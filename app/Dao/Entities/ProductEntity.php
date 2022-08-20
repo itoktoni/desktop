@@ -6,6 +6,7 @@ use App\Dao\Models\Brand;
 use App\Dao\Models\Category;
 use App\Dao\Models\Department;
 use App\Dao\Models\Location;
+use App\Dao\Models\Supplier;
 use App\Dao\Models\Unit;
 
 trait ProductEntity
@@ -50,14 +51,34 @@ trait ProductEntity
         return $this->{self::field_status()};
     }
 
-    public static function field_sn()
+    public static function field_serial_number()
     {
-        return 'product_sn';
+        return 'product_serial_number';
     }
 
-    public function getFieldSnAttribute()
+    public function getFieldSerialNumberAttribute()
     {
-        return $this->{self::field_sn()};
+        return $this->{self::field_serial_number()};
+    }
+
+    public static function field_internal_number()
+    {
+        return 'product_internal_number';
+    }
+
+    public function getFieldInternalNumberAttribute()
+    {
+        return $this->{self::field_internal_number()};
+    }
+
+    public static function field_auto_number()
+    {
+        return 'product_auto_number';
+    }
+
+    public function getFieldAutoNumberAttribute()
+    {
+        return $this->{self::field_auto_number()};
     }
 
     public static function field_price()
@@ -90,6 +111,16 @@ trait ProductEntity
         return $this->{self::field_prod_year()};
     }
 
+    public static function field_acqu_year()
+    {
+        return 'product_acqu_year';
+    }
+
+    public function getFieldAcquYearAttribute()
+    {
+        return $this->{self::field_acqu_year()};
+    }
+
     public static function field_is_asset()
     {
         return 'product_is_asset';
@@ -108,6 +139,16 @@ trait ProductEntity
     public function getFieldLocationNameAttribute()
     {
         return $this->{Location::field_name()};
+    }
+
+    public static function field_supplier_id()
+    {
+        return 'product_supplier_id';
+    }
+
+    public function getFieldSupplierNameAttribute()
+    {
+        return $this->{Supplier::field_name()};
     }
 
     public static function field_department_id()

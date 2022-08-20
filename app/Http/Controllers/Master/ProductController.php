@@ -6,6 +6,7 @@ use App\Dao\Enums\BooleanType;
 use App\Dao\Models\Category;
 use App\Dao\Models\Brand;
 use App\Dao\Models\ProductType;
+use App\Dao\Models\Supplier;
 use App\Dao\Models\Unit;
 use App\Dao\Repositories\ProductRepository;
 use App\Http\Requests\ProductRequest;
@@ -31,10 +32,12 @@ class ProductController extends MasterController
         $category = Category::optionBuild();
         $product_type = ProductType::optionBuild();
         $brand = Brand::optionBuild();
+        $supplier = Supplier::optionBuild();
         $unit = Unit::optionBuild();
         self::$share = [
             'status' => $status,
             'category' => $category,
+            'supplier' => $supplier,
             'brand' => $brand,
             'unit' => $unit,
             'product_type' => $product_type,

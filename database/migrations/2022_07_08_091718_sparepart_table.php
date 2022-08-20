@@ -16,10 +16,13 @@ class SparepartTable extends Migration
         Schema::create('sparepart', function (Blueprint $table) {
             $table->bigIncrements('sparepart_id');
             $table->string('sparepart_name');
-            $table->integer('sparepart_location_id');
-            $table->text('sparepart_description');
-            $table->integer('sparepart_stock');
-            $table->integer('sparepart_product_id');
+            $table->integer('sparepart_location_id')->nullable();
+            $table->integer('sparepart_brand_id')->nullable();
+            $table->integer('sparepart_type_id')->nullable();
+            $table->string('sparepart_unit_code')->nullable();
+            $table->text('sparepart_description')->nullable();
+            $table->integer('sparepart_stock')->nullable();
+            $table->integer('sparepart_product_id')->nullable();
         });
     }
 

@@ -20,7 +20,10 @@ class SparepartTableSeeder extends Seeder
             $faker->addProvider(new Fakecar($faker));
             Sparepart::create([
                 'sparepart_name' => $faker->vehicleModel,
-                'sparepart_location_id' => $faker->unique()->numberBetween($min = 1, $max = 1000),
+                'sparepart_location_id' => $faker->unique()->numberBetween($min = 1, $max = 10),
+                'sparepart_brand_id' => $faker->unique()->numberBetween($min = 1, $max = 10),
+                'sparepart_type_id' => $faker->unique()->numberBetween($min = 1, $max = 3),
+                'sparepart_unit_code' => 'PCS',
                 'sparepart_description' => $faker->text($maxNbChars = 200),
                 'sparepart_stock' => $faker->randomDigit,
                 'sparepart_product_id' => $faker->numberBetween($min = 1, $max = 10),

@@ -27,6 +27,20 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
             {!! $errors->first('product_name', '<p class="help-block">:message</p>') !!}
         </div>
 
+        <div class="form-group {{ $errors->has('product_internal_number') ? 'has-error' : '' }}">
+            <label>Internal Number</label>
+            {!! Form::text('product_internal_number', null, ['class' => 'form-control', 'id' => 'product_internal_number', 'placeholder'
+            => 'Please fill this input', 'required']) !!}
+            {!! $errors->first('product_internal_number', '<p class="help-block">:message</p>') !!}
+        </div>
+
+        <div class="form-group {{ $errors->has('product_auto_number') ? 'has-error' : '' }}">
+            <label>Auto Number</label>
+            {!! Form::text('product_auto_number', null, ['class' => 'form-control', 'id' => 'product_auto_number', 'placeholder'
+            => 'Please fill this input', 'required']) !!}
+            {!! $errors->first('product_auto_number', '<p class="help-block">:message</p>') !!}
+        </div>
+
         <div class="form-group {{ $errors->has('product_buy_date') ? 'has-error' : '' }}">
             <label>Buy Date</label>
             {!! Form::text('product_buy_date', null, ['class' => 'form-control date', 'id' => 'product_buy_date', 'placeholder'
@@ -39,6 +53,13 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
             {!! Form::text('product_prod_year', null, ['class' => 'form-control', 'id' => 'product_prod_year', 'placeholder'
             => 'Please fill this input', 'required']) !!}
             {!! $errors->first('product_prod_year', '<p class="help-block">:message</p>') !!}
+        </div>
+
+        <div class="form-group {{ $errors->has('product_acqu_year') ? 'has-error' : '' }}">
+            <label>Acquisition Year</label>
+            {!! Form::text('product_acqu_year', null, ['class' => 'form-control', 'id' => 'product_prod_year', 'placeholder'
+            => 'Please fill this input', 'required']) !!}
+            {!! $errors->first('product_acqu_year', '<p class="help-block">:message</p>') !!}
         </div>
 
         <div class="form-group">
@@ -75,11 +96,24 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
             'product_name', 'placeholder' => '- Select Unit -', 'required']) !!}
         </div>
 
-        <div class="form-group {{ $errors->has('product_sn') ? 'has-error' : '' }}">
+        <div class="form-group">
+            <label>Supplier</label>
+            {!! Form::select('product_supplier_id', $supplier, null, ['class' => 'form-control', 'id' =>
+            'product_name', 'placeholder' => '- Select Supplier -', 'required']) !!}
+        </div>
+
+        <div class="form-group {{ $errors->has('product_serial_number') ? 'has-error' : '' }}">
             <label>Serial Number</label>
-            {!! Form::text('product_sn', null, ['class' => 'form-control', 'id' => 'product_sn', 'placeholder'
+            {!! Form::text('product_serial_number', null, ['class' => 'form-control', 'id' => 'product_serial_number', 'placeholder'
             => 'Please fill this input', 'required']) !!}
-            {!! $errors->first('product_sn', '<p class="help-block">:message</p>') !!}
+            {!! $errors->first('product_serial_number', '<p class="help-block">:message</p>') !!}
+        </div>
+
+        <div class="form-group {{ $errors->has('product_price') ? 'has-error' : '' }}">
+            <label>Product Price</label>
+            {!! Form::text('product_price', null, ['class' => 'form-control', 'id' => 'product_prod_year', 'placeholder'
+            => 'Please fill this input', 'required']) !!}
+            {!! $errors->first('product_price', '<p class="help-block">:message</p>') !!}
         </div>
 
     </div>

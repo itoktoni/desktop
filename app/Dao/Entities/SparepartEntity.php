@@ -2,7 +2,10 @@
 
 namespace App\Dao\Entities;
 
+use App\Dao\Models\Brand;
 use App\Dao\Models\Product;
+use App\Dao\Models\ProductType;
+use App\Dao\Models\Unit;
 
 trait SparepartEntity
 {
@@ -64,5 +67,35 @@ trait SparepartEntity
     public function getFieldproductNameAttribute()
     {
         return $this->{Product::field_name()};
+    }
+
+    public static function field_brand_id()
+    {
+        return 'sparepart_brand_id';
+    }
+
+    public function getFieldBrandNameAttribute()
+    {
+        return $this->{Brand::field_name()};
+    }
+
+    public static function field_type_id()
+    {
+        return 'sparepart_type_id';
+    }
+
+    public function getFieldTypeNameAttribute()
+    {
+        return $this->{ProductType::field_name()};
+    }
+
+    public static function field_unit_code()
+    {
+        return 'sparepart_unit_code';
+    }
+
+    public function getFieldUnitNameAttribute()
+    {
+        return $this->{Unit::field_name()};
     }
 }
