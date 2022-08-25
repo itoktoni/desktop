@@ -21,7 +21,7 @@ $factory->define(Product::class, function (Faker $faker) {
     $faker->addProvider(new Fakecar($faker));
     return [
         'product_name' => $faker->unique()->vehicle,
-        'product_sn' => strtoupper($faker->unique()->vin),
+        'product_serial_number' => strtoupper($faker->unique()->vin),
         'product_category_id' => $faker->numberBetween($min = 1, $max = 5),
         'product_type_id' => $faker->numberBetween($min = 1, $max = 3),
         'product_brand_id' => $faker->numberBetween($min = 1, $max = 10),
