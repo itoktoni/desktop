@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Transaction;
 
 use App\Dao\Enums\TicketStatus;
 use App\Dao\Enums\WorkStatus;
+use App\Dao\Enums\RoleType;
 use App\Dao\Models\Product;
 use App\Dao\Models\TicketSystem;
 use App\Dao\Models\User;
@@ -30,11 +31,21 @@ class WorkSheetController extends MasterController
         self::$service = self::$service ?? $service;
     }
 
-    protected function beforeForm()
+    private function getUser($user)
+    {
+        if (auth()->user()->{User::field_role()} == RoleType::User) {
+            $user = $user->where(User::field_primary(), auth()->user()
+                    ->{User::field_primary()});
+        }
+
+        return $user->pluck(User::field_name(), User::field_primary());
+    }
+
+    protected function share($data = [])
     {
         $work_type = WorkType::optionBuild();
         $product = Product::optionBuild();
-        $user = User::optionBuild();
+        $user = User::optionBuild(true);
         $status = WorkStatus::getOptions();
         $ticket = TicketSystem::optionBuild(true)
             ->where(TicketSystem::field_status(), '!=', TicketStatus::Close)->mapWithKeys(function ($item) {
@@ -48,14 +59,30 @@ class WorkSheetController extends MasterController
                         ->get('ticket_id'));
         }
 
-        self::$share = [
+        $view = [
             'work_type' => $work_type,
             'product' => $product,
             'data_ticket' => $data_ticket,
             'ticket' => $ticket,
-            'user' => $user,
+            'user' => $this->getUser($user),
             'status' => $status,
         ];
+
+        return self::$share = array_merge($view, $data, self::$share);
+    }
+
+    public function getCreate()
+    {
+        return view(Template::form(SharedData::get('template')))->with($this->share([
+            'status' => WorkStatus::getOptions([WorkStatus::Open]),
+        ]));
+    }
+
+    public function getUpdate($code)
+    {
+        return view(Template::form(SharedData::get('template')))->with($this->share([
+            'model' => $this->get($code),
+        ]));
     }
 
     public function postCreate(WorkSheetRequest $request, CreateWorkSheetService $service)
@@ -70,33 +97,19 @@ class WorkSheetController extends MasterController
         return Response::redirectBack($data);
     }
 
-    public function getPrint()
-    {
-        $query = self::$repository->setDisablePaginate()->dataRepository();
-        return view(Template::print(SharedData::get('template')))->with($this->share([
-            'data' => $query->get(),
-            'fields' => self::$repository->model->getShowField(),
-        ]));
-    }
-
-    public function getExcel()
-    {
-        return Excel::download(new WorkSheetRepository, 'Work_sheet.' . date('Ymd') . '.xlsx');
-    }
-
-    public function getCsv()
-    {
-        return self::$repository->excel('Work_sheet.' . date('Ymd'));
-    }
-
     public function getPdf()
     {
-        // $dompdf=PDF::getDomPDF();
-        // $dompdf->loadHTML('<h1>Test</h1>');
-        // $dompdf->render();
-        // $dompdf->get_canvas()->get_cpdf()->setEncryption("userpass", "adminpass");
-        // return $dompdf->stream();
+        $data = $this->get(request()->get('code'), [
+            'has_work_type',
+            'has_product',
+            'has_ticket',
+            'has_reported_by',
+        ])->first();
 
-        return PDF::loadHTML('<h1>Test</h1>')->stream();
+        $share = [
+            'master' => $data,
+        ];
+        $pdf = PDF::loadView(Template::print(SharedData::get('template')), $share);
+        return $pdf->stream();
     }
 }

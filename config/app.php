@@ -4,6 +4,7 @@ use App\Dao\Enums\BooleanType;
 use App\Dao\Enums\MovementStatus;
 use App\Dao\Enums\ProductStatus;
 use App\Dao\Enums\TicketStatus;
+use App\Dao\Enums\WorkStatus;
 use App\Dao\Models\Routes;
 use App\Providers\CacheableAuthUserServiceProvider;
 use Coderello\SharedData\Facades\SharedData;
@@ -190,6 +191,7 @@ return [
         CacheableAuthUserServiceProvider::class,
         DatabaseJson\DataBaseJsonServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
     ],
 
     /*
@@ -247,11 +249,14 @@ return [
         'BooleanType' => BooleanType::class,
         'ProductStatus' => ProductStatus::class,
         'TicketStatus' => TicketStatus::class,
+        'WorkStatus' => WorkStatus::class,
         'MovementStatus' => MovementStatus::class,
         'SharedData' => SharedData::class,
         'Routes' => Routes::class,
         'Browser' => hisorange\BrowserDetect\Parser::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];

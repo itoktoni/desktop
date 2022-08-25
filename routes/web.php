@@ -1,5 +1,8 @@
 <?php
 
+use App\Dao\Facades\EnvFacades;
+use msztorc\LaravelEnv\Env;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +16,7 @@
 
 use App\Dao\Models\Routes;
 use Buki\AutoRoute\AutoRouteFacade as AutoRoute;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -408,3 +412,18 @@ Route::prefix('pages')->name('pages.')->middleware('access')->group(function () 
         })->name('mean-at-work');
     });
 });
+
+Route::post('upload_config', function(Request $request){
+
+    $file = $request->file('file');
+    $field = $request->file('name');
+    // $filename = $file->getClientOriginalName();
+    $extension = $file->getClientOriginalExtension();
+    $name = $field.'.'.$extension;
+    $file->storeAs('/public/', $name);
+
+    EnvFacades::setValue($field, $name);
+
+    return $name;
+
+})->name('upload_config');

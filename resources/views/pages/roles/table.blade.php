@@ -1,24 +1,34 @@
 @extends(Template::master())
 
-@section('header')
-<h4>List Master Roles</h4>
-<div class="header-action">
-    <nav>
-        <input class="btn-check-m d-lg-none" type="checkbox">
-        <button href="{{ route(SharedData::get('route').'.postDelete') }}"
-            class="btn btn-danger button-delete-all">Delete</button>
-        <button href="{{ route(SharedData::get('route').'.getCreate') }}"
-            class="btn btn-success button-create">Create</button>
-    </nav>
+@section('title')
+<h4>Master Building</h4>
+@endsection
+
+@section('action')
+<div class="button">
+	<input class="btn-check-m d-lg-none" type="checkbox">
+	<button href="{{ route(SharedData::get('route').'.postDelete') }}" class="btn btn-danger button-delete-all">
+		Delete
+	</button>
+	<button href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-success button-create">
+		Create
+	</button>
 </div>
 @endsection
 
-@section('form')
+@section('container')
+
+<div class="page-header">
+	<div class="header-container container-fluid d-sm-flex justify-content-between">
+		@yield('title')
+		@yield('action')
+	</div>
+</div>
+
 <div class="card">
     <div class="card-body">
 
-        {!! Form::open(['url' => route(SharedData::get('route').'.getTable'), 'class' => 'form-row', 'method' => 'GET'])
-        !!}
+        {!! Template::form_table() !!}
 
         <div class="form-group col-md-4 mr-3">
             <select name="filter" class="form-control">
@@ -40,7 +50,7 @@
             </div>
         </div>
 
-        {!! Form::close() !!}
+        {!! Template::form_close() !!}
 
         <div class="table-responsive">
             <table class="table table-striped table-bordered">

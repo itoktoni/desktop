@@ -1,26 +1,34 @@
 @extends(Template::master())
 
-@section('header')
-<h4>List Movement</h4>
-<div class="header-action">
-    <nav>
-        <input class="btn-check-m d-lg-none" type="checkbox">
-        <button href="{{ route(SharedData::get('route').'.postDelete') }}" class="btn btn-danger button-delete-all">Delete</button>
-        <a href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-primary">Create</a>
-        <a target="_blank" href="{{ route(SharedData::get('route').'.getPrint', request()->query()) }}" class="btn btn-secondary">Print</a>
-        <a target="_blank" href="{{ route(SharedData::get('route').'.getPdf', request()->query()) }}" class="btn btn-google">PDF</a>
-        <a href="{{ route(SharedData::get('route').'.getExcel', request()->query()) }}" class="btn btn-success">Excel</a>
-        <a href="{{ route(SharedData::get('route').'.getCsv', request()->query()) }}" class="btn btn-info">Csv</a>
-    </nav>
+@section('title')
+<h4>Master Building</h4>
+@endsection
+
+@section('action')
+<div class="button">
+	<input class="btn-check-m d-lg-none" type="checkbox">
+	<button href="{{ route(SharedData::get('route').'.postDelete') }}" class="btn btn-danger button-delete-all">
+		Delete
+	</button>
+	<button href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-success button-create">
+		Create
+	</button>
 </div>
 @endsection
 
-@section('form')
+@section('container')
+
+<div class="page-header">
+	<div class="header-container container-fluid d-sm-flex justify-content-between">
+		@yield('title')
+		@yield('action')
+	</div>
+</div>
+
 <div class="card">
     <div class="card-body">
 
-        {!! Form::open(['url' => route(SharedData::get('route').'.getTable'), 'class' => 'form-row', 'method' => 'GET'])
-        !!}
+        {!! Template::form_table() !!}
 
         <div class="form-group col-md-4 mr-3">
             <select name="filter" class="form-control">
@@ -41,7 +49,7 @@
             </div>
         </div>
 
-        {!! Form::close() !!}
+        {!! Template::form_close() !!}
         @includeIf(Template::form(SharedData::get('template'),'data'))
 
         @component(Template::components('pagination'), ['data' => $data])

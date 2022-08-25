@@ -60,7 +60,7 @@
     <div>
         <div id="navigation-logo">
             <a href="{{ url('/') }}">
-                <img class="logo" src="{{ env('APP_LOGO') ? url('files/'.env('APP_LOGO')) : url('assets/media/image/logo.png') }}" alt="logo">
+                <img class="logo" src="{{ env('APP_LOGO') ? url('storage/'.env('APP_LOGO')) : url('assets/media/image/logo.png') }}" alt="logo">
             </a>
         </div>
     </div>

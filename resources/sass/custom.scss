@@ -105,6 +105,7 @@ body{
 
 			.logo{
 				max-width: 180px;
+				max-height: 70px;
 			}
 		}
 
@@ -427,6 +428,23 @@ body
 .input-group .selectize-input{
 	overflow:unset;border-radius:0 .25rem .25rem 0
 }
+
+.modal{
+	.modal-dialog{
+		.modal-content{
+			.modal-footer{
+				margin-top: -30px;
+			}
+
+			.modal-header{
+				h1, h2, h3, h4{
+					margin-bottom: 0px;
+				}
+			}
+		}
+	}
+}
+
 
 .chosen-container {
 	position: relative;

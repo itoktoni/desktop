@@ -242,6 +242,26 @@ class RoutesTableSeeder extends Seeder
                 'route_sort' => 2,
                 'route_report' => 0,
             ],
+            [
+                'route_code' => 'report_worksheet',
+                'route_name' => 'Report WorkSheet',
+                'route_group' => 'report',
+                'route_controller' => 'App\\Http\\Controllers\\Report\\ReportWorkSheetController',
+                'route_active' => 1,
+                'route_description' => null,
+                'route_sort' => 2,
+                'route_report' => 1,
+            ],
+            [
+                'route_code' => 'setting',
+                'route_name' => 'Setting System',
+                'route_group' => 'system',
+                'route_controller' => 'App\\Http\\Controllers\\System\\SettingController',
+                'route_active' => 1,
+                'route_description' => null,
+                'route_sort' => 2,
+                'route_report' => 1,
+            ],
         ));
 
     }
