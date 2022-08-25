@@ -2,21 +2,15 @@
 
 namespace App\Http\Controllers\Report;
 
-use App\Dao\Enums\TicketStatus;
 use App\Dao\Models\Department;
-use App\Dao\Models\User;
-use App\Dao\Enums\TicketPriority;
-use App\Dao\Models\TicketTopic;
 use App\Dao\Repositories\TicketSystemRepository;
+use App\Dao\Enums\WorkStatus;
+use App\Dao\Models\Product;
+use App\Dao\Models\WorkType;
 use App\Dao\Repositories\WorkSheetRepository;
 use App\Http\Controllers\System\MasterController;
-use App\Http\Requests\TicketSystemRequest;
-use App\Http\Services\CreateTicketService;
-use App\Http\Services\SingleService;
-use App\Http\Services\UpdateService;
 use Barryvdh\DomPDF\Facade as PDF;
 use Coderello\SharedData\Facades\SharedData;
-use Plugins\Response;
 use Plugins\Template;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -29,18 +23,19 @@ class ReportWorkSheetController extends MasterController
 
     protected function beforeForm()
     {
-        $ticket_topic = TicketTopic::optionBuild();
         $department = Department::optionBuild();
         $user = User::optionBuild();
-        $status = TicketStatus::getOptions();
-        $priority = TicketPriority::getOptions();
+        $work_type = WorkType::optionBuild();
+        $product = Product::optionBuild();
+        $user = User::optionBuild();
+        $status = WorkStatus::getOptions();
 
         self::$share = [
-            'ticket_topic' => $ticket_topic,
             'department' => $department,
+            'work_type' => $work_type,
+            'product' => $product,
             'user' => $user,
             'status' => $status,
-            'priority' => $priority,
         ];
     }
 
@@ -54,11 +49,11 @@ class ReportWorkSheetController extends MasterController
 
     public function getExcel()
     {
-        return Excel::download(new TicketSystemRepository, 'ticket_system.'.date('Ymd').'.xlsx');
+        return Excel::download(new WorkSheetRepository, 'work_sheet.'.date('Ymd').'.xlsx');
     }
 
     public function getCsv()
     {
-        return self::$repository->excel('ticket_system.'.date('Ymd'));
+        return self::$repository->excel('work_sheet.'.date('Ymd'));
     }
 }

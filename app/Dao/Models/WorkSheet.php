@@ -58,6 +58,8 @@ class WorkSheet extends Model
     protected $filters = [
         'filter',
         'work_sheet_product_id',
+        'start_date',
+        'end_date',
     ];
 
     public $timestamps = true;

@@ -13,7 +13,6 @@ use App\Http\Services\SingleService;
 use App\Http\Services\UpdateMovementService;
 use Barryvdh\DomPDF\Facade as PDF;
 use Coderello\SharedData\Facades\SharedData;
-use Maatwebsite\Excel\Facades\Excel;
 use Plugins\Response;
 use Plugins\Template;
 
@@ -25,10 +24,22 @@ class MovementController extends MasterController
         self::$service = self::$service ?? $service;
     }
 
+    private function getProduct()
+    {
+        $product = Product::with(['has_location'])->get()
+            ->mapWithKeys(function ($item) {
+                $name = $item->has_location->field_name . ' - ' . $item->field_name;
+                $id = $item->field_primary . '';
+                return [$id => $name];
+            });
+
+        return $product;
+    }
+
     protected function beforeForm()
     {
         $status = MovementStatus::getOptions();
-        $product = Product::optionBuild();
+        $product = $this->getProduct();
         $location = Location::optionBuild();
         self::$share = [
             'status' => $status,
@@ -59,31 +70,21 @@ class MovementController extends MasterController
 
     public function getPrint()
     {
-        $query = self::$repository->setDisablePaginate()->dataRepository();
-        return view(Template::print(SharedData::get('template')))->with($this->share([
-            'data' => $query->get(),
-            'fields' => self::$repository->model->getShowField(),
-        ]));
-    }
+        $data = $this->get(request()->get('code'), [
+            'has_user',
+            'has_product',
+            'has_location',
+            'has_location_old',
+        ]);
 
-    public function getExcel()
-    {
-        return Excel::download(new MovementRepository, 'Work_sheet.' . date('Ymd') . '.xlsx');
-    }
+        if ($data->field_status == 1 || $data->field_status == 3) {
+            $share = [
+                'master' => $data,
+            ];
 
-    public function getCsv()
-    {
-        return self::$repository->excel('Work_sheet.' . date('Ymd'));
-    }
-
-    public function getPdf()
-    {
-        // $dompdf=PDF::getDomPDF();
-        // $dompdf->loadHTML('<h1>Test</h1>');
-        // $dompdf->render();
-        // $dompdf->get_canvas()->get_cpdf()->setEncryption("userpass", "adminpass");
-        // return $dompdf->stream();
-
-        return PDF::loadHTML('<h1>Test</h1>')->stream();
+            $pdf = PDF::loadView(Template::print(SharedData::get('template')), $share);
+            return $pdf->stream();
+        }
+        return PDF::loadHTML('<h1>Status Pending</h1>')->stream();
     }
 }
