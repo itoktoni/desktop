@@ -48,11 +48,19 @@ class GroupsTableSeeder extends Seeder
                 'group_active' => 1,
             ],
             [
+                'group_code' => 'scheduling',
+                'group_name' => 'Scheduling',
+                'group_icon' => 'clock',
+                'group_url' => null,
+                'group_sort' => 4,
+                'group_active' => 1,
+            ],
+            [
                 'group_code' => 'system',
                 'group_name' => 'System',
                 'group_icon' => 'settings',
                 'group_url' => null,
-                'group_sort' => 4,
+                'group_sort' => 5,
                 'group_active' => 1,
             ],
         ));

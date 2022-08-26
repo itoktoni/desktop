@@ -43,6 +43,7 @@ class DatabaseSeeder extends Seeder
             WorkSheetTableSeeder::class,
             MovementTableSeeder::class,
             SpkTableSeeder::class,
+            ScheduleTableSeeder::class,
         ]);
     }
 }

@@ -3,6 +3,7 @@
 use App\Dao\Enums\BooleanType;
 use App\Dao\Enums\MovementStatus;
 use App\Dao\Enums\ProductStatus;
+use App\Dao\Enums\ScheduleStatus;
 use App\Dao\Enums\TicketStatus;
 use App\Dao\Enums\WorkStatus;
 use App\Dao\Enums\SpkStatus;
@@ -252,6 +253,7 @@ return [
         'WorkStatus' => WorkStatus::class,
         'MovementStatus' => MovementStatus::class,
         'SpkStatus' => SpkStatus::class,
+        'ScheduleStatus' => ScheduleStatus::class,
         'SharedData' => SharedData::class,
         'Routes' => Routes::class,
         'Browser' => hisorange\BrowserDetect\Parser::class,

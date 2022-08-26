@@ -14,7 +14,7 @@ use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 
 class Supplier extends Model
 {
-    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, SupplierEntity, ActiveTrait;
+    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, SupplierEntity, ActiveTrait, OptionTrait;
 
     protected $table = 'supplier';
     protected $primaryKey = 'supplier_id';
