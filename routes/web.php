@@ -15,6 +15,7 @@ use msztorc\LaravelEnv\Env;
  */
 
 use App\Dao\Models\Routes;
+use App\Http\Controllers\Master\BrandController;
 use Buki\AutoRoute\AutoRouteFacade as AutoRoute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;

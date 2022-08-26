@@ -1,7 +1,7 @@
 @extends(Template::master())
 
 @section('title')
-<h4>Master Brand</h4>
+<h4>Master Merek</h4>
 @endsection
 
 @section('action')

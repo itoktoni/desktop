@@ -1,7 +1,7 @@
 @extends(Template::master())
 
 @section('title')
-<h4>Master Building</h4>
+<h4>Master Gedung</h4>
 @endsection
 
 @section('action')
@@ -29,9 +29,7 @@
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('building_name') ? 'has-error' : '' }}">
 					<label>Name</label>
-					{!! Form::text('building_name', null, ['class' => 'form-control', 'id' => 'building_name',
-					'placeholder' =>
-					'Please fill this input', 'required']) !!}
+					{{ Template::text('building_name') }}
 					{!! $errors->first('building_name', '<p class="help-block">:message</p>') !!}
 				</div>
 			</div>
@@ -78,6 +76,6 @@
 
 @endsection
 
-@push('footer')
+@push('javascript')
 @include(Template::components('form'))
 @endpush

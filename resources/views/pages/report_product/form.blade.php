@@ -1,12 +1,13 @@
 @extends(Template::master())
 
 @section('title')
-<h4>Report Tiket</h4>
+<h4>Report Product</h4>
 @endsection
 
 @section('action')
 <div class="button">
-	<button type="submit" class="btn btn-primary" id="modal-btn-save">{{ __('Save') }}</button>
+	<button type="submit" name="type" value="report" class="btn btn-primary" id="modal-btn-save">{{ __('Report') }}</button>
+	<button type="submit" name="type" value="barcode" class="btn btn-danger" id="modal-btn-save">{{ __('Print Label') }}</button>
 </div>
 @endsection
 
@@ -48,25 +49,22 @@
 			</div>
 
 			<div class="col-md-6">
-				<div class="form-group {{ $errors->has('ticket_system_topic_id') ? 'has-error' : '' }}">
-					<label>Topik Ticket</label>
-					{!! Form::select('ticket_system_topic_id', $ticket_topic, null, ['class' => 'form-control', 'id' =>
-					'ticket_system_topic_id', 'placeholder' => '- Select Status -']) !!}
+				<div class="form-group {{ $errors->has('ticket_system_department_id') ? 'has-error' : '' }}">
+					<label>Product</label>
+					{!! Form::select('product_data[]', $product, null, ['class' => 'form-control', 'id' =>
+					'work_sheet_product_id', 'multiple']) !!}
 				</div>
 			</div>
 
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('ticket_system_department_id') ? 'has-error' : '' }}">
-					<label>Department</label>
-					{!! Form::select('ticket_system_department_id', $department, null, ['class' => 'form-control', 'id'
-					=>
-					'ticket_system_department_id', 'placeholder' => '- Select Status -']) !!}
+					<label>Location</label>
+					{!! Form::select('location', $location, null, ['class' => 'form-control', 'id' =>
+					'location', 'placeholder' => '- Select Location -']) !!}
 				</div>
 			</div>
 
 		</div>
-
-
 	</div>
 </div>
 

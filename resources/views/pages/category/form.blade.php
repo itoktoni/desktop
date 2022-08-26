@@ -1,7 +1,7 @@
 @extends(Template::master())
 
 @section('title')
-<h4>Master Building</h4>
+<h4>Master Category</h4>
 @endsection
 
 @section('action')
@@ -59,6 +59,6 @@
 
 @endsection
 
-@push('footer')
+@push('javascript')
 @include(Template::components('form'))
 @endpush

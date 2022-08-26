@@ -74,6 +74,7 @@ class TicketSystemController extends MasterController
             'location' => $this->getLocation(),
             'implementor' => $this->getImplementor($user),
             'user' => $this->getUser($user),
+            'model' => false,
             'status' => $status,
             'priority' => $priority,
         ];

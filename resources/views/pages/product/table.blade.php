@@ -1,7 +1,7 @@
 @extends(Template::master())
 
 @section('title')
-<h4>Master Building</h4>
+<h4>Master Alat</h4>
 @endsection
 
 @section('action')
@@ -10,9 +10,9 @@
 	<button href="{{ route(SharedData::get('route').'.postDelete') }}" class="btn btn-danger button-delete-all">
 		Delete
 	</button>
-	<button href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-success button-create">
+	<a href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-success">
 		Create
-	</button>
+    </a>
 </div>
 @endsection
 
@@ -113,5 +113,6 @@
 </div>
 @endsection
 
-@component(Template::components('table'))
-@endcomponent
+@push('javascript')
+@include(Template::components('table'))
+@endpush

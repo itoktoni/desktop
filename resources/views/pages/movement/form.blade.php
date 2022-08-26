@@ -1,33 +1,31 @@
 @extends(Template::master())
 
 @section('title')
-<h4>Movement</h4>
+<h4>Perpindahan Barang</h4>
 @endsection
 
 @section('action')
 <div class="button">
-	<a href="{{ URL::previous() }}" class="btn btn-warning">Back</a>
 	<button type="submit" class="btn btn-primary" id="modal-btn-save">{{ __('Save') }}</button>
 </div>
 @endsection
 
-@section('form')
-
-Template::open($model)
-
-@if(isset($model))
-{!! Form::model($model, ['route'=>[SharedData::get('route').'.postUpdate', 'code' =>
-$model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'files'=>true]) !!}
-@else
-{!! Form::open(['url' => route(SharedData::get('route').'.postCreate'), 'class' => 'form-horizontal needs-validation',
-'files' => true]) !!}
-@endif
-@endsection
-
 @section('container')
+
+{!! Template::form_open($model) !!}
+
+@if(!request()->ajax())
+<div class="page-header">
+	<div class="header-container container-fluid d-sm-flex justify-content-between">
+		@yield('title')
+		@yield('action')
+	</div>
+</div>
+@endif
 
 <div class="card">
 	<div class="card-body">
+
 		<div class="row">
 
 			<div class="col-md-6">
@@ -85,7 +83,13 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 	</div>
 </div>
 
-@if(isset($model))
+{!! Template::form_close() !!}
+
+@endsection
+
+@push('javascript')
+@include(Template::components('form'))
+@include(Template::components('date'))
 <script>
 const data = ["movement_product_id", "movement_date"];
 data.forEach(myFunction);
@@ -95,10 +99,4 @@ function myFunction(item) {
 	document.getElementById(item).disabled = true;
 }
 </script>
-@endif
-
-@endsection
-
-@section('javascript')
-@include(Template::components('form'))
-@include(Template::components('date'))
+@endpush

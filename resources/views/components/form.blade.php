@@ -1,6 +1,5 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
+@if(request()->ajax())
 <script>
-
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -57,7 +56,5 @@ $('#modal-btn-save').click(function (event) {
         }
     })
 });
-
-$('select:not(.selectize)').chosen({});
-
 </script>
+@endif

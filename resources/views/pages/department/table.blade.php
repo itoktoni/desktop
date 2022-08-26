@@ -1,18 +1,18 @@
 @extends(Template::master())
 
 @section('title')
-<h4>Master Building</h4>
+<h4>Master Departemen</h4>
 @endsection
 
 @section('action')
 <div class="button">
 	<input class="btn-check-m d-lg-none" type="checkbox">
-	<button href="{{ route(SharedData::get('route').'.postDelete') }}" class="btn btn-danger button-delete-all">
+	<a href="{{ route(SharedData::get('route').'.postDelete') }}" class="btn btn-danger button-delete-all">
 		Delete
-	</button>
-	<button href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-success button-create">
+	</a>
+	<a href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-success button-create">
 		Create
-	</button>
+	</a>
 </div>
 @endsection
 
@@ -50,7 +50,6 @@
         </div>
 
         {!! Template::form_close() !!}
-
 
         <div class="table-responsive" id="table_data">
             <table class="table table-bordered table-striped table-responsive-stack">

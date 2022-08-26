@@ -1,7 +1,7 @@
 @extends(Template::master())
 
 @section('title')
-<h4>Master Building</h4>
+<h4>Master Departemen</h4>
 @endsection
 
 @section('action')

@@ -257,6 +257,8 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'BARCODE1D' => Milon\Barcode\Facades\DNS1DFacade::class,
+        'BARCODE2D' => Milon\Barcode\Facades\DNS2DFacade::class,
     ],
 
 ];

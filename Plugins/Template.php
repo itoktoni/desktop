@@ -44,10 +44,10 @@ class Template
         return 'pages.' . self::$template . '.table';
     }
 
-    public static function print($template = false, $type = ReportType::Html) {
-        if ($template) {
+    public static function print($template = false, $name = false) {
+        if ($name) {
 
-            return 'pages.' . $template . '.print';
+            return 'pages.' . $template . '.'.$name;
         }
 
         return 'pages.' . self::$template . '.print';

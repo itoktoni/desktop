@@ -1,18 +1,18 @@
 @extends(Template::master())
 
 @section('title')
-<h4>Master Building</h4>
+<h4>Database Pengguna</h4>
 @endsection
 
 @section('action')
 <div class="button">
 	<input class="btn-check-m d-lg-none" type="checkbox">
-	<button href="{{ route(SharedData::get('route').'.postDelete') }}" class="btn btn-danger button-delete-all">
+	<a href="{{ route(SharedData::get('route').'.postDelete') }}" class="btn btn-danger button-delete-all">
 		Delete
-	</button>
-	<button href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-success button-create">
+	</a>
+	<a href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-success button-create">
 		Create
-	</button>
+	</a>
 </div>
 @endsection
 
@@ -54,8 +54,6 @@
 
 
         <div class="table-responsive" id="table_data">
-            {!! Form::open(['url' => 'test/save', 'class' => 'form-horizontal', 'id' => 'form-table', 'files' => true])
-            !!}
             <table class="table table-bordered table-striped">
 
                 <thead>
@@ -103,7 +101,6 @@
                     @endforelse
                 </tbody>
             </table>
-            {!! Template::form_close() !!}
         </div>
 
         @component(Template::components('pagination'), ['data' => $data])
@@ -113,5 +110,6 @@
 </div>
 @endsection
 
-@component(Template::components('table'))
-@endcomponent
+@push('javascript')
+@include(Template::components('table'))
+@endpush

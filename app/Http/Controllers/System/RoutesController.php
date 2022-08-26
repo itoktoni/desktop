@@ -28,6 +28,7 @@ class RoutesController extends MasterController
         $data_groups = Groups::optionBuild();
         self::$share = [
             'status' => $status,
+            'model' => false,
             'data_groups' => $data_groups,
         ];
     }
@@ -58,7 +59,6 @@ class RoutesController extends MasterController
 
     public function postSort(SortRequest $request, UpdateRoutesService $service)
     {
-
         $data = $service->sort($request);
         return Response::redirectBack($data);
     }
