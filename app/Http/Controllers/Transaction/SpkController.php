@@ -1,0 +1,81 @@
+<?php
+
+namespace App\Http\Controllers\Transaction;
+
+use App\Dao\Enums\SpkStatus;
+use App\Dao\Models\WorkSheet;
+use App\Dao\Models\Product;
+use App\Dao\Repositories\SpkRepository;
+use App\Http\Controllers\System\MasterController;
+use App\Http\Requests\SpkRequest;
+use App\Http\Services\CreateSpkService;
+use App\Http\Services\SingleService;
+use App\Http\Services\UpdateService;
+use Barryvdh\DomPDF\Facade as PDF;
+use Coderello\SharedData\Facades\SharedData;
+use Plugins\Response;
+use Plugins\Template;
+
+class SpkController extends MasterController
+{
+    public function __construct(SpkRepository $repository, SingleService $service)
+    {
+        self::$repository = self::$repository ?? $repository;
+        self::$service = self::$service ?? $service;
+    }
+
+    protected function share($data = [])
+    {
+        $work_sheet = WorkSheet::optionBuild();
+        $product = Product::optionBuild();
+        $status = SpkStatus::getOptions();
+
+        $view = [
+            'work_sheet' => $work_sheet,
+            'product' => $product,
+            'status' => $status,
+        ];
+
+        return self::$share = array_merge($view, $data, self::$share);
+    }
+
+    public function getCreate()
+    {
+        return view(Template::form(SharedData::get('template')))->with($this->share([
+            'status' => SpkStatus::getOptions([SpkStatus::Created]),
+        ]));
+    }
+
+    public function getUpdate($code)
+    {
+        return view(Template::form(SharedData::get('template')))->with($this->share([
+            'model' => $this->get($code),
+        ]));
+    }
+
+    public function postCreate(SpkRequest $request, CreateSpkService $service)
+    {
+        $data = $service->save(self::$repository, $request);
+        return Response::redirectBack($data);
+    }
+
+    public function postUpdate($code, SpkRequest $request, UpdateService $service)
+    {
+        $data = $service->update(self::$repository, $request, $code);
+        return Response::redirectBack($data);
+    }
+
+    public function getPdf()
+    {
+        $data = $this->get(request()->get('code'), [
+            'has_work_sheet',
+            'has_product',
+        ])->first();
+
+        $share = [
+            'master' => $data,
+        ];
+        $pdf = PDF::loadView(Template::print(SharedData::get('template')), $share);
+        return $pdf->stream();
+    }
+}

@@ -42,6 +42,7 @@ class DatabaseSeeder extends Seeder
             TicketSystemTableSeeder::class,
             WorkSheetTableSeeder::class,
             MovementTableSeeder::class,
+            SpkTableSeeder::class,
         ]);
     }
 }

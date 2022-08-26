@@ -5,6 +5,7 @@ use App\Dao\Enums\MovementStatus;
 use App\Dao\Enums\ProductStatus;
 use App\Dao\Enums\TicketStatus;
 use App\Dao\Enums\WorkStatus;
+use App\Dao\Enums\SpkStatus;
 use App\Dao\Models\Routes;
 use App\Providers\CacheableAuthUserServiceProvider;
 use Coderello\SharedData\Facades\SharedData;
@@ -250,10 +251,12 @@ return [
         'TicketStatus' => TicketStatus::class,
         'WorkStatus' => WorkStatus::class,
         'MovementStatus' => MovementStatus::class,
+        'SpkStatus' => SpkStatus::class,
         'SharedData' => SharedData::class,
         'Routes' => Routes::class,
         'Browser' => hisorange\BrowserDetect\Parser::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        
     ],
 
 ];
