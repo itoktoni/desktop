@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 
 use App\Dao\Interfaces\CrudInterface;
+use App\Dao\Models\TicketSystem;
 use App\Events\CreateTicketEvent;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
@@ -14,6 +15,15 @@ class CreateTicketService extends CreateService
     {
         $check = false;
         try {
+
+            if ($data->has('file_picture')) {
+                $file_logo = $data->file('file_picture');
+                $extension = $file_logo->getClientOriginalExtension();
+                $name = uniqid() .'.'. $extension;
+                $file_logo->storeAs('public/ticket/', $name);
+                $data[TicketSystem::field_picture()] = $name;
+            }
+
             $check = $repository->saveRepository($data->all());
             if(isset($check['status']) && $check['status']){
 

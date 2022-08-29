@@ -68,11 +68,11 @@
 
 				<div class="form-group {{ $errors->has('ticket_system_description') ? 'has-error' : '' }}">
 					<label for="cameraFileInput">
-						<span class="btn btn-success">Open camera</span>
-						<input id="cameraFileInput" name="picture" type="file" accept="image/*" capture="environment" />
+						{{ Browser::isMobile() ? '<span class="btn btn-success">Ambil Gambar</span>' : '' }}
+						<input id="cameraFileInput" style="{{ Browser::isMobile() ? '' : 'dislay:none' }}" name="file_picture" type="file" accept="image/*" capture="environment" />
 					</label>
 
-					<img class="img-fluid" id="pictureFromCamera" />
+					<img class="img-fluid" src="{{ $model ? asset('storage/ticket/'.$model->field_picture) : '' }}" id="pictureFromCamera" />
 				</div>
 
 			</div>
@@ -146,9 +146,6 @@
 @include(Template::components('date'))
 
 <style>
-#cameraFileInput {
-	display: none;
-}
 
 #pictureFromCamera {
 	width: 100%;
