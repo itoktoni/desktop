@@ -27,6 +27,15 @@ Route::get('/', function () {
     return redirect('home');
 })->name('one');
 
+Route::get('debug', function(){
+    echo $_SERVER['HTTP_USER_AGENT'];
+    echo '<br>';
+    $ua = strtolower($_SERVER["HTTP_USER_AGENT"]);
+    $isMob = is_numeric(strpos($ua, "mobile"));
+    return json_encode($isMob);
+
+})->name('debug');
+
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 Route::get('/home', 'HomeController@index')->middleware(['auth', 'access'])->name('home');
 Route::get('/clear', function () {

@@ -19,6 +19,7 @@
     <div class="form-group d-flex justify-content-between">
         <a href="{{ route('pages.register') }}">Register now!</a>
         <a href="{{ route('password.request') }}">Reset password</a>
+        <a href="{{ route('debug') }}">Debug</a>
     </div>
     <button class="btn btn-primary btn-block">Sign in</button>
 </form>
