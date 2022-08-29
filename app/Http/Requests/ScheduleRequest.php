@@ -9,7 +9,7 @@ class ScheduleRequest extends FormRequest
 {
     use ValidationTrait;
 
-    public function validation()
+    public function validation() : array
     {
         return [
             'schedule_product_id' => 'required',

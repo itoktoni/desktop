@@ -34,6 +34,7 @@ class TicketSystem extends Model
         'ticket_system_description',
         'ticket_system_priority',
         'ticket_system_result',
+        'ticket_system_picture',
         'ticket_system_department_id',
         'ticket_system_location_id',
         'ticket_system_reported_at',

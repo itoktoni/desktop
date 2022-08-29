@@ -25,6 +25,7 @@ class CreateTicketSystemTable extends Migration
             $table->integer('ticket_system_department_id')->nullable(); //(relation department)
             $table->date('ticket_system_reported_at')->nullable();
             $table->string('ticket_system_reported_by')->nullable();
+            $table->string('ticket_system_picture')->nullable();
             $table->date('ticket_system_approved_at')->nullable();
             $table->string('ticket_system_approved_by')->nullable();
             $table->dateTime('ticket_system_created_at')->nullable();

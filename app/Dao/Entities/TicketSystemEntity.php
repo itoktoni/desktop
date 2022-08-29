@@ -138,4 +138,14 @@ trait TicketSystemEntity
     {
         return json_decode($this->{self::field_implementor()});
     }
+
+    public static function field_picture()
+    {
+        return 'ticket_system_picture';
+    }
+
+    public function getFieldPictureAttribute()
+    {
+        return $this->{$this->field_picture()};
+    }
 }

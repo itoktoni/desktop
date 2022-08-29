@@ -9,7 +9,7 @@ class MovementRequest extends FormRequest
 {
     use ValidationTrait;
 
-    public function validation()
+    public function validation() : array
     {
         return [
             'movement_reason' => 'required|min:3',

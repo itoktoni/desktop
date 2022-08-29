@@ -66,6 +66,12 @@
 					'ticket_system_description', 'placeholder' => 'Please fill this input', 'rows' => 9]) !!}
 				</div>
 
+				<div class="form-group {{ $errors->has('ticket_system_description') ? 'has-error' : '' }}">
+					<div class="btn btn-success">Take Picture</div>
+					<br />
+					<input id="cameraFileInput" type="file" accept="image/*" capture="environment" />
+				</div>
+
 			</div>
 
 			<div class="col-md-6">
@@ -135,4 +141,44 @@
 @push('javascript')
 @include(Template::components('form'))
 @include(Template::components('date'))
+
+<style>
+#cameraFileInput {
+	display: none;
+}
+
+#pictureFromCamera {
+	width: 100%;
+	height: auto;
+	margin-top: 16px;
+}
+
+.btn {
+	display: inline-block;
+	background-color: #00b531;
+	color: white;
+	padding: 8px 12px;
+	border-radius: 4px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.btn:hover {
+	filter: brightness(0.9);
+}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
+
+<!-- Configure a few settings and attach camera -->
+<script language="JavaScript">
+document
+	.getElementById("cameraFileInput")
+	.addEventListener("change", function() {
+		document
+			.getElementById("pictureFromCamera")
+			.setAttribute("src", window.URL.createObjectURL(this.files[0]));
+	});
+</script>
+
 @endpush

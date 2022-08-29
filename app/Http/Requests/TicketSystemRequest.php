@@ -11,6 +11,14 @@ class TicketSystemRequest extends FormRequest
 {
     use ValidationTrait;
 
+    public function prepareForValidation()
+    {
+        $this->merge([
+            // 'content' => ''
+        ]);
+        dd($this->all());
+    }
+
     public function validation() : array
     {
         return [
