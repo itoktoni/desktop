@@ -69,7 +69,7 @@
 				<div class="form-group {{ $errors->has('ticket_system_description') ? 'has-error' : '' }}">
 					<label for="cameraFileInput">
 						{!! Template::isMobile() ? '<span class="btn btn-success">Ambil Gambar</span>' : '' !!}
-						<input id="cameraFileInput" style="{!! Template::isMobile() ? '' : 'dislay:none' !!}" name="file_picture" type="file" accept="image/*" capture="environment" />
+						<input id="cameraFileInput" style="{!! Template::isMobile() ? 'dislay:none' : '' !!}" name="file_picture" type="file" accept="image/*" capture="environment" />
 					</label>
 
 					<img class="img-fluid" src="{{ $model ? asset('storage/ticket/'.$model->field_picture) : '' }}" id="pictureFromCamera" />
