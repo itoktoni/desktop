@@ -13,10 +13,10 @@ class TicketSystemRequest extends FormRequest
 
     public function prepareForValidation()
     {
+        dd(request()->all());
         $this->merge([
             // 'content' => ''
         ]);
-        dd($this->all());
     }
 
     public function validation() : array
