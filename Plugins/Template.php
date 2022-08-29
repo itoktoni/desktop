@@ -46,11 +46,9 @@ class Template
 
     public static function print($template = false, $name = false) {
         if ($name) {
-
             return 'pages.' . $template . '.'.$name;
         }
-
-        return 'pages.' . self::$template . '.print';
+        return 'pages.' . $template . '.print';
     }
 
     public static function form($template = false, $name = false)

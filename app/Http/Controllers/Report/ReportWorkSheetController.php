@@ -3,18 +3,14 @@
 namespace App\Http\Controllers\Report;
 
 use App\Dao\Enums\WorkStatus;
+use App\Dao\Models\Department;
 use App\Dao\Models\Product;
 use App\Dao\Models\User;
 use App\Dao\Models\WorkType;
 use App\Dao\Repositories\WorkSheetRepository;
 use App\Http\Controllers\System\MasterController;
-use App\Http\Requests\TicketSystemRequest;
-use App\Http\Services\CreateTicketService;
-use App\Http\Services\SingleService;
-use App\Http\Services\UpdateService;
 use Barryvdh\DomPDF\Facade as PDF;
 use Coderello\SharedData\Facades\SharedData;
-use Plugins\Response;
 use Plugins\Template;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -27,12 +23,15 @@ class ReportWorkSheetController extends MasterController
 
     protected function beforeForm()
     {
+        $department = Department::optionBuild();
+        $user = User::optionBuild();
         $work_type = WorkType::optionBuild();
         $product = Product::optionBuild();
         $user = User::optionBuild();
         $status = WorkStatus::getOptions();
 
         self::$share = [
+            'department' => $department,
             'work_type' => $work_type,
             'product' => $product,
             'user' => $user,

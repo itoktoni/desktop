@@ -2,12 +2,14 @@
 
 namespace App\Providers;
 
-use App\Events\CreateTicketEvent;
 use App\Events\CreateMovementEvent;
+use App\Events\CreateScheduleEvent;
+use App\Events\CreateTicketEvent;
 use App\Events\CreateWorkSheetEvent;
+use App\Listeners\CreateMovementListener;
+use App\Listeners\CreateScheduleListener;
 use App\Listeners\CreateTicketListener;
 use App\Listeners\CreateWorkSheetListener;
-use App\Listeners\CreateMovementListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -32,6 +34,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         CreateMovementEvent::class => [
             CreateMovementListener::class,
+        ],
+        CreateScheduleEvent::class => [
+            CreateScheduleListener::class,
         ],
     ];
 

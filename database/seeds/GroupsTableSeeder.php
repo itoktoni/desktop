@@ -40,11 +40,19 @@ class GroupsTableSeeder extends Seeder
                 'group_active' => 1,
             ],
             [
+                'group_code' => 'scheduling',
+                'group_name' => 'Scheduling',
+                'group_icon' => 'clock',
+                'group_url' => null,
+                'group_sort' => 4,
+                'group_active' => 1,
+            ],
+            [
                 'group_code' => 'report',
                 'group_name' => 'Report',
                 'group_icon' => 'printer',
                 'group_url' => null,
-                'group_sort' => 3,
+                'group_sort' => 99,
                 'group_active' => 1,
             ],
             [
@@ -52,7 +60,7 @@ class GroupsTableSeeder extends Seeder
                 'group_name' => 'System',
                 'group_icon' => 'settings',
                 'group_url' => null,
-                'group_sort' => 4,
+                'group_sort' => 100,
                 'group_active' => 1,
             ],
         ));

@@ -28,14 +28,14 @@
         "maatwebsite/excel": "^3.1",
         "mehradsadeghi/laravel-filter-querystring": "^1.1",
         "msztorc/laravel-env": "^1.2",
-        "orangehill/iseed": "^3.0",
-        "pelmered/fake-car": "^1.7",
         "spatie/laravel-backup": "^6.16",
         "touhidurabir/laravel-model-sanitize": "^1.1",
         "wildside/userstamps": "^2.2",
         "milon/barcode": "^6.0"
     },
     "require-dev": {
+        "orangehill/iseed": "^3.0",
+        "pelmered/fake-car": "^1.7",
         "barryvdh/laravel-debugbar": "^3.6",
         "beyondcode/laravel-query-detector": "^1.6",
         "dietercoopman/laravel-showsql": "^1.3",

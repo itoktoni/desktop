@@ -10,6 +10,12 @@
 
 	<link rel="stylesheet" href="{{ asset('assets/css/print.css', false) }}">
 
+	<style>
+	body, h1, h2, h3, h4, h5, h6, span, p, a{
+		font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Arial, sans-serif !important;
+	}
+	</style>
+
 </head>
 
 <body>

@@ -272,6 +272,26 @@ class RoutesTableSeeder extends Seeder
                 'route_sort' => 2,
                 'route_report' => 1,
             ],
+            [
+                'route_code' => 'spk',
+                'route_name' => 'Spk',
+                'route_group' => 'transaction',
+                'route_controller' => 'App\\Http\\Controllers\\Transaction\\SpkController',
+                'route_active' => 1,
+                'route_description' => null,
+                'route_sort' => 2,
+                'route_report' => 0,
+            ],
+            [
+                'route_code' => 'schedule',
+                'route_name' => 'Schedule',
+                'route_group' => 'scheduling',
+                'route_controller' => 'App\\Http\\Controllers\\Scheduling\\ScheduleController',
+                'route_active' => 1,
+                'route_description' => null,
+                'route_sort' => 0,
+                'route_report' => 0,
+            ],
         ));
 
     }

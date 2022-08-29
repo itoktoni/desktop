@@ -90,6 +90,7 @@
 @push('javascript')
 @include(Template::components('form'))
 @include(Template::components('date'))
+@if($model)
 <script>
 const data = ["movement_product_id", "movement_date"];
 data.forEach(myFunction);
@@ -99,4 +100,5 @@ function myFunction(item) {
 	document.getElementById(item).disabled = true;
 }
 </script>
+@endif
 @endpush
