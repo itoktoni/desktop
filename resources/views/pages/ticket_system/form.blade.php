@@ -67,9 +67,16 @@
 				</div>
 
 				<div class="form-group {{ $errors->has('ticket_system_description') ? 'has-error' : '' }}">
-					<div class="btn btn-success">Take Picture</div>
-					<br />
-					<input id="cameraFileInput" type="file" accept="image/*" capture="environment" />
+					<!-- The `label` is attached to the hidden file input -->
+					<label for="cameraFileInput">
+						<span class="btn btn-success">Open camera</span>
+
+						<!-- The hidden file `input` for opening the native camera -->
+						<input id="cameraFileInput" type="file" accept="image/*" capture="environment" />
+					</label>
+
+					<!-- displays the picture uploaded from the native camera -->
+					<img id="pictureFromCamera" />
 				</div>
 
 			</div>
