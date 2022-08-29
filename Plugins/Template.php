@@ -68,10 +68,15 @@ class Template
         return 'pages.' . $template . '.' . $name;
     }
 
+    public static function isMobile()
+    {
+        $ua = strtolower($_SERVER["HTTP_USER_AGENT"]);
+        return $isMob = is_numeric(strpos($ua, "mobile"));
+    }
+
     public static function tableResponsive()
     {
-
-        return Browser::isMobile() ? 'table-responsive-stack' : 'table-responsive';
+        return self::isMobile() ? 'table-responsive-stack' : 'table-responsive';
     }
 
     public static function routes()
