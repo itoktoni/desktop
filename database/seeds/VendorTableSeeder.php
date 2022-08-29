@@ -1,10 +1,10 @@
 <?php
 
-use App\Dao\Models\Supplier;
+use App\Dao\Models\Vendor;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
-class SupplierTableSeeder extends Seeder
+class VendorTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,9 @@ class SupplierTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('id_ID');
-        (new Supplier())->delete();
+        (new Vendor())->delete();
         foreach (range(1, 5) as $item) {
-            Supplier::create([
+            Vendor::create([
                 'supplier_name' => $faker->company,
                 'supplier_contact' => $faker->name,
                 'supplier_address' => $faker->streetAddress,

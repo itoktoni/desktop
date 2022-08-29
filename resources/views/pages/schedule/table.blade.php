@@ -1,17 +1,30 @@
 @extends(Template::master())
 
-@section('header')
-<h4>List Schedule</h4>
-<div class="header-action">
-    <nav>
-        <input class="btn-check-m d-lg-none" type="checkbox">
-        <button href="{{ route(SharedData::get('route').'.postDelete') }}" class="btn btn-danger button-delete-all">Delete</button>
-        <a href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-primary">Create</a>
-    </nav>
+@section('title')
+<h4>Scheduling</h4>
+@endsection
+
+@section('action')
+<div class="button">
+	<input class="btn-check-m d-lg-none" type="checkbox">
+	<a href="{{ route(SharedData::get('route').'.postDelete') }}" class="btn btn-danger button-delete-all">
+		Delete
+	</a>
+	<a href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-success button-create">
+		Create
+	</a>
 </div>
 @endsection
 
-@section('form')
+@section('container')
+
+<div class="page-header">
+	<div class="header-container container-fluid d-sm-flex justify-content-between">
+		@yield('title')
+		@yield('action')
+	</div>
+</div>
+
 <div class="card">
     <div class="card-body">
 
@@ -47,5 +60,6 @@
 </div>
 @endsection
 
-@component(Template::components('table'))
-@endcomponent
+@push('javascript')
+@include(Template::components('table'))
+@endpush

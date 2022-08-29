@@ -1,6 +1,5 @@
-@push('javascript')
+@if(request()->ajax())
 <script>
-
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -57,6 +56,5 @@ $('#modal-btn-save').click(function (event) {
         }
     })
 });
-
 </script>
-@endpush
+@endif

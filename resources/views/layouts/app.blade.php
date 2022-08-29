@@ -58,7 +58,6 @@
     <!-- Plugin scripts -->
     <script src="{{ url('vendors/bundle.js') }}"></script>
 
-
     <!-- App scripts -->
     <script src="{{ url('assets/js/selectize.min.js') }}"></script>
     <script src="{{ url('assets/js/chosen.jquery.min.js') }}"></script>
@@ -77,12 +76,9 @@
 
     // pjax.connect("pjax");
 
-    // $('select').chosen({});
-
     </script>
 
     @stack('footer')
-    @stack('script')
 
     @include('layouts.alert')
 

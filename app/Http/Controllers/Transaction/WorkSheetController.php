@@ -18,7 +18,6 @@ use App\Http\Services\SingleService;
 use App\Http\Services\UpdateWorkSheetService;
 use Barryvdh\DomPDF\Facade as PDF;
 use Coderello\SharedData\Facades\SharedData;
-use Maatwebsite\Excel\Facades\Excel;
 use Plugins\Response;
 use Plugins\Template;
 use Plugins\Views;
@@ -65,6 +64,7 @@ class WorkSheetController extends MasterController
             'data_ticket' => $data_ticket,
             'ticket' => $ticket,
             'user' => $this->getUser($user),
+            'model' => false,
             'status' => $status,
         ];
 

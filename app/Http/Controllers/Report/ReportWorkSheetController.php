@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Report;
 
-use App\Dao\Models\Department;
-use App\Dao\Repositories\TicketSystemRepository;
 use App\Dao\Enums\WorkStatus;
+use App\Dao\Models\Department;
 use App\Dao\Models\Product;
+use App\Dao\Models\User;
 use App\Dao\Models\WorkType;
 use App\Dao\Repositories\WorkSheetRepository;
 use App\Http\Controllers\System\MasterController;

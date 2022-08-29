@@ -15,6 +15,7 @@ use App\Http\Requests\TicketSystemRequest;
 use App\Http\Services\CreateTicketService;
 use App\Http\Services\SingleService;
 use App\Http\Services\UpdateService;
+use App\Http\Services\UpdateTicketService;
 use Barryvdh\DomPDF\Facade as PDF;
 use Coderello\SharedData\Facades\SharedData;
 use Plugins\Response;
@@ -73,6 +74,7 @@ class TicketSystemController extends MasterController
             'location' => $this->getLocation(),
             'implementor' => $this->getImplementor($user),
             'user' => $this->getUser($user),
+            'model' => false,
             'status' => $status,
             'priority' => $priority,
         ];
@@ -100,7 +102,7 @@ class TicketSystemController extends MasterController
         return Response::redirectBack($data);
     }
 
-    public function postUpdate($code, TicketSystemRequest $request, UpdateService $service)
+    public function postUpdate($code, TicketSystemRequest $request, UpdateTicketService $service)
     {
         $data = $service->update(self::$repository, $request, $code);
         return Response::redirectBack($data);

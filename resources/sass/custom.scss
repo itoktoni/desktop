@@ -105,6 +105,7 @@ body{
 
 			.logo{
 				max-width: 180px;
+				max-height: 70px;
 			}
 		}
 
@@ -428,6 +429,23 @@ body
 	overflow:unset;border-radius:0 .25rem .25rem 0
 }
 
+.modal{
+	.modal-dialog{
+		.modal-content{
+			.modal-footer{
+				margin-top: -30px;
+			}
+
+			.modal-header{
+				h1, h2, h3, h4{
+					margin-bottom: 0px;
+				}
+			}
+		}
+	}
+}
+
+
 .chosen-container {
 	position: relative;
 	display: inline-block;
@@ -470,7 +488,6 @@ body
   }
 
   .chosen-container .search-choice .group-name, .chosen-container .chosen-single .group-name {
-	margin-right: 4px;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;

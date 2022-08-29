@@ -34,7 +34,7 @@ class WorkTypeTableSeeder extends Seeder
             ],
             [
                 'work_type_id' => 3,
-                'work_type_name' => 'Movement',
+                'work_type_name' => 'Penjadwalan',
             ],
         ));
     }

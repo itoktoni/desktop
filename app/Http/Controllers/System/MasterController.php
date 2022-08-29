@@ -26,8 +26,9 @@ class MasterController extends Controller
         $status = BooleanType::getOptions();
         $view = [
             'status' => $status,
+            'model' => false,
         ];
-        return self::$share = array_merge($view, $data, self::$share);
+        return self::$share = array_merge($view, self::$share, $data);
     }
 
     public function getData()

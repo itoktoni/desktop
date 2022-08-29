@@ -28,12 +28,15 @@ class SpkController extends MasterController
     {
         $work_sheet = WorkSheet::optionBuild();
         $product = Product::optionBuild();
+        $product = Product::optionBuild();
         $status = SpkStatus::getOptions();
 
         $view = [
             'work_sheet' => $work_sheet,
             'product' => $product,
+            'product' => $product,
             'status' => $status,
+            'model' => false,
         ];
 
         return self::$share = array_merge($view, $data, self::$share);
@@ -75,6 +78,7 @@ class SpkController extends MasterController
         $share = [
             'master' => $data,
         ];
+
         $pdf = PDF::loadView(Template::print(SharedData::get('template')), $share);
         return $pdf->stream();
     }

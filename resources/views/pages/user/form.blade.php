@@ -1,61 +1,71 @@
-@extends(Template::ajax())
+@extends(Template::master())
 
-@section('title') Master User @endsection
-
-@section('form')
-
-@if(isset($model))
-{!! Form::model($model, ['route'=>[SharedData::get('route').'.postUpdate', 'code' => $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'files'=>true]) !!}
-@else
-{!! Form::open(['url' => route(SharedData::get('route').'.postCreate'), 'class' => 'form-horizontal needs-validation', 'files' => true]) !!}
-@endif
-
-@endsection
-
-@section('container')
-
-<div class="row">
-    <div class="col-md-6">
-        <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-            <label>Name</label>
-            {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'required']) !!}
-            {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="form-group">
-            <label>Role</label>
-            {!! Form::select('role', $roles, null, ['class' => 'form-control', 'id' =>
-            'user_name', 'placeholder' => '- Select role -', 'required']) !!}
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-            <label>Email address</label>
-            {!! Form::text('email', null, ['class' => 'form-control', 'id' => 'email']) !!}
-            {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
-            <label>Password</label>
-            {!! Form::password('password', ['class' => 'form-control', 'id' => 'password']) !!}
-            {!! $errors->first('password', '<p class="help-block">:message</p>') !!}
-        </div>
-    </div>
-</div>
-
+@section('title')
+<h4>Data Pengguna</h4>
 @endsection
 
 @section('action')
 <div class="button">
-    <button type="submit" class="btn btn-primary" id="modal-btn-save">{{ __('Save') }}</button>
+	<button type="submit" class="btn btn-primary" id="modal-btn-save">{{ __('Save') }}</button>
 </div>
 @endsection
 
-@section('javascript')
-@include(Template::components('form'))
+@section('container')
+
+{!! Template::form_open($model) !!}
+
+@if(!request()->ajax())
+<div class="page-header">
+	<div class="header-container container-fluid d-sm-flex justify-content-between">
+		@yield('title')
+		@yield('action')
+	</div>
+</div>
+@endif
+
+<div class="card">
+	<div class="card-body">
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
+					<label>Name</label>
+					{!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'required']) !!}
+					{!! $errors->first('name', '<p class="help-block">:message</p>') !!}
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="form-group">
+					<label>Role</label>
+					{!! Form::select('role', $roles, null, ['class' => 'form-control', 'id' =>
+					'user_name', 'placeholder' => '- Select role -', 'required']) !!}
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+					<label>Email address</label>
+					{!! Form::text('email', null, ['class' => 'form-control', 'id' => 'email']) !!}
+					{!! $errors->first('email', '<p class="help-block">:message</p>') !!}
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
+					<label>Password</label>
+					{!! Form::password('password', ['class' => 'form-control', 'id' => 'password']) !!}
+					{!! $errors->first('password', '<p class="help-block">:message</p>') !!}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{!! Template::form_close() !!}
+
 @endsection
+
+@push('javascript')
+@include(Template::components('form'))
+@endpush

@@ -4,9 +4,9 @@ use App\Dao\Enums\BooleanType;
 use App\Dao\Enums\MovementStatus;
 use App\Dao\Enums\ProductStatus;
 use App\Dao\Enums\ScheduleStatus;
+use App\Dao\Enums\SpkStatus;
 use App\Dao\Enums\TicketStatus;
 use App\Dao\Enums\WorkStatus;
-use App\Dao\Enums\SpkStatus;
 use App\Dao\Models\Routes;
 use App\Providers\CacheableAuthUserServiceProvider;
 use Coderello\SharedData\Facades\SharedData;
@@ -193,6 +193,7 @@ return [
         CacheableAuthUserServiceProvider::class,
         DatabaseJson\DataBaseJsonServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
     ],
 
     /*
@@ -258,7 +259,10 @@ return [
         'Routes' => Routes::class,
         'Browser' => hisorange\BrowserDetect\Parser::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        'BARCODE1D' => Milon\Barcode\Facades\DNS1DFacade::class,
+        'BARCODE2D' => Milon\Barcode\Facades\DNS2DFacade::class,
     ],
 
 ];

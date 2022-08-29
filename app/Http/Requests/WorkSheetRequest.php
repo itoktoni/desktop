@@ -17,7 +17,6 @@ class WorkSheetRequest extends FormRequest
             'work_sheet_name' => 'required',
             'work_sheet_description' => 'required',
             'work_sheet_type_id' => 'required',
-            'work_sheet_product_id' => 'required',
         ];
     }
 }
