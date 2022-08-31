@@ -22,6 +22,7 @@ $factory->define(User::class, function (Faker $faker) {
         'name' => 'Admin',
         'username' => 'admin',
         'email' => 'admin@demo.com',
+        'phone' => '08111040159',
         'active' => 1,
         'role' => 1,
         'email_verified_at' => now(),

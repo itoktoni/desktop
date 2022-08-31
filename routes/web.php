@@ -1,7 +1,7 @@
 <?php
 
 use App\Dao\Facades\EnvFacades;
-use msztorc\LaravelEnv\Env;
+use App\Dao\Models\Routes;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +14,6 @@ use msztorc\LaravelEnv\Env;
 |
  */
 
-use App\Dao\Models\Routes;
-use App\Http\Controllers\Master\BrandController;
 use Buki\AutoRoute\AutoRouteFacade as AutoRoute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -27,7 +25,7 @@ Route::get('/', function () {
     return redirect('home');
 })->name('one');
 
-Route::get('debug', function(){
+Route::get('debug', function () {
     echo $_SERVER['HTTP_USER_AGENT'];
     echo '<br>';
     $ua = strtolower($_SERVER["HTTP_USER_AGENT"]);
@@ -423,13 +421,13 @@ Route::prefix('pages')->name('pages.')->middleware('access')->group(function () 
     });
 });
 
-Route::post('upload_config', function(Request $request){
+Route::post('upload_config', function (Request $request) {
 
     $file = $request->file('file');
     $field = $request->file('name');
     // $filename = $file->getClientOriginalName();
     $extension = $file->getClientOriginalExtension();
-    $name = $field.'.'.$extension;
+    $name = $field . '.' . $extension;
     $file->storeAs('/public/', $name);
 
     EnvFacades::setValue($field, $name);
@@ -437,3 +435,39 @@ Route::post('upload_config', function(Request $request){
     return $name;
 
 })->name('upload_config');
+
+Route::get('wa', function () {
+    $api_key = '0e8c5fe9c8005932fbb05c0f6b817665daa293f7'; // API KEY Anda
+    $id_device = '7211'; // ID DEVICE yang di SCAN (Sebagai pengirim)
+    $url = 'https://api.watsap.id/send-message'; // URL API
+    $no_hp = '08111040159'; // No.HP yang dikirim (No.HP Penerima)
+    $pesan = '😁 Halo Terimakasih cek : https://itoktoni.com'; // Pesan yang dikirim
+
+    try {
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_HEADER, 0);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($curl, CURLOPT_MAXREDIRS, 10);
+        curl_setopt($curl, CURLOPT_TIMEOUT, 0); // batas waktu response
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($curl, CURLOPT_POST, 1);
+
+        $data_post = [
+            'id_device' => $id_device,
+            'api-key' => $api_key,
+            'no_hp' => $no_hp,
+            'pesan' => $pesan,
+        ];
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data_post));
+        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+        $response = curl_exec($curl);
+        curl_close($curl);
+        echo $response;
+    } catch (\Throwable $th) {
+        return $th->getMessage();
+    }
+
+});

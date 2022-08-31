@@ -26,6 +26,16 @@ trait UserEntity
         return $this->{self::field_name()};
     }
 
+    public static function field_phone()
+    {
+        return 'phone';
+    }
+
+    public function getFieldPhoneAttribute()
+    {
+        return $this->{self::field_phone()};
+    }
+
     public static function field_email()
     {
         return 'email';

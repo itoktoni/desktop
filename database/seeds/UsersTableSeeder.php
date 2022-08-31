@@ -24,6 +24,7 @@ class UsersTableSeeder extends Seeder
                 'name' => $faker->name,
                 'username' => $faker->userName(),
                 'email' => $faker->unique()->email,
+                'phone' => '08111040159',
                 'active' => 1,
                 'role' => 'pengawas',
                 'email_verified_at' => now(),

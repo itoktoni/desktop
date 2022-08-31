@@ -10,6 +10,7 @@ use App\Dao\Enums\WorkStatus;
 use App\Dao\Models\Routes;
 use App\Providers\CacheableAuthUserServiceProvider;
 use Coderello\SharedData\Facades\SharedData;
+use Modules\System\Plugins\WhatsApp;
 use Plugins\Template;
 use Plugins\Views;
 
@@ -248,6 +249,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Template' => Template::class,
         'Views' => Views::class,
+        'WhatsApp' => WhatsApp::class,
         'BooleanType' => BooleanType::class,
         'ProductStatus' => ProductStatus::class,
         'TicketStatus' => TicketStatus::class,
