@@ -61,7 +61,7 @@
 				</div>
 
 				<div class="form-group {{ $errors->has('ticket_system_description') ? 'has-error' : '' }}">
-					<label>Description</label>
+					<label>{{ __('Description') }}</label>
 					{!! Form::textarea('ticket_system_description', null, ['class' => 'form-control h-auto', 'id' =>
 					'ticket_system_description', 'placeholder' => 'Please fill this input', 'rows' => 9]) !!}
 				</div>
@@ -80,7 +80,7 @@
 			<div class="col-md-6">
 
 				<div class="form-group {{ $errors->has('work_sheet_reported_at') ? 'has-error' : '' }}">
-					<label>Report Date</label>
+					<label>{{ __('Report') }} Date</label>
 					{!! Form::text('ticket_system_reported_at', null, ['class' => 'form-control date', 'id' =>
 					'ticket_system_reported_at', 'placeholder' => 'Please fill this input', 'required']) !!}
 					{!! $errors->first('ticket_system_reported_at', '<p class="help-block">:message</p>') !!}

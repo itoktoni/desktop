@@ -28,7 +28,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="form-group {{ $errors->has('work_type_name') ? 'has-error' : '' }}">
-					<label>Name</label>
+					<label>{{ __('Name') }}</label>
 					{!! Form::text('work_type_name', null, ['class' => 'form-control', 'id' => 'work_type_name',
 					'placeholder'
 					=> 'Please fill this input', 'required']) !!}

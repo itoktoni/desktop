@@ -28,7 +28,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('building_name') ? 'has-error' : '' }}">
-					<label>Name</label>
+					<label>{{ __('Name') }}</label>
 					{{ Template::text('building_name') }}
 					{!! $errors->first('building_name', '<p class="help-block">:message</p>') !!}
 				</div>
@@ -61,7 +61,7 @@
 
 			<div class="col-md-12">
 				<div class="form-group">
-					<label>Description</label>
+					<label>{{ __('Description') }}</label>
 					{!! Form::textarea('building_description', null, ['class' => 'form-control', 'id' =>
 					'building_description',
 					'placeholder' => 'Please fill this input', 'rows' => 5]) !!}

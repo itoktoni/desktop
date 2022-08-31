@@ -16,7 +16,7 @@
                     data-nav-target="#{{ $group_data->field_primary }}">
                     <i data-feather="{{ $group_data->field_icon }}"></i>
                     <h5 class="text-center text-white">
-                        {{ $group_data->field_name }}
+                        {{ __($group_data->field_name) }}
                     </h5>
                 </a>
             </li>
@@ -85,7 +85,7 @@
                     <a class="{{ $check_access ? 'active' : '' }}"
                         href="{{ $acc[Routes::field_report()] == 1 ? route($acc[Routes::field_primary()].'.getCreate') : route($acc[Routes::field_primary()].'.getTable') }}">
                         <span>
-                                {{ $acc[Routes::field_name()] }}
+                                {{ __($acc[Routes::field_name()]) }}
                         </span>
                     </a>
                     @if($check_sub_menu)
@@ -96,7 +96,7 @@
                         @endphp
                         <li>
                             <a class="{{ $check_access && request()->segment(4) == $menu_code ? 'active' : '' }}"
-                                href="{{ route($acc[Routes::field_primary()].'.'.$menu->field_primary) }}">{{ $menu->field_name }}
+                                href="{{ route($acc[Routes::field_primary()].'.'.$menu->field_primary) }}">{{ __($menu->field_name) }}
                             </a>
                         </li>
                         @endforeach

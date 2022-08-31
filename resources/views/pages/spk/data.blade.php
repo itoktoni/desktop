@@ -8,13 +8,13 @@
                 @foreach($fields as $value)
                 <th {{ Template::extractColumn($value) }}>
                     @if($value->sort)
-                    @sortablelink($value->code, $value->name)
+                    @sortablelink($value->code, __($value->name))
                     @else
-                    {{ $value->name }}
+                    {{ __($value->name) }}
                     @endif
                 </th>
                 @endforeach
-                <th class="text-center column-action">Action</th>
+                <th class="text-center column-action">{{ __('Action') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -27,18 +27,18 @@
                 <td class="">{{ $table->field_work_sheet_name }}</td>
                 <td class="">{{ $table->field_description }}</td>
                 <td class="text-center">
-                     <btn
-                        class="badge badge-{{ $table->field_status == SpkStatus::Approved ? 'success' : ($table->field_status == SpkStatus::Maintained ? 'danger' : 'warning') }}">
-                        {{ SpkStatus::getDescription($table->field_status) }}</btn>
-               </td>  
+                     <btn class="badge badge-{{ $table->field_status == SpkStatus::Approved ? 'success' : ($table->field_status == SpkStatus::Maintained ? 'danger' : 'warning') }}">
+                        {{ SpkStatus::getDescription($table->field_status) }}
+                    </btn>
+               </td>
                 <td class="col-md-2 text-center column-action">
                     <a class="badge badge-primary"
                         href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_primary]) }}">
-                        Update
+                        {{ __('Update') }}
                     </a>
                     <a class="badge badge-danger button-delete" data="{{ $table->field_primary }}"
                         href="{{ route(SharedData::get('route').'.postDelete', ['code' => $table->field_primary]) }}">
-                        Delete
+                        {{ __('Delete') }}
                     </a>
                 </td>
             </tr>

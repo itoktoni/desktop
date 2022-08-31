@@ -8,13 +8,13 @@
                 @foreach($fields as $value)
                 <th {{ Template::extractColumn($value) }}>
                     @if($value->sort)
-                    @sortablelink($value->code, $value->name)
+                    @sortablelink($value->code, __($value->name))
                     @else
-                    {{ $value->name }}
+                    {{ __($value->name) }}
                     @endif
                 </th>
                 @endforeach
-                <th class="text-center column-action">Action</th>
+                <th class="text-center column-action">{{ __('Action') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -27,13 +27,13 @@
                 <td class="">{{ $table->field_department_name }}</td>
                 <!-- <td class="">{{ $table->field_description }}</td> -->
                 <td class="">{{ $table->field_priority }}</td>
-                
+
                 <td class="col-md-2 text-center column-action">
                     <a class="badge badge-primary" href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_primary]) }}">
-                        Update
+                        {{ __('Update') }}
                     </a>
                     <a class="badge badge-danger button-delete" data="{{ $table->field_primary }}" href="{{ route(SharedData::get('route').'.postDelete', ['code' => $table->field_primary]) }}">
-                        Delete
+                        {{ __('Delete') }}
                     </a>
                 </td>
             </tr>

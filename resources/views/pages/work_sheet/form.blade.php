@@ -48,7 +48,7 @@
 				</div>
 
 				<div class="form-group {{ $errors->has('work_sheet_reported_at') ? 'has-error' : '' }}">
-					<label>Report Date</label>
+					<label>{{ __('Report') }} Date</label>
 					{!! Form::text('work_sheet_reported_at', null, ['placeholder' => 'Please fill this input', 'class'
 					=>
 					'form-control date', 'id' =>
@@ -78,7 +78,7 @@
 			<div class="col-md-6">
 
 				<div class="form-group {{ $errors->has('work_sheet_name') ? 'has-error' : '' }}">
-					<label>Name</label>
+					<label>{{ __('Name') }}</label>
 					{!! Form::text('work_sheet_name', $data_ticket ? 'Follow up : '.$data_ticket->field_name : null,
 					['class' =>
 					'form-control', 'id' => 'work_sheet_name', 'placeholder'
@@ -94,7 +94,7 @@
 				</div>
 
 				<div class="form-group {{ $errors->has('work_sheet_description') ? 'has-error' : '' }}">
-					<label>Description</label>
+					<label>{{ __('Description') }}</label>
 					{!! Form::textarea('work_sheet_description', null, ['class' => 'form-control h-auto', 'id' =>
 					'work_sheet_description',
 					'placeholder' => 'Please fill this input', 'rows' => 9]) !!}

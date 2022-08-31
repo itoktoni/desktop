@@ -19,6 +19,7 @@
         "fideloper/proxy": "^4.0",
         "hisorange/browser-detect": "^4.5",
         "izniburak/laravel-auto-routes": "^1.0",
+        "joedixon/laravel-translation": "^1.2",
         "kirschbaum-development/eloquent-power-joins": "^2.3",
         "kyslik/column-sortable": "^6.0",
         "laravel/framework": "^6.0",
@@ -27,11 +28,11 @@
         "laravolt/avatar": "^3.0",
         "maatwebsite/excel": "^3.1",
         "mehradsadeghi/laravel-filter-querystring": "^1.1",
+        "milon/barcode": "^6.0",
         "msztorc/laravel-env": "^1.2",
         "spatie/laravel-backup": "^6.16",
         "touhidurabir/laravel-model-sanitize": "^1.1",
-        "wildside/userstamps": "^2.2",
-        "milon/barcode": "^6.0"
+        "wildside/userstamps": "^2.2"
     },
     "require-dev": {
         "orangehill/iseed": "^3.0",

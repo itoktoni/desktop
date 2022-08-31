@@ -1,12 +1,12 @@
 @extends(Template::master())
 
 @section('title')
-<h4>Report Product</h4>
+<h4>{{ __('Report') }} Product</h4>
 @endsection
 
 @section('action')
 <div class="button">
-	<button type="submit" name="type" value="report" class="btn btn-primary" id="modal-btn-save">{{ __('Report') }}</button>
+	<button type="submit" name="type" value="report" class="btn btn-primary" id="modal-btn-save">{{ __('{{ __('Report') }}') }}</button>
 	<button type="submit" name="type" value="barcode" class="btn btn-danger" id="modal-btn-save">{{ __('Print Label') }}</button>
 </div>
 @endsection
@@ -31,7 +31,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('start_date') ? 'has-error' : '' }}">
-					<label>Start Date</label>
+					<label>{{ __('Start Date') }}</label>
 					{!! Form::text('start_date', null, ['class' => 'form-control date', 'id' => 'start_date',
 					'placeholder'
 					=> 'Please fill this input', 'required']) !!}
@@ -41,7 +41,7 @@
 
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('end_date') ? 'has-error' : '' }}">
-					<label>End Date</label>
+					<label>{{ __('End Date') }}</label>
 					{!! Form::text('end_date', null, ['class' => 'form-control date', 'id' => 'end_date', 'placeholder'
 					=> 'Please fill this input', 'required']) !!}
 					{!! $errors->first('end_date', '<p class="help-block">:message</p>') !!}

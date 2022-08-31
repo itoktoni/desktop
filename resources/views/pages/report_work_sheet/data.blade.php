@@ -8,13 +8,13 @@
                 @foreach($fields as $value)
                 <th {{ Template::extractColumn($value) }}>
                     @if($value->sort)
-                    @sortablelink($value->code, $value->name)
+                    @sortablelink($value->code, __($value->name))
                     @else
-                    {{ $value->name }}
+                    {{ __($value->name) }}
                     @endif
                 </th>
                 @endforeach
-                <th class="text-center column-action">Action</th>
+                <th class="text-center column-action">{{ __('Action') }}</th>
             </tr>
         </thead>
         <tbody>

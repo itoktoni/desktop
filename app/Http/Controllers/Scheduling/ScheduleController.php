@@ -31,6 +31,7 @@ class ScheduleController extends MasterController
         $view = [
             'status' => $status,
             'product' => $product,
+            'model' => false,
         ];
 
         return self::$share = array_merge($view, $data, self::$share);

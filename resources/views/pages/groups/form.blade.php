@@ -28,7 +28,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('group_name') ? 'has-error' : '' }}">
-					<label>Name</label>
+					<label>{{ __('Name') }}</label>
 					{!! Form::text('group_name', null, ['class' => 'form-control', 'id' => 'group_name', 'placeholder'
 					=> 'Please fill this input', 'required']) !!}
 					{!! $errors->first('group_name', '<p class="help-block">:message</p>') !!}

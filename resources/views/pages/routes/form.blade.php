@@ -43,7 +43,7 @@
 				</div>
 
 				<div class="form-group {{ $errors->has('route_name') ? 'has-error' : '' }}">
-					<label>Name</label>
+					<label>{{ __('Name') }}</label>
 					{!! Form::text('route_name', null, ['class' => 'form-control', 'id' => 'route_name', 'placeholder'
 					=> 'Please fill this input', 'required']) !!}
 					{!! $errors->first('route_name', '<p class="help-block">:message</p>') !!}
@@ -65,7 +65,7 @@
 				</div>
 
 				<div class="form-group">
-					<label>Description</label>
+					<label>{{ __('Description') }}</label>
 					{!! Form::textarea('route_description', null, ['class' => 'form-control h-auto', 'id' => 'email',
 					'placeholder' => 'Please fill this input', 'rows' => 9]) !!}
 				</div>

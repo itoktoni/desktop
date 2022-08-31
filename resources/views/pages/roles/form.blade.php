@@ -29,7 +29,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('roles_name') ? 'has-error' : '' }}">
-					<label>Name</label>
+					<label>{{ __('Name') }}</label>
 					{!! Form::text('roles_name', null, ['class' => 'form-control', 'id' => 'roles_name', 'placeholder'
 					=> 'Please fill this input', 'required']) !!}
 					{!! $errors->first('roles_name', '<p class="help-block">:message</p>') !!}
@@ -42,7 +42,7 @@
 
 			<div class="col-md-6">
 				<div class="form-group">
-					<label>Description</label>
+					<label>{{ __('Description') }}</label>
 					{!! Form::textarea('roles_description', null, ['class' => 'form-control h-auto', 'id' => 'email',
 					'placeholder' => 'Please fill this input', 'rows' => 5]) !!}
 				</div>

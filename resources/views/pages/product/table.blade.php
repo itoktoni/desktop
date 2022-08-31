@@ -32,10 +32,10 @@
 
         <div class="form-group col-md-4 mr-3">
             <select name="filter" class="form-control">
-                <option value="">- Search Default Data -</option>
+                <option value="">- {{ __('Search Default Data') }} -</option>
                 @foreach($fields as $value)
                 <option {{ request()->get('filter') == $value->code ? 'selected' : '' }} value="{{ $value->code }}">
-                    {{ __($value->name) }}</option>
+                    {{ __(__($value->name)) }}</option>
                 @endforeach
             </select>
         </div>
@@ -43,9 +43,9 @@
         <div class="form-group col">
             <div class="input-group">
                 <input type="text" name="search" value="{{ request()->get('search') }}" class="form-control"
-                    placeholder="Searching Data">
+                    placeholder="{{ __('Searching') }} Data">
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit">Search</button>
+                    <button class="btn btn-primary" type="submit">{{ __('Search') }}</button>
                 </div>
             </div>
         </div>
@@ -62,9 +62,9 @@
                         @foreach($fields as $value)
                         <th {{ Template::extractColumn($value) }}>
                             @if($value->sort)
-                            @sortablelink($value->code, $value->name)
+                            @sortablelink($value->code, __($value->name))
                             @else
-                            {{ $value->name }}
+                            {{ __($value->name) }}
                             @endif
                         </th>
                         @endforeach

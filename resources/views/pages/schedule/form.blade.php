@@ -30,7 +30,7 @@
 
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('schedule_name') ? 'has-error' : '' }}">
-					<label>Name</label>
+					<label>{{ __('Name') }}</label>
 					{!! Form::text('schedule_name', null, ['class' => 'form-control', 'id' => 'schedule_name',
 					'placeholder' => 'Please fill this input', 'required']) !!}
 					{!! $errors->first('schedule_name', '<p class="help-block">:message</p>') !!}
@@ -68,7 +68,7 @@
 					'schedule_notification', 'placeholder' => '- Select Status -']) !!}
 				</div>
 				<div class="form-group {{ $errors->has('schedule_description') ? 'has-error' : '' }}">
-					<label>Description</label>
+					<label>{{ __('Description') }}</label>
 					{!! Form::textarea('schedule_description', null, ['class' => 'form-control h-auto', 'id' =>
 					'schedule_description', 'placeholder' => 'Please fill this input', 'rows' => 5]) !!}
 				</div>

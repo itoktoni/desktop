@@ -68,7 +68,7 @@
 
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('movement_description') ? 'has-error' : '' }}">
-					<label>Description</label>
+					<label>{{ __('Description') }}</label>
 					{!! Form::textarea('movement_description', null, ['class' => 'form-control h-auto', 'id' =>
 					'movement_description', 'placeholder' => 'Please fill this input', 'rows' => 7]) !!}
 				</div>

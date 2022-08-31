@@ -31,7 +31,7 @@
 			<div class="col-md-6">
 
 				<div class="form-group {{ $errors->has('department_name') ? 'has-error' : '' }}">
-					<label>Name</label>
+					<label>{{ __('Name') }}</label>
 					{!! Form::text('department_name', null, ['class' => 'form-control', 'id' => 'department_name',
 					'placeholder'
 					=> 'Please fill this input', 'required']) !!}
@@ -39,7 +39,7 @@
 				</div>
 
 				<div class="form-group">
-					<label>Description</label>
+					<label>{{ __('Description') }}</label>
 					{!! Form::textarea('department_description', null, ['class' => 'form-control h-auto', 'id' =>
 					'department_description',
 					'placeholder' => 'Please fill this input', 'rows' => 5]) !!}

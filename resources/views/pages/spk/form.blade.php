@@ -83,7 +83,7 @@
 				</div>
 
 				<div class="form-group {{ $errors->has('spk_description') ? 'has-error' : '' }}">
-					<label>Description</label>
+					<label>{{ __('Description') }}</label>
 					{!! Form::textarea('spk_description', null, ['class' => 'form-control h-auto', 'id' =>
 					'spk_description',
 					'placeholder' => 'Please fill this input', 'rows' => 9]) !!}

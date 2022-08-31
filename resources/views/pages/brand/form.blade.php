@@ -28,7 +28,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('brand_name') ? 'has-error' : '' }}">
-					<label>Name</label>
+					<label>{{ __('Name') }}</label>
 					{{ Template::text('brand_name') }}
 					{!! $errors->first('brand_name', '<p class="help-block">:message</p>') !!}
 				</div>
@@ -36,7 +36,7 @@
 
 			<div class="col-md-6">
 				<div class="form-group">
-					<label>Description</label>
+					<label>{{ __('Description') }}</label>
 					{{ Template::textarea('brand_description') }}
 				</div>
 			</div>

@@ -37,7 +37,7 @@
 
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('unit_name') ? 'has-error' : '' }}">
-					<label>Name</label>
+					<label>{{ __('Name') }}</label>
 					{!! Form::text('unit_name', null, ['class' => 'form-control', 'id' => 'unit_name', 'placeholder'
 					=> 'Please fill this input', 'required']) !!}
 					{!! $errors->first('unit_name', '<p class="help-block">:message</p>') !!}

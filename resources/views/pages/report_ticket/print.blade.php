@@ -1,7 +1,7 @@
 @extends('layouts.print')
 
 @section('header')
-<h4>Report Ticket System</h4>
+<h4>{{ __('Report') }} Ticket System</h4>
 <div class="header-action">
     <nav>
         <a onclick="window.print()" href="{{ route(SharedData::get('route').'.getPrint') }}">Print PDF</a>

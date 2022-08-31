@@ -21,14 +21,14 @@ $model->{$model->getKeyName()}],'class'=>'form-horizontal needs-validation' , 'f
 	<div class="col-md-6">
 
 		<div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-			<label>Name</label>
+			<label>{{ __('Name') }}</label>
 			{!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'placeholder'
 			=> 'Please fill this input', 'required']) !!}
 			{!! $errors->first('name', '<p class="help-block">:message</p>') !!}
 		</div>
 
 		<div class="form-group">
-			<label>Description</label>
+			<label>{{ __('Description') }}</label>
 			{!! Form::textarea('description', null, ['class' => 'form-control h-auto', 'id' =>
 			'description',
 			'placeholder' => 'Please fill this input', 'rows' => 5]) !!}

@@ -29,7 +29,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('category_name') ? 'has-error' : '' }}">
-					<label>Name</label>
+					<label>{{ __('Name') }}</label>
 					{!! Form::text('category_name', null, ['class' => 'form-control', 'id' => 'category_name',
 					'placeholder'
 					=> 'Please fill this input', 'required']) !!}
@@ -43,7 +43,7 @@
 
 			<div class="col-md-6">
 				<div class="form-group">
-					<label>Description</label>
+					<label>{{ __('Description') }}</label>
 					{!! Form::textarea('category_description', null, ['class' => 'form-control h-auto', 'id' =>
 					'category_description',
 					'placeholder' => 'Please fill this input', 'rows' => 5]) !!}
