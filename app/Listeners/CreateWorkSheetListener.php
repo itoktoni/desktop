@@ -6,6 +6,7 @@ use App\Dao\Models\User;
 use App\Events\CreateWorkSheetEvent;
 use App\Mail\CreateWorkSheetEmail;
 use Illuminate\Support\Facades\Mail;
+use Plugins\WhatsApp;
 
 class CreateWorkSheetListener
 {
@@ -27,12 +28,29 @@ class CreateWorkSheetListener
      */
     public function handle(CreateWorkSheetEvent $event)
     {
-        $report_from = auth()->user()->{User::field_email()} ?? false;
-        $report_to = $event->data->has_reported_by->field_email ?? false;
-        $type = $event->data->has_work_type->field_name ?? '';
+        $report_from = auth()->user() ?? false;
+        $report_to = $event->data->has_reported_by ?? false;
 
-        if ($report_to) {
-            Mail::to([$report_from, $report_to])->send(new CreateWorkSheetEmail($event->data, $type));
+        $email_from = $report_from->field_email ?? false;
+        $email_to = $report_to->field_email ?? false;
+
+        $phone_from = $report_from->field_phone ?? false;
+        $phone_to = $report_to->field_phone ?? false;
+
+        if ($email_to) {
+            $type = $event->data->has_work_type->field_name ?? '';
+            Mail::to([$email_from, $email_to])->send(new CreateWorkSheetEmail($event->data, $type));
         }
+
+        if ($phone_from) {
+            $message = "*ID : " . $event->data->field_primary .
+            "*\nReported By : " . $report_from->field_name .
+            "\nDeskripsi    : " . $event->data->field_description .
+            "\nCheck        : " . $event->data->field_check .
+            "\nResult       : " . $event->data->field_result;
+
+            WhatsApp::send($phone_from, $message);
+        }
+
     }
 }
