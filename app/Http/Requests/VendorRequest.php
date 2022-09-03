@@ -6,16 +6,16 @@ use App\Dao\Traits\ValidationTrait;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Hash;
 
-class SupplierRequest extends FormRequest
+class VendorRequest extends FormRequest
 {
     use ValidationTrait;
 
     public function validation() : array
     {
         return [
-            'supplier_id' => 'required',
-            'supplier_name' => 'required',
-            'supplier_email' => 'required|email',
+            'vendor_id' => 'required',
+            'vendor_name' => 'required',
+            'vendor_email' => 'required|email',
         ];
     }
 }

@@ -22,7 +22,7 @@
             <tr>
                 <td class="column-checkbox"><input type="checkbox" class="checkbox" name="code[]" value="{{ $table->field_primary }}"></td>
                 <td class="">{{ Views::uiiShort($table->field_primary) }}</td>
-                <td class="">{{ $table->field_vendor_id }}</td>
+                <td class="">{{ $table->field_vendor_name }}</td>
                 <td class="">{{ $table->field_product_name }}</td>
                 <td class="">{{ $table->field_work_sheet_name }}</td>
                 <td class="">{{ $table->field_description }}</td>

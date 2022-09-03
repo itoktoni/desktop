@@ -35,7 +35,7 @@ class Product extends Model
         'product_unit_id',
         'product_description',
         'product_location_id',
-        'product_supplier_id',
+        'product_vendor_id',
         'product_department_id',
         'product_is_asset',
         'product_price',

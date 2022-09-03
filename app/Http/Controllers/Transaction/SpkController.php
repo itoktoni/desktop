@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Transaction;
 use App\Dao\Enums\SpkStatus;
 use App\Dao\Models\WorkSheet;
 use App\Dao\Models\Product;
+use App\Dao\Models\Vendor;    
 use App\Dao\Repositories\SpkRepository;
 use App\Http\Controllers\System\MasterController;
 use App\Http\Requests\SpkRequest;
@@ -29,11 +30,17 @@ class SpkController extends MasterController
         $work_sheet = WorkSheet::optionBuild();
         $product = Product::optionBuild();
         $status = SpkStatus::getOptions();
+        $vendor = Vendor::optionBuild();
 
         $view = [
             'work_sheet' => $work_sheet,
             'product' => $product,
             'status' => $status,
+<<<<<<< Updated upstream
+=======
+            'vendor' => $vendor,
+            'model' => false,
+>>>>>>> Stashed changes
         ];
 
         return self::$share = array_merge($view, $data, self::$share);
@@ -70,6 +77,7 @@ class SpkController extends MasterController
         $data = $this->get(request()->get('code'), [
             'has_work_sheet',
             'has_product',
+            'has_vendor'
         ])->first();
 
         $share = [

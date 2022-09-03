@@ -16,12 +16,21 @@ class SupplierTableSeeder extends Seeder
         $faker = Faker::create('id_ID');
         (new Supplier())->delete();
         foreach (range(1, 5) as $item) {
+<<<<<<< Updated upstream:database/seeds/SupplierTableSeeder.php
             Supplier::create([
                 'supplier_name' => $faker->company,
                 'supplier_contact' => $faker->name,
                 'supplier_address' => $faker->streetAddress,
                 'supplier_email' => $faker->email,
                 'supplier_phone' => $faker->phoneNumber,
+=======
+            Vendor::create([
+                'vendor_name' => $faker->company,
+                'vendor_contact' => $faker->name,
+                'vendor_address' => $faker->streetAddress,
+                'vendor_email' => $faker->email,
+                'vendor_phone' => $faker->phoneNumber,
+>>>>>>> Stashed changes:database/seeds/VendorTableSeeder.php
             ]);
         }
     }

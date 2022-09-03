@@ -3,7 +3,7 @@
 namespace App\Dao\Models;
 
 use App\Dao\Builder\DataBuilder;
-use App\Dao\Entities\SupplierEntity;
+use App\Dao\Entities\VendorEntity;
 use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
 use App\Dao\Traits\OptionTrait;
@@ -12,25 +12,25 @@ use Kyslik\ColumnSortable\Sortable;
 use Mehradsadeghi\FilterQueryString\FilterQueryString as FilterQueryString;
 use Touhidurabir\ModelSanitize\Sanitizable as Sanitizable;
 
-class Supplier extends Model
+class Vendor extends Model
 {
-    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, SupplierEntity, ActiveTrait, OptionTrait;
+    use Sortable, FilterQueryString, Sanitizable, DataTableTrait, VendorEntity, ActiveTrait, OptionTrait;
 
-    protected $table = 'supplier';
-    protected $primaryKey = 'supplier_id';
+    protected $table = 'vendor';
+    protected $primaryKey = 'vendor_id';
 
     protected $fillable = [
-        'supplier_id',
-        'supplier_name',
-        'supplier_contact',
-        'supplier_address',
-        'supplier_email',
-        'supplier_phone',
+        'vendor_id',
+        'vendor_name',
+        'vendor_contact',
+        'vendor_address',
+        'vendor_email',
+        'vendor_phone',
     ];
 
     public $sortable = [
-        'supplier_name',
-        'supplier_email',
+        'vendor_name',
+        'vendor_email',
     ];
 
     protected $filters = [

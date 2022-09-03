@@ -41,6 +41,7 @@ class Spk extends Model
         'spk_product_id',
         'spk_date',
         'spk_work_sheet_code',
+        'spk_vendor_id',
     ];
 
     protected $filters = [
@@ -59,7 +60,7 @@ class Spk extends Model
     {
         return [
             DataBuilder::build($this->field_primary())->name('ID')->sort()->excel(),
-            DataBuilder::build($this->field_vendor_id())->name('Vendor ID')->excel(),
+            DataBuilder::build(Vendor::field_name())->name('Vendor ID')->excel(),
             DataBuilder::build(Product::field_name())->name('Product Name')->sort()->excel(),
             DataBuilder::build(WorkSheet::field_name())->name('WorkSheet Name')->sort()->excel(),
             DataBuilder::build($this->field_description())->name('Description')->excel(),
@@ -71,6 +72,11 @@ class Spk extends Model
         ];
     }
 
+    public function has_vendor()
+    {
+        return $this->hasOne(Vendor::class, Vendor::field_primary(), self::field_vendor_id());
+    }
+
     public function has_product()
     {
         return $this->hasOne(Product::class, Product::field_primary(), self::field_product_id());
@@ -79,6 +85,13 @@ class Spk extends Model
     public function has_work_sheet()
     {
         return $this->hasOne(WorkSheet::class, WorkSheet::field_primary(), self::field_work_sheet_code());
+    }
+
+    public function vendorNameSortable($query, $direction)
+    {
+        $query = $this->queryFilter($query);
+        $query = $query->orderBy(Vendor::field_name(), $direction);
+        return $query;
     }
 
     public function workSheetNameSortable($query, $direction)

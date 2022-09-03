@@ -1,5 +1,6 @@
 @extends(Template::master())
 
+<<<<<<< Updated upstream:resources/views/pages/supplier/table.blade.php
 @section('header')
 <h4>List Master Supplier</h4>
 <div class="header-action">
@@ -8,6 +9,21 @@
         <button href="{{ route(SharedData::get('route').'.postDelete') }}" class="btn btn-danger button-delete-all">Delete</button>
         <button href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-success button-create">Create</button>
     </nav>
+=======
+@section('title')
+<h4>Master Vendor</h4>
+@endsection
+
+@section('action')
+<div class="button">
+	<input class="btn-check-m d-lg-none" type="checkbox">
+	<a href="{{ route(SharedData::get('route').'.postDelete') }}" class="btn btn-danger button-delete-all">
+		{{ __('Delete') }}
+	</a>
+	<a href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-success button-create">
+		{{ __('Create') }}
+	</a>
+>>>>>>> Stashed changes:resources/views/pages/vendor/table.blade.php
 </div>
 @endsection
 

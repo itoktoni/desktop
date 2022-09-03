@@ -4,6 +4,8 @@ namespace App\Dao\Entities;
 
 use App\Dao\Models\Product;
 use App\Dao\Models\WorkSheet;
+use App\Dao\Models\Vendor;
+
 
 trait SpkEntity
 {
@@ -22,9 +24,9 @@ trait SpkEntity
         return 'spk_vendor_id';
     }
 
-    public function getFieldVendorIdAttribute()
+    public function getFieldVendorNameAttribute()
     {
-        return $this->{$this->field_vendor_id()};
+        return $this->{Vendor::field_name()};
     } 
     
     public static function field_date()

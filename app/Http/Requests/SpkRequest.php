@@ -17,6 +17,7 @@ class SpkRequest extends FormRequest
             'spk_description' => 'required',
             'spk_product_id' => 'required',
             'spk_work_sheet_code' => 'required',
+            'spk_vendor_id' => 'required',
         ];
     }
 }

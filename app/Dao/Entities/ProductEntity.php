@@ -6,7 +6,7 @@ use App\Dao\Models\Brand;
 use App\Dao\Models\Category;
 use App\Dao\Models\Department;
 use App\Dao\Models\Location;
-use App\Dao\Models\Supplier;
+use App\Dao\Models\Vendor;
 use App\Dao\Models\Unit;
 
 trait ProductEntity
@@ -141,14 +141,14 @@ trait ProductEntity
         return $this->{Location::field_name()};
     }
 
-    public static function field_supplier_id()
+    public static function field_vendor_id()
     {
-        return 'product_supplier_id';
+        return 'product_vendor_id';
     }
 
-    public function getFieldSupplierNameAttribute()
+    public function getFieldVendorNameAttribute()
     {
-        return $this->{Supplier::field_name()};
+        return $this->{Vendor::field_name()};
     }
 
     public static function field_department_id()

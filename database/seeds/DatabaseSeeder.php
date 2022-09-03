@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
             LocationTableSeeder::class,
             TagTableSeeder::class,
             SparepartTableSeeder::class,
-            SupplierTableSeeder::class,
+            VendorTableSeeder::class,
             DepartmentTableSeeder::class,
             BrandTableSeeder::class,
             CategoryTableSeeder::class,

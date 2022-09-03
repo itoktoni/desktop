@@ -2,11 +2,11 @@
 
 namespace App\Dao\Entities;
 
-trait SupplierEntity
+trait VendorEntity
 {
     public static function field_primary()
     {
-        return 'supplier_id';
+        return 'vendor_id';
     }
 
     public function getFieldPrimaryAttribute()
@@ -16,7 +16,7 @@ trait SupplierEntity
 
     public static function field_name()
     {
-        return 'supplier_name';
+        return 'vendor_name';
     }
 
     public function getFieldNameAttribute()
@@ -26,7 +26,7 @@ trait SupplierEntity
 
     public static function field_contact()
     {
-        return 'supplier_contact';
+        return 'vendor_contact';
     }
 
     public function getFieldContactAttribute()
@@ -36,7 +36,7 @@ trait SupplierEntity
 
     public static function field_address()
     {
-        return 'supplier_address';
+        return 'vendor_address';
     }
 
     public function getFieldAddressAttribute()
@@ -46,7 +46,7 @@ trait SupplierEntity
 
     public static function field_email()
     {
-        return 'supplier_email';
+        return 'vendor_email';
     }
 
     public function getFieldEmailAttribute()
@@ -56,7 +56,7 @@ trait SupplierEntity
 
     public static function field_phone()
     {
-        return 'supplier_phone';
+        return 'vendor_phone';
     }
 
     public function getFieldPhoneAttribute()

@@ -532,6 +532,7 @@
 </head>
 
 <body>
+<<<<<<< Updated upstream
     <div id='page'>
 
         <div id="container">
@@ -578,6 +579,54 @@
                     </td>
                 </tr>
                 {{-- @if($implementor)
+=======
+	<div id='page'>
+
+		<div id="container">
+			<table cellpadding="" 5 cellspacing="0" width="100%">
+				<tr>
+					<td align='left' colspan='8' valign='middle'>
+						<h1>
+							SURAT PERINTAH KERJA
+						</h1>
+					</td>
+				</tr>
+				<tr class="destination">
+					<td colspan='8'>
+						<strong>Vendor : {{ strtoupper($master->has_vendor->field_name ?? '' ) ?? '' }}</strong>
+					</td>
+				</tr>
+				<tr class="contact">
+					<td colspan='8'>
+						<strong>
+							No. Spk ({{ strtoupper($master->field_primary) ?? '' }})
+						</strong>
+						<p>
+							Product : {{ strtoupper($master->has_product->field_name) ?? '' }}
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8">
+						<p>
+							{{ $master->field_description ?? '' }}
+						</p>
+					</td>
+				</tr>
+
+				<tr class="header">
+					<td class="no" colspan="2">
+						<strong>Worksheet</strong>
+					</td>
+					<td class="product" colspan="2">
+						<strong>Hasil</strong>
+					</td>
+					<td class="price" colspan="4">
+						<strong>Cek</strong>
+					</td>
+				</tr>
+				{{-- @if($implementor)
+>>>>>>> Stashed changes
                 @foreach($implementor as $item) --}}
                 <tr class="item">
                     <td class="no" colspan="2">

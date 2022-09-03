@@ -153,10 +153,10 @@ class RoutesTableSeeder extends Seeder
                 'route_report' => 0,
             ],
             [
-                'route_code' => 'supplier',
-                'route_name' => 'Supplier',
+                'route_code' => 'vendor',
+                'route_name' => 'Vendor',
                 'route_group' => 'master',
-                'route_controller' => 'App\\Http\\Controllers\\Master\\SupplierController',
+                'route_controller' => 'App\\Http\\Controllers\\Master\\VendorController',
                 'route_active' => 1,
                 'route_description' => null,
                 'route_sort' => 0,
