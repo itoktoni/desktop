@@ -11,7 +11,7 @@
 		{{ __('Delete') }}
 	</a>
 	<a href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-success">
-		Create
+		{{ __('Create') }}
 	</a>
 </div>
 @endsection
