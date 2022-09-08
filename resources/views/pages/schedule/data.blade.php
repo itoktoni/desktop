@@ -23,15 +23,11 @@
                 <td class="column-checkbox"><input type="checkbox" class="checkbox" name="code[]" value="{{ $table->field_primary }}"></td>
                 <td class="">{{ $table->field_name }}</td>
                 <td class="">{{ $table->field_product_name }}</td>
-                <td class="">{{ $table->field_description }}</td>
-                <td class="">{{ $table->field_number }}</td>
+                <td class="">{{ $table->field_location_name }}</td>
+                <td class="">{{ $table->field_type_name }}</td>
                 <td class="">{{ $table->field_every }}</td>
-                <td class="">{{ $table->field_date }}</td>
-                <td class="text-center">
-                     <btn class="badge badge-{{ $table->schedule_notification == ScheduleStatus::Yes ? 'success' : 'warning' }}">
-                        {{ ScheduleStatus::getDescription($table->schedule_notification) }}
-                     </btn>
-                </td>
+                <td class="">{{ $table->field_start_date }}</td>
+                <td class="">{{ $table->field_number }}</td>
                 <td class="text-center column-sort">
                   <div class="dropdown">
                      <a href="#" class="btn btn-sm" data-toggle="dropdown" aria-haspopup="true">

@@ -43,12 +43,26 @@ body{
 }
 
 .navigation{
+
+
 	.navigation-menu-body{
 		ul{
 			li > a.active:after{
 				background-color: unset !important;
 			}
 		}
+
+		.navigation-header{
+			position: absolute;
+			width:210px;
+			padding:10px;
+			background:#fff;
+			top:0px;
+		}
+	}
+
+	.navigation-menu-group{
+		margin-top:70px;
 	}
 
 	.navigation-menu-tab{
@@ -104,7 +118,8 @@ body{
 		width: 150px;
 		overflow-y: auto !important;
 		#navigation-logo{
-			border-top: 0.5px solid whitesmoke;
+			border-top: none;
+			border-bottom: none;
 
 			.logo{
 				max-width: 180px;
@@ -168,7 +183,7 @@ a{
 .form-group{
 	&.has-error{
 
-		input{
+		input, textarea{
 			&.form-control{
 				border: 0.5px solid $color-danger;
 			}

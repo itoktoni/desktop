@@ -23,11 +23,13 @@ class Schedule extends Model
         'schedule_id',
         'schedule_name',
         'schedule_product_id',
+        'schedule_location_id',
         'schedule_description',
         'schedule_number',
         'schedule_every',
-        'schedule_date',
-        'schedule_notification',
+        'schedule_start_date',
+        'schedule_end_date',
+        'schedule_status',
     ];
 
     public $sortable = [
@@ -53,16 +55,28 @@ class Schedule extends Model
             DataBuilder::build($this->field_primary())->name('ID')->show(false)->excel(),
             DataBuilder::build($this->field_name())->name('Name')->sort()->excel(),
             DataBuilder::build(Product::field_name())->name('Product Name')->sort()->excel(),
-            DataBuilder::build($this->field_description())->name('Description')->excel(),
-            DataBuilder::build($this->field_number())->name('Number')->excel(),
+            DataBuilder::build(Location::field_name())->name('Location Name')->sort()->excel(),
+            DataBuilder::build(WorkType::field_name())->name('Type')->sort()->excel(),
+            DataBuilder::build($this->field_description())->name('Description')->show(false)->excel(),
             DataBuilder::build($this->field_every())->name('Every')->excel(),
-            DataBuilder::build($this->field_date())->name(' Date ')->excel()->sort(),
-            DataBuilder::build($this->field_notification())->name('Notification')->sort(),
+            DataBuilder::build($this->field_start_date())->name('Start Date ')->excel()->sort(),
+            DataBuilder::build($this->field_number())->name('Number')->excel(),
         ];
     }
+
     public function has_product()
     {
         return $this->hasOne(Product::class, Product::field_primary(), self::field_product_id());
+    }
+
+    public function has_location()
+    {
+        return $this->hasOne(Location::class, Location::field_primary(), self::field_location_id());
+    }
+
+    public function has_type()
+    {
+        return $this->hasOne(WorkType::class, WorkType::field_primary(), self::field_status());
     }
 
     public function productNameSortable($query, $direction)

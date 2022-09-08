@@ -16,6 +16,8 @@ class ScheduleRepository extends MasterRepository implements CrudInterface
     {
         $query = $this->model->select(self::$paginate ? $this->model->getExcelField() : $this->model->getSelectedField())
             ->leftJoinRelationship('has_product')
+            ->leftJoinRelationship('has_location')
+            ->leftJoinRelationship('has_type')
             ->sortable()->filter();
 
         if (self::$paginate) {

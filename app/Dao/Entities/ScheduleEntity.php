@@ -2,7 +2,9 @@
 
 namespace App\Dao\Entities;
 
+use App\Dao\Models\Location;
 use App\Dao\Models\Product;
+use App\Dao\Models\WorkType;
 
 trait ScheduleEntity
 {
@@ -46,6 +48,16 @@ trait ScheduleEntity
         return $this->{Product::field_name()};
     }
 
+    public static function field_location_id()
+    {
+        return 'schedule_location_id';
+    }
+
+    public function getFieldLocationNameAttribute()
+    {
+        return $this->{Location::field_name()};
+    }
+
     public static function field_number()
     {
         return 'schedule_number';
@@ -66,23 +78,38 @@ trait ScheduleEntity
         return $this->{self::field_every()};
     }
 
-    public static function field_date()
+    public static function field_start_date()
     {
-        return 'schedule_date';
+        return 'schedule_start_date';
     }
 
-    public function getFieldDateAttribute()
+    public function getFieldStartDateAttribute()
     {
-        return $this->{self::field_date()};
+        return $this->{self::field_start_date()};
     }
 
-    public static function field_notification()
+    public static function field_end_date()
     {
-        return 'schedule_notification';
+        return 'schedule_end_date';
     }
 
-    public function getFieldNotificationAttribute()
+    public function getFieldEndDateAttribute()
     {
-        return $this->{self::field_notification()};
+        return $this->{self::field_end_date()};
+    }
+
+    public static function field_status()
+    {
+        return 'schedule_status';
+    }
+
+    public function getFieldStatusAttribute()
+    {
+        return $this->{self::field_status()};
+    }
+
+    public function getFieldTypeNameAttribute()
+    {
+        return $this->{WorkType::field_name()};
     }
 }

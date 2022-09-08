@@ -20,6 +20,7 @@ class TicketWorksheetRequest extends FormRequest
     {
         $validation = [
             'contract' => 'required',
+            'name' => 'required',
         ];
 
         return $validation;

@@ -59,14 +59,34 @@
 
 				<div class="form-group {{ $errors->has('ticket_system_description') ? 'has-error' : '' }}">
 					<label>{{ __('Description') }}</label>
-					{!! Template::textarea('ticket_system_description', null, 9) !!}
+					{!! Template::textarea('ticket_system_description', null, 5) !!}
 				</div>
 
-				<div class="form-group {{ $errors->has('ticket_system_location_id') ? 'has-error' : '' }}">
-					<label>{{ __('Location') }}</label>
-					{!! Form::select('ticket_system_location_id', $location, null, ['class' => 'form-control',
-					'placeholder' =>
-					'- Select Location -']) !!}
+				<div class="row">
+
+					<div class="col-md-4">
+						<div class="form-group {{ $errors->has('ticket_system_location_id') ? 'has-error' : '' }}">
+							<label>{{ __('Type') }}</label>
+							{!! Form::select('ticket_system_work_type_id', $work_type,
+							$model->ticket_system_work_type_id ?? env('TICKET_WORKSHEET'), ['class' => 'form-control',
+							'placeholder' => '- Type -']) !!}
+						</div>
+					</div>
+
+					<div class="col-md-8">
+						<div class="form-group {{ $errors->has('ticket_system_location_id') ? 'has-error' : '' }}">
+							<label>{{ __('Location') }}</label>
+							{!! Form::select('ticket_system_location_id', $location, null, ['class' => 'form-control',
+							'placeholder' => '- Select Location -']) !!}
+						</div>
+					</div>
+
+				</div>
+
+				<div class="form-group {{ $errors->has('ticket_system_product_id') ? 'has-error' : '' }}">
+					<label>{{ __('Product') }}</label>
+					{!! Form::select('ticket_system_product_id', $product, null, ['class' => 'form-control', 'id'
+					=> 'ticket_system_product_id', 'placeholder' => '- Select Product -']) !!}
 				</div>
 
 			</div>
@@ -116,7 +136,7 @@
 					<label for="">{{ __('Take Picture') }}</label>
 
 					<input id="cameraFileInput" style="{!! Template::isMobile() ? 'display:none' : '' !!}"
-						name="file_picture" type="file" accept="image/*" class="btn btn-default btn-block btn-sm"
+						name="file_picture" type="file" accept="image/*" class="btn btn-default btn-block"
 						capture="environment" />
 
 					<input type="hidden" name="file_old" value="{{ $model->field_picture ?? null }}">
@@ -140,17 +160,24 @@
 	<div class="card-body">
 		<div class="row">
 
+			<div class="col-md-4">
+				<div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
+					{!! Form::text('name', $model->has_type->field_name ?? '', ['class' => 'form-control', 'id' =>
+					'ticket_system_reported_at', 'placeholder' => __('Work sheet Name'), 'required']) !!}
+					{!! $errors->first('ticket_system_reported_at', '<p class="help-block">:message</p>') !!}
+				</div>
+			</div>
+
 			<div class="col-md-2">
 				<div class="form-group">
 					{!! Form::select('contract', $contract, null, ['class' => 'form-control contract']) !!}
 				</div>
 			</div>
 
-			<div class="col-md-3">
+			<div class="col-md-6">
 				<div class="form-group pelaksana">
 					{!! Form::select('implementor[]', $implementor,
-					null,
-					['class' => 'form-control',
+					null, ['class' => 'form-control',
 					'multiple', 'data-placeholder' => 'Pilih Pelaksana']) !!}
 				</div>
 
@@ -161,29 +188,31 @@
 				</div>
 			</div>
 
-			<div class="col-md-2">
+			<div class="col-md-6">
 				<div class="form-group">
-					{!! Form::select('type', $type, env('TICKET_WORKSHEET'),
+					{!! Form::select('product', $product, $model->ticket_system_product_id ?? null,
+					['class' => 'form-control',
+					'placeholder' => '- Pilih Product -']) !!}
+				</div>
+			</div>
+
+			<div class="col-md-5">
+				<div class="form-group">
+					{!! Form::select('type', $type, $model->ticket_system_work_type_id ?? env('TICKET_WORKSHEET'),
 					['class' => 'form-control',
 					'placeholder' => '- Pilih Type -']) !!}
 				</div>
 			</div>
 
-			<div class="col-md-4">
-				<div class="form-group">
-					{!! Form::select('product', $product, null,
-					['class' => 'form-control',
-					'placeholder' => '- Pilih Product -']) !!}
-				</div>
-			</div>
 			<div class="col-md-1">
 				<div class="d-flex justify-content-end">
-					<button type="submit" class="btn btn-success " id="modal-btn-success">{{ __('Create') }}
+					<button type="submit" class="btn btn-success btn-lg" id="modal-btn-success">{{ __('Create') }}
 					</button>
 				</div>
 			</div>
 
 		</div>
+
 	</div>
 </div>
 
@@ -199,10 +228,10 @@
 					<thead>
 						<tr>
 							<th class="text-left column-action">{{ __('Code') }}</th>
+							<th class="text-left column-action">{{ __('Name') }}</th>
 							<th class="text-left column-action">{{ __('Kontrak') }}</th>
 							<th class="text-left column-action">{{ __('Status') }}</th>
-							<th class="text-left column-action">{{ __('Reported At') }}</th>
-							<th class="text-left column-action">{{ __('Updated Task') }}</th>
+							<th class="text-left column-action">{{ __('Updated Date') }}</th>
 							<th class="text-left column-action">{{ __('Impelement By') }}</th>
 							<th class="text-center column-action">{{ __('Action') }}</th>
 						</tr>
@@ -210,10 +239,12 @@
 					<tbody>
 						@forelse($worksheet as $table)
 						<tr>
-							<td class=""><a style="" href="{{ route('work_sheet.getUpdate', ['code' => $table->field_primary] ) }}"><u>{{ Views::uiiShort($table->field_primary) }}</u></a></td>
+							<td class=""><a style=""
+									href="{{ route('work_sheet.getUpdate', ['code' => $table->field_primary] ) }}"><u>{{ Views::uiiShort($table->field_primary) }}</u></a>
+							</td>
+							<td class="">{{ $table->field_name }}</td>
 							<td class="">{{ TicketContract::getDescription($table->field_contract) }}</td>
 							<td class="">{{ WorkStatus::getDescription($table->field_status) }}</td>
-							<td class="">{{ $table->field_reported_at }}</td>
 							<td class="">{{ $table->field_updated_at }}</td>
 							<td class="">
 								@if($table->field_contract == TicketContract::Kontrak)

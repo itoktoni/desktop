@@ -10,7 +10,7 @@
 	<a href="{{ route(SharedData::get('route').'.postDelete') }}" class="btn btn-danger button-delete-all">
 		{{ __('Delete') }}
 	</a>
-	<a href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-success button-create">
+	<a href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-success">
 		{{ __('Create') }}
 	</a>
 </div>
@@ -31,7 +31,7 @@
         {!! Form::open(['url' => route(SharedData::get('route').'.getTable'), 'class' => 'form-row', 'method' => 'GET'])
         !!}
 
-        <div class="form-group col-md-4 mr-3">
+        <div class="form-group col-md-4">
             <select name="filter" class="form-control">
                 <option value="">- {{ __('Search Default Data') }} -</option>
                 @foreach($fields as $value)

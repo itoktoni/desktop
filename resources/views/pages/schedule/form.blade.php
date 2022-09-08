@@ -33,44 +33,64 @@
 					<label>{{ __('Name') }}</label>
 					{!! Form::text('schedule_name', null, ['class' => 'form-control', 'id' => 'schedule_name',
 					'placeholder' => 'Please fill this input', 'required']) !!}
-					{!! $errors->first('schedule_name', '<p class="help-block">:message</p>') !!}
 				</div>
-				<div class="form-group {{ $errors->has('schedule_number') ? 'has-error' : '' }}">
-					<label>Number</label>
-					{!! Form::text('schedule_number', null, ['class' => 'form-control', 'id' => 'schedule_number',
-					'placeholder' => 'Please fill this input', 'required']) !!}
-					{!! $errors->first('schedule_number', '<p class="help-block">:message</p>') !!}
+
+				<div class="form-group {{ $errors->has('schedule_location_id') ? 'has-error' : '' }}">
+					<label>{{ __('Location') }}</label>
+					{!! Form::select('schedule_location_id', $location, null, ['class' => 'form-control', 'id' =>
+					'schedule_location_id', 'placeholder' => '- Select Location -', 'required']) !!}
 				</div>
-				<div class="form-group {{ $errors->has('schedule_every') ? 'has-error' : '' }}">
-					<label>Every</label>
-					{!! Form::text('schedule_every', null, ['class' => 'form-control', 'id' => 'schedule_every',
-					'placeholder' => 'Please fill this input', ]) !!}
-					{!! $errors->first('schedule_every', '<p class="help-block">:message</p>') !!}
+
+				<div class="form-group {{ $errors->has('schedule_product_id') ? 'has-error' : '' }}">
+					<label>{{ __('Product') }}</label>
+					{!! Form::select('schedule_product_id', $product, null, ['class' => 'form-control', 'id' =>
+					'schedule_product_id', 'placeholder' => '- Select Product -', 'required']) !!}
 				</div>
-				<div class="form-group {{ $errors->has('schedule_date') ? 'has-error' : '' }}">
-					<label>Date</label>
-					{!! Form::text('schedule_date', null, ['class' => 'form-control date', 'id' => 'schedule_date',
-					'placeholder' => 'Please fill this input', 'required']) !!}
-					{!! $errors->first('schedule_date', '<p class="help-block">:message</p>') !!}
+
+				<div class="row">
+
+					<div class="col-md-5">
+						<div class="form-group {{ $errors->has('schedule_every') ? 'has-error' : '' }}">
+							<label>{{ __('Every') }}</label>
+							{!! Form::select('schedule_every', $every, null, ['class' => 'form-control', 'id' =>
+							'schedule_every', 'placeholder' => '- Select Every-', 'required']) !!}
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="form-group {{ $errors->has('schedule_start_date') ? 'has-error' : '' }}">
+							<label>{{ __('Start Date') }}</label>
+							{!! Form::text('schedule_start_date', $model->schedule_start_date ?? date('Y-m-d'), ['class'
+							=> 'form-control date', 'id' =>
+							'schedule_start_date', 'required']) !!}
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="form-group {{ $errors->has('schedule_number') ? 'has-error' : '' }}">
+							<label>{{ __('Number') }}</label>
+							{!! Form::text('schedule_number', $model->schedule_number ?? 1, ['class' => 'form-control',
+							'id' =>
+							'schedule_number',
+							'placeholder' => 'Qty', 'required']) !!}
+						</div>
+					</div>
+
 				</div>
+
 			</div>
 
 			<div class="col-md-6">
-				<div class="form-group {{ $errors->has('schedule_product_id') ? 'has-error' : '' }}">
-					<label>Product ID</label>
-					{!! Form::select('schedule_product_id', $product, null, ['class' => 'form-control', 'id' =>
-					'schedule_product_id', 'placeholder' => '- Select Product ID-', 'required']) !!}
-					{!! $errors->first('schedule_product_id', '<p class="help-block">:message</p>') !!}
-				</div>
-				<div class="form-group {{ $errors->has('schedule_notification') ? 'has-error' : '' }}">
-					<label>Status</label>
-					{!! Form::select('schedule_notification', $status, null, ['class' => 'form-control', 'id' =>
-					'schedule_notification', 'placeholder' => '- Select Status -']) !!}
+
+				<div class="form-group {{ $errors->has('schedule_status') ? 'has-error' : '' }}">
+					<label>{{ __('Status') }}</label>
+					{!! Form::select('schedule_status', $status, $model->schedule_status ?? env('TICKET_SCHEDULE'), ['class' => 'form-control', 'id' =>
+					'schedule_status', 'placeholder' => '- Select Status -']) !!}
 				</div>
 				<div class="form-group {{ $errors->has('schedule_description') ? 'has-error' : '' }}">
 					<label>{{ __('Description') }}</label>
 					{!! Form::textarea('schedule_description', null, ['class' => 'form-control h-auto', 'id' =>
-					'schedule_description', 'placeholder' => 'Please fill this input', 'rows' => 5]) !!}
+					'schedule_description', 'placeholder' => 'Please fill this input', 'rows' => 9]) !!}
 				</div>
 			</div>
 		</div>
@@ -84,5 +104,15 @@
 
 @push('javascript')
 @include(Template::components('form'))
-@include(Template::components('date'))
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+flatpickr(".date", {
+	enableTime: false,
+	minDate: "today",
+	dateFormat: "Y-m-d"
+});
+</script>
+
 @endpush

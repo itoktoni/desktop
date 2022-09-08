@@ -23,7 +23,7 @@ class UpdateTicketWorksheetService
                 WorkSheet::field_ticket_code() => $code,
                 WorkSheet::field_status() => WorkStatus::Open,
                 WorkSheet::field_type_id() => $type->field_primary ?? null,
-                WorkSheet::field_name() => $type->field_name ?? null,
+                WorkSheet::field_name() => $data->get('name') ?? null,
                 WorkSheet::field_contract() => $data->get('contract') ?? null,
                 WorkSheet::field_product_id() => $data->get('product') ?? null,
                 WorkSheet::field_reported_at() => date('Y-m-d H:i:s'),

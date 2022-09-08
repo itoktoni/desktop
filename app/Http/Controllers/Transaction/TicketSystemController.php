@@ -19,7 +19,6 @@ use App\Http\Requests\TicketSystemRequest;
 use App\Http\Requests\TicketWorksheetRequest;
 use App\Http\Services\CreateTicketService;
 use App\Http\Services\SingleService;
-use App\Http\Services\UpdateService;
 use App\Http\Services\UpdateTicketService;
 use App\Http\Services\UpdateTicketWorksheetService;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -84,6 +83,7 @@ class TicketSystemController extends MasterController
         $type = WorkType::optionBuild();
         $user = User::optionBuild(true);
         $vendor = Supplier::optionBuild();
+        $work_type = WorkType::optionBuild();
 
         $status = TicketStatus::getOptions();
         $priority = TicketPriority::getOptions();
@@ -99,6 +99,7 @@ class TicketSystemController extends MasterController
             'user' => $this->getUser($user),
             'model' => false,
             'status' => $status,
+            'work_type' => $work_type,
             'type' => $type,
             'product' => $product,
             'priority' => $priority,
@@ -119,7 +120,7 @@ class TicketSystemController extends MasterController
 
     public function getUpdate($code)
     {
-        $data = $this->get($code, ['has_worksheet', 'has_worksheet.has_vendor', 'has_worksheet.has_implementor']);
+        $data = $this->get($code, ['has_worksheet', 'has_type', 'has_worksheet.has_vendor', 'has_worksheet.has_implementor']);
         $worksheet = false;
         if($data){
             $worksheet = $data->has_worksheet;
@@ -139,7 +140,7 @@ class TicketSystemController extends MasterController
     public function postUpdate($code, TicketSystemRequest $request, UpdateTicketService $service)
     {
         $data = $service->update(self::$repository, $request, $code);
-        return Response::redirectBack($data);
+        return Response::redirectBack($data, true);
     }
 
     public function postUpdateWorksheet($code, TicketWorksheetRequest $request, UpdateTicketWorksheetService $service)

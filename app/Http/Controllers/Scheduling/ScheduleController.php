@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Scheduling;
 
+use App\Dao\Enums\ScheduleEvery;
 use App\Dao\Enums\ScheduleStatus;
+use App\Dao\Enums\ScheduleType;
+use App\Dao\Models\Location;
 use App\Dao\Models\Product;
+use App\Dao\Models\WorkType;
 use App\Dao\Repositories\ScheduleRepository;
 use App\Http\Controllers\System\MasterController;
 use App\Http\Requests\ScheduleRequest;
@@ -23,14 +27,42 @@ class ScheduleController extends MasterController
         self::$service = self::$service ?? $service;
     }
 
+    private function getProduct()
+    {
+        $product = Product::with(['has_location'])->get()
+            ->mapWithKeys(function ($item) {
+                $name = $item->has_location->field_name . ' - ' . $item->field_name;
+                $id = $item->field_primary . '';
+                return [$id => $name];
+            });
+
+        return $product;
+    }
+
+    private function getLocation()
+    {
+        $location = Location::with(['has_building'])->get()
+            ->mapWithKeys(function ($item) {
+                $name = $item->has_building->field_name . ' - ' . $item->field_name;
+                $id = $item->field_primary . '';
+                return [$id => $name];
+            });
+
+        return $location;
+    }
+
     protected function share($data = [])
     {
-        $status = ScheduleStatus::getOptions();
-        $product = Product::optionBuild();
+        $status = WorkType::optionBuild();
+        $type = ScheduleEvery::getOptions();
+        $product = $this->getProduct();
+        $location = $this->getLocation();
 
         $view = [
             'status' => $status,
+            'location' => $location,
             'product' => $product,
+            'every' => $type,
             'model' => false,
         ];
 
@@ -40,6 +72,7 @@ class ScheduleController extends MasterController
     public function postCreate(ScheduleRequest $request, CreateScheduleService $service)
     {
         $data = $service->save(self::$repository, $request);
+        dd($data);
         return Response::redirectBack($data);
     }
 

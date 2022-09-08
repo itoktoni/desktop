@@ -6,8 +6,11 @@ use App\Dao\Enums\TicketPriority;
 use App\Dao\Models\TicketTopic;
 use App\Dao\Models\Department;
 use App\Dao\Models\Location;
+use App\Dao\Models\Product;
+use App\Dao\Models\Schedule;
 use App\Dao\Models\Supplier;
 use App\Dao\Models\User;
+use App\Dao\Models\WorkType;
 
 trait TicketSystemEntity
 {
@@ -139,6 +142,36 @@ trait TicketSystemEntity
     public function getFieldLocationNameAttribute()
     {
         return $this->{Location::field_name()};
+    }
+
+    public static function field_product_id()
+    {
+        return 'ticket_system_product_id';
+    }
+
+    public function getFieldProductNameAttribute()
+    {
+        return $this->{Product::field_name()};
+    }
+
+    public static function field_work_type_id()
+    {
+        return 'ticket_system_work_type_id';
+    }
+
+    public function getFieldWorkTypeNameAttribute()
+    {
+        return $this->{WorkType::field_name()};
+    }
+
+    public static function field_schedule_id()
+    {
+        return 'ticket_system_schedule_id';
+    }
+
+    public function getFieldScheduleNameAttribute()
+    {
+        return $this->{Schedule::field_name()};
     }
 
     public static function field_implementor()

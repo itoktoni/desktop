@@ -12,12 +12,13 @@ class Response
         return response()->json($data);
     }
 
-    public static function redirectBack($data = null)
+    public static function redirectBack($data = null, $back = false)
     {
         if(request()->wantsJson()){
             return self::sentJson($data);
         }
-        if(isset($data['name']) && $data['name'] == 'Update'){
+
+        if(isset($data['name']) && $data['name'] == 'Update' && !$back){
             return redirect()->route(SharedData::get('template').'.getTable');
         }
 

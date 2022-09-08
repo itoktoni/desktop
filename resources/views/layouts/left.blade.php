@@ -57,7 +57,7 @@
 <div class="navigation-menu-body" data-turbolinks="false">
 
     <!-- begin::navigation-logo -->
-    <div>
+    <div class="navigation-header">
         <div id="navigation-logo">
             <a href="{{ url('/') }}">
                 <img class="logo" src="{{ env('APP_LOGO') ? url('storage/'.env('APP_LOGO')) : url('assets/media/image/logo.png') }}" alt="logo">
@@ -67,16 +67,15 @@
     <!-- end::navigation-logo -->
 
     <div class="navigation-menu-group">
-
         @if($access = SharedData::get('access'))
         @foreach($access as $acc_key => $acc_data)
-        <div class="{{ $acc_key == request()->segment(2) ? 'open' : '' }}" id="{{ $acc_key }}">
+        <div class="{{ $acc_key == request()->segment(2) || request()->segment(1) == 'home' ? 'open' : '' }}" id="{{ $acc_key }}">
             <ul>
                 @if($acc_data)
                 @foreach($acc_data as $acc)
                 @php
-                $check_access = request()->segment(2) == $acc[Routes::field_group()] && request()->segment(3) ==
-                $acc[Routes::field_primary()];
+                $check_access = (request()->segment(2) == $acc[Routes::field_group()] && request()->segment(3) ==
+                $acc[Routes::field_primary()]);
                 $sub_menu = $acc->has_menu->where('menu_show', 1);
                 $check_sub_menu = $sub_menu->count() ?? 0;
                 $highlight_module = request()->segment(3) == $acc[Routes::field_primary()];

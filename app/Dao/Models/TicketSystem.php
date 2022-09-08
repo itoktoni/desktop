@@ -37,6 +37,8 @@ class TicketSystem extends Model
         'ticket_system_picture',
         'ticket_system_department_id',
         'ticket_system_location_id',
+        'ticket_system_product_id',
+        'ticket_system_work_type_id',
         'ticket_system_reported_at',
         'ticket_system_reported_by',
         'ticket_system_created_at',
@@ -48,6 +50,7 @@ class TicketSystem extends Model
         'ticket_system_finished_at',
         'ticket_system_finished_by',
         'ticket_system_status',
+        'ticket_system_schedule_id',
     ];
 
     public $sortable = [
@@ -61,6 +64,7 @@ class TicketSystem extends Model
         'filter',
         'ticket_system_department_id',
         'ticket_system_ticket_id',
+        'date',
         'start_date',
         'end_date',
     ];
@@ -79,6 +83,15 @@ class TicketSystem extends Model
     public function fieldSearching()
     {
         return $this->field_primary();
+    }
+
+    public function date($query){
+        $date = request()->get('date');
+        if($date){
+            $query = $query->where($this->field_reported_at(), $date);
+        }
+
+        return $query;
     }
 
     public function fieldDatatable(): array
@@ -121,6 +134,11 @@ class TicketSystem extends Model
         return $this->hasMany(WorkSheet::class, WorkSheet::field_ticket_code(), self::field_primary());
     }
 
+    public function has_type()
+    {
+        return $this->hasOne(WorkType::class, WorkType::field_primary(), self::field_work_type_id());
+    }
+
     public function ticketTopicNameSortable($query, $direction)
     {
         $query = $this->queryFilter($query);
@@ -153,7 +171,6 @@ class TicketSystem extends Model
             }
 
             $model->{self::field_primary()} = Uuid::uuid1()->toString();
-            $model->{self::field_reported_at()} = date('Y-m-d h:i:s');
 
         });
 

@@ -12,9 +12,11 @@ class ScheduleRequest extends FormRequest
     public function validation() : array
     {
         return [
-            'schedule_product_id' => 'required',
+            'schedule_name' => 'required',
+            'schedule_description' => 'required',
+            'schedule_every' => 'required',
+            'schedule_start_date' => 'required',
             'schedule_number' => 'required',
-            'schedule_date' => 'required',
         ];
     }
 }

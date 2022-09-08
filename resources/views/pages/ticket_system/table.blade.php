@@ -30,7 +30,11 @@
 
         {!! Template::form_table() !!}
 
-        <div class="form-group col-md-4 mr-3">
+        <div class="form-group col-md-2">
+            <input type="text" name="date" class="form-control date" placeholder="{{ __('Choose Date') }}">
+        </div>
+
+        <div class="form-group col-md-4">
             <select name="filter" class="form-control">
                 <option value="">- {{ __('Search Default Data') }} -</option>
                 @foreach($fields as $value)
@@ -61,4 +65,5 @@
 
 @push('javascript')
 @include(Template::components('table'))
+@include(Template::components('date'))
 @endpush

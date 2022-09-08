@@ -17,6 +17,8 @@ class CreateTicketSystemTable extends Migration
             $table->string('ticket_system_code')->primary();
             $table->integer('ticket_system_topic_id')->nullable(); //(relation ticket_topic)
             $table->integer('ticket_system_location_id')->nullable(); //(relation ticket_topic)
+            $table->integer('ticket_system_product_id')->nullable(); //(relation ticket_topic)
+            $table->integer('ticket_system_work_type_id')->nullable(); //(relation ticket_topic)
             $table->string('ticket_system_name')->nullable();
             $table->text('ticket_system_description')->nullable();
             $table->tinyInteger('ticket_system_priority');
@@ -36,6 +38,7 @@ class CreateTicketSystemTable extends Migration
             $table->string('ticket_system_deleted_by')->nullable();
             $table->dateTime('ticket_system_finished_at')->nullable();
             $table->string('ticket_system_finished_by')->nullable();
+            $table->string('ticket_system_schedule_id')->nullable();
         });
     }
 
