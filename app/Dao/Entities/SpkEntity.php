@@ -3,6 +3,7 @@
 namespace App\Dao\Entities;
 
 use App\Dao\Models\Product;
+use App\Dao\Models\Supplier;
 use App\Dao\Models\WorkSheet;
 
 trait SpkEntity
@@ -25,8 +26,13 @@ trait SpkEntity
     public function getFieldVendorIdAttribute()
     {
         return $this->{$this->field_vendor_id()};
-    } 
-    
+    }
+
+    public function getFieldVendorNameAttribute()
+    {
+        return $this->{Supplier::field_name()};
+    }
+
     public static function field_date()
     {
         return 'spk_date';
@@ -86,7 +92,7 @@ trait SpkEntity
     {
         return $this->{$this->field_result()};
     }
-    
+
     public static function field_work_sheet_code()
     {
         return 'spk_work_sheet_code';
@@ -96,7 +102,7 @@ trait SpkEntity
     {
         return $this->{Worksheet::field_name()};
     }
-    
+
     public static function field_status()
     {
         return 'spk_status';

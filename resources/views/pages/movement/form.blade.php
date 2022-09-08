@@ -30,34 +30,34 @@
 
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('movement_product_id') ? 'has-error' : '' }}">
-					<label>Product ID</label>
+					<label>{{ __('Product Name') }}</label>
 					{!! Form::select('movement_product_id', $product, null, ['class' => 'form-control', 'id' =>
-					'movement_product_id', 'placeholder' => '- Select Product ID-', 'required']) !!}
+					'movement_product_id', 'placeholder' => '- Select Product -', 'required']) !!}
 					{!! $errors->first('movement_product_id', '<p class="help-block">:message</p>') !!}
 				</div>
 				<div class="form-group {{ $errors->has('movement_date') ? 'has-error' : '' }}">
-					<label>Date</label>
+					<label>{{ __('Date') }}</label>
 					{!! Form::text('movement_date', null, ['class' => 'form-control date', 'id' => 'movement_date',
 					'placeholder' => 'Please fill this input', 'required']) !!}
 					{!! $errors->first('movement_date', '<p class="help-block">:message</p>') !!}
 				</div>
-				@if(isset($model))
+				@if($model)
 				<div class="form-group {{ $errors->has('movement_location_old') ? 'has-error' : '' }}">
-					<label>Location Old</label>
+					<label>{{ __('Location Old') }}</label>
 					{!! Form::select('movement_location_old', $location, null, ['class' => 'form-control', 'id' =>
-					'movement_location_new', 'placeholder' => '- Select Location Old ID-', 'required', 'readonly
+					'movement_location_new', 'placeholder' => '- Select Location Old -', 'required', 'readonly
 					disabled']) !!}
 					{!! $errors->first('movement_location_old', '<p class="help-block">:message</p>') !!}
 				</div>
 				@endif
 				<div class="form-group {{ $errors->has('movement_location_new') ? 'has-error' : '' }}">
-					<label>Location New</label>
+					<label>{{ __('Location New') }}</label>
 					{!! Form::select('movement_location_new', $location, null, ['class' => 'form-control', 'id' =>
 					'movement_location_new', 'placeholder'
-					=> '- Select Location New ID-', 'required']) !!}
+					=> '- Select Location New -', 'required']) !!}
 					{!! $errors->first('movement_location_new', '<p class="help-block">:message</p>') !!}
 				</div>
-				@if(isset($model))
+				@if($model)
 				<div class="form-group {{ $errors->has('movement_status') ? 'has-error' : '' }}">
 					<label>Status</label>
 					{!! Form::select('movement_status', $status, null, ['class' => 'form-control', 'id' =>
@@ -73,7 +73,7 @@
 					'movement_description', 'placeholder' => 'Please fill this input', 'rows' => 7]) !!}
 				</div>
 				<div class="form-group {{ $errors->has('movement_reason') ? 'has-error' : '' }}">
-					<label>Reason</label>
+					<label>{{ __('Reason') }}</label>
 					{!! Form::textarea('movement_reason', null, ['class' => 'form-control h-auto', 'id' =>
 					'movement_reason', 'placeholder' => 'Please fill this input', 'rows' => 7]) !!}
 				</div>
@@ -87,9 +87,15 @@
 
 @endsection
 
+@push('mantul')
+gue tambahin
+@endpush
+
 @push('javascript')
+
 @include(Template::components('form'))
 @include(Template::components('date'))
+
 @if($model)
 <script>
 const data = ["movement_product_id", "movement_date"];
@@ -101,4 +107,5 @@ function myFunction(item) {
 }
 </script>
 @endif
+
 @endpush

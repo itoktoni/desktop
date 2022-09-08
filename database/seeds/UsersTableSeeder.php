@@ -17,6 +17,19 @@ class UsersTableSeeder extends Seeder
 
         (new User())->delete();
 
+        User::create([
+            'id' => 2,
+            'name' => 'Pengguna',
+            'username' => 'pengguna',
+            'email' => 'pengguna@gmail.com',
+            'phone' => '08111040159',
+            'active' => 1,
+            'role' => 'user',
+            'email_verified_at' => now(),
+            'password' => bcrypt('secret'),
+            'remember_token' => null,
+        ]);
+
         foreach (range(11, 20) as $item) {
 
             User::create([

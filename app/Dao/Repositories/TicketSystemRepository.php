@@ -18,6 +18,8 @@ class TicketSystemRepository extends MasterRepository implements CrudInterface, 
         $query = $this->model->select(self::$paginate ? $this->model->getExcelField() : $this->model->getSelectedField())
             ->leftJoinRelationship('has_ticket_topic')
             ->leftJoinRelationship('has_department')
+            ->leftJoinRelationship('has_location')
+            ->leftJoinRelationship('has_reported')
             ->sortable()->filter();
 
         if(self::$paginate){

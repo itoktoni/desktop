@@ -2,14 +2,12 @@
 
 namespace Plugins;
 
-use App\Dao\Enums\ReportType;
 use App\Dao\Facades\RoutesFacades;
 use App\Dao\Models\Filters;
 use App\Dao\Models\Groups;
 use App\Dao\Models\Routes;
 use Coderello\SharedData\Facades\SharedData;
 use Collective\Html\FormFacade as Form;
-use hisorange\BrowserDetect\Parser as Browser;
 use Illuminate\Support\Facades\Session;
 
 class Template
@@ -46,7 +44,7 @@ class Template
 
     public static function print($template = false, $name = false) {
         if ($name) {
-            return 'pages.' . $template . '.'.$name;
+            return 'pages.' . $template . '.' . $name;
         }
         return 'pages.' . $template . '.print';
     }
@@ -136,10 +134,10 @@ class Template
     {
         $string = '';
         if ($value->class) {
-            $string = 'class=' . $value->class;
+            $string = " class=" . $value->class;
         }
         if ($value->width) {
-            $string = $string . 'style=width:' . $value->width;
+            $string = $string . 'style="width:' . $value->width.'"';
         }
         return $string;
     }
@@ -157,22 +155,26 @@ class Template
         ]);
     }
 
-    public static function form_open($model)
+    public static function form_open($model, $action = false)
     {
         if ($model) {
+            $name = $action ? SharedData::get('route') . '.' . $action : SharedData::get('route') . '.postUpdate';
             return Form::model($model, [
                 'route' => [
-                    SharedData::get('route') . '.postUpdate',
+                    $name,
                     'code' => $model->{$model->getKeyName()},
                 ],
                 'class' => 'form-horizontal needs-validation',
                 'files' => true,
+                'novalidate',
             ]);
         } else {
+            $name = $action ? SharedData::get('route') . '.' . $action : SharedData::get('route') . '.postCreate';
             return Form::open([
-                'url' => route(SharedData::get('route') . '.postCreate'),
+                'url' => route($name),
                 'class' => 'form-horizontal needs-validation',
                 'files' => true,
+                'novalidate',
             ]);
         }
     }
@@ -191,13 +193,22 @@ class Template
         ]);
     }
 
-    public static function textarea($name, $value = null)
+    public static function number($name, $value = null)
+    {
+        return Form::number($name, $value, [
+            'class' => 'form-control',
+            'id' => 'brand_name',
+            'placeholder' => 'Please fill this input',
+        ]);
+    }
+
+    public static function textarea($name, $value = null, $rows = 5)
     {
         return Form::textarea($name, $value, [
             'class' => 'form-control h-auto',
             'id' => 'brand_name',
-            'placeholder' => 'Please fill this input',
-            'rows' => 5,
+            'placeholder' => __('Please fill this input'),
+            'rows' => $rows,
         ]);
     }
 }

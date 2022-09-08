@@ -34,26 +34,57 @@
 			<div class="col-md-6">
 
 				<div class="form-group">
-					<label>Ticket</label>
+					<label>{{ __('Ticket') }}</label>
 					{!! Form::select('work_sheet_ticket_code', $ticket, request()->get('ticket_id') ?? null,
 					['placeholder' =>
 					'- Select Ticket -', 'class' => 'form-control ticket', ]) !!}
 				</div>
 
 				<div class="form-group {{ $errors->has('work_sheet_product_id') ? 'has-error' : '' }}">
-					<label>Product</label>
+					<label>{{ __('Product') }}</label>
 					{!! Form::select('work_sheet_product_id', $product, null, ['class' => 'form-control selectize', 'id'
 					=>
 					'work_sheet_product_id', 'placeholder' => '- Select Product -', 'required']) !!}
 				</div>
 
-				<div class="form-group {{ $errors->has('work_sheet_reported_at') ? 'has-error' : '' }}">
-					<label>{{ __('Report') }} Date</label>
-					{!! Form::text('work_sheet_reported_at', null, ['placeholder' => 'Please fill this input', 'class'
-					=>
-					'form-control date', 'id' =>
-					'work_sheet_reported_at', 'required']) !!}
-					{!! $errors->first('work_sheet_reported_at', '<p class="help-block">:message</p>') !!}
+				<div class="row">
+
+					<div class="col-md-6">
+						<div class="form-group {{ $errors->has('work_sheet_reported_at') ? 'has-error' : '' }}">
+							<label>{{ __('Report Date') }}</label>
+							{!! Form::text('work_sheet_reported_at', null, ['class' =>
+							'form-control date', 'id' =>
+							'work_sheet_reported_at', 'required']) !!}
+							{!! $errors->first('work_sheet_reported_at', '<p class="help-block">:message</p>') !!}
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>{{ __('Contact') }}</label>
+							{!! Form::select('work_sheet_contract', $contract, null, ['class' => 'form-control contract']) !!}
+						</div>
+					</div>
+
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group pelaksana">
+							<label>{{ __('Implementor') }}</label>
+							{!! Form::select('implementor[]', $implementor, $model ? json_decode($model->field_implementor) :
+							null,
+							['class' => 'form-control',
+							'multiple', 'data-placeholder' => 'Pilih Pelaksana']) !!}
+						</div>
+
+						<div class="form-group vendor">
+							<label>{{ __('Vendor') }}</label>
+							{!! Form::select('work_sheet_vendor_id', $vendor, null,
+							['class' => 'form-control',
+							'placeholder' => '- Pilih Vendor -']) !!}
+						</div>
+					</div>
 				</div>
 
 				<div class="row">
@@ -87,7 +118,7 @@
 				</div>
 
 				<div class="form-group">
-					<label>Reported By</label>
+					<label>{{ __('Reported By') }}</label>
 					{!! Form::select('work_sheet_reported_by', $user, $data_ticket->field_reported_By ?? null,
 					['placeholder' =>
 					'- Select User -', 'class' => 'form-control']) !!}
@@ -97,23 +128,37 @@
 					<label>{{ __('Description') }}</label>
 					{!! Form::textarea('work_sheet_description', null, ['class' => 'form-control h-auto', 'id' =>
 					'work_sheet_description',
-					'placeholder' => 'Please fill this input', 'rows' => 9]) !!}
+					'placeholder' => 'Please fill this input', 'rows' => 5]) !!}
+				</div>
+
+				<div class="form-group {{ $errors->has('file_picture') ? 'has-error' : '' }}">
+					<label for="">{{ __('Take Picture') }}</label>
+
+					<input id="cameraFileInput" style="{!! Template::isMobile() ? 'display:none' : '' !!}"
+						name="file_picture" type="file" accept="image/*" class="btn btn-default btn-block btn-sm"
+						capture="environment" />
+
+					<input type="hidden" name="file_old" value="{{ $model->field_picture ?? null }}">
+
+					<img class="img-fluid"
+						src="{{ $model && $model->field_picture ? asset('storage/worksheet/'.$model->field_picture) : asset('images/picture.png') }}"
+						id="pictureFromCamera" />
 				</div>
 
 			</div>
 		</div>
 
-		@if(isset($model))
+		@if($model)
 		<hr>
 		<div class="form-group">
-			<label>Check</label>
+			<label>{{ __('Check') }}</label>
 			{!! Form::textarea('work_sheet_check', null, ['class' => 'form-control h-auto', 'id' =>
 			'work_sheet_check',
 			'placeholder' => 'Please fill this input', 'rows' => 5]) !!}
 		</div>
 
 		<div class="form-group">
-			<label>Result</label>
+			<label>{{ __('Result') }}</label>
 			{!! Form::textarea('work_sheet_result', null, ['class' => 'form-control h-auto', 'id' =>
 			'work_sheet_result',
 			'placeholder' => 'Please fill this input', 'rows' => 5]) !!}
@@ -141,6 +186,40 @@ $('.ticket').change(function() {
 	}
 	window.location = clean_uri + '?ticket_id=' + id;
 });
+
+$('body').on('change', '.contract', function() {
+	contract(this.value);
+});
+
+$(document).ready(function() {
+	var data = $(".contract option:selected").val();
+	contract(data);
+});
+
+function contract(data){
+	if (typeof data == "undefined") {
+		$(".vendor").show();
+		$(".pelaksana").hide();
+	} else if (data == '1') {
+		$(".vendor").show();
+		$(".pelaksana").hide();
+	} else {
+		$(".pelaksana").show();
+		$(".vendor").hide();
+	}
+}
+
+document
+	.getElementById("cameraFileInput")
+	.addEventListener("change", function() {
+		document
+			.getElementById("pictureFromCamera")
+			.setAttribute("src", window.URL.createObjectURL(this.files[0]));
+		document
+			.getElementById("pictureFromCamera")
+			.style.height = 'auto';
+	});
+
 </script>
 
 @endpush

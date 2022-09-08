@@ -13,9 +13,8 @@ class SpkRequest extends FormRequest
     public function validation() : array
     {
         return [
-            'spk_code' => 'required',
             'spk_description' => 'required',
-            'spk_product_id' => 'required',
+            'spk_vendor_id' => 'required',
             'spk_work_sheet_code' => 'required',
         ];
     }

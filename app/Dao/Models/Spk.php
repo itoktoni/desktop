@@ -4,6 +4,7 @@ namespace App\Dao\Models;
 
 use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\SpkEntity;
+use App\Dao\Enums\ProductStatus;
 use App\Dao\Enums\SpkStatus;
 use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
@@ -34,6 +35,8 @@ class Spk extends Model
         'spk_result',
         'spk_work_sheet_code',
         'spk_status',
+        'spk_estimation',
+        'spk_realisation',
     ];
 
     public $sortable = [
@@ -58,16 +61,16 @@ class Spk extends Model
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build($this->field_primary())->name('ID')->sort()->excel(),
-            DataBuilder::build($this->field_vendor_id())->name('Vendor ID')->excel(),
+            DataBuilder::build($this->field_primary())->name('SPK ID')->sort()->excel(),
+            DataBuilder::build($this->field_date())->name('Date')->excel(),
             DataBuilder::build(Product::field_name())->name('Product Name')->sort()->excel(),
-            DataBuilder::build(WorkSheet::field_name())->name('WorkSheet Name')->sort()->excel(),
-            DataBuilder::build($this->field_description())->name('Description')->excel(),
+            DataBuilder::build(Supplier::field_name())->name('Vendor')->sort()->excel(),
+            DataBuilder::build(WorkSheet::field_name())->name('WorkSheet')->sort()->excel(),
+            DataBuilder::build($this->field_description())->name('Description')->show(false)->excel(),
             DataBuilder::build($this->field_code())->name('Code')->excel()->show(false),
             DataBuilder::build($this->field_check())->name('Check')->show(false),
             DataBuilder::build($this->field_result())->name('Result')->show(false),
-            DataBuilder::build($this->field_status())->name('Status')->class('column-active text-center')->excel(),
-            DataBuilder::build($this->field_date())->name('Date')->excel()->show(false),
+            DataBuilder::build($this->field_status())->name('Status')->class('column-status')->excel(),
         ];
     }
 
@@ -79,6 +82,11 @@ class Spk extends Model
     public function has_work_sheet()
     {
         return $this->hasOne(WorkSheet::class, WorkSheet::field_primary(), self::field_work_sheet_code());
+    }
+
+    public function has_vendor()
+    {
+        return $this->hasOne(Supplier::class, Supplier::field_primary(), self::field_vendor_id());
     }
 
     public function workSheetNameSortable($query, $direction)
@@ -94,11 +102,4 @@ class Spk extends Model
         $query = $query->orderBy(Product::field_name(), $direction);
         return $query;
     }
-
-    /*
-    using model event
-    https://coderflex.com/blog/how-to-use-model-observers-in-laravel
-     */
-
-    
 }

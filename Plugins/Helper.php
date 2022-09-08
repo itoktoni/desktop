@@ -813,7 +813,6 @@ class Helper
         if (!empty($file)) { //handle images
             $name = time() . "." . $file->getClientOriginalExtension();
             $file->storeAs($folder, $name);
-            $file->storeAs($folder, 'thumbnail_' . $name);
             return $name;
         }
     }

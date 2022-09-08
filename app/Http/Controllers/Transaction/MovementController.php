@@ -36,11 +36,23 @@ class MovementController extends MasterController
         return $product;
     }
 
+    private function getLocation()
+    {
+        $product = Location::with(['has_building'])->get()
+            ->mapWithKeys(function ($item) {
+                $name = $item->has_building->field_name . ' - ' . $item->field_name;
+                $id = $item->field_primary . '';
+                return [$id => $name];
+            });
+
+        return $product;
+    }
+
     protected function beforeForm()
     {
         $status = MovementStatus::getOptions();
         $product = $this->getProduct();
-        $location = Location::optionBuild();
+        $location = $this->getLocation();
         self::$share = [
             'status' => $status,
             'product' => $product,

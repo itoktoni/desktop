@@ -1,13 +1,5 @@
-<link rel="stylesheet" href="{{ url('vendors/datepicker/daterangepicker.css') }}" type="text/css">
-<script src="{{ url('vendors/datepicker/daterangepicker.js') }}"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-$('.date').daterangepicker({
-  singleDatePicker: true,
-  showDropdowns: true,
-  minYear: 1901,
-  maxYear: 2030,
-  locale: {
-        format: 'YYYY-MM-DD'
-    },
-});
+flatpickr(".date", { dateFormat: "Y-m-d"});
 </script>

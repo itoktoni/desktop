@@ -3,19 +3,25 @@
 namespace App\Http\Controllers\Transaction;
 
 use App\Dao\Enums\RoleType;
+use App\Dao\Enums\TicketContract;
 use App\Dao\Enums\TicketPriority;
 use App\Dao\Enums\TicketStatus;
 use App\Dao\Models\Department;
 use App\Dao\Models\Location;
+use App\Dao\Models\Product;
+use App\Dao\Models\Supplier;
 use App\Dao\Models\TicketTopic;
 use App\Dao\Models\User;
+use App\Dao\Models\WorkType;
 use App\Dao\Repositories\TicketSystemRepository;
 use App\Http\Controllers\System\MasterController;
 use App\Http\Requests\TicketSystemRequest;
+use App\Http\Requests\TicketWorksheetRequest;
 use App\Http\Services\CreateTicketService;
 use App\Http\Services\SingleService;
 use App\Http\Services\UpdateService;
 use App\Http\Services\UpdateTicketService;
+use App\Http\Services\UpdateTicketWorksheetService;
 use Barryvdh\DomPDF\Facade as PDF;
 use Coderello\SharedData\Facades\SharedData;
 use Plugins\Response;
@@ -59,14 +65,31 @@ class TicketSystemController extends MasterController
         return $location;
     }
 
+    private function getProduct()
+    {
+        $product = Product::with(['has_location'])->get()
+            ->mapWithKeys(function ($item) {
+                $name = $item->has_location->field_name . ' - ' . $item->field_name;
+                $id = $item->field_primary . '';
+                return [$id => $name];
+            });
+
+        return $product;
+    }
+
     protected function share($data = [])
     {
         $ticket_topic = TicketTopic::optionBuild();
         $department = Department::optionBuild();
+        $type = WorkType::optionBuild();
         $user = User::optionBuild(true);
+        $vendor = Supplier::optionBuild();
 
         $status = TicketStatus::getOptions();
         $priority = TicketPriority::getOptions();
+        $contract = TicketContract::getOptions();
+
+        $product = $this->getProduct();
 
         $view = [
             'ticket_topic' => $ticket_topic,
@@ -76,7 +99,12 @@ class TicketSystemController extends MasterController
             'user' => $this->getUser($user),
             'model' => false,
             'status' => $status,
+            'type' => $type,
+            'product' => $product,
             'priority' => $priority,
+            'contract' => $contract,
+            'vendor' => $vendor,
+            'worksheet' => null,
         ];
 
         return self::$share = array_merge($view, $data, self::$share);
@@ -91,8 +119,14 @@ class TicketSystemController extends MasterController
 
     public function getUpdate($code)
     {
+        $data = $this->get($code, ['has_worksheet', 'has_worksheet.has_vendor', 'has_worksheet.has_implementor']);
+        $worksheet = false;
+        if($data){
+            $worksheet = $data->has_worksheet;
+        }
         return view(Template::form(SharedData::get('template')))->with($this->share([
             'model' => $this->get($code),
+            'worksheet' => $worksheet->sortBy('worksheet_created_at'),
         ]));
     }
 
@@ -103,6 +137,12 @@ class TicketSystemController extends MasterController
     }
 
     public function postUpdate($code, TicketSystemRequest $request, UpdateTicketService $service)
+    {
+        $data = $service->update(self::$repository, $request, $code);
+        return Response::redirectBack($data);
+    }
+
+    public function postUpdateWorksheet($code, TicketWorksheetRequest $request, UpdateTicketWorksheetService $service)
     {
         $data = $service->update(self::$repository, $request, $code);
         return Response::redirectBack($data);

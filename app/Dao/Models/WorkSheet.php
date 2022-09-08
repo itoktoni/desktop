@@ -4,6 +4,7 @@ namespace App\Dao\Models;
 
 use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\WorkSheetEntity;
+use App\Dao\Enums\TicketContract;
 use App\Dao\Enums\WorkStatus;
 use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
@@ -25,6 +26,11 @@ class WorkSheet extends Model
     protected $table = 'work_sheet';
     protected $primaryKey = 'work_sheet_code';
 
+    protected $casts = [
+        'work_sheet_contract' => 'integer',
+        'work_sheet_status' => 'integer',
+    ];
+
     protected $fillable = [
         'work_sheet_code',
         'work_sheet_type_id',
@@ -32,6 +38,11 @@ class WorkSheet extends Model
         'work_sheet_description',
         'work_sheet_check',
         'work_sheet_result',
+        'work_sheet_contract',
+        'work_sheet_vendor_id',
+        'work_sheet_implementor',
+        'work_sheet_implement_by',
+        'work_sheet_implement_by',
         'work_sheet_ticket_code',
         'work_sheet_product_id',
         'work_sheet_reported_at',
@@ -81,15 +92,15 @@ class WorkSheet extends Model
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build($this->field_ticket_code())->name('Ticket')->sort()->excel(),
-            DataBuilder::build($this->field_primary())->name('Code')->sort()->excel(),
-            DataBuilder::build(WorkType::field_name())->name('Type')->sort()->excel(),
-            DataBuilder::build($this->field_name())->name('Subject')->sort()->excel(),
-            DataBuilder::build(Product::field_name())->name('Product Name')->sort()->excel(),
-            DataBuilder::build($this->field_description())->name('Description')->show(false)->excel(),
-            DataBuilder::build($this->field_check())->name('Check')->show(false),
-            DataBuilder::build($this->field_result())->name('Result')->show(false),
-            DataBuilder::build($this->field_ticket_code())->name('Ticket ID')->sort()->show(false),
+            DataBuilder::build($this->field_ticket_code())->name(__('Ticket'))->sort()->excel(),
+            DataBuilder::build($this->field_primary())->name(__('Code'))->sort()->excel(),
+            DataBuilder::build(WorkType::field_name())->name(__('Type'))->sort()->excel(),
+            DataBuilder::build($this->field_name())->name(__('Name'))->sort()->excel(),
+            DataBuilder::build(Product::field_name())->name(__('Product Name'))->sort()->excel(),
+            DataBuilder::build($this->field_description())->name(__('Description'))->show(false)->excel(),
+            DataBuilder::build($this->field_check())->name(__('Check'))->show(false),
+            DataBuilder::build($this->field_result())->name(__('Result'))->show(false),
+            DataBuilder::build($this->field_ticket_code())->name(__('Ticket ID'))->sort()->show(false),
         ];
     }
 
@@ -101,6 +112,16 @@ class WorkSheet extends Model
     public function has_product()
     {
         return $this->hasOne(Product::class, Product::field_primary(), self::field_product_id());
+    }
+
+    public function has_vendor()
+    {
+        return $this->hasOne(Supplier::class, Supplier::field_primary(), self::field_implement_by());
+    }
+
+    public function has_implementor()
+    {
+        return $this->hasOne(User::class, User::field_primary(), self::field_implement_by());
     }
 
     public function has_ticket()
@@ -146,6 +167,31 @@ class WorkSheet extends Model
             if ($model->{self::field_status()} == WorkStatus::Close) {
                 $model->{self::field_finished_by()} = auth()->user()->id;
                 $model->{self::field_finished_at()} = date('Y-m-d h:i:s');
+            }
+
+            if ($model->{self::field_contract()} == TicketContract::Kontrak) {
+                $model->{self::field_vendor_id()} = request()->get(self::field_vendor_id());
+                $model->{self::field_implement_by()} = request()->get(self::field_vendor_id());
+            } else {
+                $implementor = request()->get('implementor') ?? null;
+                $model->{self::field_implement_by()} = $implementor[0] ?? null;
+                $model->{self::field_implementor()} = json_encode($implementor);
+            }
+
+            if (request()->has('file_picture')) {
+                $file_logo = request()->file('file_picture');
+                $extension = $file_logo->getClientOriginalExtension();
+                $name = time() . '.' . $extension;
+                $file_logo->storeAs('public/worksheet/', $name);
+                $model->{WorkSheet::field_picture()} = $name;
+
+                if (request()->has('file_old')) {
+                    $path = public_path('storage//worksheet//');
+                    $old = request()->get('file_old');
+                    if (file_exists($path . $old)) {
+                        unlink($path . $old);
+                    }
+                }
             }
         });
 

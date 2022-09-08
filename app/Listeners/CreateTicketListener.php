@@ -34,18 +34,28 @@ class CreateTicketListener
         $report_from = $event->data->has_reported ?? false;
         $report_to = $event->data->has_department->has_user ?? false;
 
-        $email_from = $report_from->field_email ?? false;
-        $email_to = $report_to->field_email ?? false;
+        $email_from = $phone_from = false;
 
-        $phone_from = $report_from->field_phone ?? false;
-        $phone_to = $report_to->field_phone ?? false;
+        if(env('MAIL_ENABLE', false)){
+            $email_from = $report_from->field_email ?? false;
+            $email_to = $report_to->field_email ?? false;
+        }
+
+        if(env('WA_ENABLE', false)){
+            $phone_from = $report_from->field_phone ?? false;
+            $phone_to = $report_to->field_phone ?? false;
+        }
 
         if($email_from){
-            Mail::to([$report_from, $report_to])->send(new CreateTicketEmail($event->data));
+            $email = $email_to ? array_merge([$email_from], [$email_to]) : $email_from;
+            Mail::to([$email])->send(new CreateTicketEmail($event->data));
         }
 
         if($phone_from){
             WhatsApp::send($phone_from, $event->data->field_description);
+            if($phone_to){
+                WhatsApp::send($phone_to, $event->data->field_description);
+            }
         }
     }
 }

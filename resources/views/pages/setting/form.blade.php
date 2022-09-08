@@ -1,7 +1,7 @@
 @extends(Template::master())
 
 @section('title')
-<h4>Master Gedung</h4>
+<h4>Setting Website</h4>
 @endsection
 
 @section('action')
@@ -39,10 +39,18 @@
 
 				<div class="form-group">
 					<label>{{ __('Description') }}</label>
-					{!! Form::textarea('description', null, ['class' => 'form-control h-auto', 'id' =>
-					'description',
-					'placeholder' => 'Please fill this input', 'rows' => 5]) !!}
+					{!! Form::textarea('description', env('APP_DESCRIPTION'), ['class' => 'form-control h-auto', 'id' =>
+					'description', 'placeholder' => 'Please fill this input', 'rows' => 5]) !!}
 				</div>
+
+				<div class="form-group">
+
+					<label>{{ __('Language') }}</label>
+
+					{!! Form::select('language', ['id' => 'Indonesia', 'en' => 'English'], env('APP_LOCAL'), ['class' =>
+					'form-control', 'id' => 'language', 'placeholder' => '- Select Language -', 'required']) !!}
+				</div>
+
 			</div>
 
 			<div class="col-md-6">

@@ -21,12 +21,20 @@
             @forelse($data as $table)
             <tr>
                 <td class="column-checkbox"><input type="checkbox" class="checkbox" name="code[]" value="{{ $table->field_primary }}"></td>
-                <td class="">{{ Views::uiiShort($table->field_primary) }}</td>
-                <td class="">{{ $table->field_topic_name }}</td>
-                <td class="">{{ $table->field_name }}</td>
-                <td class="">{{ $table->field_department_name }}</td>
-                <!-- <td class="">{{ $table->field_description }}</td> -->
-                <td class="">{{ $table->field_priority }}</td>
+                <td>{{ Views::uiiShort($table->field_primary) }}</td>
+                <td>{{ $table->field_reported_at }}</td>
+                <td>{{ $table->field_reported_name }}</td>
+                @if(env('TICKET_TOPIC'))
+                <td>{{ $table->field_topic_name }}</td>
+                @endif
+                @if(env('TICKET_NAME'))
+                <td>{{ $table->field_name }}</td>
+                @endif
+                @if(env('TICKET_DEPARTMENT'))
+                <td>{{ $table->field_department_name }}</td>
+                @endif
+                <td>{{ $table->field_location_name }}</td>
+                <td>{{ $table->field_priority }}</td>
 
                 <td class="col-md-2 text-center column-action">
                     <a class="badge badge-primary" href="{{ route(SharedData::get('route').'.getUpdate', ['code' => $table->field_primary]) }}">

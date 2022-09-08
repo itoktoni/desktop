@@ -13,6 +13,8 @@ class CreateSettingService
         try {
 
             EnvFacades::setValue('APP_NAME', $data->name);
+            EnvFacades::setValue('APP_DESCRIPTION', $data->description);
+            EnvFacades::setValue('APP_LOCAL', $data->language);
 
             if ($data->has('file_logo')) {
                 $file_logo = $data->file('file_logo');

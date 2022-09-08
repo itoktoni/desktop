@@ -13,4 +13,6 @@
 	@yield('action')
 </div>
 
+@push('footer')
 @stack('javascript')
+@endpush

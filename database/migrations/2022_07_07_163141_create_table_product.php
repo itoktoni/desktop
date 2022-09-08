@@ -28,7 +28,7 @@ class CreateTableProduct extends Migration
             $table->integer('product_department_id')->nullable();
             $table->integer('product_supplier_id')->nullable();
             $table->bigInteger('product_price')->nullable();
-            $table->tinyInteger('product_is_status')->default(1);
+            $table->tinyInteger('product_is_asset')->default(1);
             $table->tinyInteger('product_status')->default(1);
             $table->text('product_description')->nullable();
             $table->year('product_acqu_year')->nullable();

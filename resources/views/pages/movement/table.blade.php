@@ -10,7 +10,7 @@
 	<a href="{{ route(SharedData::get('route').'.postDelete') }}" class="btn btn-danger button-delete-all">
 		{{ __('Delete') }}
 	</a>
-	<a href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-success button-create">
+	<a href="{{ route(SharedData::get('route').'.getCreate') }}" class="btn btn-success">
 		{{ __('Create') }}
 	</a>
 </div>

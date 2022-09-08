@@ -6,6 +6,8 @@ use App\Dao\Enums\TicketPriority;
 use App\Dao\Models\TicketTopic;
 use App\Dao\Models\Department;
 use App\Dao\Models\Location;
+use App\Dao\Models\Supplier;
+use App\Dao\Models\User;
 
 trait TicketSystemEntity
 {
@@ -77,6 +79,16 @@ trait TicketSystemEntity
     public function getFieldReportedByAttribute()
     {
         return $this->{$this->field_reported_by()};
+    }
+
+    public static function field_reported_name()
+    {
+        return User::field_name();
+    }
+
+    public function getFieldReportedNameAttribute()
+    {
+        return $this->{User::field_name()};
     }
 
     public static function field_finished_at()

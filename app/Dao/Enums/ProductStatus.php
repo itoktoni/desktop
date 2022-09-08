@@ -13,4 +13,5 @@ class ProductStatus extends Enum implements LocalizedEnum
     const Good          =  1;
     const Critical      =  2;
     const Defect        =  3;
+    const Maintained    =  4;
 }

@@ -4,8 +4,8 @@ namespace App\Dao\Models;
 
 use App\Dao\Builder\DataBuilder;
 use App\Dao\Entities\TicketSystemEntity;
-use App\Dao\Enums\TicketStatus;
 use App\Dao\Enums\TicketPriority;
+use App\Dao\Enums\TicketStatus;
 use App\Dao\Traits\ActiveTrait;
 use App\Dao\Traits\DataTableTrait;
 use App\Dao\Traits\ExcelTrait;
@@ -52,7 +52,6 @@ class TicketSystem extends Model
 
     public $sortable = [
         'ticket_system_code',
-        'ticket_system_name',
         'ticket_system_priority',
         'ticket_system_topic_id',
         'ticket_system_department_id',
@@ -85,12 +84,15 @@ class TicketSystem extends Model
     public function fieldDatatable(): array
     {
         return [
-            DataBuilder::build($this->field_primary())->name('Code')->sort()->excel(),
-            DataBuilder::build(TicketTopic::field_name())->name('Topic')->sort()->excel(),
-            DataBuilder::build($this->field_name())->name('Subject')->sort()->excel(),
-            DataBuilder::build(Department::field_name())->name('Department Name')->sort()->excel(),
-            DataBuilder::build($this->field_description())->name('Description')->show(false)->excel(),
-            DataBuilder::build($this->field_priority())->name('Priority')->excel(),
+            DataBuilder::build($this->field_primary())->name(__('Code'))->sort()->excel(),
+            DataBuilder::build($this->field_reported_at())->name(__('Reported At'))->sort()->excel(),
+            DataBuilder::build($this->field_reported_name())->name(__('Reported By'))->sort()->excel(),
+            DataBuilder::build(TicketTopic::field_name())->name(__('Topic'))->sort()->show(env('TICKET_TOPIC', true))->excel(),
+            DataBuilder::build($this->field_name())->name(__('Subject'))->sort()->show(env('TICKET_NAME', true))->excel(),
+            DataBuilder::build(Department::field_name())->name(__('Department Name'))->sort()->show(env('TICKET_DEPARTMENT', true))->excel(),
+            DataBuilder::build(Location::field_name())->name(__('Location Name'))->sort()->show(true)->excel(),
+            DataBuilder::build($this->field_description())->name(__('Description'))->show(false)->excel(),
+            DataBuilder::build($this->field_priority())->name(__('Priority'))->excel(),
         ];
     }
 
@@ -106,12 +108,17 @@ class TicketSystem extends Model
 
     public function has_location()
     {
-        return $this->hasOne(Location::class, Location::field_primary(), self::field_department_id());
+        return $this->hasOne(Location::class, Location::field_primary(), self::field_location_id());
     }
 
     public function has_reported()
     {
         return $this->hasOne(User::class, User::field_primary(), self::field_reported_by());
+    }
+
+    public function has_worksheet()
+    {
+        return $this->hasMany(WorkSheet::class, WorkSheet::field_ticket_code(), self::field_primary());
     }
 
     public function ticketTopicNameSortable($query, $direction)
@@ -136,14 +143,17 @@ class TicketSystem extends Model
     public static function boot()
     {
         parent::creating(function ($model) {
-            if (empty($model->{self::field_status()}) || empty($model->{self::field_priority()})) {
-                $model->{self::field_status()} = TicketStatus::Open;
+
+            if (empty($model->{self::field_status()})) {
+                $model->{self::field_status()} = TicketStatus::Open; $model->{self::field_reported_by()} = auth()->user()->id;
+            }
+
+            if (empty($model->{self::field_priority()})) {
                 $model->{self::field_priority()} = TicketPriority::Low;
-                $model->{self::field_reported_by()} = auth()->user()->id;
-                $model->{self::field_reported_at()} = date('Y-m-d h:i:s');
             }
 
             $model->{self::field_primary()} = Uuid::uuid1()->toString();
+            $model->{self::field_reported_at()} = date('Y-m-d h:i:s');
 
         });
 
@@ -153,11 +163,24 @@ class TicketSystem extends Model
                 $model->{self::field_finished_at()} = date('Y-m-d h:i:s');
             }
 
-            if(empty($model->{self::field_reported_by()})){
-                $model->{self::field_reported_by()} = null;
+            if (empty($model->{self::field_reported_by()})) {
+                $model->{self::field_reported_by()} = auth()->user()->id;
             }
-            else{
-                $model->{self::field_implementor()} = json_encode(request()->get(self::field_implementor()));
+
+            if (request()->has('file_picture')) {
+                $file_logo = request()->file('file_picture');
+                $extension = $file_logo->getClientOriginalExtension();
+                $name = time() . '.' . $extension;
+                $file_logo->storeAs('public/ticket/', $name);
+                $model->{TicketSystem::field_picture()} = $name;
+
+                if (request()->has('file_old')) {
+                    $path = public_path('storage//ticket//');
+                    $old = request()->get('file_old');
+                    if (file_exists($path . $old)) {
+                        unlink($path . $old);
+                    }
+                }
             }
         });
 

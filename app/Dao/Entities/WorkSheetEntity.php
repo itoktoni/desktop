@@ -4,6 +4,7 @@ namespace App\Dao\Entities;
 
 use App\Dao\Models\Location;
 use App\Dao\Models\Product;
+use App\Dao\Models\Supplier;
 use App\Dao\Models\WorkType;
 
 trait WorkSheetEntity
@@ -78,6 +79,16 @@ trait WorkSheetEntity
         return $this->{$this->field_reported_at()};
     }
 
+    public static function field_updated_at()
+    {
+        return 'work_sheet_updated_at';
+    }
+
+    public function getFieldUpdatedAtAttribute()
+    {
+        return $this->{$this->field_updated_at()};
+    }
+
     public static function field_reported_by()
     {
         return 'work_sheet_reported_by';
@@ -136,5 +147,75 @@ trait WorkSheetEntity
     public function getFieldProductNameAttribute()
     {
         return $this->{Product::field_name()};
+    }
+
+    public static function field_vendor_id()
+    {
+        return 'work_sheet_vendor_id';
+    }
+
+    public function getFieldVendorIdAttribute()
+    {
+        return $this->{$this->field_vendor_id()};
+    }
+
+    public function getFieldVendorNameAttribute()
+    {
+        return $this->{Supplier::field_name()};
+    }
+
+    public static function field_contract()
+    {
+        return 'work_sheet_contract';
+    }
+
+    public function getFieldContractAttribute()
+    {
+        return $this->{$this->field_contract()};
+    }
+
+    public function getFieldContractNameAttribute()
+    {
+        return $this->{$this->field_contract()};
+    }
+
+    public static function field_implement_at()
+    {
+        return 'work_sheet_implement_at';
+    }
+
+    public function getFieldImplementAtAttribute()
+    {
+        return $this->{$this->field_implement_at()};
+    }
+
+    public static function field_implement_by()
+    {
+        return 'work_sheet_implement_by';
+    }
+
+    public function getFieldImplementByAttribute()
+    {
+        return $this->{$this->field_implement_by()};
+    }
+
+    public static function field_implementor()
+    {
+        return 'work_sheet_implementor';
+    }
+
+    public function getFieldImplementorAttribute()
+    {
+        return $this->{$this->field_implementor()};
+    }
+
+    public static function field_picture()
+    {
+        return 'work_sheet_picture';
+    }
+
+    public function getFieldPictureAttribute()
+    {
+        return $this->{$this->field_picture()};
     }
 }

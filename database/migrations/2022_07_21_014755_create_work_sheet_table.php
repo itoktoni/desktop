@@ -33,6 +33,12 @@ class CreateWorkSheetTable extends Migration
             $table->string('work_sheet_deleted_by')->nullable();
             $table->dateTime('work_sheet_finished_at')->nullable();
             $table->string('work_sheet_finished_by')->nullable();
+            $table->dateTime('work_sheet_implement_at')->nullable();
+            $table->string('work_sheet_implement_by')->nullable();
+            $table->tinyInteger('work_sheet_contract')->nullable();
+            $table->integer('work_sheet_vendor_id')->nullable();
+            $table->string('work_sheet_implementor')->nullable();
+            $table->string('work_sheet_picture')->nullable();
         });
     }
 

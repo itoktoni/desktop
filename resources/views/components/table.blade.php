@@ -5,23 +5,21 @@ $.ajaxSetup({
     }
 });
 
-function showModal(url) {
-
+function showModal(url, size) {
+    size = (typeof size == 'undefined' || size == '') ? 'modal-lg' : size;
     $.ajax({
         url: url,
-        beforeSend: function() {
-            $('#loader').show();
-        },
-        // return the result
         success: function(response) {
+
             $('#modal-body').html(response);
             $('#modal').modal({
                 backdrop: 'static',
                 keyboard: false
             });
+            $('.modal-dialog').addClass(size);
         },
         complete: function() {
-            $('#loader').hide();
+            // $('#loader').hide();
         },
         error: function(jqXHR, testStatus, error) {
             console.log(error);
@@ -34,12 +32,12 @@ function showModal(url) {
 
 $('body').on('click', '.button-update', function(event) {
     event.preventDefault();
-    showModal($(this).attr('href'));
+    showModal($(this).attr('href'), $(this).attr('size'));
 });
 
 $('body').on('click', '.button-create', function(event) {
     event.preventDefault();
-    showModal($(this).attr('href'));
+    showModal($(this).attr('href'), $(this).attr('size'));
 });
 
 $('body').on('click', '.button-delete', function(event) {
@@ -51,8 +49,8 @@ $('body').on('click', '.button-delete', function(event) {
         csrf_token = $('meta[name="csrf-token"]').attr('content');
 
     swal({
-        title: 'Are you sure want to delete this data ?',
-        text: 'You won\'t be able to revert this!',
+        title: '{{ __("Are you sure want to delete this data ?") }}',
+        text: '{{ __("You not be able to revert this!") }}',
         icon: "warning",
         buttons: true,
     }).then((result) => {
@@ -68,8 +66,8 @@ $('body').on('click', '.button-delete', function(event) {
                     if (response.status) {
                         swal({
                             icon: 'success',
-                            title: 'Success!',
-                            text: 'Data has been deleted!',
+                            title: '{{ __("Success!") }}',
+                            text: '{{ __("Data has been deleted!") }}',
                             timer: 3000
                         }).then(function() {
                             window.location.reload();
@@ -78,14 +76,14 @@ $('body').on('click', '.button-delete', function(event) {
                     } else if (response.status == false) {
                         swal({
                             icon: 'error',
-                            title: 'Error!',
+                            title: '{{ __("Error!") }}',
                             text: response.data
                         });
                     } else {
                         swal({
                             icon: 'error',
-                            title: 'Error!',
-                            text: 'Data failed to deleted!'
+                            title: '{{ __("Error!") }}',
+                            text: '{{ __("Data failed to deleted!") }}'
                         });
                     }
                 },
@@ -96,13 +94,13 @@ $('body').on('click', '.button-delete', function(event) {
                         swal({
                             icon: 'error',
                             title: 'Oops...',
-                            text: 'Validation Error !'
+                            text: '{{ __("Validation Error !") }}'
                         });
                     } else {
                         swal({
                             icon: 'error',
                             title: 'Oops...',
-                            text: 'Something went wrong!'
+                            text: '{{ __("Something went wrong!") }}'
                         });
                     }
                 }

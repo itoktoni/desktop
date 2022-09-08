@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Transaction;
 use App\Dao\Enums\TicketStatus;
 use App\Dao\Enums\WorkStatus;
 use App\Dao\Enums\RoleType;
+use App\Dao\Enums\TicketContract;
 use App\Dao\Models\Product;
+use App\Dao\Models\Supplier;
 use App\Dao\Models\TicketSystem;
 use App\Dao\Models\User;
 use App\Dao\Models\WorkType;
@@ -40,12 +42,34 @@ class WorkSheetController extends MasterController
         return $user->pluck(User::field_name(), User::field_primary());
     }
 
+    private function getProduct()
+    {
+        $product = Product::with(['has_location'])->get()
+            ->mapWithKeys(function ($item) {
+                $name = $item->has_location->field_name . ' - ' . $item->field_name;
+                $id = $item->field_primary . '';
+                return [$id => $name];
+            });
+
+        return $product;
+    }
+
+    private function getImplementor($model)
+    {
+        $implementor = $model
+            ->where(User::field_role(), RoleType::Pelaksana)
+            ->pluck(User::field_name(), User::field_primary());
+        return $implementor;
+    }
+
     protected function share($data = [])
     {
         $work_type = WorkType::optionBuild();
-        $product = Product::optionBuild();
         $user = User::optionBuild(true);
         $status = WorkStatus::getOptions();
+        $contract = TicketContract::getOptions();
+        $vendor = Supplier::optionBuild();
+
         $ticket = TicketSystem::optionBuild(true)
             ->where(TicketSystem::field_status(), '!=', TicketStatus::Close)->mapWithKeys(function ($item) {
             return [$item->{TicketSystem::field_primary()} => Views::uiiShort($item->{TicketSystem::field_primary()}) . ' - ' . $item->{TicketSystem::field_name()}];
@@ -60,12 +84,16 @@ class WorkSheetController extends MasterController
 
         $view = [
             'work_type' => $work_type,
-            'product' => $product,
+            'product' => $this->getProduct(),
             'data_ticket' => $data_ticket,
             'ticket' => $ticket,
             'user' => $this->getUser($user),
             'model' => false,
             'status' => $status,
+            'contract' => $contract,
+            'vendor' => $vendor,
+            'implementor' => $this->getImplementor($user),
+
         ];
 
         return self::$share = array_merge($view, $data, self::$share);

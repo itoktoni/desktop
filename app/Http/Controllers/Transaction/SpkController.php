@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Transaction;
 use App\Dao\Enums\SpkStatus;
 use App\Dao\Models\WorkSheet;
 use App\Dao\Models\Product;
+use App\Dao\Models\Supplier;
 use App\Dao\Repositories\SpkRepository;
 use App\Http\Controllers\System\MasterController;
 use App\Http\Requests\SpkRequest;
@@ -30,16 +31,30 @@ class SpkController extends MasterController
         $product = Product::optionBuild();
         $product = Product::optionBuild();
         $status = SpkStatus::getOptions();
+        $vendor = Supplier::optionBuild();
 
         $view = [
             'work_sheet' => $work_sheet,
             'product' => $product,
-            'product' => $product,
+            'product' => $this->getProduct(),
             'status' => $status,
+            'vendor' => $vendor,
             'model' => false,
         ];
 
         return self::$share = array_merge($view, $data, self::$share);
+    }
+
+    private function getProduct()
+    {
+        $product = Product::with(['has_location'])->get()
+            ->mapWithKeys(function ($item) {
+                $name = $item->has_location->field_name . ' - ' . $item->field_name;
+                $id = $item->field_primary . '';
+                return [$id => $name];
+            });
+
+        return $product;
     }
 
     public function getCreate()

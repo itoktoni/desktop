@@ -10,7 +10,7 @@
 	<button type="submit" class="btn btn-primary" id="modal-btn-save">{{ __('Save') }}</button>
 	@if($model)
 	<a target="_blank" href="{{ route(SharedData::get('route').'.getPdf', ['code' => $model->field_primary]) }}"
-		class="btn btn-danger">Print PDF</a>
+		class="btn btn-danger">{{ __('Print PDF') }}</a>
 	@endif
 </div>
 @endsection
@@ -34,82 +34,75 @@
 
 			<div class="col-md-6">
 				<div class="row">
-					<div class="col-md-6">
+					@if(env('TICKET_DEPARTMENT', true))
+					<div class="col-md-12">
 						<div class="form-group {{ $errors->has('ticket_system_department_id') ? 'has-error' : '' }}">
-							<label>Department</label>
+							<label>{{ __('Department') }}</label>
 							{!! Form::select('ticket_system_department_id', $department, null, ['class' =>
 							'form-control', 'id'
 							=> 'ticket_system_department_id', 'placeholder' => '- Select Department -', 'required']) !!}
 						</div>
 					</div>
+					@endif
 
-					<div class="col-md-6">
+					@if(env('TICKET_TOPIC', true))
+					<div class="col-md-12">
 						<div class="form-group {{ $errors->has('ticket_system_topic_id') ? 'has-error' : '' }}">
-							<label>Topic</label>
+							<label>{{ __('Topic') }}</label>
 							{!! Form::select('ticket_system_topic_id', $ticket_topic, null, ['class' => 'form-control',
 							'id' =>
 							'ticket_system_topic_id', 'placeholder' => '- Select work Type -', 'required']) !!}
 						</div>
 					</div>
-				</div>
-
-				<div class="form-group {{ $errors->has('ticket_system_name') ? 'has-error' : '' }}">
-					<label>Subject</label>
-					{!! Form::text('ticket_system_name', null, ['class' => 'form-control', 'id' => 'ticket_system_name',
-					'placeholder' => 'Please fill this input', 'required']) !!}
-					{!! $errors->first('ticket_system_name', '<p class="help-block">:message</p>') !!}
+					@endif
 				</div>
 
 				<div class="form-group {{ $errors->has('ticket_system_description') ? 'has-error' : '' }}">
 					<label>{{ __('Description') }}</label>
-					{!! Form::textarea('ticket_system_description', null, ['class' => 'form-control h-auto', 'id' =>
-					'ticket_system_description', 'placeholder' => 'Please fill this input', 'rows' => 9]) !!}
+					{!! Template::textarea('ticket_system_description', null, 9) !!}
 				</div>
 
-				<div class="form-group {{ $errors->has('ticket_system_description') ? 'has-error' : '' }}">
-					<label for="cameraFileInput">
-						{!! Template::isMobile() ? '<span class="btn btn-success">Ambil Gambar</span>' : '' !!}
-						<input id="cameraFileInput" style="{!! Template::isMobile() ? 'display:none' : '' !!}" name="file_picture" type="file" accept="image/*" capture="environment" />
-					</label>
-
-					<img class="img-fluid" src="{{ $model ? asset('storage/ticket/'.$model->field_picture) : '' }}" id="pictureFromCamera" />
+				<div class="form-group {{ $errors->has('ticket_system_location_id') ? 'has-error' : '' }}">
+					<label>{{ __('Location') }}</label>
+					{!! Form::select('ticket_system_location_id', $location, null, ['class' => 'form-control',
+					'placeholder' =>
+					'- Select Location -']) !!}
 				</div>
 
 			</div>
 
 			<div class="col-md-6">
 
-				<div class="form-group {{ $errors->has('work_sheet_reported_at') ? 'has-error' : '' }}">
-					<label>{{ __('Report') }} Date</label>
-					{!! Form::text('ticket_system_reported_at', null, ['class' => 'form-control date', 'id' =>
-					'ticket_system_reported_at', 'placeholder' => 'Please fill this input', 'required']) !!}
-					{!! $errors->first('ticket_system_reported_at', '<p class="help-block">:message</p>') !!}
-				</div>
-
-				<div class="form-group">
-					<label>Reported By</label>
-					{!! Form::select('ticket_system_reported_by', $user, auth()->user()->id ?? null, ['class' =>
-					'form-control',
-					'placeholder' => '-
-					Select User -']) !!}
-				</div>
-
-				<div class="form-group">
-					<label>Location</label>
-					{!! Form::select('ticket_system_location_id', $location, null, ['class' => 'form-control',
-					'placeholder' =>
-					'- Select Location -']) !!}
+				<div class="row">
+					<div class="col-md-5">
+						<div class="form-group {{ $errors->has('work_sheet_reported_at') ? 'has-error' : '' }}">
+							<label>{{ __('Reported Date') }}</label>
+							{!! Form::text('ticket_system_reported_at', date('Y-m-d') ?? null, ['class' => 'form-control
+							date', 'id' =>
+							'ticket_system_reported_at', 'placeholder' => 'Date', 'required']) !!}
+							{!! $errors->first('ticket_system_reported_at', '<p class="help-block">:message</p>') !!}
+						</div>
+					</div>
+					<div class="col-md-7">
+						<div class="form-group">
+							<label>{{ __('Reported By') }}</label>
+							{!! Form::select('ticket_system_reported_by', $user, auth()->user()->id ?? null, ['class' =>
+							'form-control',
+							'placeholder' => '-
+							Select User -']) !!}
+						</div>
+					</div>
 				</div>
 
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-5">
 						<div class="form-group {{ $errors->has('ticket_system_status') ? 'has-error' : '' }}">
 							<label>Status</label>
 							{!! Form::select('ticket_system_status', $status, null, ['class' => 'form-control', 'id' =>
 							'ticket_system_status', 'placeholder' => '- Select Status -']) !!}
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-7">
 						<div class="form-group {{ $errors->has('ticket_system_priority') ? 'has-error' : '' }}">
 							<label>Priority</label>
 							{!! Form::select('ticket_system_priority', $priority, null, ['class' => 'form-control', 'id'
@@ -118,19 +111,20 @@
 						</div>
 					</div>
 				</div>
-				@if(isset($model))
-				<div class="row">
-					<div class="col-md-12">
-						<div class="form-group">
-							<label>Pilih Pelaksana</label>
-							{!! Form::select('ticket_system_implementor[]', $implementor, $model->field_implementor ??
-							null,
-							['class' => 'form-control',
-							'multiple', 'data-placeholder' => 'Pilih Pelaksana']) !!}
-						</div>
-					</div>
+
+				<div class="form-group {{ $errors->has('file_picture') ? 'has-error' : '' }}">
+					<label for="">{{ __('Take Picture') }}</label>
+
+					<input id="cameraFileInput" style="{!! Template::isMobile() ? 'display:none' : '' !!}"
+						name="file_picture" type="file" accept="image/*" class="btn btn-default btn-block btn-sm"
+						capture="environment" />
+
+					<input type="hidden" name="file_old" value="{{ $model->field_picture ?? null }}">
+
+					<img class="img-fluid"
+						src="{{ $model && $model->field_picture ? asset('storage/ticket/'.$model->field_picture) : asset('images/picture.png') }}"
+						id="pictureFromCamera" />
 				</div>
-				@endif
 
 			</div>
 		</div>
@@ -139,17 +133,127 @@
 
 {!! Template::form_close() !!}
 
+@if($model)
+{!! Template::form_open($model, 'postUpdateWorksheet') !!}
+
+<div class="card">
+	<div class="card-body">
+		<div class="row">
+
+			<div class="col-md-2">
+				<div class="form-group">
+					{!! Form::select('contract', $contract, null, ['class' => 'form-control contract']) !!}
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="form-group pelaksana">
+					{!! Form::select('implementor[]', $implementor,
+					null,
+					['class' => 'form-control',
+					'multiple', 'data-placeholder' => 'Pilih Pelaksana']) !!}
+				</div>
+
+				<div class="form-group vendor">
+					{!! Form::select('work_sheet_vendor_id', $vendor, null,
+					['class' => 'form-control',
+					'placeholder' => '- Pilih Vendor -']) !!}
+				</div>
+			</div>
+
+			<div class="col-md-2">
+				<div class="form-group">
+					{!! Form::select('type', $type, env('TICKET_WORKSHEET'),
+					['class' => 'form-control',
+					'placeholder' => '- Pilih Type -']) !!}
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="form-group">
+					{!! Form::select('product', $product, null,
+					['class' => 'form-control',
+					'placeholder' => '- Pilih Product -']) !!}
+				</div>
+			</div>
+			<div class="col-md-1">
+				<div class="d-flex justify-content-end">
+					<button type="submit" class="btn btn-success " id="modal-btn-success">{{ __('Create') }}
+					</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+{!! Template::form_close() !!}
+@endif
+
+@if($worksheet)
+<div class="card">
+	<div class="card-body">
+		<div class="row">
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th class="text-left column-action">{{ __('Code') }}</th>
+							<th class="text-left column-action">{{ __('Kontrak') }}</th>
+							<th class="text-left column-action">{{ __('Status') }}</th>
+							<th class="text-left column-action">{{ __('Reported At') }}</th>
+							<th class="text-left column-action">{{ __('Updated Task') }}</th>
+							<th class="text-left column-action">{{ __('Impelement By') }}</th>
+							<th class="text-center column-action">{{ __('Action') }}</th>
+						</tr>
+					</thead>
+					<tbody>
+						@forelse($worksheet as $table)
+						<tr>
+							<td class=""><a style="" href="{{ route('work_sheet.getUpdate', ['code' => $table->field_primary] ) }}"><u>{{ Views::uiiShort($table->field_primary) }}</u></a></td>
+							<td class="">{{ TicketContract::getDescription($table->field_contract) }}</td>
+							<td class="">{{ WorkStatus::getDescription($table->field_status) }}</td>
+							<td class="">{{ $table->field_reported_at }}</td>
+							<td class="">{{ $table->field_updated_at }}</td>
+							<td class="">
+								@if($table->field_contract == TicketContract::Kontrak)
+								{{ $table->has_vendor->field_name ?? '' }}
+								@else
+								{{ $table->has_implementor->field_name ?? '' }}
+								@endif
+							</td>
+							<td class="col-md-2 text-center column-action">
+								<a size="modal-xl" class="badge badge-primary button-update"
+									href="{{ route('work_sheet.getUpdate', ['code' => $table->field_primary]) }}">
+									{{ __('Update') }}
+								</a>
+								<a class="badge badge-danger button-delete" data="{{ $table->field_primary }}"
+									href="{{ route('work_sheet.postDelete', ['code' => $table->field_primary]) }}">
+									{{ __('Delete') }}
+								</a>
+							</td>
+						</tr>
+						@empty
+						@endforelse
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+@endif
+
 @endsection
 
 @push('javascript')
 @include(Template::components('form'))
 @include(Template::components('date'))
+@include(Template::components('table'))
 
 <style>
-
 #pictureFromCamera {
 	width: 100%;
-	height: auto;
+	height: 10px;
 	margin-top: 16px;
 }
 
@@ -168,8 +272,6 @@
 }
 </style>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
-
 <!-- Configure a few settings and attach camera -->
 <script language="JavaScript">
 document
@@ -178,7 +280,33 @@ document
 		document
 			.getElementById("pictureFromCamera")
 			.setAttribute("src", window.URL.createObjectURL(this.files[0]));
+		document
+			.getElementById("pictureFromCamera")
+			.style.height = 'auto';
 	});
+
+function contract(data) {
+	if (typeof data === "undefined") {
+		$(".vendor").show();
+		$(".pelaksana").hide();
+	} else if (data == '1') {
+		$(".vendor").show();
+		$(".pelaksana").hide();
+	} else {
+		$(".pelaksana").show();
+		$(".vendor").hide();
+	}
+}
+
+$(document).ready(function() {
+	var data = $(".contract option:selected").val();
+	contract(data);
+
+	$('body').on('change', '.contract', function() {
+		contract(this.value);
+	});
+
+});
 </script>
 
 @endpush

@@ -1,11 +1,9 @@
 <?php
 
 namespace App\Http\Requests;
-use App\Dao\Models\TicketSystem;
 
 use App\Dao\Traits\ValidationTrait;
 use Illuminate\Foundation\Http\FormRequest;
-use Ramsey\Uuid\Uuid;
 
 class TicketSystemRequest extends FormRequest
 {
@@ -18,12 +16,28 @@ class TicketSystemRequest extends FormRequest
         ]);
     }
 
-    public function validation() : array
+    public function validation(): array
     {
-        return [
+        $validation = [
             'ticket_system_description' => 'required',
-            'ticket_system_topic_id' => 'required',
-            'ticket_system_department_id' => 'required',
         ];
+
+        if (env('TICKET_DEPARTMENT', true)) {
+            $validation = array_merge($validation, [
+                'ticket_system_department_id' => 'required',
+            ]);
+        }
+        if (env('TICKET_TOPIC', true)) {
+            $validation = array_merge($validation, [
+                'ticket_system_topic_id' => 'required',
+            ]);
+        }
+        if (env('TICKET_NAME', true)) {
+            $validation = array_merge($validation, [
+                'ticket_system_name' => 'required',
+            ]);
+        }
+
+        return $validation;
     }
 }
