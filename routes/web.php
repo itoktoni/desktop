@@ -18,11 +18,16 @@ use Buki\AutoRoute\AutoRouteFacade as AutoRoute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Plugins\Template;
 
 Route::get('/', function () {
     return redirect('home');
+
+    $browser = $_SERVER['HTTP_USER_AGENT'];
+    Log::info($browser);
+
 })->name('one');
 
 Route::get('debug', function () {
