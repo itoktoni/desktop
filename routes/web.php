@@ -23,10 +23,11 @@ use Illuminate\Support\Facades\Route;
 use Plugins\Template;
 
 Route::get('/', function () {
-    return redirect('home');
 
     $browser = $_SERVER['HTTP_USER_AGENT'];
     Log::info($browser);
+
+    return redirect('home');
 
 })->name('one');
 
