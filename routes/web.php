@@ -24,9 +24,6 @@ use Plugins\Template;
 
 Route::get('/', function () {
 
-    $browser = $_SERVER['HTTP_USER_AGENT'];
-    Log::info($browser);
-
     return redirect('home');
 
 })->name('one');

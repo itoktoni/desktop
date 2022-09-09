@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $browser = $_SERVER['HTTP_USER_AGENT'];
+        Log::info($browser);
+
         if(auth()->check() && auth()->user()->active == false){
             return redirect()->to('/');
         }
