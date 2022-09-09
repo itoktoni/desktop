@@ -65,7 +65,7 @@
 				<div class="row">
 
 					<div class="col-md-4">
-						<div class="form-group {{ $errors->has('ticket_system_location_id') ? 'has-error' : '' }}">
+						<div class="form-group {{ $errors->has('ticket_system_work_type_id') ? 'has-error' : '' }}">
 							<label>{{ __('Type') }}</label>
 							{!! Form::select('ticket_system_work_type_id', $work_type,
 							$model->ticket_system_work_type_id ?? env('TICKET_WORKSHEET'), ['class' => 'form-control',
