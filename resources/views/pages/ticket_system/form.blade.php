@@ -135,6 +135,11 @@
 				<div class="form-group {{ $errors->has('file_picture') ? 'has-error' : '' }}">
 					<label for="">{{ __('Take Picture') }}</label>
 
+					<label for="cameraFileInput">
+						{!! Template::isMobile() ? '<span class="btn btn-success">Ambil Gambar</span>' : '' !!}
+						<input id="cameraFileInput" style="{!! Template::isMobile() ? 'display:none' : '' !!}" name="file_picture" type="file" accept="image/*" capture="environment" />
+					</label>
+
 					<input id="cameraFileInput" style="{!! Template::isMobile() ? 'display:none' : '' !!}"
 						name="file_picture" type="file" accept="image/*" class="btn btn-default btn-block"
 						capture="environment" />
