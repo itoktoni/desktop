@@ -52,9 +52,9 @@ class CreateTicketListener
         }
 
         if($phone_from){
-            WhatsApp::send($phone_from, $event->data->field_description);
+            WhatsApp::send($phone_from, $event->data->field_description, asset('storage/ticket/'.$event->data->field_picture));
             if($phone_to){
-                WhatsApp::send($phone_to, $event->data->field_description);
+                WhatsApp::send($phone_to, $event->data->field_description, asset('storage/ticket/'.$event->data->field_picture));
             }
         }
     }

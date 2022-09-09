@@ -28,6 +28,41 @@ Route::get('/', function () {
 
 })->name('one');
 
+Route::get('wa', function(){
+    $api_key   = '0e8c5fe9c8005932fbb05c0f6b817665daa293f7'; // API KEY Anda
+$id_device = '7211'; // ID DEVICE yang di SCAN (Sebagai pengirim)
+$url   = 'https://api.watsap.id/send-media'; // URL API
+$no_hp = '08111040159'; // No.HP yang dikirim (No.HP Penerima)
+$pesan = '😁 Halo Terimakasih 🙏'; // Caption/Keterangan Gambar
+$tipe  = 'image'; // Tipe Pesan Media Gambar
+$link  = 'https://domain.com/gambarnya.jpg'; // Link atau URL FILE MEDIA (.jpg, .jpeg, .png)
+
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_URL, $url);
+curl_setopt($curl, CURLOPT_HEADER, 0);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+curl_setopt($curl, CURLOPT_MAXREDIRS, 10);
+curl_setopt($curl, CURLOPT_TIMEOUT, 0); // batas waktu response
+curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+curl_setopt($curl, CURLOPT_POST, 1);
+
+$data_post = [
+   'id_device' => $id_device,
+   'api-key' => $api_key,
+   'no_hp'   => $no_hp,
+   'pesan'   => $pesan,
+   'tipe'    => $tipe,
+   'link'    => $link
+];
+curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data_post));
+curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+$response = curl_exec($curl);
+curl_close($curl);
+echo $response;
+});
+
 Route::get('debug', function () {
     echo $_SERVER['HTTP_USER_AGENT'];
     echo '<br>';

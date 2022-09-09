@@ -4,13 +4,14 @@ namespace Plugins;
 
 class WhatsApp
 {
-    public static function send($number, $message)
+    public static function send($number, $message, $image = false)
     {
         $api_key = env('WA_KEY'); // API KEY Anda
         $id_device = env('WA_DEVICE'); // ID DEVICE yang di SCAN (Sebagai pengirim)
-        $url = env('WA_URL'); // URL API
+        $url = $image ? env('WA_URL').'/send-media' : env('WA_URL').'/send-message'; // URL API
         $no_hp = $number; // No.HP yang dikirim (No.HP Penerima)
         $pesan = $message; // Pesan yang dikirim
+        $tipe = 'image'; // Tipe Pesan Media Gambar
 
         try {
             $curl = curl_init();
@@ -30,6 +31,14 @@ class WhatsApp
                 'no_hp' => $no_hp,
                 'pesan' => $pesan,
             ];
+
+            if($image){
+                $data_post = array_merge($data_post, [
+                    'tipe' => $tipe,
+                    'link' => $image,
+                    ]);
+                }
+
             curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data_post));
             curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
             $response = curl_exec($curl);
