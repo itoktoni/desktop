@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Plugins\Template;
 
 class HomeController extends Controller
 {
@@ -25,7 +26,10 @@ class HomeController extends Controller
     public function index()
     {
         $browser = $_SERVER['HTTP_USER_AGENT'];
-        Log::info($browser);
+
+        $mobile = Template::isMobile();
+
+        Log::info($mobile);
 
         if(auth()->check() && auth()->user()->active == false){
             return redirect()->to('/');

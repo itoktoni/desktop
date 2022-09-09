@@ -69,7 +69,7 @@ class Template
     public static function isMobile()
     {
         $ua = strtolower($_SERVER["HTTP_USER_AGENT"]);
-        return $isMob = is_numeric(strpos($ua, "mobile"));
+        return is_numeric(strpos($ua, "Mobile"));
     }
 
     public static function tableResponsive()
