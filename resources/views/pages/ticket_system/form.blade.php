@@ -133,16 +133,17 @@
 				</div>
 
 				<div class="form-group {{ $errors->has('file_picture') ? 'has-error' : '' }}">
-					<label for="">{{ __('Take Picture') }}</label>
-
+					@if(Template::isMobile())
 					<label for="cameraFileInput">
-						{!! Template::isMobile() ? '<span class="btn btn-success">Ambil Gambar</span>' : '' !!}
-						<input id="cameraFileInput" style="{!! Template::isMobile() ? 'display:none' : '' !!}" name="file_picture" type="file" accept="image/*" capture="environment" />
+						<span class="btn btn-success">Ambil Gambar</span>
+						<input id="cameraFileInput" style="{!! Template::isMobile() ? 'display:none' : '' !!}"
+							name="file_picture" type="file" accept="image/*" capture="environment" />
 					</label>
-
-					<input id="cameraFileInput" style="{!! Template::isMobile() ? 'display:none' : '' !!}"
-						name="file_picture" type="file" accept="image/*" class="btn btn-default btn-block"
-						capture="environment" />
+					@else
+					<label for="">{{ __('Take Picture') }}</label>
+					<input id="cameraFileInput" name="file_picture" type="file" accept="image/*"
+						class="btn btn-default btn-block" capture="environment" />
+					@endif
 
 					<input type="hidden" name="file_old" value="{{ $model->field_picture ?? null }}">
 
