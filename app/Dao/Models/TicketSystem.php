@@ -191,13 +191,13 @@ class TicketSystem extends Model
                 $file_logo->storeAs('public/ticket/', $name);
                 $model->{TicketSystem::field_picture()} = $name;
 
-                if (request()->has('file_old')) {
-                    $path = public_path('storage//ticket//');
-                    $old = request()->get('file_old');
-                    if (file_exists($path . $old)) {
-                        unlink($path . $old);
-                    }
-                }
+                // if (request()->has('file_old')) {
+                //     $path = public_path('storage//ticket//');
+                //     $old = request()->get('file_old');
+                //     if (file_exists($path . $old)) {
+                //         unlink($path . $old);
+                //     }
+                // }
             }
         });
 
