@@ -47,6 +47,12 @@
 					'work_sheet_product_id', 'placeholder' => '- Select Product -', 'required']) !!}
 				</div>
 
+				<div class="form-group {{ $errors->has('work_sheet_location_id') ? 'has-error' : '' }}">
+					<label>{{ __('Location') }}</label>
+					{!! Form::select('work_sheet_location_id', $location, null, ['class' => 'form-control',
+					'placeholder' => '- Select Location -']) !!}
+				</div>
+
 				<div class="row">
 
 					<div class="col-md-6">
@@ -62,7 +68,8 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>{{ __('Contact') }}</label>
-							{!! Form::select('work_sheet_contract', $contract, null, ['class' => 'form-control contract']) !!}
+							{!! Form::select('work_sheet_contract', $contract, null, ['class' => 'form-control
+							contract']) !!}
 						</div>
 					</div>
 
@@ -72,7 +79,8 @@
 					<div class="col-md-12">
 						<div class="form-group pelaksana">
 							<label>{{ __('Implementor') }}</label>
-							{!! Form::select('implementor[]', $implementor, $model ? json_decode($model->field_implementor) :
+							{!! Form::select('implementor[]', $implementor, $model ?
+							json_decode($model->field_implementor) :
 							null,
 							['class' => 'form-control',
 							'multiple', 'data-placeholder' => 'Pilih Pelaksana']) !!}
@@ -128,7 +136,7 @@
 					<label>{{ __('Description') }}</label>
 					{!! Form::textarea('work_sheet_description', null, ['class' => 'form-control h-auto', 'id' =>
 					'work_sheet_description',
-					'placeholder' => 'Please fill this input', 'rows' => 5]) !!}
+					'placeholder' => 'Please fill this input', 'rows' => 9]) !!}
 				</div>
 
 				<div class="form-group {{ $errors->has('file_picture') ? 'has-error' : '' }}">
@@ -196,7 +204,7 @@ $(document).ready(function() {
 	contract(data);
 });
 
-function contract(data){
+function contract(data) {
 	if (typeof data == "undefined") {
 		$(".vendor").show();
 		$(".pelaksana").hide();
@@ -219,7 +227,6 @@ document
 			.getElementById("pictureFromCamera")
 			.style.height = 'auto';
 	});
-
 </script>
 
 @endpush

@@ -156,6 +156,18 @@ class Template
         ]);
     }
 
+    public static function form_report($action = false)
+    {
+        $name = $action ? SharedData::get('route') . '.' . $action : SharedData::get('route') . '.getPrint';
+        return Form::open([
+            'url' => route($name),
+            'class' => 'form-horizontal needs-validation',
+            'novalidate',
+            'method' => 'GET',
+            'target' => '_blank'
+        ]);
+    }
+
     public static function form_open($model, $action = false)
     {
         if ($model) {
@@ -185,12 +197,12 @@ class Template
         return Form::close();
     }
 
-    public static function text($name, $value = null)
+    public static function text($name, $label = null, $value = null)
     {
         return Form::text($name, $value, [
             'class' => 'form-control',
             'id' => 'brand_name',
-            'placeholder' => 'Please fill this input',
+            'placeholder' => __($label) ?? __('Please fill this input'),
         ]);
     }
 

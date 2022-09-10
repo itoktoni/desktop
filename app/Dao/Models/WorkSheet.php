@@ -45,6 +45,7 @@ class WorkSheet extends Model
         'work_sheet_implement_by',
         'work_sheet_ticket_code',
         'work_sheet_product_id',
+        'work_sheet_location_id',
         'work_sheet_reported_at',
         'work_sheet_reported_by',
         'work_sheet_created_at',
@@ -122,6 +123,11 @@ class WorkSheet extends Model
     public function has_implementor()
     {
         return $this->hasOne(User::class, User::field_primary(), self::field_implement_by());
+    }
+
+    public function has_location()
+    {
+        return $this->hasOne(Location::class, Location::field_primary(), self::field_location_id());
     }
 
     public function has_ticket()

@@ -6,14 +6,13 @@
 
 @section('action')
 <div class="button">
-	<button type="submit" class="btn btn-primary" id="modal-btn-save">{{ __('Save') }}</button>
+	<button type="submit" class="btn btn-primary" id="modal-btn-save">{{ __('Generate') }}</button>
 </div>
 @endsection
 
 @section('container')
 
-{!! Form::open(['url' => route(SharedData::get('route').'.getPrint'), 'class' => 'form-horizontal needs-validation',
-'method' => 'GET']) !!}
+{!! Template::form_report() !!}
 
 @if(!request()->ajax())
 <div class="page-header">
@@ -31,9 +30,8 @@
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('start_date') ? 'has-error' : '' }}">
 					<label>{{ __('Start Date') }}</label>
-					{!! Form::text('start_date', null, ['class' => 'form-control date', 'id' => 'start_date',
-					'placeholder'
-					=> 'Please fill this input', 'required']) !!}
+					{!! Form::text('start_date', null, ['class' => 'form-control date',
+						'id' => 'start_date', 'placeholder' => __('Start Date'), 'required']) !!}
 					{!! $errors->first('start_date', '<p class="help-block">:message</p>') !!}
 				</div>
 			</div>
@@ -41,15 +39,14 @@
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('end_date') ? 'has-error' : '' }}">
 					<label>{{ __('End Date') }}</label>
-					{!! Form::text('end_date', null, ['class' => 'form-control date', 'id' => 'end_date', 'placeholder'
-					=> 'Please fill this input', 'required']) !!}
-					{!! $errors->first('end_date', '<p class="help-block">:message</p>') !!}
+					{!! Form::text('end_date', null, ['class' => 'form-control date',
+						'id' => 'end_date', 'placeholder' => __('End Date'), 'required']) !!}
 				</div>
 			</div>
 
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('ticket_system_topic_id') ? 'has-error' : '' }}">
-					<label>Work Type</label>
+					<label>{{ __('Work Type') }}</label>
 					{!! Form::select('work_sheet_type_id', $work_type, null, ['class' => 'form-control', 'id' =>
 					'work_sheet_type_id', 'placeholder' => '- Select Status -']) !!}
 				</div>

@@ -72,7 +72,6 @@ class ScheduleController extends MasterController
     public function postCreate(ScheduleRequest $request, CreateScheduleService $service)
     {
         $data = $service->save(self::$repository, $request);
-        dd($data);
         return Response::redirectBack($data);
     }
 

@@ -10,6 +10,7 @@ use App\Dao\Models\Department;
 use App\Dao\Models\Location;
 use App\Dao\Models\Product;
 use App\Dao\Models\Supplier;
+use App\Dao\Models\TicketSystem;
 use App\Dao\Models\TicketTopic;
 use App\Dao\Models\User;
 use App\Dao\Models\WorkType;
@@ -23,6 +24,8 @@ use App\Http\Services\UpdateTicketService;
 use App\Http\Services\UpdateTicketWorksheetService;
 use Barryvdh\DomPDF\Facade as PDF;
 use Coderello\SharedData\Facades\SharedData;
+use Illuminate\Http\Request;
+use Plugins\Query;
 use Plugins\Response;
 use Plugins\Template;
 
@@ -64,18 +67,6 @@ class TicketSystemController extends MasterController
         return $location;
     }
 
-    private function getProduct()
-    {
-        $product = Product::with(['has_location'])->get()
-            ->mapWithKeys(function ($item) {
-                $name = $item->has_location->field_name . ' - ' . $item->field_name;
-                $id = $item->field_primary . '';
-                return [$id => $name];
-            });
-
-        return $product;
-    }
-
     protected function share($data = [])
     {
         $ticket_topic = TicketTopic::optionBuild();
@@ -89,7 +80,7 @@ class TicketSystemController extends MasterController
         $priority = TicketPriority::getOptions();
         $contract = TicketContract::getOptions();
 
-        $product = $this->getProduct();
+        $product = Query::getProduct();
 
         $view = [
             'ticket_topic' => $ticket_topic,

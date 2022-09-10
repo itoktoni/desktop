@@ -26,6 +26,7 @@ class UpdateTicketWorksheetService
                 WorkSheet::field_name() => $data->get('name') ?? null,
                 WorkSheet::field_contract() => $data->get('contract') ?? null,
                 WorkSheet::field_product_id() => $data->get('product') ?? null,
+                WorkSheet::field_location_id() => $check->{TicketSystem::field_location_id()} ?? null,
                 WorkSheet::field_reported_at() => date('Y-m-d H:i:s'),
                 WorkSheet::field_reported_by() => $check->field_reported_by ?? null,
             ];

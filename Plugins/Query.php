@@ -2,6 +2,8 @@
 
 namespace Plugins;
 
+use App\Dao\Models\Location;
+use App\Dao\Models\Product;
 use Illuminate\Support\Facades\DB;
 
 class Query
@@ -33,5 +35,28 @@ class Query
         }
         $newcode = $prefix . str_pad($countcode, $codelength - strlen($prefix), "0", STR_PAD_LEFT);
         return $newcode;
+    }
+
+    public static function getProduct()
+    {
+        $product = Product::with(['has_location'])->get()
+            ->mapWithKeys(function ($item) {
+                $name = $item->has_location->field_name . ' - ' . $item->field_name;
+                $id = $item->field_primary . '';
+                return [$id => $name];
+            });
+
+        return $product;
+    }
+
+    public static function getLocation(){
+        $location = Location::with(['has_building'])->get()
+            ->mapWithKeys(function ($item) {
+                $name = $item->has_building->field_name . ' - ' . $item->field_name;
+                $id = $item->field_primary . '';
+                return [$id => $name];
+            });
+
+        return $location;
     }
 }

@@ -1,20 +1,18 @@
 @extends(Template::master())
 
 @section('title')
-<h4>{{ __('Report') }} Product</h4>
+<h4>{{ __('Report') }} Tiket</h4>
 @endsection
 
 @section('action')
 <div class="button">
-	<button type="submit" name="type" value="report" class="btn btn-primary" id="modal-btn-save">{{ __('Generate') }}</button>
-	<button type="submit" name="type" value="barcode" class="btn btn-danger" id="modal-btn-save">{{ __('Print Label') }}</button>
+	<button type="submit" class="btn btn-primary" id="modal-btn-save">{{ __('Generate') }}</button>
 </div>
 @endsection
 
 @section('container')
 
-{!! Form::open(['url' => route(SharedData::get('route').'.getPrint'), 'class' => 'form-horizontal needs-validation',
-'method' => 'GET']) !!}
+{!! Template::form_report() !!}
 
 @if(!request()->ajax())
 <div class="page-header">
@@ -49,22 +47,24 @@
 			</div>
 
 			<div class="col-md-6">
-				<div class="form-group {{ $errors->has('ticket_system_department_id') ? 'has-error' : '' }}">
-					<label>Product</label>
-					{!! Form::select('product_data[]', $product, null, ['class' => 'form-control', 'id' =>
-					'work_sheet_product_id', 'multiple']) !!}
+				<div class="form-group {{ $errors->has('schedule_type') ? 'has-error' : '' }}">
+					<label>{{ __('Schedule Type') }}</label>
+					{!! Form::select('schedule_type', $type, null, ['class' => 'form-control', 'id' =>
+					'schedule_type', 'placeholder' => '- Select Status -']) !!}
 				</div>
 			</div>
 
 			<div class="col-md-6">
-				<div class="form-group {{ $errors->has('ticket_system_department_id') ? 'has-error' : '' }}">
-					<label>Location</label>
-					{!! Form::select('location', $location, null, ['class' => 'form-control', 'id' =>
-					'location', 'placeholder' => '- Select Location -']) !!}
+				<div class="form-group {{ $errors->has('schedule_user') ? 'has-error' : '' }}">
+					<label>User</label>
+					{!! Form::select('schedule_user', $user, null, ['class' => 'form-control', 'id'
+					=> 'schedule_user', 'placeholder' => '- Select User -']) !!}
 				</div>
 			</div>
 
 		</div>
+
+
 	</div>
 </div>
 

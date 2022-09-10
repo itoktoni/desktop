@@ -6,14 +6,13 @@
 
 @section('action')
 <div class="button">
-	<button type="submit" class="btn btn-primary" id="modal-btn-save">{{ __('Save') }}</button>
+	<button type="submit" class="btn btn-primary" id="modal-btn-save">{{ __('Generate') }}</button>
 </div>
 @endsection
 
 @section('container')
 
-{!! Form::open(['url' => route(SharedData::get('route').'.getPrint'), 'class' => 'form-horizontal needs-validation',
-'method' => 'GET']) !!}
+{!! Template::form_report() !!}
 
 @if(!request()->ajax())
 <div class="page-header">

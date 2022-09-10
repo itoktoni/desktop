@@ -20,6 +20,7 @@ use App\Http\Services\SingleService;
 use App\Http\Services\UpdateWorkSheetService;
 use Barryvdh\DomPDF\Facade as PDF;
 use Coderello\SharedData\Facades\SharedData;
+use Plugins\Query;
 use Plugins\Response;
 use Plugins\Template;
 use Plugins\Views;
@@ -69,6 +70,8 @@ class WorkSheetController extends MasterController
         $status = WorkStatus::getOptions();
         $contract = TicketContract::getOptions();
         $vendor = Supplier::optionBuild();
+        $product = Query::getProduct();
+        $location = Query::getLocation();
 
         $ticket = TicketSystem::optionBuild(true)
             ->where(TicketSystem::field_status(), '!=', TicketStatus::Close)->mapWithKeys(function ($item) {
@@ -84,13 +87,14 @@ class WorkSheetController extends MasterController
 
         $view = [
             'work_type' => $work_type,
-            'product' => $this->getProduct(),
             'data_ticket' => $data_ticket,
             'ticket' => $ticket,
             'user' => $this->getUser($user),
             'model' => false,
             'status' => $status,
             'contract' => $contract,
+            'location' => $location,
+            'product' => $product,
             'vendor' => $vendor,
             'implementor' => $this->getImplementor($user),
 

@@ -149,6 +149,16 @@ trait WorkSheetEntity
         return $this->{Product::field_name()};
     }
 
+    public static function field_location_id()
+    {
+        return 'work_sheet_location_id';
+    }
+
+    public function getFieldLocationNameAttribute()
+    {
+        return $this->{Location::field_name()};
+    }
+
     public static function field_vendor_id()
     {
         return 'work_sheet_vendor_id';
