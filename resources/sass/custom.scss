@@ -3,7 +3,7 @@ body{
 }
 
 .page-header{
-	z-index:9;
+	z-index:3;
 	.breadcrumb{
 		li{
 			&.breadcrumb-item{
@@ -203,6 +203,10 @@ a{
 			}
 		}
 	}
+}
+
+.header-action{
+	z-index:10;
 }
 
 .column-action, .table-action{
