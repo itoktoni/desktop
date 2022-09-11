@@ -16,6 +16,12 @@ class CreateSettingService
             EnvFacades::setValue('APP_DESCRIPTION', $data->description);
             EnvFacades::setValue('APP_LOCAL', $data->language);
 
+            EnvFacades::setValue('TICKET_DEPARTMENT', $data->department);
+            EnvFacades::setValue('TICKET_NAME', $data->ticket_name);
+            EnvFacades::setValue('TICKET_WORKSHEET', $data->ticket_worksheet);
+            EnvFacades::setValue('TICKET_SCHEDULE', $data->ticket_schedule);
+            EnvFacades::setValue('TICKET_TOPIC', $data->ticket_topic);
+
             if ($data->has('file_logo')) {
                 $file_logo = $data->file('file_logo');
                 $extension = $file_logo->getClientOriginalExtension();

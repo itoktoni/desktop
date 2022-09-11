@@ -43,12 +43,62 @@
 					'description', 'placeholder' => 'Please fill this input', 'rows' => 5]) !!}
 				</div>
 
-				<div class="form-group">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>{{ __('Language') }}</label>
+							{!! Form::select('language', ['id' => 'Indonesia', 'en' => 'English'], env('APP_LOCAL'),
+							['class' =>
+							'form-control', 'id' => 'language', 'placeholder' => __('- Select Language -'), 'required'])
+							!!}
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>{{ __('Department') }}</label>
+							{!! Form::select('department', $status, env('TICKET_DEPARTMENT'), ['class' =>
+							'form-control', 'id' => 'department', 'placeholder' => __('- Tampilkan Data -'), 'required'])
+							!!}
+						</div>
+					</div>
+				</div>
 
-					<label>{{ __('Language') }}</label>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>{{ __('Ticket Topic') }}</label>
+							{!! Form::select('ticket_topic', $status, env('TICKET_TOPIC'), ['class' =>
+							'form-control', 'id' => 'ticket_topic', 'placeholder' => __('- Tampilkan Data -'), 'required'])
+							!!}
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>{{ __('Ticket Name') }}</label>
+							{!! Form::select('ticket_name', $status, env('TICKET_NAME'), ['class' =>
+							'form-control', 'id' => 'ticket_name', 'placeholder' => __('- Tampilkan Data -'), 'required'])
+							!!}
+						</div>
+					</div>
+				</div>
 
-					{!! Form::select('language', ['id' => 'Indonesia', 'en' => 'English'], env('APP_LOCAL'), ['class' =>
-					'form-control', 'id' => 'language', 'placeholder' => '- Select Language -', 'required']) !!}
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>{{ __('Ticket Topic') }}</label>
+							{!! Form::select('ticket_worksheet', $type, env('TICKET_WORKSHEET'), ['class' =>
+							'form-control', 'id' => 'ticket_worksheet', 'placeholder' => __('- Tampilkan Data -'), 'required'])
+							!!}
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>{{ __('Ticket Topic') }}</label>
+							{!! Form::select('ticket_schedule', $type, env('TICKET_SCHEDULE'), ['class' =>
+							'form-control', 'id' => 'ticket_schedule', 'placeholder' => __('- Tampilkan Data -'), 'required'])
+							!!}
+						</div>
+					</div>
 				</div>
 
 			</div>

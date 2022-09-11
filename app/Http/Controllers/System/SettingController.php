@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\System;
 
 use App\Dao\Enums\BooleanType;
+use App\Dao\Models\WorkType;
 use App\Http\Requests\SettingRequest;
 use App\Http\Services\CreateSettingService;
 use Coderello\SharedData\Facades\SharedData;
@@ -15,8 +16,11 @@ class SettingController extends Controller
     protected function share($data = [])
     {
         $status = BooleanType::getOptions();
+        $type = WorkType::optionBuild();
+
         $view = [
             'status' => $status,
+            'type' => $type,
             'model' => false,
         ];
         return array_merge($view, $data);

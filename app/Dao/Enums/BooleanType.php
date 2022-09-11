@@ -11,5 +11,5 @@ class BooleanType extends Enum implements LocalizedEnum
     use StatusTrait;
 
     const Yes                   =  1;
-    const No                    =  2;
+    const No                    =  0;
 }
