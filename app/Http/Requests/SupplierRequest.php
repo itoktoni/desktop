@@ -13,7 +13,6 @@ class SupplierRequest extends FormRequest
     public function validation() : array
     {
         return [
-            'supplier_id' => 'required',
             'supplier_name' => 'required',
             'supplier_email' => 'required|email',
         ];
