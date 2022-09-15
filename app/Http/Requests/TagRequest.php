@@ -14,14 +14,14 @@ class TagRequest extends FormRequest
     public function prepareForValidation()
     {
         $this->merge([
-            Tag::field_pimary() => strtoupper(Str::snake($this->{Tag::field_name()})),
+            Tag::field_primary() => strtoupper(Str::snake($this->{Tag::field_name()})),
         ]);
     }
 
     public function validation() : array
     {
         return [
-            'tag_name' => 'required|min:3',
+            'tag_name' => 'required|unique:tag|min:3',
         ];
     }
 }
