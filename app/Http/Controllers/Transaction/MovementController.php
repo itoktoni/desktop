@@ -13,6 +13,7 @@ use App\Http\Services\SingleService;
 use App\Http\Services\UpdateMovementService;
 use Barryvdh\DomPDF\Facade as PDF;
 use Coderello\SharedData\Facades\SharedData;
+use Plugins\Query;
 use Plugins\Response;
 use Plugins\Template;
 
@@ -51,7 +52,7 @@ class MovementController extends MasterController
     protected function beforeForm()
     {
         $status = MovementStatus::getOptions();
-        $product = $this->getProduct();
+        $product = Query::getProduct();
         $location = $this->getLocation();
         self::$share = [
             'status' => $status,

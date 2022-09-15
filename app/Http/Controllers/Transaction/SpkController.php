@@ -14,6 +14,7 @@ use App\Http\Services\SingleService;
 use App\Http\Services\UpdateService;
 use Barryvdh\DomPDF\Facade as PDF;
 use Coderello\SharedData\Facades\SharedData;
+use Plugins\Query;
 use Plugins\Response;
 use Plugins\Template;
 
@@ -36,25 +37,13 @@ class SpkController extends MasterController
         $view = [
             'work_sheet' => $work_sheet,
             'product' => $product,
-            'product' => $this->getProduct(),
+            'product' => Query::getProduct(),
             'status' => $status,
             'vendor' => $vendor,
             'model' => false,
         ];
 
         return self::$share = array_merge($view, $data, self::$share);
-    }
-
-    private function getProduct()
-    {
-        $product = Product::with(['has_location'])->get()
-            ->mapWithKeys(function ($item) {
-                $name = $item->has_location->field_name . ' - ' . $item->field_name;
-                $id = $item->field_primary . '';
-                return [$id => $name];
-            });
-
-        return $product;
     }
 
     public function getCreate()
