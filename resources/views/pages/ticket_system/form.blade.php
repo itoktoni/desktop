@@ -290,7 +290,6 @@
 <style>
 #pictureFromCamera {
 	width: 100%;
-	height: 10px;
 	margin-top: 16px;
 }
 

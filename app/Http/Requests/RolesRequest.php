@@ -12,8 +12,8 @@ class RolesRequest extends FormRequest
     public function validation() : array
     {
         return [
-            'roles_name' => 'required|min:3',
-            'roles_active' => 'required',
+            'role_name' => 'required|min:3',
+            'role_active' => 'required',
         ];
     }
 }

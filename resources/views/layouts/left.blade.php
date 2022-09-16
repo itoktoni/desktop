@@ -2,7 +2,7 @@
     <div class="flex-grow-1">
         <ul>
             <li>
-                <a class="icon" href="#" data-nav-target="#dashboards">
+                <a class="icon {{ request()->segment(1) == 'home' ? 'active' : '' }}" href="{{ route('home') }}">
                     <i data-feather="bar-chart-2"></i>
                     <h5 class="text-center text-white">
                         Dashboard
