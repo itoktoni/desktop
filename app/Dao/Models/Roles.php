@@ -35,7 +35,7 @@ class Roles extends Model
     ];
 
     public $timestamps = false;
-    public $incrementing = true;
+    public $incrementing = false;
 
     public function fieldSearching()
     {

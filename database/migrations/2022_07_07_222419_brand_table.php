@@ -16,7 +16,7 @@ class BrandTable extends Migration
         Schema::create('brand', function (Blueprint $table) {
             $table->bigIncrements('brand_id');
             $table->string('brand_name');
-            $table->string('brand_description')->nullable();
+            $table->text('brand_description')->nullable();
         });
     }
 

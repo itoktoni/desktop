@@ -21,8 +21,8 @@ class CreateTicketSystemTable extends Migration
             $table->integer('ticket_system_work_type_id')->nullable(); //(relation ticket_topic)
             $table->string('ticket_system_name')->nullable();
             $table->text('ticket_system_description')->nullable();
-            $table->tinyInteger('ticket_system_priority');
-            $table->tinyInteger('ticket_system_status');
+            $table->tinyInteger('ticket_system_priority')->nullable();
+            $table->tinyInteger('ticket_system_status')->nullable();
             $table->string('ticket_system_implementor')->nullable();
             $table->integer('ticket_system_department_id')->nullable(); //(relation department)
             $table->date('ticket_system_reported_at')->nullable();

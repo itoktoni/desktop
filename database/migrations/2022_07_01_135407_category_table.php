@@ -16,7 +16,7 @@ class CategoryTable extends Migration
         Schema::create('category', function (Blueprint $table) {
             $table->bigIncrements('category_id');
             $table->string('category_name');
-            $table->string('category_description')->nullable();
+            $table->text('category_description')->nullable();
             $table->tinyInteger('category_active')->default(0);
         });
     }

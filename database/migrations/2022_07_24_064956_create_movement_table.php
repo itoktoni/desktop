@@ -21,7 +21,7 @@ class CreateMovementTable extends Migration
             $table->date('movement_date')->nullable();
             $table->integer('movement_product_id')->nullable(); // (update location di table product jika movement di approve)
             $table->string('movement_location_old')->nullable();
-            $table->string('movement_location_new');
+            $table->string('movement_location_new')->nullable();
             $table->tinyInteger('movement_status')->default(1); // (Pending, Approve, Reject)
             $table->dateTime('movement_created_at')->nullable();
             $table->integer('movement_created_by')->nullable();

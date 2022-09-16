@@ -28,22 +28,22 @@
 
 		<div class="row">
 			<div class="col-md-6">
-				<div class="form-group {{ $errors->has('roles_name') ? 'has-error' : '' }}">
+				<div class="form-group {{ $errors->has('role_name') ? 'has-error' : '' }}">
 					<label>{{ __('Name') }}</label>
-					{!! Form::text('roles_name', null, ['class' => 'form-control', 'id' => 'roles_name', 'placeholder'
+					{!! Form::text('role_name', null, ['class' => 'form-control', 'id' => 'role_name', 'placeholder'
 					=> 'Please fill this input', 'required']) !!}
-					{!! $errors->first('roles_name', '<p class="help-block">:message</p>') !!}
+					{!! $errors->first('role_name', '<p class="help-block">:message</p>') !!}
 				</div>
 				<div class="form-group">
 					<label>Active</label>
-					{{ Form::select('roles_active', $status, null, ['class'=> 'form-control', 'id' => 'roles_active']) }}
+					{{ Form::select('role_active', $status, null, ['class'=> 'form-control', 'id' => 'role_active']) }}
 				</div>
 			</div>
 
 			<div class="col-md-6">
 				<div class="form-group">
 					<label>{{ __('Description') }}</label>
-					{!! Form::textarea('roles_description', null, ['class' => 'form-control h-auto', 'id' => 'email',
+					{!! Form::textarea('role_description', null, ['class' => 'form-control h-auto', 'id' => 'email',
 					'placeholder' => 'Please fill this input', 'rows' => 5]) !!}
 				</div>
 			</div>

@@ -43,18 +43,6 @@ class WorkSheetController extends MasterController
         return $user->pluck(User::field_name(), User::field_primary());
     }
 
-    private function getProduct()
-    {
-        $product = Product::with(['has_location'])->get()
-            ->mapWithKeys(function ($item) {
-                $name = $item->has_location->field_name . ' - ' . $item->field_name;
-                $id = $item->field_primary . '';
-                return [$id => $name];
-            });
-
-        return $product;
-    }
-
     private function getImplementor($model)
     {
         $implementor = $model

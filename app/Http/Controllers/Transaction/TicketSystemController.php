@@ -55,18 +55,6 @@ class TicketSystemController extends MasterController
         return $user->pluck(User::field_name(), User::field_primary());
     }
 
-    private function getLocation()
-    {
-        $location = Location::with(['has_building'])->get()
-            ->mapWithKeys(function ($item) {
-                $name = $item->has_building->field_name . ' - ' . $item->field_name;
-                $id = $item->field_primary . '';
-                return [$id => $name];
-            });
-
-        return $location;
-    }
-
     protected function share($data = [])
     {
         $ticket_topic = TicketTopic::optionBuild();
@@ -81,11 +69,12 @@ class TicketSystemController extends MasterController
         $contract = TicketContract::getOptions();
 
         $product = Query::getProduct();
+        $location = Query::getLocation();
 
         $view = [
             'ticket_topic' => $ticket_topic,
             'department' => $department,
-            'location' => $this->getLocation(),
+            'location' => $location,
             'implementor' => $this->getImplementor($user),
             'user' => $this->getUser($user),
             'model' => false,

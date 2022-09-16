@@ -16,6 +16,7 @@ use App\Http\Services\SingleService;
 use App\Http\Services\UpdateScheduleService;
 use Barryvdh\DomPDF\Facade as PDF;
 use Coderello\SharedData\Facades\SharedData;
+use Plugins\Query;
 use Plugins\Response;
 use Plugins\Template;
 
@@ -27,36 +28,12 @@ class ScheduleController extends MasterController
         self::$service = self::$service ?? $service;
     }
 
-    private function getProduct()
-    {
-        $product = Product::with(['has_location'])->get()
-            ->mapWithKeys(function ($item) {
-                $name = $item->has_location->field_name . ' - ' . $item->field_name;
-                $id = $item->field_primary . '';
-                return [$id => $name];
-            });
-
-        return $product;
-    }
-
-    private function getLocation()
-    {
-        $location = Location::with(['has_building'])->get()
-            ->mapWithKeys(function ($item) {
-                $name = $item->has_building->field_name . ' - ' . $item->field_name;
-                $id = $item->field_primary . '';
-                return [$id => $name];
-            });
-
-        return $location;
-    }
-
     protected function share($data = [])
     {
         $status = WorkType::optionBuild();
         $type = ScheduleEvery::getOptions();
-        $product = $this->getProduct();
-        $location = $this->getLocation();
+        $product = Query::getProduct();
+        $location = Query::getLocation();
 
         $view = [
             'status' => $status,

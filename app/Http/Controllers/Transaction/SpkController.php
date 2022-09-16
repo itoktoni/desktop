@@ -29,8 +29,7 @@ class SpkController extends MasterController
     protected function share($data = [])
     {
         $work_sheet = WorkSheet::optionBuild();
-        $product = Product::optionBuild();
-        $product = Product::optionBuild();
+        $product = Query::getProduct();
         $status = SpkStatus::getOptions();
         $vendor = Supplier::optionBuild();
 

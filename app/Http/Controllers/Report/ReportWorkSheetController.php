@@ -13,6 +13,7 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Coderello\SharedData\Facades\SharedData;
 use Plugins\Template;
 use Maatwebsite\Excel\Facades\Excel;
+use Plugins\Query;
 
 class ReportWorkSheetController extends MasterController
 {
@@ -26,7 +27,7 @@ class ReportWorkSheetController extends MasterController
         $department = Department::optionBuild();
         $user = User::optionBuild();
         $work_type = WorkType::optionBuild();
-        $product = Product::optionBuild();
+        $product = Query::getProduct();
         $user = User::optionBuild();
         $status = WorkStatus::getOptions();
 

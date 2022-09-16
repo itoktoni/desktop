@@ -12,6 +12,7 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Coderello\SharedData\Facades\SharedData;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Plugins\Query;
 use Plugins\Template;
 
 class ReportProductController extends MasterController
@@ -23,8 +24,8 @@ class ReportProductController extends MasterController
 
     protected function beforeForm()
     {
-        $location = Location::optionBuild();
-        $product = Product::optionBuild();
+        $product = Query::getProduct();
+        $location = Query::getLocation();
         $user = User::optionBuild();
         $status = ProductStatus::getOptions();
 

@@ -16,10 +16,10 @@ class BuildingTable extends Migration
         Schema::create('building', function (Blueprint $table) {
             $table->bigIncrements('building_id');
             $table->string('building_name');
-            $table->text('building_description');
-            $table->string('building_contact_person');
-            $table->string('building_contact_phone');
-            $table->text('building_address');
+            $table->text('building_description')->nullable();
+            $table->string('building_contact_person')->nullable();
+            $table->string('building_contact_phone')->nullable();
+            $table->text('building_address')->nullable();
         });
     }
 
