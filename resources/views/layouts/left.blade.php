@@ -22,14 +22,6 @@
             </li>
             @endforeach
             @endif
-            <li>
-                <a class="icon" href="#" data-nav-target="#elements">
-                    <i data-feather="layers"></i>
-                    <h5 class="text-center text-white">
-                        UI Elements
-                    </h5>
-                </a>
-            </li>
 
             <li>
                 @auth

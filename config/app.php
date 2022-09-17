@@ -1,6 +1,7 @@
 <?php
 
 use App\Dao\Enums\BooleanType;
+use App\Dao\Enums\communicationType;
 use App\Dao\Enums\MovementStatus;
 use App\Dao\Enums\ProductStatus;
 use App\Dao\Enums\ScheduleStatus;
@@ -258,6 +259,7 @@ return [
         'WorkStatus' => WorkStatus::class,
         'MovementStatus' => MovementStatus::class,
         'SpkStatus' => SpkStatus::class,
+        'CommunicationType' => communicationType::class,
         'ScheduleStatus' => ScheduleStatus::class,
         'SharedData' => SharedData::class,
         'Routes' => Routes::class,
