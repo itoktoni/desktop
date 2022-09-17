@@ -25,6 +25,7 @@ use App\Http\Services\UpdateTicketWorksheetService;
 use Barryvdh\DomPDF\Facade as PDF;
 use Coderello\SharedData\Facades\SharedData;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Plugins\Query;
 use Plugins\Response;
 use Plugins\Template;
@@ -114,6 +115,7 @@ class TicketSystemController extends MasterController
     public function postCreate(TicketSystemRequest $request, CreateTicketService $service)
     {
         $data = $service->save(self::$repository, $request);
+        Log::error($data);
         return Response::redirectBack($data);
     }
 

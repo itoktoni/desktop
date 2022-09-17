@@ -3,6 +3,7 @@
 namespace Plugins;
 
 use Coderello\SharedData\Facades\SharedData;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 class Response
@@ -14,6 +15,7 @@ class Response
 
     public static function redirectBack($data = null, $back = false)
     {
+        Log::error($data);
         if(request()->wantsJson()){
             return self::sentJson($data);
         }
