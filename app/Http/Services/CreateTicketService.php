@@ -17,10 +17,11 @@ class CreateTicketService extends CreateService
         try {
             Log::error($data->all());
             $check = $repository->saveRepository($data->all());
+            Log::error($check);
             if(isset($check['status']) && $check['status']){
 
-                Alert::create();
                 event(new CreateTicketEvent($check['data']));
+                Alert::create();
             }
             else{
                 $message = env('APP_DEBUG') ? $check['data'] : $check['message'];
