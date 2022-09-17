@@ -15,9 +15,7 @@ class CreateTicketService extends CreateService
     {
         $check = false;
         try {
-            Log::error($data->all());
             $check = $repository->saveRepository($data->all());
-            Log::error($check);
             if(isset($check['status']) && $check['status']){
 
                 event(new CreateTicketEvent($check['data']));
@@ -29,7 +27,6 @@ class CreateTicketService extends CreateService
             }
         } catch (\Throwable $th) {
             Alert::error($th->getMessage());
-            Log::error($th->getMessage());
             return $th->getMessage();
         }
 

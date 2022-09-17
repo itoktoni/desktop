@@ -115,7 +115,6 @@ class TicketSystemController extends MasterController
     public function postCreate(TicketSystemRequest $request, CreateTicketService $service)
     {
         $data = $service->save(self::$repository, $request);
-        Log::error($data);
         return Response::redirectBack($data);
     }
 
