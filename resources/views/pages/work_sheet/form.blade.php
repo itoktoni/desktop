@@ -140,11 +140,17 @@
 				</div>
 
 				<div class="form-group {{ $errors->has('file_picture') ? 'has-error' : '' }}">
+					@if(Template::isMobile())
+					<label for="cameraFileInput">
+						<span class="btn btn-success">Ambil Gambar</span>
+						<input id="cameraFileInput" style="{!! Template::isMobile() ? 'display:none' : '' !!}"
+							name="file_picture" type="file" accept="image/*" capture="environment" />
+					</label>
+					@else
 					<label for="">{{ __('Take Picture') }}</label>
-
-					<input id="cameraFileInput" style="{!! Template::isMobile() ? 'display:none' : '' !!}"
-						name="file_picture" type="file" accept="image/*" class="btn btn-default btn-block btn-sm"
-						capture="environment" />
+					<input id="cameraFileInput" name="file_picture" type="file" accept="image/*"
+						class="btn btn-default btn-block" capture="environment" />
+					@endif
 
 					<input type="hidden" name="file_old" value="{{ $model->field_picture ?? null }}">
 
@@ -182,6 +188,28 @@
 @push('javascript')
 @include(Template::components('form'))
 @include(Template::components('date'))
+
+
+<style>
+#pictureFromCamera {
+	width: 100%;
+	margin-top: 16px;
+}
+
+.btn {
+	display: inline-block;
+	background-color: #00b531;
+	color: white;
+	padding: 8px 12px;
+	border-radius: 4px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.btn:hover {
+	filter: brightness(0.9);
+}
+</style>
 
 <script>
 $('.ticket').change(function() {

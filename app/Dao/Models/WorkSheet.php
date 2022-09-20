@@ -38,6 +38,7 @@ class WorkSheet extends Model
         'work_sheet_description',
         'work_sheet_check',
         'work_sheet_result',
+        'work_sheet_picture',
         'work_sheet_contract',
         'work_sheet_vendor_id',
         'work_sheet_implementor',
@@ -191,13 +192,13 @@ class WorkSheet extends Model
                 $file_logo->storeAs('public/worksheet/', $name);
                 $model->{WorkSheet::field_picture()} = $name;
 
-                if (request()->has('file_old')) {
-                    $path = public_path('storage//worksheet//');
-                    $old = request()->get('file_old');
-                    if (file_exists($path . $old)) {
-                        unlink($path . $old);
-                    }
-                }
+                // if (request()->has('file_old')) {
+                //     $path = public_path('storage//worksheet//');
+                //     $old = request()->get('file_old');
+                //     if (file_exists($path . $old)) {
+                //         unlink($path . $old);
+                //     }
+                // }
             }
         });
 

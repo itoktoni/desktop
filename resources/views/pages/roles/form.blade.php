@@ -41,6 +41,12 @@
 			</div>
 
 			<div class="col-md-6">
+
+				<div class="form-group">
+					<label>Type</label>
+					{{ Form::select('role_type', $type, null, ['class'=> 'form-control', 'id' => 'role_active']) }}
+				</div>
+
 				<div class="form-group">
 					<label>{{ __('Description') }}</label>
 					{!! Form::textarea('role_description', null, ['class' => 'form-control h-auto', 'id' => 'email',

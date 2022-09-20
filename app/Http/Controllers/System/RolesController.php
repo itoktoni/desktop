@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\System;
 
+use App\Dao\Enums\RoleType;
 use App\Dao\Repositories\RolesRepository;
 use App\Http\Requests\RolesRequest;
 use App\Http\Services\CreateService;
@@ -15,6 +16,13 @@ class RolesController extends MasterController
     {
         self::$repository = self::$repository ?? $repository;
         self::$service = self::$service ?? $service;
+    }
+
+    protected function beforeForm(){
+        $type = RoleType::getOptions();
+        self::$share = [
+            'type' => $type,
+        ];
     }
 
     public function postCreate(RolesRequest $request, CreateService $service)
