@@ -15,8 +15,6 @@ class Response
 
     public static function redirectBack($data = null, $back = false)
     {
-        Log::error($data);
-        Log::error(request()->wantsJson());
         if(request()->wantsJson()){
             return self::sentJson($data);
         }

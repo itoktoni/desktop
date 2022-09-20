@@ -10,18 +10,23 @@ class UserRequest extends FormRequest
 {
     use ValidationTrait;
 
-    public function validation() : array
+    public function validation(): array
     {
         return [
-            'name' => 'required|min:3',
+            'name' => 'required|min:2',
             'email' => 'required|email|unique:users',
         ];
     }
 
     public function prepareForValidation()
     {
-        $this->merge([
-            'password' => Hash::make($this->password),
-        ]);
+        if ($this->password) {
+            $this->merge([
+                'password' => Hash::make($this->password),
+            ]);
+        }
+        else {
+            $this->offsetUnset('password');
+        }
     }
 }

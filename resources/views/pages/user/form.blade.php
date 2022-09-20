@@ -29,9 +29,25 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-					<label>{{ __('Name') }}</label>
+					<label>{{ __('Full Name') }}</label>
 					{!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'required']) !!}
 					{!! $errors->first('name', '<p class="help-block">:message</p>') !!}
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="form-group {{ $errors->has('username') ? 'has-error' : '' }}">
+					<label>{{ __('Username') }}</label>
+					{!! Form::text('username', null, ['class' => 'form-control', 'id' => 'username', 'required']) !!}
+					{!! $errors->first('username', '<p class="help-block">:message</p>') !!}
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="form-group {{ $errors->has('phone') ? 'has-error' : '' }}">
+					<label>{{ __('Handphone') }}</label>
+					{!! Form::text('phone', null, ['class' => 'form-control', 'id' => 'phone', 'required']) !!}
+					{!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
 				</div>
 			</div>
 
