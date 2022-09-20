@@ -70,7 +70,7 @@ class CreateTicketListener
             }
 
             $description = $description.'Deskripsi : '.$event->data->field_description.PHP_EOL;
-            $description = $description.'Link : '.route('ticket_system_update', ['code' => $event->data->field_primary]);
+            $description = $description.'Link : '.route('ticket_system.getUpdate', ['code' => $event->data->field_primary]);
 
             WhatsApp::send(env('WA_ADMIN'), $description, asset('storage/ticket/'.$event->data->field_picture));
             if($phone_from){
