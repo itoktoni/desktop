@@ -14,8 +14,8 @@ class CreateWorkSheetService extends CreateService
         try {
             $check = $repository->saveRepository($data->all());
             if (isset($check['status']) && $check['status']) {
+                Alert::create();
                 if ($data->input('work_sheet_status') == 1 || $data->input('work_sheet_status') == 3) {
-                    Alert::create();
                     event(new CreateWorkSheetEvent($check['data']));
                 }
             } else {
