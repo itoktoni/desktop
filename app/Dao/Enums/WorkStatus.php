@@ -14,5 +14,6 @@ class WorkStatus extends Enum implements LocalizedEnum
     const Progress              =  2;
     const Sparepart              =  3;
     const Vendor              =  4;
-    const Close                 =  5;
+    const Warehouse              =  5;
+    const Close                 =  6;
 }

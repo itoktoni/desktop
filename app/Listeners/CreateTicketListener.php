@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Dao\Models\WorkType;
 use App\Events\CreateTicketEvent;
 use App\Mail\CreateTicketEmail;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -52,9 +53,27 @@ class CreateTicketListener
         }
 
         if($phone_from){
-            WhatsApp::send($phone_from, $event->data->field_description, asset('storage/ticket/'.$event->data->field_picture));
-            if($phone_to){
-                WhatsApp::send($phone_to, $event->data->field_description, asset('storage/ticket/'.$event->data->field_picture));
+            $description = '';
+            if($event->data->has_type){
+                $tipe = $event->data->has_type->field_name ?? '';
+                $description = $description.' Type : '.$tipe.PHP_EOL;
+            }
+
+            if($report_from){
+                $pelapor = $report_from->field_name ?? '';
+                $description = $description.' Pelapor : '.$pelapor.PHP_EOL;
+            }
+
+            if($event->data->has_location){
+                $location = $event->data->has_location->field_name ?? '';
+                $description = $description.' Lokasi : '.$location.PHP_EOL;
+            }
+
+            $description = $description.$event->data->field_description.PHP_EOL;
+
+            WhatsApp::send(env('WA_ADMIN'), $description, asset('storage/ticket/'.$event->data->field_picture));
+            if($phone_from){
+                WhatsApp::send($phone_from, $description, asset('storage/ticket/'.$event->data->field_picture));
             }
         }
     }

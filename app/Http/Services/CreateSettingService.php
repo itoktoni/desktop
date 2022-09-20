@@ -21,6 +21,7 @@ class CreateSettingService
             EnvFacades::setValue('TICKET_WORKSHEET', $data->ticket_worksheet);
             EnvFacades::setValue('TICKET_SCHEDULE', $data->ticket_schedule);
             EnvFacades::setValue('TICKET_TOPIC', $data->ticket_topic);
+            EnvFacades::setValue('WA_ADMIN', $data->wa_admin);
 
             if ($data->has('file_logo')) {
                 $file_logo = $data->file('file_logo');
