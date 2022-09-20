@@ -56,20 +56,21 @@ class CreateTicketListener
             $description = '';
             if($event->data->has_type){
                 $tipe = $event->data->has_type->field_name ?? '';
-                $description = $description.' Type : '.$tipe.PHP_EOL;
+                $description = $description.'Type : '.$tipe.PHP_EOL;
             }
 
             if($report_from){
                 $pelapor = $report_from->field_name ?? '';
-                $description = $description.' Pelapor : '.$pelapor.PHP_EOL;
+                $description = $description.'Pelapor : '.$pelapor.PHP_EOL;
             }
 
             if($event->data->has_location){
                 $location = $event->data->has_location->field_name ?? '';
-                $description = $description.' Lokasi : '.$location.PHP_EOL;
+                $description = $description.'Lokasi : '.$location.PHP_EOL;
             }
 
-            $description = $description.$event->data->field_description.PHP_EOL;
+            $description = $description.'Deskripsi : '.$event->data->field_description.PHP_EOL;
+            $description = $description.'Link : '.route('ticket_system_update', ['code' => $event->data->field_primary]);
 
             WhatsApp::send(env('WA_ADMIN'), $description, asset('storage/ticket/'.$event->data->field_picture));
             if($phone_from){
