@@ -48,7 +48,7 @@ class TicketSystemController extends MasterController
 
     private function getUser($user)
     {
-        if (auth()->user()->{User::field_role()} == RoleType::User) {
+        if (in_array(Query::getRole(auth()->user()->{User::field_role()}), [RoleType::User, RoleType::Pelaksana])) {
             $user = $user->where(User::field_primary(), auth()->user()
                     ->{User::field_primary()});
         }
