@@ -79,7 +79,9 @@
                     <tr>
                         <td><input type="checkbox" class="checkbox" name="code[]" value="{{ $table->field_primary }}"></td>
                         <td>{{ $table->field_name }}</td>
+                        <td>{{ $table->field_username }}</td>
                         <td>{{ $table->field_role_name }}</td>
+                        <td>{{ $table->field_phone }}</td>
                         <td>{{ $table->field_email }}</td>
                         <td class="text-center">
                             <btn

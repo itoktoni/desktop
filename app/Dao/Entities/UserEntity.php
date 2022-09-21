@@ -46,6 +46,16 @@ trait UserEntity
         return $this->{self::field_email()};
     }
 
+    public static function field_username()
+    {
+        return 'username';
+    }
+
+    public function getFieldUsernameAttribute()
+    {
+        return $this->{self::field_username()};
+    }
+
     public static function field_active()
     {
         return 'active';

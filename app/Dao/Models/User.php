@@ -63,8 +63,10 @@ class User extends Authenticatable
         return [
             DataBuilder::build($this->field_primary())->name('ID')->show(false),
             DataBuilder::build($this->field_name())->name('Name')->sort(),
+            DataBuilder::build($this->field_username())->name('Username')->sort(),
             DataBuilder::build(Roles::field_name())->name('Role'),
             DataBuilder::build($this->field_email())->name('Email'),
+            DataBuilder::build($this->field_phone())->name('Phone'),
             DataBuilder::build($this->field_active())->name('Active')->show(false),
         ];
     }
