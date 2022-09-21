@@ -24,7 +24,8 @@
                 <td class="text-primary"><a href="{{ $table->field_ticket_code ? route('ticket_system.getUpdate', ['code' => $table->field_ticket_code]) : '#' }}"><u>{{ Views::uiiShort($table->field_ticket_code) }}</u></a></td>
                 <td class="">{{ Views::uiiShort($table->field_primary) }}</td>
                 <td class="">{{ $table->field_type_name }}</td>
-                <td class="">{{ $table->field_name }}</td>
+                <td class="">{{ TicketContract::getDescription($table->field_contract) }}</td>
+                <td class="">{{ Query::getImplementor($table->field_contract, $table) }}</td>
                 <td class="">{{ $table->field_product_name }}</td>
                 <!-- <td class="">{{ $table->field_ticket_code }}</td> -->
                 <!-- <td class="">{{ $table->field_description }}</td> -->

@@ -10,7 +10,7 @@
 	@if($model)
 	<a target="_blank" href="{{ route(SharedData::get('route').'.getPdf', ['code' => $model->field_primary]) }}"
 		class="btn btn-danger">{{ __('Print PDF') }}</a>
-	@if(Query::getRole(auth()->user()->role) == RoleType::User && $model->field_status == TicketStatus::Open || Query::getRole(auth()->user()->role) != RoleType::User)
+	@if(!in_array(Query::getRole(auth()->user()->role), [RoleType::Pelaksana, RoleType::User]))
 	<button type="submit" class="btn btn-primary" id="modal-btn-save">{{ __('Save') }}</button>
 	@endif
 	@else

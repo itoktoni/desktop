@@ -2,6 +2,7 @@
 
 namespace Plugins;
 
+use App\Dao\Enums\TicketContract;
 use App\Dao\Enums\TicketStatus;
 use App\Dao\Models\Location;
 use App\Dao\Models\Product;
@@ -71,5 +72,14 @@ class Query
 
     public static function getTotalTicket($status = TicketStatus::Open){
         return TicketSystem::select(TicketSystem::field_primary())->where(TicketSystem::field_status(), $status)->count();
+    }
+
+    public static function getImplementor($type, $model){
+        if($type == TicketContract::Kontrak){
+            return $model->has_vendor->field_name ?? '' ;
+        }
+        else{
+            return $model->has_implementor->field_name ?? '';
+        }
     }
 }
