@@ -31,7 +31,7 @@
         {!! Template::form_table() !!}
 
         <div class="form-group col-md-2">
-            <input type="text" name="date" class="form-control date" placeholder="{{ __('Choose Date') }}">
+            <input type="text" name="date" value="{{ request()->get('date') ?? null }}" class="form-control date" placeholder="{{ __('Choose Date') }}">
         </div>
 
         <div class="form-group col-md-4">
