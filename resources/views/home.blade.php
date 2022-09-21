@@ -4,13 +4,13 @@
 
     <div class="page-header">
         <div class="container-fluid d-sm-flex justify-content-between">
-            <h4>Helpdesk Management</h4>
+            <h4>Dashboard</h4>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="#">Dashboard</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Helpdesk Management</li>
+                    <li class="breadcrumb-item active" aria-current="page">Welcome {{ auth()->user()->name ?? '' }}</li>
                 </ol>
             </nav>
         </div>
@@ -24,7 +24,7 @@
                     <div class="col-md-4">
                         <div class="card card-body">
                             <h3 class="mb-3">
-                                321
+                                {{ Query::getTotalTicket() }}
                                 <small>New Tickets</small>
                             </h3>
                             <div class="progress mb-2" style="height: 5px">
@@ -32,15 +32,12 @@
                                      style="width: 100%;"
                                      aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            <p class="font-size-11 m-b-0">
-                                <span class="text-success">+ 1.2%</span> than yesterday
-                            </p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card card-body">
                             <h3 class="mb-3">
-                                70
+                                {{ Query::getTotalTicket(TicketStatus::Close) }}
                                 <small>Solved Tickets</small>
                             </h3>
                             <div class="progress mb-2" style="height: 5px">

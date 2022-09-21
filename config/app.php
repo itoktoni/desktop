@@ -4,6 +4,7 @@ use App\Dao\Enums\BooleanType;
 use App\Dao\Enums\communicationType;
 use App\Dao\Enums\MovementStatus;
 use App\Dao\Enums\ProductStatus;
+use App\Dao\Enums\RoleType;
 use App\Dao\Enums\ScheduleStatus;
 use App\Dao\Enums\SpkStatus;
 use App\Dao\Enums\TicketContract;
@@ -13,6 +14,7 @@ use App\Dao\Models\Routes;
 use App\Providers\CacheableAuthUserServiceProvider;
 use Coderello\SharedData\Facades\SharedData;
 use Modules\System\Plugins\WhatsApp;
+use Plugins\Query;
 use Plugins\Template;
 use Plugins\Views;
 
@@ -259,10 +261,12 @@ return [
         'WorkStatus' => WorkStatus::class,
         'MovementStatus' => MovementStatus::class,
         'SpkStatus' => SpkStatus::class,
+        'RoleType' => RoleType::class,
         'CommunicationType' => communicationType::class,
         'ScheduleStatus' => ScheduleStatus::class,
         'SharedData' => SharedData::class,
         'Routes' => Routes::class,
+        'Query' => Query::class,
         'Browser' => hisorange\BrowserDetect\Parser::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Form' => Collective\Html\FormFacade::class,

@@ -7,10 +7,14 @@
 @section('action')
 <div class="button">
 	<a href="{{ URL::previous() }}" class="btn btn-warning">Back</a>
-	<button type="submit" class="btn btn-primary" id="modal-btn-save">{{ __('Save') }}</button>
 	@if($model)
 	<a target="_blank" href="{{ route(SharedData::get('route').'.getPdf', ['code' => $model->field_primary]) }}"
 		class="btn btn-danger">{{ __('Print PDF') }}</a>
+	@if(Query::getRole(auth()->user()->role) == RoleType::User && $model->field_status == TicketStatus::Open || Query::getRole(auth()->user()->role) != RoleType::User)
+	<button type="submit" class="btn btn-primary" id="modal-btn-save">{{ __('Save') }}</button>
+	@endif
+	@else
+	<button type="submit" class="btn btn-primary" id="modal-btn-save">{{ __('Save') }}</button>
 	@endif
 </div>
 @endsection
@@ -159,7 +163,7 @@
 
 {!! Template::form_close() !!}
 
-@if($model)
+@if($model && !in_array(Query::getRole(auth()->user()->role), [RoleType::User, RoleType::Pelaksana]))
 {!! Template::form_open($model, 'postUpdateWorksheet') !!}
 
 <div class="card">

@@ -80,7 +80,6 @@ class Template
 
     public static function routes()
     {
-
         if (Session::has('routes')) {
             return Session::get('routes');
         }

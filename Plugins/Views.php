@@ -2,6 +2,7 @@
 
 namespace Plugins;
 
+use App\Dao\Enums\RoleType;
 use Illuminate\Support\Str;
 
 class Views
@@ -111,5 +112,56 @@ class Views
 
     public static function randomColor() {
         return self::randomColorPart() . self::randomColorPart() . self::randomColorPart();
+    }
+
+    public static function auth($role, $group, $menu = false){
+        $status = false;
+        $getRole = Query::getRole($role);
+        $user_role = [
+            'transaction',
+        ];
+
+        $user_menu = [
+            'ticket_system',
+        ];
+
+        $pelaksana_role = [
+            'transaction',
+            'report',
+        ];
+
+        $pelaksana_menu = [
+            'movement',
+            'spk',
+        ];
+
+        if($menu){
+            if($getRole == RoleType::User && in_array($menu, $user_menu)){
+                return true;
+            } else if($getRole == RoleType::Pengawas){
+                return true;
+            } else if($getRole == RoleType::Pelaksana && !in_array($menu, $pelaksana_menu)){
+                return true;
+            } else if($getRole == RoleType::Admin){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+
+        if($getRole == RoleType::User && in_array($group, $user_role)){
+            return true;
+        } else if($getRole == RoleType::Pelaksana && in_array($group, $pelaksana_role)){
+            return true;
+        } else if($getRole == RoleType::Pengawas){
+            return true;
+        } else if($getRole == RoleType::Admin){
+            return true;
+        } else{
+            return false;
+        }
+
     }
 }

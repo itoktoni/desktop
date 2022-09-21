@@ -2,8 +2,11 @@
 
 namespace Plugins;
 
+use App\Dao\Enums\TicketStatus;
 use App\Dao\Models\Location;
 use App\Dao\Models\Product;
+use App\Dao\Models\Roles;
+use App\Dao\Models\TicketSystem;
 use Illuminate\Support\Facades\DB;
 
 class Query
@@ -60,5 +63,13 @@ class Query
             });
 
         return $location;
+    }
+
+    public static function getRole($role){
+        return Roles::find($role)->role_type ?? null;
+    }
+
+    public static function getTotalTicket($status = TicketStatus::Open){
+        return TicketSystem::select(TicketSystem::field_primary())->where(TicketSystem::field_status(), $status)->count();
     }
 }

@@ -11,6 +11,7 @@
             </li>
             @if($groups = SharedData::get('groups'))
             @foreach($groups as $group_data)
+            @if(Views::auth(auth()->user()->role, $group_data->field_primary))
             <li>
                 <a class="icon {{ request()->segment(2) == $group_data->field_primary ? 'active' : '' }}" href="#"
                     data-nav-target="#{{ $group_data->field_primary }}">
@@ -20,6 +21,7 @@
                     </h5>
                 </a>
             </li>
+            @endif
             @endforeach
             @endif
 
@@ -61,6 +63,7 @@
     <div class="navigation-menu-group">
         @if($access = SharedData::get('access'))
         @foreach($access as $acc_key => $acc_data)
+        @if(Views::auth(auth()->user()->role, $acc_key))
         <div class="{{ $acc_key == request()->segment(2) || request()->segment(1) == 'home' ? 'open' : '' }}" id="{{ $acc_key }}">
             <ul>
                 @if($acc_data)
@@ -72,11 +75,12 @@
                 $check_sub_menu = $sub_menu->count() ?? 0;
                 $highlight_module = request()->segment(3) == $acc[Routes::field_primary()];
                 @endphp
+                @if(Views::auth(auth()->user()->role, $acc_key, $acc[Routes::field_primary()]))
                 <li class="{{ $highlight_module ? 'open' : '' }}">
                     <a class="{{ $check_access ? 'active' : '' }}"
                         href="{{ $acc[Routes::field_report()] == 1 ? route($acc[Routes::field_primary()].'.getCreate') : route($acc[Routes::field_primary()].'.getTable') }}">
                         <span>
-                                {{ __($acc[Routes::field_name()]) }}
+                               {{ __($acc[Routes::field_name()]) }}
                         </span>
                     </a>
                     @if($check_sub_menu)
@@ -94,10 +98,12 @@
                     </ul>
                     @endif
                 </li>
+                @endif
                 @endforeach
                 @endif
             </ul>
         </div>
+        @endif
         @endforeach
         @endif
 

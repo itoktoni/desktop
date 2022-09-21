@@ -34,6 +34,7 @@ class HomeController extends Controller
         if(auth()->check() && auth()->user()->active == false){
             return redirect()->to('/');
         }
+
         return view('home');
     }
 }

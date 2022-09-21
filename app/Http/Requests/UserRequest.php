@@ -28,5 +28,9 @@ class UserRequest extends FormRequest
         else {
             $this->offsetUnset('password');
         }
+
+        $this->merge([
+            'active' => 1
+        ]);
     }
 }
